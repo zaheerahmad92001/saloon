@@ -71,12 +71,11 @@ const Login = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //padding: 15,
     backgroundColor: colors.white,
   },
   mainContainer: {
     flex: 1,
-    backgroundColor: colors.appBG,
+    backgroundColor: colors.white,
     paddingHorizontal: 20,
   },
   heading: {
@@ -88,6 +87,7 @@ const styles = StyleSheet.create({
     fontSize: RFValue(11),
     color: colors.lightBlack,
     fontFamily: fontsFamily.regular,
+    marginTop:hp(0.5),
   },
   label: {
     color: colors.appBlack,

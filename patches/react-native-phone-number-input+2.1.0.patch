@@ -1,0 +1,18 @@
+diff --git a/node_modules/react-native-phone-number-input/lib/index.js b/node_modules/react-native-phone-number-input/lib/index.js
+index b89c388..9ef6bf5 100644
+--- a/node_modules/react-native-phone-number-input/lib/index.js
++++ b/node_modules/react-native-phone-number-input/lib/index.js
+@@ -214,11 +214,11 @@ export default class PhoneInput extends PureComponent {
+               textContainerStyle ? textContainerStyle : {},
+             ]}
+           >
+-            {code && layout === "first" && (
++            {/* {code && layout === "first" && (
+               <Text
+                 style={[styles.codeText, codeTextStyle ? codeTextStyle : {}]}
+               >{`+${code}`}</Text>
+-            )}
++            )} */}
+             <TextInput
+               style={[styles.numberText, textInputStyle ? textInputStyle : {}]}
+               placeholder={placeholder ? placeholder : "Phone Number"}

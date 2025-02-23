@@ -1,4 +1,10 @@
-import {View, Text, SafeAreaView, StyleSheet} from 'react-native';
+import {
+  View,
+  SafeAreaView,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from 'react-native';
 import React, {useState} from 'react';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
 import {SmallText, XlargeText} from '../../components/Typography';
@@ -13,58 +19,56 @@ const OtpView = ({navigation, route}) => {
   const [otp, setOtp] = useState('');
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Header
-        title={'OTP'}
-        showBackButton
-        onBackPress={() => navigation.goBack()} />
-      <View style={styles.mainContainer}>
-        <XlargeText text={'Verify Your Identity'} style={styles.heading} />
-        <SmallText
-          text={
-            'We’ve sent a 4-digit code to 071*****05 Please enter it below.'
-          }
-          style={styles.subHeading}
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <SafeAreaView style={styles.container}>
+        <Header
+          title={'OTP'}
+          showBackButton
+          onBackPress={() => navigation.goBack()}
         />
-
-        <OTPInputView
-          style={styles.otpContainer}
-          pinCount={4}
-          autoFocusOnLoad
-          code={otp}
-          onCodeChanged={setOtp}
-          codeInputFieldStyle={styles.otpInput}
-          codeInputHighlightStyle={styles.otpInputHighlight}
-        />
-
-        <View style={styles.registerTextContainer}>
-          <SmallText text={'Time Left:'} style={styles.headingAcc} />
-          <SmallText text={'00:10'} style={styles.subHeadingAcc} />
-        </View>
-
-        <View style={styles.resendContainer}>
+        <View style={styles.mainContainer}>
+          <XlargeText text={'Verify Your Identity'} style={styles.heading} />
           <SmallText
-            text={'Didn’t receive a code?'}
-            style={styles.headingAcc}
+            text={
+              'We’ve sent a 4-digit code to 071*****05 Please enter it below.'
+            }
+            style={styles.subHeading}
           />
-          <SmallText text={'Resend'} style={styles.subHeadingAcc} />
+
+          <OTPInputView
+            style={styles.otpContainer}
+            pinCount={4}
+            autoFocusOnLoad={false}
+            code={otp}
+            onCodeChanged={setOtp}
+            codeInputFieldStyle={styles.otpInput}
+            codeInputHighlightStyle={styles.otpInputHighlight}
+          />
+
+          <View style={styles.registerTextContainer}>
+            <SmallText text={'Time Left:'} style={styles.headingAcc} />
+            <SmallText text={'00:10'} style={styles.subHeadingAcc} />
+          </View>
+
+          <View style={styles.resendContainer}>
+            <SmallText
+              text={'Didn’t receive a code?'}
+              style={styles.headingAcc}
+            />
+            <SmallText text={'Resend'} style={styles.subHeadingAcc} />
+          </View>
+
+          <AppButton
+            title={'Continue'}
+            style={styles.buttonContainer}
+            textstyle={styles.buttontext}
+            onPress={() =>
+              navigation.navigate('salonCategory',)
+            }
+          />
         </View>
-
-        <AppButton
-          title={'Continue'}
-          style={styles.buttonContainer}
-          textstyle={styles.buttontext}
-          // onPress={() => navigation.navigate('salonCategorySelection')}
-          onPress={() =>
-            navigation.navigate('successScreen', {actionName: 'register'})
-          }
-
-          // onPress={() =>
-          //   navigation.navigate('registrationProcessScreen', {actionName: 'registerProcess'})
-          // }
-        />
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -88,6 +92,7 @@ const styles = StyleSheet.create({
     fontSize: RFValue(11),
     color: colors.lightBlack,
     fontFamily: fontsFamily.regular,
+    marginTop: hp(1),
   },
   otpContainer: {
     width: '72%',

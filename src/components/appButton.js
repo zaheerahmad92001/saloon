@@ -16,7 +16,7 @@ const AppButton = props => {
 const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: colors.primary,
-    paddingVertical: 8,
+    paddingVertical: 12,
     paddingHorizontal: 18,
     borderRadius: 6,
     borderColor: colors.primary,

@@ -1,19 +1,26 @@
-import { View, SafeAreaView, Text, Pressable, TextInput, ScrollView } from 'react-native';
-import React, { useRef, useState } from 'react';
+import {
+  View,
+  SafeAreaView,
+  Text,
+  Pressable,
+  TextInput,
+  ScrollView,
+} from 'react-native';
+import React, {useRef, useState} from 'react';
 import PhoneInput from 'react-native-phone-number-input';
-import { SmallText, XlargeText } from '../../components/Typography';
+import {SmallText, XlargeText} from '../../components/Typography';
 import styles from './signUp.Style';
 import colors from '../../assets/colors';
 import fontsFamily from '../../assets/fontsFamily';
-import { AppButton } from '../../components/appButton';
+import {AppButton} from '../../components/appButton';
 import TextField from '../../components/textField/textField';
-import { Checkbox } from 'react-native-paper';
-import { RFValue } from 'react-native-responsive-fontsize';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {RFValue} from 'react-native-responsive-fontsize';
 import Header from '../../components/appHeader';
 import DownArrow from '../../assets/svgs/downarrow.svg';
 import LocationPointer from '../../assets/svgs/locationpointer.svg';
 
-const SignUp = ({ navigation, route }) => {
+const SignUp = ({navigation, route}) => {
   const phoneInput = useRef(null);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [formattedValue, setFormattedValue] = useState('');
@@ -21,17 +28,17 @@ const SignUp = ({ navigation, route }) => {
   const [isChecked, setChecked] = useState(false);
   const [address, setAddress] = useState('');
 
-
   const handleLocationPress = () => {
     console.log("Fetching user's location...");
   };
 
-
   return (
     <SafeAreaView style={styles.container}>
-
-      <Header title={'Sign Up'} showBackButton onBackPress={() => navigation.goBack()}></Header>
-      <ScrollView>
+      <Header
+        title={'Sign Up'}
+        showBackButton
+        onBackPress={() => navigation.goBack()} />
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.mainContainer}>
           <XlargeText text={'Create your Account!'} style={styles.heading} />
           <SmallText text={'Phone Number'} style={styles.label} />
@@ -44,7 +51,7 @@ const SignUp = ({ navigation, route }) => {
             layout="first"
             placeholder="Enter your phone number"
             disableCountryCode={true}
-            onChangeText={(text) => {
+            onChangeText={text => {
               setPhoneNumber(text);
             }}
             onChangeFormattedText={text => setFormattedValue(text)}
@@ -57,14 +64,10 @@ const SignUp = ({ navigation, route }) => {
               placeholderTextColor: colors.lightBlack,
               fontFamily: fontsFamily.regular,
               fontSize: RFValue(12),
-              style: { paddingLeft: 0, marginLeft: -20, textAlign: "left" }
+              style: {paddingLeft: 0, marginLeft: -20, textAlign: 'left'},
             }}
-            renderDropdownImage={
-              <DownArrow />
-            }
+            renderDropdownImage={<DownArrow />}
           />
-
-
 
           <TextField
             label={'Salon name'}
@@ -84,7 +87,7 @@ const SignUp = ({ navigation, route }) => {
           />
           <View style={styles.addressLablecontainer}>
             <Text style={styles.addresslabel}>Address</Text>
-            <Pressable >
+            <Pressable>
               <LocationPointer />
             </Pressable>
           </View>
@@ -96,32 +99,30 @@ const SignUp = ({ navigation, route }) => {
               placeholderTextColor="#B0B0B0"
               style={styles.addressinput}
               multiline={true}
-              numberOfLines={20}
-            >
-            </TextInput>
+              numberOfLines={20} />
           </View>
 
-
-          <View style={styles.checkboxContainer}>
-            <Checkbox
-              status={isChecked ? 'checked' : 'unchecked'}
-              onPress={() => setChecked(!isChecked)}
-              color={colors.primary}
-            />
+          <Pressable
+            onPress={() => setChecked(!isChecked)}
+            style={styles.checkboxContainer}>
+            <View style={{alignSelf: 'flex-start'}}>
+              <MaterialIcons
+                name={isChecked ? 'check-box' : 'check-box-outline-blank'}
+                size={25}
+                color={isChecked ? colors.primary : colors.lightBlack}
+              />
+            </View>
             <View style={styles.termViews}>
               <Text style={styles.termsText}>
-                I agree to the anaqq{" "}
-                <Text style={styles.privacyPolicyText}>
-                  Terms of Service
-                </Text>{" "}
-                and{" "}
-                <Text style={styles.privacyPolicyText}>
-                  Privacy Policy
-                </Text>
+                I agree to the anaqq{' '}
+                <Text style={styles.privacyPolicyText}>Terms of Service</Text>{' '}
+                and
+              </Text>
+              <Text style={[styles.privacyPolicyText, {marginTop: 6}]}>
+                Privacy Policy
               </Text>
             </View>
-
-          </View>
+          </Pressable>
 
           <AppButton
             title={'Sign Up'}
@@ -140,14 +141,10 @@ const SignUp = ({ navigation, route }) => {
               <SmallText text={'Sign in'} style={styles.subHeadingAcc} />
             </Pressable>
           </View>
-
         </View>
       </ScrollView>
-
     </SafeAreaView>
   );
 };
-
-
 
 export default SignUp;

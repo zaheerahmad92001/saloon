@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import { Platform, StyleSheet, Text } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import fontsFamily from "../assets/fontsFamily";
 import colors from "../assets/colors";
@@ -26,27 +26,26 @@ const styles = StyleSheet.create({
   xlText: {
     fontSize: RFValue(15),
     fontFamily: fontsFamily.regular,
-    fontWeight:'600',
+    fontWeight: Platform.OS==='android'?'700' : '600',
     color:colors.appBlack,
   },
   lText: {
     fontSize: RFValue(14),
     fontFamily: fontsFamily.regular,
-    fontWeight:'600',
-    textAlign: 'center',
+    fontWeight: Platform.OS==='android'?'700':'600',
     color:colors.appBlack,
   },
   mediumText:{
     color:colors.appBlack,
     fontFamily:fontsFamily.regular,
     fontSize:RFValue(13),
-    fontWeight:'600',
+    fontWeight:Platform.OS==='ios'? '600' :'700',
   },
   smallText:{
     color:colors.appBlack,
-    fontFamily:fontsFamily.thin,
-    fontSize:RFValue(12),
-    fontWeight:'600',
+    fontFamily:fontsFamily.regular,
+    fontSize:RFValue(Platform.OS==='android'? 13: 12),
+    fontWeight:Platform.OS=='android'? '600' :'500',
   }
 });
 

@@ -14,7 +14,6 @@ import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { slides } from '../../staticData';
 import { LargeText, SmallText } from '../../components/Typography';
 import { AppButton } from '../../components/appButton';
-import ArrowRight from '../../assets/svgs/arrow-right.svg'
 
 const AppIntro = ({ navigation, route }) => {
 

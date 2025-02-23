@@ -38,7 +38,6 @@ import Location from '../location/location';
 import RatingAndReview from '../ratingAndReviewScreen/ratingAndReview';
 import AvailableTimeSlot from '../availableTimeSlotScreen/availableTimeSlot';
 import OrderDetail from '../bookingDetailScreen/BookingDetail';
-import RegistrationProcessScreen from '../registrationProcess/registrationProcessScreen';
 import ProfileScreen from '../profileScreen/profile/profile';
 
 const Stack = createNativeStackNavigator();
@@ -53,6 +52,7 @@ const IntroStack=()=>{
     </Stack.Navigator>
   )
 }
+
 
 function AppStack() {
   return (
@@ -95,7 +95,7 @@ function AppStack() {
       <Stack.Screen name='ratingAndReview' component={RatingAndReview}/>
       <Stack.Screen name='availableTimeSlot' component={AvailableTimeSlot}/>
       <Stack.Screen name='orderDetail' component={OrderDetail}/>  
-      <Stack.Screen name='registrationProcessScreen' component={RegistrationProcessScreen}/>
+     
       <Stack.Screen name='profileScreen' component={ProfileScreen}/>
       
 
