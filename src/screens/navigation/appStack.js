@@ -54,6 +54,7 @@ const IntroStack=()=>{
   )
 }
 
+
 function AppStack() {
   return (
     <Stack.Navigator
