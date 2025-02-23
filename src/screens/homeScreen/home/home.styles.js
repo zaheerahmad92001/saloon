@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     flex: 1,
-    backgroundColor: colors.white,
+    backgroundColor: colors.appBG,
 
   },
   contentWrapper: {
@@ -159,24 +159,23 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     paddingRight: 25,
     //paddingBottom: 12,
-    elevation: 6,
+    // elevation: 6,
 
-    shadowColor: colors.lightBlack,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
+    // shadowColor: colors.lightBlack,
+    // shadowOffset: { width: 0, height: 2 },
+    // shadowOpacity: 0.2,
+    // shadowRadius: 5,
     width: wp('43%')
   },
 
   lableText: {
     fontFamily: fontsFamily.regular,
     color: colors.lightBlack,
-    fontSize: RFValue(11)
+    // fontSize: RFValue(11)
   },
   ValueText: {
     fontFamily: fontsFamily.medium,
     color: colors.appBlack,
-    fontSize: RFValue(13),
     marginLeft: 6
   },
   textlableValueView: {
@@ -188,27 +187,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 2,
-    paddingVertical: 10
+    paddingVertical: 7
   },
   mainGraphView: {
     flex:1,
-    // elevation:6,
      paddingVertical:20,
-    // shadowColor: colors.appBlack,
-    // shadowOffset: { width: 0, height: 2 },
-    // shadowOpacity: 0.2,
-    // shadowRadius: 5,
-
-
-    // paddingLeft: 10,
-    // elevation: 6,
-    // paddingTop: 10,
-    // shadowColor: colors.appBlack,
-    // shadowOffset: { width: 0, height: 2 },
-    // shadowOpacity: 0.2,
-    // shadowRadius: 5,
-    // overflow: "hidden"
-
   }
 
 });

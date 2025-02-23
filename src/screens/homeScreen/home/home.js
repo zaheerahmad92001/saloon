@@ -13,7 +13,7 @@ import Search from '../../../components/search';
 import { mockData, recentSearches } from '../../../staticData';
 import images from '../../../assets/images';
 import SalonCard from '../../../components/salonCard/salonCard';
-import { LargeText, SmallText, XlargeText } from '../../../components/Typography';
+import { LargeText, MediumText, SmallText, XlargeText } from '../../../components/Typography';
 import styles from './home.styles';
 import HomeHeader from '../../../components/homeHeader';
 import GooglePlacesModal from '../../../components/modal/google-places-modal';
@@ -30,6 +30,7 @@ import { LineChart } from "react-native-chart-kit";
 import colors from '../../../assets/colors';
 import SaleCustomersTabs from './TabIndex';
 import CustomersScene from './customersScene';
+import BezierGraphView from '../../../components/graphView/BezierGraphView';
 const categories = [
   { id: 1, name: 'Salon', icon: images.salon },
   { id: 2, name: 'Spa', icon: images.spa },
@@ -148,28 +149,7 @@ const HomeScreen = ({ navigation, route }) => {
 
               />
             </View>
-            {/* <View>
-              <View style={styles.imageContainer}>
-                <Image
-                  source={images.customers}
-                  resizeMode="contain"
-                  style={styles.image}
-                />
-              </View>
-
-              <View style={styles.headerCard}>
-                <Text style={styles.headerText}>Morning Special!</Text>
-                <Text style={styles.discountText}>Get 20% Off</Text>
-                <Text style={styles.subText}>
-                  Limited-time offers on all services
-                </Text>
-                <TouchableOpacity onPress={openModal} style={styles.bookButton}>
-                  <Text style={styles.bookButtonText}>Book Now</Text>
-                </TouchableOpacity>
-              </View>
-            </View> */}
-
-
+          
             <View style={styles.sectionHeader}>
               <LargeText text={'Overview'} style={styles.sectionTitle} />
               <OverViewDropdown
@@ -184,8 +164,8 @@ const HomeScreen = ({ navigation, route }) => {
               <View style={styles.totalBookingView}>
                 <TotalBookingIcon />
                 <View style={styles.textlableValueView}>
-                  <Text style={styles.lableText}> Total Booking</Text>
-                  <Text style={styles.ValueText}>56</Text>
+                  <SmallText text='Total Booking' style={styles.lableText}/> 
+                  <MediumText text={'56'} style={styles.ValueText}/>
                 </View>
               </View>
 
@@ -221,58 +201,14 @@ const HomeScreen = ({ navigation, route }) => {
 
             <LargeText text={'Total Sales'} style={styles.totalSalesTitle} />
              
+
+<BezierGraphView/>
+             
              <View style={styles.mainGraphView}>
               <SaleCustomersTabs/>
               <CustomersScene/>
              </View>
 
-            {/* <View style={styles.sectionHeader}>
-              <LargeText text={'Nearby Venues'} style={styles.sectionTitle} />
-              <TouchableOpacity>
-                <SmallText text={'See All'} style={styles.seeAllText} />
-              </TouchableOpacity>
-            </View>
-
-            <FlatList
-              data={mockData}
-              keyExtractor={item => item.id.toString()}
-              renderItem={renderSalonCard}
-              contentContainerStyle={styles.list}
-              scrollEnabled={false}
-            />
-
-            <View style={styles.sectionHeader}>
-              <LargeText text={'Top Rated Venues'} style={styles.sectionTitle} />
-              <TouchableOpacity>
-                <SmallText text={'See All'} style={styles.seeAllText} />
-              </TouchableOpacity>
-            </View>
-
-            <FlatList
-              data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-              horizontal={true}
-              renderItem={renderTopRatedVenus}
-              contentContainerStyle={{ gap: 10 }}
-              showsHorizontalScrollIndicator={false}
-            />
-
-            <View style={styles.sectionHeader}>
-              <LargeText
-                text={'Recommended Venues'}
-                style={styles.sectionTitle}
-              />
-              <TouchableOpacity>
-                <SmallText text={'See All'} style={styles.seeAllText} />
-              </TouchableOpacity>
-            </View>
-
-            <FlatList
-              data={mockData}
-              keyExtractor={item => item.id.toString()}
-              renderItem={renderSalonCard}
-              contentContainerStyle={styles.list}
-              scrollEnabled={false}
-            /> */}
           </ScrollView>
         </View>
       </View>

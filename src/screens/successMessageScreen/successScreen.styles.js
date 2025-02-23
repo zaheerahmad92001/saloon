@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
       fontSize: RFValue(18),
       fontFamily: fontsFamily.semiBold,
       color: colors.appBlack,
-      marginVertical: 10,
+      marginVertical:heightPercentageToDP(1.5),
     },
     description: {
       fontSize: RFValue(12),

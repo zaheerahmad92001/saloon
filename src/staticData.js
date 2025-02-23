@@ -237,8 +237,8 @@ const serviceData = [
 const slides = [
   {
     key: '1',
-    title_1: 'Streamline Your Salon Operations',
-    title_2: '',
+    title_1: 'Streamline Your Salon',
+    title_2: 'Operations',
     text: 'Manage bookings, clients, and services effortlessly',
     image: images.intro3,
   },
@@ -363,8 +363,11 @@ const messages = {
   
   registerProcess: {
     title: 'Registration in Process!',
-    subheading: 'Please wait for verifying your account by ANAQA company.',
-    subheading2: "We'll give you a shout as soon as your salon gets the go-ahead from ANAQA!",
+    subheading: 'Please wait for verifying your account by ',
+    subheading2:'ANAQA company.',
+    subheading3: "We'll give you a shout as soon as your salon gets",
+    subheading4:'the go-ahead from ANAQA!',
+
   },
 
   register: {

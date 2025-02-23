@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {View, SafeAreaView,Text} from 'react-native';
 import Complete from '../../assets/svgs/complete.svg';
 import {AppButton} from '../../components/appButton';
@@ -16,12 +16,13 @@ const RegistrationProcessScreen = ({navigation, route}) => {
     };
     return message;
   }
-  const {title, subheading,subheading2} = getMessage(actionName);
+  const {title, subheading,subheading2 , subheading3 , subheading4} = getMessage(actionName);
 
-  const goToHome = () => {
-    navigation.navigate('BottomStack', {screen: 'homeStack'});
-  };
-  const isRegister = title === messages.register.title ? true : false;
+useEffect(()=>{
+  setTimeout(() => {
+    navigation.navigate('successScreen',{actionName:'register'})
+  }, 2000);
+},[])
 
   return (
     <SafeAreaView style={styles.container}>
@@ -31,8 +32,8 @@ const RegistrationProcessScreen = ({navigation, route}) => {
           <XlargeText text={`${title}`} style={styles.heading} />
           <SmallText text={`${subheading}`} style={styles.description} />
           <SmallText text={`${subheading2}`} style={styles.description} />
-          
-
+          <SmallText text={`${subheading3}`} style={[styles.description,{marginTop:15}]} />
+          <SmallText text={`${subheading4}`} style={styles.description} />
         </View>
       </View>
     </SafeAreaView>

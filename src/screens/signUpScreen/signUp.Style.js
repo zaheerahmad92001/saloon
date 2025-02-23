@@ -9,11 +9,10 @@ import {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //padding: 15,
     backgroundColor: colors.white,
   },
   mainContainer: {
-    backgroundColor: colors.appBG,
+    backgroundColor: colors.white,
     flex: 1,
     paddingHorizontal: 20
   },
@@ -33,12 +32,13 @@ const styles = StyleSheet.create({
   phoneContainer: {
     width: '100%',
     height: 50,
+    
   },
   textInput: {
     paddingVertical: 0,
     backgroundColor: colors.inputGray,
     color: colors.appBlack,
-    height:50
+    height:50,
   },
   flagButton: {
     backgroundColor: colors.inputGray,
@@ -64,8 +64,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   termViews: {
-    paddingRight: 20,
-    paddingTop: 15
+    marginLeft: 10,
   },
   termsText: {
     color: colors.lightBlack,
@@ -79,9 +78,7 @@ const styles = StyleSheet.create({
   },
   signUpButton: {
     backgroundColor: colors.primary,
-    marginVertical: 0,
-    fontSize: RFValue(12),
-    fontFamily: fontsFamily.regular,
+    marginVertical: 10,
   },
   signUpText: {
     fontSize: RFValue(13),
@@ -91,7 +88,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'center',
-    marginVertical: 20,
+    marginVertical: 10,
     marginBottom:40
   },
   headingAcc: {

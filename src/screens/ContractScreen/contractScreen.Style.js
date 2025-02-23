@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import colors from "../../assets/colors";
 import { RFValue } from 'react-native-responsive-fontsize';
 import fontsFamily from '../../assets/fontsFamily';
@@ -11,12 +11,12 @@ const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
         backgroundColor: colors.white,
-        padding: 20
+        marginHorizontal:wp(4),
 
     },
     headerTitle: {
         color: colors.appBlack,
-        marginTop: hp(3),
+        marginTop: hp(2),
         fontFamily: fontsFamily.bold,
         fontWeight: '600',
         fontSize: RFValue(14)
@@ -25,11 +25,13 @@ const styles = StyleSheet.create({
         marginTop:hp(2),
         color: colors.lightBlack,
         fontFamily: fontsFamily.regular,
-        fontSize: RFValue(12)
+        lineHeight:24,
+        fontSize: RFValue(Platform.OS==='android'? 13 :12),
     },
 
     digitalSignatureLableView: {
         marginTop: hp(2),
+        marginBottom:hp(0.5),
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center'
@@ -58,7 +60,7 @@ const styles = StyleSheet.create({
         marginTop:hp(0.5),
         borderWidth: 1,
        borderColor: colors.primary,
-        height: 120,
+        height:hp(18),
         borderRadius: 5,
         overflow: 'hidden',
     },
@@ -70,12 +72,12 @@ const styles = StyleSheet.create({
     },
     checkboxContainer: {
         flexDirection: 'row',
-        marginVertical: 0,
+        marginTop:hp(1),
         alignItems: 'center'
     },
     termViews: {
-        paddingRight: 20,
-        paddingTop: 8
+        marginLeft: 10,
+
     },
     termsText: {
         color: colors.lightBlack,
@@ -89,10 +91,7 @@ const styles = StyleSheet.create({
     },
     signUpButton: {
         marginTop:hp(5),
-        backgroundColor: colors.primary,
-        marginVertical: 0,
-        fontSize: RFValue(12),
-        fontFamily: fontsFamily.regular,
+        marginHorizontal:wp(4),
       },
       signUpText: {
         fontSize: RFValue(13),
