@@ -52,17 +52,51 @@ const styles = StyleSheet.create({
     inputContainer: {
       marginBottom: 15,
     },
+    dropdownContainer: {
+      marginBottom: 15,
+      marginTop:-10
+    },
+
+    emailContainer: {
+      marginBottom: 15,
+      paddingVertical:15
+    },
     inputHalf: {
       flex: 1,
     //   marginHorizontal: 5, // Add spacing between fields
     },
     button: {
-      marginTop:hp(5)
+      marginTop:hp(5),
+      marginBottom:hp(5)
     },
     buttonText: {
       color: colors.white,
       fontSize: RFValue(14),
       fontFamily: fontsFamily.semiBold,
     },
+    textInput: {
+      paddingVertical: 0,
+      backgroundColor: colors.inputGray,
+      color: colors.appBlack,
+      height:50,
+    },
+    flagButton: {
+      backgroundColor: colors.inputGray,
+    },
+    phoneContainer: {
+      width: '100%',
+      height: 50,
+      
+      
+    },
+    cityText: {
+      fontSize: RFValue(12),
+      color: colors.appBlack,
+      fontFamily: fontsFamily.regular,
+      fontWeight: '400',
+      marginBottom: 10,
+      //marginTop: 10,
+      // marginVertical:hp(2),
+  },
   });
 export default styles;
