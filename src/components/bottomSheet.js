@@ -58,7 +58,7 @@ export const BottomSheet = (props) => {
       keyboardBlurBehavior="restore"
       enableDismissOnClose
       backdropComponent={renderBackdrop}
-      backgroundStyle={{backgroundColor:colors.appBG}}
+      backgroundStyle={{backgroundColor:colors.white}}
       onDismiss={onDismiss}
     >
       {Boolean(title) && (
@@ -71,7 +71,7 @@ export const BottomSheet = (props) => {
       <View style={{ minHeight: height }}>{children}</View>
       :
       <BottomSheetScrollView
-      style={{paddingHorizontal:20}}
+      style={{paddingHorizontal:20, backgroundColor:colors.white}}
         nestedScrollEnabled={false}
         scrollEnabled={scrollEnabled ? true : false}>
         <View style={{ minHeight: height }}>{children}</View>

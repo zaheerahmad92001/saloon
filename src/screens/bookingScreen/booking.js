@@ -8,7 +8,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp, heightPercentage
 import CancelBooking from '../../components/modal/cancelBooking';
 import { BottomSheet } from '../../components/bottomSheet';
 import { bookingStatus } from '../../staticData';
-import Filter from '../../assets/svgs/filter-search.svg';//'../../assets/svgs/svgs/filter-search.svg';
+import Filter from '../../assets/svgs/filter-search.svg';
 import { RFValue } from 'react-native-responsive-fontsize';
 import FilterScreen from '../../components/modal/filterScreen';
 import ModalComponent from '../../components/modal/index';
@@ -22,12 +22,8 @@ const BookingHistory = ({ navigation, route }) => {
   const refRBSheet = useRef();
   const refRBSheetFilter = useRef();
   const refRBSheetChangeProfessional = useRef();
-
-
-
-
-
   const modalRef = useRef();
+
   const openModal = () => {
     if (modalRef?.current) {
       modalRef.current.open();
@@ -79,12 +75,7 @@ const BookingHistory = ({ navigation, route }) => {
 
 
   const handleReschedule = (item) => {
-    // based on status will navigate to Book again or leave review screen 
      navigation.navigate('orderDetail')
-
-     //navigation.navigate('invoiceDetail');
-    //navigation.navigate('review')
-    //navigation.navigate('availableTimeSlot')
   };
 
   const openBottomSheet = useCallback((item) => {
