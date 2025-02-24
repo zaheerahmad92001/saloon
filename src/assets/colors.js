@@ -10,7 +10,8 @@ const colors = {
   lightBlack: '#6C757D',
   inputGray: '#F5F5F5',
   confirmYellow: '#F59E0B',
-  confirmYellowLight: 'rgba(245, 158, 11, 0.06)',
+  confirmYellowLight: 'rgba(255, 251, 234, 1)',
+
   success: '#1BA40F',
   lightSuccess: 'rgba(27, 164, 15, 0.1)',
   error: '#D83A3C',
