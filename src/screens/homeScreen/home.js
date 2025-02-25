@@ -35,7 +35,6 @@ import BookingFilter from '../../components/bookingFilter/BookingFilter';
 
 const HomeScreen = ({navigation, route}) => {
   const refRBSheet = useRef();
-  const [filteredSearches, setFilteredSearches] = useState(recentSearches);
   const [isInputActive, setIsInputActive] = useState(false);
   const [activeTab, setActiveTab] = useState(graphTabs.sales);
 
@@ -107,10 +106,10 @@ const HomeScreen = ({navigation, route}) => {
         <View style={styles.contentWrapper}>
           <View style={{marginVertical: heightPercentageToDP(2)}}>
             <Search
-              setFilteredSearches={setFilteredSearches}
+              handleSearch={()=>{}}
               setIsInputActive={setIsInputActive}
-              isHome={false}
-              isSearch={true}
+              handleOnPress={()=>navigation.navigate('search', {screen: 'search'})}
+              inActive={true}
             />
           </View>
 

@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     title: {
         color:colors.white,
         textAlign:'left',
-        fontFamily:fontsFamily.medium
+        fontFamily:fontsFamily.regular
     },
     subTitle: {
       color: colors.white,

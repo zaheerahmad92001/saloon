@@ -8,7 +8,7 @@ import PinkHeart from '../../assets/svgs/pinkHeart.svg';
 import Clock from '../../assets/svgs/clock.svg';
 import Location from '../../assets/svgs/locationMarker.svg';
 import Star from '../../assets/svgs/star.svg';
-import styles from './serviceDetail.style';
+import styles from './saloonPage.style';
 import {SmallText, XlargeText} from '../../components/Typography';
 import AvailableService from '../../components/availableServices/serviceDropDown';
 import {
@@ -25,7 +25,7 @@ import FastImage from 'react-native-fast-image';
 import ModalComponent from '../../components/modal';
 import OpeningHours from '../../components/modal/openingHours';
 
-const ServiceDetail = ({navigation, route}) => {
+const SaloonPage = ({navigation, route}) => {
   const mapRef = useRef(null);
   const modalRef = useRef();
 
@@ -210,4 +210,4 @@ const ServiceDetail = ({navigation, route}) => {
   );
 };
 
-export default ServiceDetail;
+export default SaloonPage;

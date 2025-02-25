@@ -25,7 +25,7 @@ const Recommended = () => {
     <SafeAreaView style={styles.container}>
       <Header title={'Recommended'} showBackButton />
       <Search
-        setFilteredSearches={setFilteredSearches}
+        handleSearch={setFilteredSearches}
         setIsInputActive={setIsInputActive}
       />
       <Text style={styles.heading}>Recommended Venues</Text>

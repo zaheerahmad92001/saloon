@@ -23,6 +23,7 @@ const Stack = createNativeStackNavigator();
 const TAB_ICONS = {
   homeStack: images.homeTab,
   Booking:images.bookingTab,
+  Schedule:images.scheduleTab,
   Messages:images.messageTab,
   More:images.moreTab 
 };
@@ -33,6 +34,7 @@ const CustomTabBar = (props) => {
     <View style={styles.tabBarContainer}>
       {props.state.routes.map((route, index) => {
         const isFocused = index === props.state.index;
+        const isSchedule = route.name==='Schedule'
 
         const onPress = () => {
           const event = props.navigation.emit({
@@ -59,32 +61,18 @@ const CustomTabBar = (props) => {
               ]}
             >
               <Image
-                style={[styles.tabIcon, { tintColor: isFocused ? colors.primary : 'gray' }]}
+                style={[styles.tabIcon, isSchedule && styles.scheduleTabStyle, { tintColor: isFocused ? colors.primary : 'gray' }]}
                 source={TAB_ICONS[route.name]}
                 // resizeMode={FastImage.resizeMode.contain}
               />
             </View>
-            <Text style={[styles.tabLabel, { color: isFocused ? colors.primary : 'gray' }]}>
+            <Text style={[styles.tabLabel,{ color: isFocused ? colors.primary : 'gray' }]}>
               {route.name==='homeStack' ? 'Home' : route.name}
             </Text>
           </TouchableOpacity>
         );
       })}
     </View>
-  );
-};
-
-const MoreStack = () => {
-  return (
-    <Stack.Navigator 
-      initialRouteName="More"
-      screenOptions={{
-        headerShown: false
-      }}
-    >
-      <Stack.Screen name="More" component={MoreScreen} />
-      <Stack.Screen name="editProfile" component={EditProfile} />
-    </Stack.Navigator>
   );
 };
 
@@ -98,6 +86,7 @@ const BottomStack = () => {
     >
       <Tab.Screen name="homeStack" component={HomeStack} />
       <Tab.Screen name="Booking" component={Booking} />
+      <Tab.Screen name="Schedule" component={Booking} />
       <Tab.Screen name="Messages" component={ChatList} />
       <Tab.Screen name="More" component={MoreScreen} />
     </Tab.Navigator>
@@ -144,6 +133,10 @@ const styles = StyleSheet.create({
   tabIcon: {
     width: 40,
     height: 40,
+  },
+  scheduleTabStyle: {
+    width: 26,
+    height: 26,
   },
   tabLabel: {
     fontSize: 12,

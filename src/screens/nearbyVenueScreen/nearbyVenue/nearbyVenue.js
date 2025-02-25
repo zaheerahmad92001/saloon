@@ -25,7 +25,7 @@ const NearbyVenue = () => {
     <SafeAreaView style={styles.container}>
       <Header title={'Nearby Venues'} showBackButton />
       <Search
-        setFilteredSearches={setFilteredSearches}
+        handleSearch={setFilteredSearches}
         setIsInputActive={setIsInputActive}
       />
       <Text style={styles.heading}>Nearby Venues</Text>
