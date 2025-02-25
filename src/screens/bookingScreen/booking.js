@@ -1,44 +1,28 @@
-import { FlatList, SafeAreaView, StyleSheet, View, Pressable, Text } from 'react-native';
+import { FlatList, SafeAreaView, View, Pressable, Text } from 'react-native';
 import React, { useCallback, useReducer, useRef, useState } from 'react';
 import BookingHistoryCard from '../../components/bookingHistoryCard/bookingHistoryCard';
 import images from '../../assets/images';
 import Header from '../../components/appHeader';
-import colors from '../../assets/colors';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp, heightPercentageToDP } from 'react-native-responsive-screen';
 import CancelBooking from '../../components/modal/cancelBooking';
 import { BottomSheet } from '../../components/bottomSheet';
 import { bookingStatus } from '../../staticData';
 import Filter from '../../assets/svgs/filter-search.svg';
-import { RFValue } from 'react-native-responsive-fontsize';
-import FilterScreen from '../../components/modal/filterScreen';
-import ModalComponent from '../../components/modal/index';
 import { MediumText } from '../../components/Typography';
-import fontsFamily from '../../assets/fontsFamily';
 import BookingFilter from '../../components/bookingFilter/BookingFilter';
 import ChangeProfessional from '../../components/modal/changeProfessional';
 import ChangeProfessionalBottomSheet from '../../components/modal/ChangeProfessionalBottomSheet';
+import styles from './booking.styles';
+import BookingStatics from '../../components/bookingStatics';
+
+
 const BookingHistory = ({ navigation, route }) => {
+
   const [selectedIndex, setSelectedIndex] = useState(0);
   const refRBSheet = useRef();
   const refRBSheetFilter = useRef();
   const refRBSheetChangeProfessional = useRef();
-  const modalRef = useRef();
-
-  const openModal = () => {
-    if (modalRef?.current) {
-      modalRef.current.open();
-    } else {
-    }
-  };
-
-  const closeModal = () => {
-    if (modalRef?.current) {
-      modalRef.current.close();
-    } else {
-    }
-  };
-
-
+  
   const [state, updateState] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
@@ -47,35 +31,33 @@ const BookingHistory = ({ navigation, route }) => {
   );
   const { selectedItem } = state;
 
+  console.log('selectedIndex',selectedIndex)
+
   const cancelBooking = useCallback(() => {
-    hideBottomSheet()
+    hideBottomSheet();
     setTimeout(() => {
-      navigation.navigate('successScreen', { actionName: 'cancel' })
+      navigation.navigate('successScreen', { actionName: 'cancel' });
     }, 200);
-  }, [navigation])
+  }, [navigation]);
 
 
   const ApplyFilter = (item) => {
-    // based on status will navigate to Book again or leave review screen 
-    //navigation.navigate('review')
   };
 
   const clearFilter = (item) => {
     hideBottomSheetFilter();
-    // based on status will navigate to Book again or leave review screen 
-    //navigation.navigate('review')
   };
 
   const cancelFilter = useCallback(() => {
     hideBottomSheetFilter();
     setTimeout(() => {
-      //navigation.navigate('successScreen',{actionName:'cancel'})
+     
     }, 200);
-  }, [navigation])
+  }, []);
 
 
   const handleReschedule = (item) => {
-     navigation.navigate('orderDetail')
+     navigation.navigate('orderDetail');
   };
 
   const openBottomSheet = useCallback((item) => {
@@ -92,7 +74,6 @@ const BookingHistory = ({ navigation, route }) => {
     }
   };
 
-
   const openBottomSheetFilter = useCallback((item) => {
     updateState({ selectedItem: item });
     if (refRBSheetFilter.current) {
@@ -100,14 +81,11 @@ const BookingHistory = ({ navigation, route }) => {
     }
   }, [refRBSheetFilter]);
 
-
   const hideBottomSheetFilter = () => {
     if (refRBSheetFilter.current) {
       refRBSheetFilter.current.close();
     }
   };
-
-
 
   const openBottomSheetChangeProfessional = useCallback((item) => {
     updateState({ selectedItem: item });
@@ -123,11 +101,10 @@ const BookingHistory = ({ navigation, route }) => {
     }
   };
   const cancelChangePRofessional = useCallback(() => {
-    hideBottomSheetChangeProfessional()
+    hideBottomSheetChangeProfessional();
     setTimeout(() => {
-      //navigation.navigate('successScreen',{actionName:'cancel'})
     }, 200);
-  }, [navigation])
+  }, []);
 
 
   const renderItem = ({ item }) => {
@@ -137,9 +114,10 @@ const BookingHistory = ({ navigation, route }) => {
         time="9:10 AM"
         title="Hair Avenue"
         professional="Unassigned "
+        isProfessionalAssigned={true}
         services="Services: Hair Cut, Hair Wash"
         price="SAR 200"
-        status={bookingStatus[selectedIndex].name}//"Confirmed"
+        status={bookingStatus[selectedIndex].status}
         imageUri={images.room}
         bookinOptions={openBottomSheet}
         reviewAndReschedule={() => handleReschedule(item)}
@@ -148,30 +126,25 @@ const BookingHistory = ({ navigation, route }) => {
     );
   };
 
+  const renderStaticsTabs=({item , index})=>{
+   return(
+    <BookingStatics item={item} index={index} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
+   )
+  }
+
   return (
     <SafeAreaView style={styles.container}>
-      <Header title={'Booking History'} showBackButton onBackPress={() => navigation.goBack()} />
+      <Header title={'Bookings'} showBackButton onBackPress={() => navigation.goBack()} />
       <View style={styles.contentContainer}>
         <View style={styles.wrapper}>
-          <View>
+         
             <View style={styles.rowContainer}>
               <FlatList
                 data={bookingStatus}
                 horizontal
-                renderItem={({ item, index }) => {
-                  const isSelected = selectedIndex === index;
-                  return (
-                    <Pressable onPress={() => setSelectedIndex(index)} style={[styles.box, isSelected && styles.selectedBox]}>
-                      <Text style={styles.statusText}>{item.name}</Text>
-                      <Text style={styles.innerTextValue}>{item.value}</Text>
-
-                    </Pressable>
-                  );
-                }}
+                renderItem={renderStaticsTabs}
                 showsHorizontalScrollIndicator={false}
-              ></FlatList>
-
-
+               />
             </View>
 
             <View style={styles.filterView}>
@@ -180,11 +153,9 @@ const BookingHistory = ({ navigation, route }) => {
                 <MediumText text={'Filter'} style={styles.textStyle} />
               </Pressable>
             </View>
-          </View>
-
+         
           <FlatList
             data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-
             renderItem={renderItem}
             contentContainerStyle={{ paddingTop: hp(2) }}
             keyExtractor={(item, index) => index.toString()}
@@ -252,92 +223,5 @@ const BookingHistory = ({ navigation, route }) => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.white,
-  },
-  contentContainer: {
-    flex: 1,
-    backgroundColor: colors.appBG,
-  },
-  wrapper: {
-    flex: 1,
-    marginHorizontal: wp(4),
-  },
-  box: {
-    width: wp(29),
-    height: hp(10),
-    backgroundColor: colors.white,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: colors.white,
-    marginBottom: 0,
-    marginHorizontal: 6,
-    //alignItems: 'center',
-    //justifyContent: 'center',
-    padding: 15
-  },
-  selectedBox: {
-    backgroundColor: colors.lightPrimary,
-    borderColor: colors.primary,
-    borderWidth: 1,
-    borderRadius: 8,
-  },
-  rowContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: hp(2),
-  },
-  statusText: {
-    fontSize: RFValue(11),
-    fontFamily: fontsFamily.regular,
-    color: colors.appBlack,
-
-    //textAlign: 'center',
-  },
-  innerRoundedBox: {
-    width: 50,
-    height: 50,
-    backgroundColor: colors.lighterPrimary,
-    borderRadius: 25,
-    marginTop: hp(1),
-    // alignItems: 'center',
-    // justifyContent: 'center',
-  },
-  innerTextValue: {
-    marginTop: hp(1),
-    fontSize: RFValue(15),
-    fontFamily: fontsFamily.bold,
-    color: colors.appBlack,
-    textAlign: 'left',
-  },
-  filterView: {
-    paddingTop: hp(2),
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    //alignSelf: 'flex-end'
-    marginBottom: 20
-  },
-  filterIconView: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: colors.darkGray,
-    paddingVertical: 10,
-    paddingHorizontal: 12,
-    borderRadius: 7,
-    gap: 5,
-  },
-  contentContainerStyle: {
-    marginTop: hp(2),
-  },
-  textStyle: {
-    fontWeight: '500',
-    color: colors.lightBlack,
-  }
-
-});
 
 export default BookingHistory;

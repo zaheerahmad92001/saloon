@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     fontFamily: fontsFamily.regular,
   },
   priceContainer: {
-    backgroundColor: colors.lightPrimary,
+    backgroundColor: colors.lighterPrimary,
     paddingVertical: 7,
     paddingHorizontal: 7,
     borderRadius: 5,
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     fontFamily: fontsFamily.regular,
   },
   icon: {
-    backgroundColor: colors.lightPrimary,
+    backgroundColor: colors.lighterPrimary,
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'flex-end',
@@ -121,14 +121,12 @@ const styles = StyleSheet.create({
   cancelButton: {
     flex: 1,
     marginRight: 5,
-    backgroundColor: colors.lightPrimary,//'transparent',
-    borderWidth:0
+    backgroundColor: colors.lighterPrimary,//'transparent',
+    borderWidth:1,
+    borderColor:colors.lighterPrimary,
   },
   cancelText: {
-    color: colors.primary,
-    fontSize:RFValue(11),
-    fontFamily: fontsFamily.regular,
-    paddingVertical:3,
+    color: colors.sharpPrimary,
   },
   
 
@@ -140,10 +138,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   cancelBookingText: {
-    paddingVertical:3,
     color: colors.primary,
-    fontSize:RFValue(11),
-    fontFamily: fontsFamily.regular,
   },
 
 
@@ -153,10 +148,10 @@ const styles = StyleSheet.create({
     //marginLeft: 5,
   },
   rescheduleText: {
-    fontSize: RFValue(11),
-    color: '#fff',
-    fontFamily: fontsFamily.regular,
-    paddingVertical:3,
+    // fontSize: RFValue(11),
+    // color: '#fff',
+    // fontFamily: fontsFamily.regular,
+    // paddingVertical:3,
   },
 
   pendingStatus: {

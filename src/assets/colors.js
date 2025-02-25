@@ -1,5 +1,7 @@
 const colors = {
   primary: '#CD929D',
+  sharpPrimary:'#B76271',
+  lighterPrimary:'#F5EAEC',
   lightPrimary: '#FAF5F6',
   offWhite:'#DFDFDF',
   softPink:'#E1BDC3',
@@ -11,12 +13,10 @@ const colors = {
   inputGray: '#F5F5F5',
   confirmYellow: '#F59E0B',
   confirmYellowLight: 'rgba(255, 251, 234, 1)',
-
   success: '#1BA40F',
   lightSuccess: 'rgba(27, 164, 15, 0.1)',
   error: '#D83A3C',
   lightError: 'rgba(216, 58, 60, 0.1)',
-  lighterPrimary:'#F5EAEC',
   placeholderColor:'#99A0A6',
   radioBorders: '#ccc',
   borderPrimary: '#ECD5D9',
