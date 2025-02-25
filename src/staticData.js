@@ -406,11 +406,11 @@ const More = [
 ];
 
 const bookingStatus = [
-  {name:'Total Booking' , value:'02' , routeName:''},
-  {name:'Pending' , value:'02' , routeName:''},
-  {name:'Confirmed' , value:'10',routeName:''},
-  {name:'Cancelled' , value:'301',routeName:''},
-  {name:'Completed' , value:'101',routeName:''},
+  {name:'Total Bookings' , value:'56' , routeName:'',status:'Pending'},
+  {name:'Pending' , value:'02' , routeName:''       ,status:'Pending'},
+  {name:'Confirmed' , value:'10',routeName:''       ,status:'Confirmed'},
+  {name:'Cancelled' , value:'301',routeName:''      ,status:'Cancelled'},
+  {name:'Completed' , value:'101',routeName:''      ,status:'Completed'},
 ];
 const oddd = {};
 const staticBookings = [

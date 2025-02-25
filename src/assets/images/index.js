@@ -3,6 +3,7 @@ const images = {
   bookingTab: require('../images/booking.png'),
   messageTab: require('../images/message.png'),
   moreTab: require('../images/more.png'),
+  scheduleTab:require('../images/scheduleTab.png'),
   candle: require('../images/candle.png'),
   map: require('../images/map.png'),
   room: require('../images/room.png'),

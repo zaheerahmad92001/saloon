@@ -27,7 +27,7 @@ const ChatList = ({navigation , route}) => {
       <Header title={'Chat'} showBackButton={false} />
       <View style={styles.contentWrapper}>
         <Search
-          setFilteredSearches={setFilteredSearches}
+          handleSearch={setFilteredSearches}
           setIsInputActive={setIsInputActive}
           isSearch={true}
         />

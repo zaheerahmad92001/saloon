@@ -72,18 +72,12 @@ const Profile = ({navigation, route}) => {
                 <Camera />
               </TouchableOpacity>
           </View>
-          
 
           <View style={styles.titleContainer}>
             <XlargeText text={'Alexandra’s Salon'} style={styles.title} />
-           <Pressable
-           onPress={()=>{}}
-           >
-           <View style = {styles.viewSalonPageView}>
+           <Pressable onPress={()=>handleNavigation('saloonPage')} style = {styles.viewSalonPageView}>
               <Text style = {styles.pageViewText}>View Salon Page</Text>
-            </View>
-           </Pressable>
-            
+            </Pressable>
           </View>
         </View>
 

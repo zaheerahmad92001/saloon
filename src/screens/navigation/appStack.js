@@ -33,14 +33,13 @@ import DeleteAccount from '../deleteAccountScreen/deleteAccount';
 import Support from '../supportScreen';
 import InviteFriends from '../inviteFriends/inviteFriends';
 import SuccessScreen from '../successMessageScreen/succesScreen';
-import ServiceDetail from '../serviceDetailScreen/serviceDetail';
+import SaloonPage from '../saloonPage/saloonPage';
 import Location from '../location/location';
 import RatingAndReview from '../ratingAndReviewScreen/ratingAndReview';
 import AvailableTimeSlot from '../availableTimeSlotScreen/availableTimeSlot';
 import OrderDetail from '../bookingDetailScreen/BookingDetail';
 import ProfileScreen from '../profileScreen/profile/profile';
-import PromotionScreen from '../Promotion/PromotionScreen';
-import AddPromotionScreen from '../PromotionAdd/PromotionAdd';
+import SearchScreen from '../searchScreen/search/search';
 
 const Stack = createNativeStackNavigator();
 
@@ -93,14 +92,12 @@ function AppStack() {
       <Stack.Screen name="deleteAccount" component={DeleteAccount}/>
       <Stack.Screen name="customerSupport" component={Support}/>
       <Stack.Screen name="inviteFriends" component={InviteFriends}/>
-      <Stack.Screen name="detail" component={ServiceDetail}/>
+      <Stack.Screen name="saloonPage" component={SaloonPage}/>
       <Stack.Screen name='ratingAndReview' component={RatingAndReview}/>
       <Stack.Screen name='availableTimeSlot' component={AvailableTimeSlot}/>
       <Stack.Screen name='orderDetail' component={OrderDetail}/>  
       <Stack.Screen name='profileScreen' component={ProfileScreen}/>
-      <Stack.Screen name='promotionScreen' component={PromotionScreen}/>
-
-      <Stack.Screen name='addPromotionScreen' component={AddPromotionScreen}/>
+      <Stack.Screen name='search' component={SearchScreen}/>
       
 
 
