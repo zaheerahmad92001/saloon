@@ -17,8 +17,9 @@ import Calendar from './assets/svgs/calendar-black.svg';
 import Service from './assets/svgs/document-text.svg';
 import ApplePay from './assets/svgs/appleIcon.svg';
 import CardPay from './assets/svgs/debtCard.svg';
-import CardTick from './assets/svgs/card-tick.svg'
-import LikeTag from './assets/svgs/like-tag.svg'
+import CardTick from './assets/svgs/card-tick.svg';
+import LikeTag from './assets/svgs/like-tag.svg';
+import moreIcon from './assets/svgs/more.svg'
 const recentSearches = [
   'Beauty Unleashed',
   'Big Hair We Care',
@@ -84,7 +85,7 @@ const menuOptions = [
   {title: 'Payment in & Payouts', img: CardTick, routeName:'savedCard'},
   {title: 'Complaints', img: RequestIcon , routeName:'favorites'},
   {title: 'Requests', img: RequestIcon, routeName:'invoiceList'},
-  {title: 'Codes & Discount', img: Discount, routeName:'complaints'},
+  {title: 'Codes & Discount', img: Discount, routeName:'promotionScreen'}, //complaints
 ];
 
 const categoriesOptions = [
@@ -479,6 +480,46 @@ const timeSlots = [
   "03:00 PM - 04:00 PM",
   "04:00 PM - 05:00 PM",
 ];
+
+
+const promotiondata = [
+  {
+    id: "1",
+    image:images.promotion,
+    title: "20% off on Hair cut for first-time customers.",
+    max: "Max booking: Sar 400",
+    exp: "Exp date: 18-10-2024",
+  },
+  {
+    id: "2",
+    image:images.promotion,
+    title: "Visit us to avail exciting offers.",
+    max: "Max order: Sar 200",
+    exp: "Exp date: 30-06-2025",
+  },
+  {
+    id: "3",
+    image:images.promotion,
+    title: "30% off on all services for first-time customers.",
+    max: "Max purchase: Sar 300",
+    exp: "Exp date: 25-12-2024",
+  },
+  {
+    id: "4",
+    image:images.promotion,
+    title: "Limited period offer: Book now!",
+    max: "Max spend: Sar 500",
+    exp: "Exp date: 15-03-2026",
+  },
+  {
+    id: "5",
+    image:images.promotion,
+    title: "Discount code: NEWCLIENT",
+    max: "Max transaction: Sar 350",
+    exp: "Exp date: 05-09-2027",
+  },
+];
+
 export {
   salonCategories,
   recentSearches,
@@ -516,5 +557,6 @@ export {
   professionals,
   timeSlots,
   bookingDetails,
-  More
+  More,
+  promotiondata
 };

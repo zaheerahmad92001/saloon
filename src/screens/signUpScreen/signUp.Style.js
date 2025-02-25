@@ -55,9 +55,7 @@ const styles = StyleSheet.create({
   inputFields: {
     marginTop: 15,
   },
-  inputFields: {
-    marginTop: 15,
-  },
+  
   checkboxContainer: {
     flexDirection: 'row',
     marginVertical: 15,
