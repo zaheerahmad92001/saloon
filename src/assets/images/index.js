@@ -33,5 +33,6 @@ const images = {
   serviceimg: require('../images/statistics.png'),
   profession: require('../images/profession.png'),
   statistics: require('../images/statistics.png'),
+  promotion: require('../images/promotion.png'),
 };
 export default images;

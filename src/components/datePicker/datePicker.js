@@ -65,10 +65,12 @@ const DateTimePickerComponent = ({ mode, onSelect }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.darkGray,
     borderRadius: 10,
-    borderColor: colors.grayBorder,
-    borderWidth: 1,
+
+    borderColor: colors.darkGray,
+    borderWidth: 0,
+
     padding: 10,
   },
   dateInput: {
