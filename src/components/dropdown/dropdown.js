@@ -49,10 +49,10 @@ const styles = StyleSheet.create({
    },
    dropdown:{
     height: 50,
-    borderWidth: 1,
+    borderWidth: 0,
     borderColor:colors.grayBorder,
     borderRadius: 7,
-    backgroundColor:colors.white,
+    backgroundColor:colors.darkGray,
     fontFamily:fontsFamily.regular,
     fontSize:RFValue(15),
    
