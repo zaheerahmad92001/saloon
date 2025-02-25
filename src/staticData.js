@@ -1,12 +1,8 @@
 import images from './assets/images';
 import EditIcon from './assets/svgs/edit.svg';
-import HeartIcon from './assets/svgs/heart.svg';
 import HistoryIcon from './assets/svgs/document.svg';
 import Discount from './assets/svgs/discount-shape.svg';
-import SaveCardIcon from './assets/svgs/card.svg';
-import CallIcon from './assets/svgs/call.svg';
 import RequestIcon from './assets/svgs/money.svg';
-import Invoice from './assets/svgs/receipt.svg';
 import Setting from './assets/svgs/setting.svg';
 import Logout from './assets/svgs/logout.svg';
 import Receipt from './assets/svgs/invoice.svg';
@@ -19,7 +15,9 @@ import ApplePay from './assets/svgs/appleIcon.svg';
 import CardPay from './assets/svgs/debtCard.svg';
 import CardTick from './assets/svgs/card-tick.svg';
 import LikeTag from './assets/svgs/like-tag.svg';
+
 import moreIcon from './assets/svgs/more.svg'
+
 const recentSearches = [
   'Beauty Unleashed',
   'Big Hair We Care',
@@ -95,7 +93,7 @@ const categoriesOptions = [
   {title: 'Salon & Spa', img: images.salonSpa},
 ];
 
-const settingOptions = [ 
+const settingOptions = [
   {title: 'Language', routeName:'language'},
   {title: 'Notification Settings' , routeName:'notificationSetting'},
   {title: 'Change Password', routeName:'changePassword'},
@@ -106,7 +104,7 @@ const settingOptions = [
 
 const supportOptions = [{title: 'Customer Support', img: LikeTag ,routeName:'customerSupport'}];
 
-const accountManagement = [ 
+const accountManagement = [
   {title: 'Settings', img: Setting, routeName:'settings'},
   {title: 'Logout', img: Logout, routeName:'logout'},
 ];
@@ -117,7 +115,7 @@ const bookingDetails = {
     {name: 'Date', value: 'Wed, Sep 10 at 9:30 AM'},
     {name: 'Stylist', value: 'Marilyn Vetrovs'},
     {name: 'Timeslot', value: 'Sat 28 Sep 2024 at 9:30Am'},
-  ]
+  ],
 };
 const dummyData = {
   items: [
@@ -256,7 +254,7 @@ const slides = [
     title_2: 'ANAQA',
     text: 'Increase your reach and manage everything from one platform.',
     image: images.intro2,
-  }
+  },
 ];
 
 const invoiceDetailRows = [
@@ -361,7 +359,7 @@ const notificationData = [
 ];
 
 const messages = {
-  
+
   registerProcess: {
     title: 'Registration in Process!',
     subheading: 'Please wait for verifying your account by ',
@@ -385,11 +383,11 @@ const messages = {
   },
 };
 
-const complaints =[
+const complaints = [
   {name:'Pending' , value:'02' , routeName:''},
   {name:'Resolved' , value:'10',routeName:''},
   {name:'Rejected' , value:'01',routeName:''},
-]
+];
 
 const professionals = [
   { id: 1, name: 'John Doe', profession: 'Hair Specialist' },
@@ -397,24 +395,24 @@ const professionals = [
   { id: 3, name: 'Robert Brown', profession: 'Makeup Artist' },
   { id: 4, name: 'Alice Johnson', profession: 'Skin Care Specialist' },
 ];
-const More =[
+const More = [
   {name:'Profile' , value:'Manage and update your salon profile, services, and availability easily.' ,img:images.profileimg,routeName:'profileScreen'},
   {name:'Anaqa Commision' , value:"Track and manage salon pros' commission rates for accurate payouts and transparency." ,img:images.anaqacommision, routeName:''},
   {name:'Working Hours' , value:'Create timeslots according to professionals availability and service management.',img:images.hours,routeName:''},
   {name:'Service Management' , value:'Clear and flexible pricing & services options designed to suit your salon’s unique needs.',img:images.serviceimg,routeName:''},
   {name:'Professionals' , value:"Manage your salon's team of professionals and their availability with ease.",img:images.profession,routeName:''},
-  {name:'Statistics' , value:"Comprehensive reports to help track and optimize your salon’s performance and growth.",img:images.statistics,routeName:''},
+  {name:'Statistics' , value:'Comprehensive reports to help track and optimize your salon’s performance and growth.',img:images.statistics,routeName:''},
 
-]
+];
 
-const bookingStatus =[
+const bookingStatus = [
   {name:'Total Booking' , value:'02' , routeName:''},
   {name:'Pending' , value:'02' , routeName:''},
   {name:'Confirmed' , value:'10',routeName:''},
   {name:'Cancelled' , value:'301',routeName:''},
   {name:'Completed' , value:'101',routeName:''},
-]
-const oddd = {}
+];
+const oddd = {};
 const staticBookings = [
   {
     customer: 'Cheyenne Franci',
@@ -430,10 +428,10 @@ const staticBookings = [
 
 const paymentMethods = [
   {
-  id: '1', 
+  id: '1',
   key:'applePay',
   name: 'Apple Pay',
-  Icon: ApplePay
+  Icon: ApplePay,
   },
   {
     id: '2',
@@ -453,7 +451,7 @@ const openingHours = [
   {id:1,  day:'Friday', time:'Open at: 09AM-10PM'},
   {id:1,  day:'Saturday', time:'Open at: 09AM-10PM'},
   {id:1,  day:'Sunday', time:'Closed'},
-]
+];
 const AvailableTimeSlots = [
   '10:00 AM',
   '11:00 AM',
@@ -472,14 +470,15 @@ const AvailableTimeSlots = [
   '12:00 AM',
 ];
 const timeSlots = [
-  "10:00 AM - 11:00 AM",
-  "11:00 AM - 12:00 PM",
-  "12:00 PM - 01:00 PM",
-  "01:00 PM - 02:00 PM",
-  "02:00 PM - 03:00 PM",
-  "03:00 PM - 04:00 PM",
-  "04:00 PM - 05:00 PM",
+  '10:00 AM - 11:00 AM',
+  '11:00 AM - 12:00 PM',
+  '12:00 PM - 01:00 PM',
+  '01:00 PM - 02:00 PM',
+  '02:00 PM - 03:00 PM',
+  '03:00 PM - 04:00 PM',
+  '04:00 PM - 05:00 PM',
 ];
+
 
 
 const promotiondata = [
@@ -520,6 +519,12 @@ const promotiondata = [
   },
 ];
 
+const graphTabs = {
+  sales: 'sales',
+  customers:'customers',
+}
+
+
 export {
   salonCategories,
   recentSearches,
@@ -558,5 +563,7 @@ export {
   timeSlots,
   bookingDetails,
   More,
-  promotiondata
+  promotiondata,
+  graphTabs
+
 };

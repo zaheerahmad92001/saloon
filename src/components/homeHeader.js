@@ -1,30 +1,24 @@
 import React from 'react';
 import {View, StyleSheet, Pressable, Platform} from 'react-native';
-import MapMarker from '../assets/svgs/location-color.svg';
-import DownArrow from '../assets/svgs/down-arrow.svg';
 import NotificationBell from '../assets/svgs/notification-bing.svg';
-import LikeIcon from '../assets/svgs/heart-like.svg';
 import {MediumText, SmallText} from './Typography';
 import colors from '../assets/colors';
 import fontsFamily from '../assets/fontsFamily';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 const HomeHeader = (props) => {
-  const {location, onLocationPress , onFavoritePress , onNotificationPress} = props;
+  const {name , onNotificationPress} = props;
   return (
     <View style={styles.container}>
       <Pressable 
-      onPress={onLocationPress}
       style={styles.locationContainer}>
-        {/* <MapMarker /> */}
         <View style={styles.locInnerView}>
           <SmallText text={'Welcome'} style={styles.smallText} />
           <View style={styles.locationContainer}>
             <MediumText
-              text={location?location:'Giana Lipshuts'}
+              text={name?name:'Giana Lipshuts'}
               style={styles.mediumText}
             />
-            {/* <DownArrow /> */}
           </View>
         </View>
       </Pressable>
@@ -37,12 +31,6 @@ const HomeHeader = (props) => {
           </View>
         </Pressable>
 
-        {/* <Pressable onPress={onFavoritePress}>
-          <LikeIcon />
-          <View style={styles.badgeContainer}>
-            <SmallText text={'12'} style={styles.badgeText} />
-          </View>
-        </Pressable> */}
       </View>
     </View>
   );
