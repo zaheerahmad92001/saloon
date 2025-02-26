@@ -18,21 +18,8 @@ const styles = StyleSheet.create({
     flex:1,
     marginHorizontal:wp(4),
   },
-  content: {
-    flex: 1,
-    justifyContent: 'space-between',
-  },
-  serviceDetails: {
-    borderRadius: 8,
-    margin: 5,
-    padding: 10,
-    borderWidth: 2,
-    borderColor: colors.gray,
-    borderStyle: 'dashed',
-  },
   buttonContainer: {
     flexDirection: 'row',
-    //   marginTop: 'auto',
     marginTop: hp(1),
     justifyContent: 'space-between',
     paddingTop: 15,
@@ -49,9 +36,6 @@ const styles = StyleSheet.create({
   },
   buttonTextPrint: {
     color: colors.primary,
-  },
-  smallText: {
-    marginBottom: hp(2),
   },
 });
 

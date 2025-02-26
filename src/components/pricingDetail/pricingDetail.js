@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import colors from '../../assets/colors';
 import fontsFamily from '../../assets/fontsFamily';
-import { LargeText, MediumText, SmallText, XlargeText } from '../Typography';
+import { MediumText, SmallText } from '../Typography';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const PricingDetails = (props) => {
@@ -33,7 +33,7 @@ const PricingDetails = (props) => {
       <MediumText text={'Pricing Details'} style={styles.header} />
       {data.items.map((item, index) => (
         <View style={styles.row} key={index}>
-          <Text style={styles.label}>{item.name}</Text>
+          <Text style={styles.vat}>{item.name}</Text>
           <Text style={styles.value}>SAR {item.price}</Text>
         </View>
       ))}
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   },
   vat:{
     fontSize: RFValue(12),
-    fontFamily: fontsFamily.regular,
+    fontFamily: fontsFamily.medium,
     color: colors.lightBlack,
   },
   price: {

@@ -5,7 +5,6 @@ import {
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
 
-// import { styles } from './styles';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { TouchableWithoutFeedback, View, Text, Pressable, StyleSheet } from 'react-native';
 import colors from '../assets/colors';
@@ -22,6 +21,8 @@ export const BottomSheet = (props) => {
     scrollEnabled,
     disableDynamicSizing,
     title,
+    style,
+    sheetModalStyle,
     removeSheetScrolllView=false,
   } = props;
 
@@ -58,8 +59,10 @@ export const BottomSheet = (props) => {
       keyboardBlurBehavior="restore"
       enableDismissOnClose
       backdropComponent={renderBackdrop}
-      backgroundStyle={{backgroundColor:colors.white}}
+      backgroundStyle={[styles.modalStyle , sheetModalStyle]}
       onDismiss={onDismiss}
+      waitFor={refRBSheet} // Helps prevent gesture conflicts
+      simultaneousHandlers={refRBSheet}
     >
       {Boolean(title) && (
        <Pressable onPress={onClose} style={styles.header}>
@@ -71,7 +74,7 @@ export const BottomSheet = (props) => {
       <View style={{ minHeight: height }}>{children}</View>
       :
       <BottomSheetScrollView
-      style={{paddingHorizontal:20, backgroundColor:colors.white}}
+      style={[styles.sheetContainer, style]}
         nestedScrollEnabled={false}
         scrollEnabled={scrollEnabled ? true : false}>
         <View style={{ minHeight: height }}>{children}</View>
@@ -90,5 +93,12 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     paddingBottom:hp(1),
     marginHorizontal:20,
+  },
+  sheetContainer:{
+    paddingHorizontal:20, 
+    backgroundColor:colors.white
+  },
+  modalStyle: {
+    backgroundColor: colors.white,
   },
 })

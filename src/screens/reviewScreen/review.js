@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
-import { View, Image, SafeAreaView, Platform, TextInput, Text } from 'react-native';
-import RadioButton from '../../components/radioButton';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { View, SafeAreaView,Text } from 'react-native';
 
-import images from '../../assets/images';
 import Header from '../../components/appHeader';
-import TextField from '../../components/textField/textField';
 import styles from './review.styles';
 import CustomRating from '../../components/customRating';
 import {
@@ -13,38 +9,20 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {
-  LargeText,
   MediumText,
   XlargeText,
 } from '../../components/Typography';
-import { AppButton } from '../../components/appButton';
-import colors from '../../assets/colors';
 import UserReviewProfileCard from '../../components/userReviewProfileCard/userReviewProfileCard';
 import { serviceData } from '../../staticData';
 
 const Review = ({ navigation, route }) => {
-  const [review, setReview] = useState('');
-  const [recommend, setRecommend] = useState(null);
-  const [scrollEnabled, setScrollEnabled] = useState(true);
-  const [rating, setRating] = useState(3);
 
-  const handleSubmit = () => {
-    console.log({ rating, review, recommend });
-    // Submit logic goes here
-  };
+  const [rating, setRating] = useState(3);
 
   return (
     <SafeAreaView style={styles.container}>
       <Header title={'Review'} showBackButton={true} onBackPress={() => navigation.goBack()} />
-      <KeyboardAwareScrollView
-        style={{ flex: 1 }}
-        resetScrollToCoords={{ x: 0, y: 0 }}
-        scrollEnabled={scrollEnabled}
-        keyboardShouldPersistTaps="handled"
-        onContentSizeChange={(contentWidth, contentHeight) => {
-          const screenHeight = Platform.OS === 'ios' ? 600 : 600;
-          setScrollEnabled(contentHeight > screenHeight);
-        }}>
+    
         <View style={styles.wrapper}>
           <XlargeText text="Review" style={styles.title} />
 
@@ -63,8 +41,6 @@ const Review = ({ navigation, route }) => {
             </View>
           </View>
 
-
-
           <MediumText
             text="Customer Review"
             style={styles.customerReview}
@@ -76,7 +52,7 @@ const Review = ({ navigation, route }) => {
           </View>
 
         </View>
-      </KeyboardAwareScrollView>
+ 
     </SafeAreaView>
   );
 };

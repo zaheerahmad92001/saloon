@@ -6,19 +6,13 @@ import {AppButton} from '../appButton';
 import colors from '../../assets/colors';
 
 const BookingHistoryCard = ({
-  date,
-  time,
-  title,
-  professional,
+  item ,
   isProfessionalAssigned,
-  services,
-  price,
-  status,
-  imageUri,
   bookinOptions,
   reviewAndReschedule,
-  changeProfession,
 }) => {
+  const {date, time, title, services, professional, price, status, imageUri} = item;
+
   const confirmORBook =
     status === 'Pending'
       ? isProfessionalAssigned ? 'Confirm': 'Confirm & Assign'
@@ -95,7 +89,7 @@ const BookingHistoryCard = ({
           <View style={styles.actions}>
             <AppButton
               title={confirmORBook}
-              onPress={changeProfession}
+              onPress={bookinOptions}
               style={[
                 status == 'Pending'
                   ? styles.rescheduleButton

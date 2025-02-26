@@ -394,6 +394,15 @@ const professionals = [
   { id: 2, name: 'Jane Smith', profession: 'Nail Artist' },
   { id: 3, name: 'Robert Brown', profession: 'Makeup Artist' },
   { id: 4, name: 'Alice Johnson', profession: 'Skin Care Specialist' },
+
+  { id: 2, name: 'Jane Smith', profession: 'Nail Artist' },
+  { id: 3, name: 'Robert Brown', profession: 'Makeup Artist' },
+  { id: 4, name: 'Alice Johnson', profession: 'Skin Care Specialist' },
+
+  { id: 2, name: 'Jane Smith', profession: 'Nail Artist' },
+  { id: 3, name: 'Robert Brown', profession: 'Makeup Artist' },
+  { id: 4, name: 'Alice Johnson', profession: 'Skin Care Specialist' },
+
 ];
 const More = [
   {name:'Profile' , value:'Manage and update your salon profile, services, and availability easily.' ,img:images.profileimg,routeName:'profileScreen'},
@@ -412,7 +421,6 @@ const bookingStatus = [
   {name:'Cancelled' , value:'301',routeName:''      ,status:'Cancelled'},
   {name:'Completed' , value:'101',routeName:''      ,status:'Completed'},
 ];
-const oddd = {};
 const staticBookings = [
   {
     customer: 'Cheyenne Franci',
@@ -479,8 +487,6 @@ const timeSlots = [
   '04:00 PM - 05:00 PM',
 ];
 
-
-
 const promotiondata = [
   {
     id: "1",
@@ -524,6 +530,25 @@ const graphTabs = {
   customers:'customers',
 }
 
+const statuses = ['Completed', 'Pending', 'Cancelled', 'Confirmed'];
+const professionalsList = ['Unassigned', 'Zaheer', 'Waqar', 'Mudassar', 'Rizwan', 'Zeeshan'];
+
+const getRandomStatus = () => statuses[Math.floor(Math.random() * statuses.length)];
+const getRandomProfessional = () => professionalsList[Math.floor(Math.random() * professionalsList.length)];
+
+const bookingHistory = Array.from({ length: 20 }, (_, index) => ({
+  id: index + 1, 
+  date: 'Sep 10, 2024',
+  time: '9:10 AM',
+  title: 'Hair Avenue',
+  location: 'Lakewood, California',
+  services: 'Services: Hair Cut, Hair Wash',
+  price: 'SAR 200',
+  professional:getRandomProfessional(),
+  status: getRandomStatus(), // Assign a random status
+  imageUri: images.room,
+}));
+
 
 export {
   salonCategories,
@@ -564,6 +589,7 @@ export {
   bookingDetails,
   More,
   promotiondata,
-  graphTabs
+  graphTabs,
+  bookingHistory
 
 };

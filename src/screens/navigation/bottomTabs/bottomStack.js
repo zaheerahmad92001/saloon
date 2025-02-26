@@ -3,8 +3,6 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import images from '../../../assets/images';
 import HomeStack from '../homeStack';
-import ProfileScreen from '../../profileScreen/profile/profile';
-import EditProfile from '../../profileScreen/editProfile/editProfile';
 import Booking from '../../bookingScreen/booking';
 import ChatList from '../../chatList/chatList';
 import MoreScreen from '../../More/MoreScreen';
@@ -12,10 +10,8 @@ import MoreScreen from '../../More/MoreScreen';
 
 
 import colors from '../../../assets/colors';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
 
 
 
@@ -140,7 +136,6 @@ const styles = StyleSheet.create({
   },
   tabLabel: {
     fontSize: 12,
-    // marginTop: 5,
   },
 });
 
