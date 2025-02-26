@@ -6,37 +6,35 @@ import {
   Image,
   Pressable,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
-import images from '../../../assets/images';
+import images from '../../assets/images';
 import {
   accountManagement,
   menuOptions,
   supportOptions,
-} from '../../../staticData';
-import BackArrow from '../../../assets/svgs/backArrow.svg';
-import Header from '../../../components/appHeader';
-import MenuItem from '../../../components/menItems/menuItems';
+} from '../../staticData';
+import Header from '../../components/appHeader';
+import MenuItem from '../../components/menItems/menuItems';
 import styles from './profile.styles';
 import {
   MediumText,
-  SmallText,
   XlargeText,
-} from '../../../components/Typography';
-import ModalComponent from '../../../components/modal';
-import LogoutModal from '../../../components/modal/logout';
-import { widthPercentageToDP } from 'react-native-responsive-screen';
-import Camera from '../../../assets/svgs/camera.svg';
+} from '../../components/Typography';
+import ModalComponent from '../../components/modal';
+import LogoutModal from '../../components/modal/logout';
+import {widthPercentageToDP} from 'react-native-responsive-screen';
+import Camera from '../../assets/svgs/camera.svg';
 const Profile = ({navigation, route}) => {
   const modalRef = useRef();
-  
+
   const handleNavigation = routeName => {
-    if(routeName === 'logout') {
+    if (routeName === 'logout') {
       openModal();
     } else {
-    navigation.navigate(routeName);
+      navigation.navigate(routeName);
+    }
   };
-}
 
   const openModal = () => {
     if (modalRef?.current) {
@@ -52,7 +50,6 @@ const Profile = ({navigation, route}) => {
     }
   };
 
-
   return (
     <SafeAreaView style={styles.container}>
       <Header
@@ -62,21 +59,25 @@ const Profile = ({navigation, route}) => {
       />
       <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
         <View style={styles.profileContainer}>
-          <View style={styles.imageContainer}>
-            <Image
-              source={images.room}
-              resizeMode="contain"
-              style={styles.image}
-            />
-            <TouchableOpacity onPress={()=>{}} style={styles.editIcon}>
-                <Camera />
-              </TouchableOpacity>
+          <View>
+            <View style={styles.imageContainer}>
+              <Image
+                source={images.room}
+                resizeMode="contain"
+                style={styles.image}
+              />
+            </View>
+            <TouchableOpacity onPress={() => {}} style={styles.editIcon}>
+              <Camera />
+            </TouchableOpacity>
           </View>
 
           <View style={styles.titleContainer}>
             <XlargeText text={'Alexandra’s Salon'} style={styles.title} />
-           <Pressable onPress={()=>handleNavigation('saloonPage')} style = {styles.viewSalonPageView}>
-              <Text style = {styles.pageViewText}>View Salon Page</Text>
+            <Pressable
+              onPress={() => handleNavigation('saloonPage')}
+              style={styles.viewSalonPageView}>
+              <Text style={styles.pageViewText}>View Salon Page</Text>
             </Pressable>
           </View>
         </View>
@@ -115,19 +116,15 @@ const Profile = ({navigation, route}) => {
             title={option.title}
             Icon={option.img}
             showIcon={true}
-            onPress={()=>handleNavigation(option.routeName)}
+            onPress={() => handleNavigation(option.routeName)}
           />
         ))}
       </ScrollView>
       <ModalComponent
         ref={modalRef}
         onClose={closeModal}
-        style={{width: widthPercentageToDP(80)}}
-        >
-        <LogoutModal
-        handleLogout={()=>{}}
-        handleCancel={closeModal}
-        />
+        style={{width: widthPercentageToDP(80)}}>
+        <LogoutModal handleLogout={() => {}} handleCancel={closeModal} />
       </ModalComponent>
     </SafeAreaView>
   );

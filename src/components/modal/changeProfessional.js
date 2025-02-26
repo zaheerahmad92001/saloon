@@ -1,22 +1,22 @@
-import { View, Text, StyleSheet, Alert } from 'react-native';
-import React, { useCallback, useReducer, useRef, useState } from 'react';
+import { View, StyleSheet } from 'react-native';
+import React from 'react';
 import colors from '../../assets/colors';
 import fontsFamily from '../../assets/fontsFamily';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { MediumText, XlargeText } from '../Typography';
 import { Divider } from 'react-native-paper';
 import { AppButton } from '../appButton';
-import { measure } from 'react-native-reanimated';
-import { BottomSheet } from '../../components/bottomSheet';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp, heightPercentageToDP } from 'react-native-responsive-screen';
-import ChangeProfessionalBottomSheet from './ChangeProfessionalBottomSheet';
-import BookingFilter from '../bookingFilter/BookingFilter';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp, } from 'react-native-responsive-screen';
+
+
+
 const ChangeProfessional = (props) => {
   const { onAgree , onCancel } = props;
   return (
     <View>
       <XlargeText text={'Change Professional'} style={styles.heading} />
       <Divider style={styles.divider} />
+      
       <XlargeText
         text={'Are you sure you want to change the professional?'}
         style={styles.subHeading}
@@ -48,7 +48,6 @@ const styles = StyleSheet.create({
   heading: {
     paddingVertical: 10,
     fontSize: RFValue(14),
-    //fontWeight:'600',
     fontFamily: fontsFamily.bold
   },
   divider: {

@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
-import colors from "../../../assets/colors";
+import colors from "../../assets/colors";
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from "react-native-responsive-screen";
-import fontsFamily from "../../../assets/fontsFamily";
+import fontsFamily from "../../assets/fontsFamily";
 import { RFValue } from "react-native-responsive-fontsize";
 
 const imageSize = wp(18);
@@ -95,12 +95,13 @@ const styles = StyleSheet.create({
 
     editIcon: {
       position: 'absolute',
-      bottom: -5,
-      right: 0,
+      bottom:-3,
+      right: -5,
+
       backgroundColor: colors.white,
-      borderRadius: 33/2,
-      width:33,
-      height:33,
+      borderRadius: 27/2,
+      width:27,
+      height:27,
       justifyContent:'center',
       alignItems:'center',
       borderWidth: 2,

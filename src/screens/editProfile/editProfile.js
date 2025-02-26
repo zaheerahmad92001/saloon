@@ -1,26 +1,29 @@
+/* eslint-disable react-native/no-inline-styles */
 import { View, TouchableOpacity, SafeAreaView, Text } from 'react-native';
 import React, { useRef, useReducer, useState } from 'react';
 
-import TextField from '../../../components/textField/textField';
-import images from '../../../assets/images';
-import Header from '../../../components/appHeader';
+import TextField from '../../components/textField/textField';
+import images from '../../assets/images';
+import Header from '../../components/appHeader';
 import styles from './editProfle.styles';
 import FastImage from 'react-native-fast-image';
-import Camera from '../../../assets/svgs/camera.svg';
-import ModalComponent from '../../../components/modal';
-import MediaPicker from '../../../components/modal/mediaPicker';
-import { captureImageWithCamera, pickImageFromLibrary } from '../../../functions';
+import Camera from '../../assets/svgs/camera.svg';
+import ModalComponent from '../../components/modal';
+import MediaPicker from '../../components/modal/mediaPicker';
+import { captureImageWithCamera, pickImageFromLibrary } from '../../functions';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { AppButton } from '../../../components/appButton';
+import { AppButton } from '../../components/appButton';
 import PhoneInput from 'react-native-phone-number-input';
-import { SmallText, XlargeText } from '../../../components/Typography';
-import colors from '../../../assets/colors';
-import fontsFamily from '../../../assets/fontsFamily';
+import { SmallText } from '../../components/Typography';
+import colors from '../../assets/colors';
+import fontsFamily from '../../assets/fontsFamily';
 import { RFValue } from 'react-native-responsive-fontsize';
-import DownArrow from '../../../assets/svgs/downarrow.svg';
-import MyDropdown from '../../../components/dropdown/dropdown';
-const EditProfile = ({ navigation, route }) => {
+import DownArrow from '../../assets/svgs/downarrow.svg';
+import MyDropdown from '../../components/dropdown/dropdown';
+import { heightPercentageToDP } from 'react-native-responsive-screen';
 
+
+const EditProfile = ({ navigation, route }) => {
 
   const [selectedValue, setSelectedValue] = useState(null);
   const items = [
@@ -31,17 +34,12 @@ const EditProfile = ({ navigation, route }) => {
     { label: 'Option E', value: '5' },
   ];
 
-  const fNameRef = useRef(null);
-  const lastNameRef = useRef(null);
   const emailRef = useRef(null);
-  const phoneRef = useRef(null);
-  const dobRef = useRef(null);
+  const ownerRef = useRef(null);
+  const postCodeRef = useRef(null);
   const modalRef = useRef()
-
   const phoneInput = useRef(null);
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [formattedValue, setFormattedValue] = useState('');
-  const [countryCode, setCountryCode] = useState('');
+  const addressRef = useRef(null);
 
 
   const [state, updateState] = useReducer(
@@ -49,14 +47,16 @@ const EditProfile = ({ navigation, route }) => {
     {
       isVisible: false,
       profileImage: null,
-      fname: null,
-      lname: null,
+      salonName: null,
+      ownerName: null,
       email: null,
-      phone: null,
+      phoneNumber: null,
+      formattedValue:null,
+      countryCode: null,
       dob: null,
     },
   );
-  const { isVisible, profileImage, fname, lname, email, phone, dob } = state;
+  const { isVisible, profileImage, salonName, ownerName, email, phoneNumber, formattedValue , countryCode, dob } = state;
 
   const handleImagePicked = image => {
     updateState({ isVisible: false, profileImage: image.uri });
@@ -112,31 +112,30 @@ const EditProfile = ({ navigation, route }) => {
               placeholder={'Salon Name'}
               label={'Salon Name'}
               onChangeText={val => {
-                updateState({ email: val });
+                updateState({ salonName: val });
               }}
-              value={email}
+              value={salonName}
               returnKeyType="next"
               blurOnSubmit={false}
-              onSubmitEditing={() => phoneRef.current?.focus()}
+              onSubmitEditing={() => ownerRef.current?.focus()}
             />
           </View>
           <View style={styles.inputContainer}>
             <TextField
               placeholder={'Owner Name'}
-              ref={phoneRef}
+              ref={ownerRef}
               label={'Owner Name'}
               onChangeText={val => {
-                updateState({ phone: val });
+                updateState({ ownerName: val });
               }}
-              value={phone}
+              value={ownerName}
               returnKeyType="next"
               blurOnSubmit={false}
-              onSubmitEditing={() => dobRef.current?.focus()}
+              onSubmitEditing={() => emailRef.current?.focus()}
             />
           </View>
 
           <SmallText text={'Phone Number'} style={styles.label} />
-          {console.log('phoneNumber', phoneNumber, 'countryCode', countryCode)}
 
           <PhoneInput
             ref={phoneInput}
@@ -146,10 +145,10 @@ const EditProfile = ({ navigation, route }) => {
             placeholder="Enter your phone number"
             disableCountryCode={true}
             onChangeText={text => {
-              setPhoneNumber(text);
+              updateState({phoneNumber: text});
             }}
-            onChangeFormattedText={text => setFormattedValue(text)}
-            onChangeCountry={country => setCountryCode(country.callingCode)}
+            onChangeFormattedText={text => updateState({formattedValue:text})}
+            onChangeCountry={country => updateState({countryCode: country.callingCode})}
             withShadow={false}
             containerStyle={styles.phoneContainer}
             textContainerStyle={styles.textInput}
@@ -166,19 +165,20 @@ const EditProfile = ({ navigation, route }) => {
           <View style={styles.emailContainer}>
             <TextField
               placeholder={'Email'}
-              ref={dobRef}
+              ref={emailRef}
               label={'Email(Optional)'}
               onChangeText={val => {
-                updateState({ dob: val });
+                updateState({ email: val });
               }}
-              value={dob}
-              returnKeyType="done"
+              value={email}
+              returnKeyType="next"
               blurOnSubmit={false}
+              onSubmitEditing={() => postCodeRef.current?.focus()}
             />
           </View>
 
           <View style={styles.dropdownContainer}>
-            <Text style={styles.cityText}>City</Text>
+          <SmallText text={'City'} style={styles.label} />
             <MyDropdown
               data={items}
               value={selectedValue}
@@ -190,7 +190,7 @@ const EditProfile = ({ navigation, route }) => {
 
           <View style={styles.inputContainer}>
             <TextField
-              ref={emailRef}
+              ref={postCodeRef}
               placeholder={'Postal Code'}
               label={'Postal Code'}
               onChangeText={val => {
@@ -199,26 +199,25 @@ const EditProfile = ({ navigation, route }) => {
               value={email}
               returnKeyType="next"
               blurOnSubmit={false}
-              onSubmitEditing={() => phoneRef.current?.focus()}
+              onSubmitEditing={() => addressRef.current?.focus()}
             />
           </View>
-
-          <View style={styles.inputContainer}>
+         
             <TextField
               ref={emailRef}
               placeholder={'Address'}
               label={'Address'}
+              multiline={true}
               onChangeText={val => {
                 updateState({email: val});
               }}
               value={email}
-              returnKeyType="next"
-              blurOnSubmit={false}
-              onSubmitEditing={() => phoneRef.current?.focus()}
+              returnKeyType="done"
+              blurOnSubmit={true}
+              style={{minHeight:80,}}
+              inputStyle={{minHeight:80}}
             />
-          </View>
-
-
+ 
           <AppButton
             onPress={updateProfile}
             title={'Update Profile'}
