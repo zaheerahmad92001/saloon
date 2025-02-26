@@ -22,7 +22,7 @@ const Spa = () => {
     <SafeAreaView style={styles.container}>
       <Header title={'Spa'} showBackButton />
       <Search
-        setFilteredSearches={setFilteredSearches}
+       handleSearch={setFilteredSearches}
         setIsInputActive={setIsInputActive}
       />
       <View>

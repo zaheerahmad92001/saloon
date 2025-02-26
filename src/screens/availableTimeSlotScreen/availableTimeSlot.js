@@ -7,8 +7,6 @@ import {
 } from 'react-native';
 import React, { useCallback, useRef, useState } from 'react';
 import Header from '../../components/appHeader';
-import { AvailableTimeSlots, serviceData } from '../../staticData';
-import ServiceCard from '../../components/serviceCard/serviceCard';
 import moment from 'moment';
 import Calendar from '../../assets/svgs/calendar.svg';
 import styles from './timeslot.style';
@@ -36,7 +34,7 @@ const AvailableTimeSlot = ({ navigation, route }) => {
 
   const openBottomSheet = useCallback((item) => {
     if (refRBSheet.current) {
-      refRBSheet.current.present()
+      refRBSheet.current.present();
     }
   }, [refRBSheet]);
 
@@ -50,8 +48,8 @@ const AvailableTimeSlot = ({ navigation, route }) => {
   const toggleSelection = (time) => {
     setSelectedTimeSlots((prev) =>
         prev.includes(time)
-            ? prev.filter((slot) => slot !== time) // Unselect if already selected
-            : [...prev, time] // Select new slot
+            ? prev.filter((slot) => slot !== time)
+            : [...prev, time]
     );
 };
 
@@ -62,7 +60,7 @@ const AvailableTimeSlot = ({ navigation, route }) => {
     return (
       <AvailableSlotTimeCard item ={item} isSelected={selectedTimeSlots.includes(item)} onPress={()=> toggleSelection(item)} />
     );
-  }
+  };
 
 
 
@@ -75,10 +73,6 @@ const AvailableTimeSlot = ({ navigation, route }) => {
         showBackButton
         onBackPress={() => navigation.goBack()}
       />
-
-      {/* <View style={styles.contentContainer}>
-          <ServiceCard item={serviceData[0]} />
-        </View> */}
 
       <View style={styles.wrapper}>
         <Text style={styles.sectionTitle}>Select Date</Text>
@@ -121,30 +115,9 @@ const AvailableTimeSlot = ({ navigation, route }) => {
           keyExtractor={(item, index) => index.toString()}
           showsVerticalScrollIndicator={false}
           scrollEnabled={false}
-        ></FlatList>
+         />
 
-        {/* <View style={styles.timePicker}>
-          <Text style={styles.sectionTitle}>Select Time</Text>
-          <View style={styles.times}>
-            {AvailableTimeSlots.map(time => (
-              <TouchableOpacity
-                key={time}
-                style={[
-                  styles.timeItem,
-                  selectedTime === time && styles.selectedItem,
-                ]}
-                onPress={() => setSelectedTime(time)}>
-                <Text
-                  style={[
-                    styles.timeText,
-                    selectedTime === time && styles.selectedText,
-                  ]}>
-                  {time}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-        </View> */}
+      
         <AppButton
           onPress={() => navigation.navigate('orderDetail')}
           title={'Select & Continue'}

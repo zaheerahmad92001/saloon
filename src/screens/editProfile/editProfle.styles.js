@@ -1,8 +1,8 @@
 import {StyleSheet} from 'react-native';
 import { widthPercentageToDP as wp , heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { RFValue } from 'react-native-responsive-fontsize';
-import fontsFamily from '../../../assets/fontsFamily';
-import colors from '../../../assets/colors';
+import fontsFamily from '../../assets/fontsFamily';
+import colors from '../../assets/colors';
 
 
 const styles = StyleSheet.create({
@@ -56,18 +56,23 @@ const styles = StyleSheet.create({
       marginBottom: 15,
       marginTop:-10
     },
-
+    label: {
+      fontSize: RFValue(13),
+      color: colors.appBlack,
+      fontFamily: fontsFamily.medium,
+      fontWeight:'400',
+      marginBottom: 8,
+    },
     emailContainer: {
       marginBottom: 15,
       paddingVertical:15
     },
     inputHalf: {
       flex: 1,
-    //   marginHorizontal: 5, // Add spacing between fields
     },
     button: {
-      marginTop:hp(5),
-      marginBottom:hp(5)
+      marginTop:hp(8),
+      marginBottom:hp(3)
     },
     buttonText: {
       color: colors.white,

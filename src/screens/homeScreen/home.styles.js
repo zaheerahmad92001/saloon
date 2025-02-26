@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
-import colors from '../../../assets/colors';
+import colors from '../../assets/colors';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
-import fontsFamily from '../../../assets/fontsFamily';
+import fontsFamily from '../../assets/fontsFamily';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 const styles = StyleSheet.create({
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginVertical: hp(1),
+    marginVertical: hp(2),
   },
   sectionTitle: {
     fontFamily: fontsFamily.bold,
@@ -80,12 +80,6 @@ const styles = StyleSheet.create({
   },
   dropDownView: {
     width: '100%'
-    //  paddingHorizontal:30,
-    //   paddingVertical:10,
-    //    backgroundColor:colors.inputGray,
-    //    borderRadius:8,
-    //    borderWidth:0.5,
-    //    borderColor:colors.lightBlack,
   },
   seeAllText: {
     color: colors.primary,
@@ -158,20 +152,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingLeft: 15,
     paddingRight: 25,
-    //paddingBottom: 12,
-    // elevation: 6,
-
-    // shadowColor: colors.lightBlack,
-    // shadowOffset: { width: 0, height: 2 },
-    // shadowOpacity: 0.2,
-    // shadowRadius: 5,
     width: wp('43%')
   },
 
   lableText: {
     fontFamily: fontsFamily.regular,
     color: colors.lightBlack,
-    // fontSize: RFValue(11)
   },
   ValueText: {
     fontFamily: fontsFamily.medium,
@@ -192,7 +178,56 @@ const styles = StyleSheet.create({
   mainGraphView: {
     flex:1,
      paddingVertical:20,
+  },
+  TradeUpView:{
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'center',
+    gap:5,
+    backgroundColor:colors.confirmYellowLight,
+    width:wp(15),
+    borderRadius:5,
+  },
+  tradeText:{
+    color:colors.confirmYellow
+  },
+  rowWrap:{
+    flexDirection:'row',
+    alignItems:'center',
+    gap:10,
+  },
+  filterView: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  filterIconView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.darkGray,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    borderRadius: 7,
+    gap: 5,
+  },
+  spaceBetween:{
+    justifyContent:'space-between',
+    marginHorizontal:wp(3),
+  },
+  tabView:{
+    backgroundColor: 'white',
+    marginTop: 20,
+    borderTopLeftRadius:12,
+    borderTopRightRadius:12,
+    borderRadius:12,
+    paddingVertical:5,
+  },
+  filterTextStyle: {
+    fontWeight: '500',
+    color: colors.lightBlack,
   }
+  
+
 
 });
 
