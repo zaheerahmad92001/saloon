@@ -5,13 +5,13 @@ import colors from '../../assets/colors';
 import fontsFamily from '../../assets/fontsFamily';
 import Header from '../../components/appHeader';
 import ToggleSwitch from '../../components/toggleSwitch/toggleSwitch';
-import {toggleItems} from '../../staticData';
+import {AccessAbilitytoggleItems} from '../../staticData';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import { MediumText } from '../../components/Typography';
 
-const NotificationSettings = ({navigation, route}) => {
+const AccessAbility = ({navigation, route}) => {
 
-  const [toggles, setToggles] = useState(toggleItems);
+  const [toggles, setToggles] = useState(AccessAbilitytoggleItems);
 
   const handleToggle = id => {
     const updatedToggles = toggles.map(item =>
@@ -23,9 +23,9 @@ const NotificationSettings = ({navigation, route}) => {
   
   return (
     <SafeAreaView style={styles.container}>
-      <Header title={'Notification Settings'} showBackButton onBackPress={()=> navigation.goBack()}/>
+      <Header title={'Accessibility'} showBackButton onBackPress={()=> navigation.goBack()}/>
       <View style={styles.wrapper}>
-      <MediumText text='Settings' style={styles.heading}/>
+      <MediumText text='You can add password to these pages' style={styles.heading}/>
       <FlatList
         data={toggles}
         keyExtractor={item => item.id.toString()}
@@ -61,4 +61,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NotificationSettings;
+export default AccessAbility;

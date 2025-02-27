@@ -44,9 +44,9 @@ const PromotionCard = props => {
                </Pressable>
             }
          >
-            <Menu.Item onPress={() => { closeMenu(); onEdit(item); }} titleStyle={styles.menuItemText} style={styles.menuItem}  title="Edit" leadingIcon={() => <PincilIcon/>} />
+            <Menu.Item onPress={() => { closeMenu(); onEdit; }} titleStyle={styles.menuItemText} style={styles.menuItem}  title="Edit" leadingIcon={() => <PincilIcon/>} />
             <Divider />
-            <Menu.Item onPress={() => { closeMenu(); onDelete(item); }} titleStyle={styles.menuItemText} style={styles.menuItem} title="Delete" leadingIcon={() => <TrashIcon/>} />
+            <Menu.Item onPress={() => { closeMenu(); onDelete; }} titleStyle={styles.menuItemText} style={styles.menuItem} title="Delete" leadingIcon={() => <TrashIcon/>} />
          </Menu>
 
 

@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     borderColor: colors.primary,
   },
   label: {
-    fontSize: RFValue(14),
+    fontSize: RFValue(12),
     color: colors.lightBlack,
     fontFamily: fontsFamily.regular,
     fontWeight:'500',

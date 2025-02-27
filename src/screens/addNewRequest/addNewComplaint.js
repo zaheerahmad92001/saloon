@@ -10,7 +10,7 @@ import {AppButton} from '../../components/appButton';
 import images from '../../assets/images';
 import {LargeText} from '../../components/Typography';
 import TextField from '../../components/textField/textField';
-
+import UploadImageComponent from '../../components/UploadImage/UploadImage';
 const AddrequestScreen = ({navigation, route}) => {
   const [selectedValue, setSelectedValue] = useState(null);
 
@@ -45,31 +45,13 @@ const AddrequestScreen = ({navigation, route}) => {
   };
   return (
     <SafeAreaView style={styles.container}>
-      <Header title={'Request or Complaints'} showBackButton onBackPress={()=>navigation.goBack()} />
+      <Header title={'Add Request'} showBackButton onBackPress={()=>navigation.goBack()} />
 
       <View style={styles.mainContainer}>
         <ScrollView>
           {/* <RenderSalonCard item={mockData}/> */}
 
           <LargeText text={'Add New Request'} style={styles.headingtext} />
-          <View style={styles.subContainer}>
-            <Text style={styles.label}>Booking Reference</Text>
-            <DropdownComponent
-              data={Items}
-              value={selectedValue}
-              onChange={item => setSelectedValue(item.value)}
-              placeholder="Choose an option"
-            />
-          </View>
-          <View style={styles.subContainer}>
-            <Text style={styles.label}>Select Type</Text>
-            <DropdownComponent
-              data={Items}
-              value={selectedValue}
-              onChange={item => setSelectedValue(item.value)}
-              placeholder="Choose an option"
-            />
-          </View>
           <View style={styles.subContainer}>
             <Text style={styles.label}>Select Issue</Text>
             <DropdownComponent
@@ -79,6 +61,27 @@ const AddrequestScreen = ({navigation, route}) => {
               placeholder="Choose an option"
             />
           </View>
+
+          {/* <View style={styles.subContainer}>
+            <Text style={styles.label}>Select Type</Text>
+            <DropdownComponent
+              data={Items}
+              value={selectedValue}
+              onChange={item => setSelectedValue(item.value)}
+              placeholder="Choose an option"
+            />
+          </View>
+
+          <View style={styles.subContainer}>
+            <Text style={styles.label}>Select Issue</Text>
+            <DropdownComponent
+              data={Items}
+              value={selectedValue}
+              onChange={item => setSelectedValue(item.value)}
+              placeholder="Choose an option"
+            />
+          </View>
+
           <View style={styles.subContainer}>
             <Text style={styles.label}>Select Salon</Text>
             <DropdownComponent
@@ -87,9 +90,10 @@ const AddrequestScreen = ({navigation, route}) => {
               onChange={item => setSelectedValue(item.value)}
               placeholder="Choose an option"
             />
-          </View>
+          </View> */}
+
           <View style={styles.subContainer}>
-            <Text style={styles.label}>Comments</Text>
+            <Text style={styles.label}>Description</Text>
             <TextField
               placeholder={'Your review here'}
               multiline
@@ -97,7 +101,10 @@ const AddrequestScreen = ({navigation, route}) => {
               onChangeText={setComments}
             />
           </View>
+          <View style={styles.imageContainer}>
+          <UploadImageComponent/>
           <AppButton title={'Submit'} onPress={addrequest} style={styles.button} />
+          </View>
         </ScrollView>
        
       </View>

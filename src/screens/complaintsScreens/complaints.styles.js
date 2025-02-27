@@ -22,19 +22,21 @@ const styles = StyleSheet.create({
     marginHorizontal: wp(4),
   },
   box: {
-    width: wp(27),
-    height: hp(12.1),
+    width: wp(43),
+    height: hp(11),
     backgroundColor: colors.white,
     borderRadius: 8,
     borderWidth: 1,
     borderColor: colors.gray,
     alignItems: 'center',
     justifyContent: 'center',
+    
   },
   rowContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     marginTop: hp(2),
+    gap:10
   },
   statusText: {
     fontSize: RFValue(14),
@@ -43,8 +45,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   innerRoundedBox: {
-    width: 50,
-    height: 50,
+    width: 40,
+    height: 40,
     backgroundColor: colors.lighterPrimary,
     borderRadius: 25,
     marginTop: hp(1),

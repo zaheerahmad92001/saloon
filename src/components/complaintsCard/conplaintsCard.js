@@ -13,7 +13,7 @@ const ComplaintsCard = (Item) => {
     return (
         <View style={styles.card}>
             <View style={styles.complainView}>
-                <LargeText text={'Complaint Status'}/>
+                <LargeText text={'Request Status'} style={{fontsFamily:fontsFamily.medium,fontSize:RFValue(10)}}/>
                 <View style={styles.statusView}>
                     <Text style={styles.statusText}>
                         Resolved
@@ -28,29 +28,29 @@ const ComplaintsCard = (Item) => {
                 </View>
 
                 <View style={styles.columnOneView}>
-                    <LargeText text={'Complaint Date'} style={styles.label}/>
+                    <LargeText text={' Date'} style={styles.label}/>
                     <SmallText text={'02 Feb 2024'} style={styles.value}/>
                 </View>
             </View>
 
             <View style={styles.columnView}>
                 <View style={styles.columnOneView}>
-                    <LargeText text={'Salon'} style={styles.label}/>
-                    <SmallText text={'ABS Salon'} style={styles.value}/>
+                    <LargeText text={'Issue'} style={styles.label}/>
+                    <SmallText text={'Service Addition'} style={styles.value}/>
                 </View>
 
-                <View style={styles.columnOneView}>
+                {/* <View style={styles.columnOneView}>
                     <LargeText text={'Complain type'} style={styles.label}/>
                     <SmallText text={'Service'} style={styles.value}/>
-                </View>
+                </View> */}
             </View>
 
-            <View style={styles.columnView}>
+            {/* <View style={styles.columnView}>
                 <View style={styles.columnOneView}>
                     <LargeText text={'Charging amount'} style={styles.label}/>
                     <SmallText text={'Sar 200'} style={styles.value}/>
                 </View>
-            </View>
+            </View> */}
 
             <View style={styles.descriptionView}>
                 <LargeText text={'Description'} style={styles.label}/>
@@ -100,12 +100,14 @@ const styles = StyleSheet.create({
     },
     columnOneView: {
         flex: 1,
-        marginBottom:10,
+        marginBottom:5,
 
     },
 
     label: {
         alignSelf:'flex-start',
+        fontFamily:fontsFamily.regular,
+        fontSize:RFValue(11)
     },
     value: {
         color:colors.lightBlack,
@@ -113,7 +115,7 @@ const styles = StyleSheet.create({
         marginTop: 2,
     },
     descriptionView: {
-       marginTop:6,
+       marginTop:0,
        marginBottom:hp(2),
     },
 });

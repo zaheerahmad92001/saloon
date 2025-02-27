@@ -20,14 +20,18 @@ const styles = StyleSheet.create({
     marginVertical: hp(0.5),
   },
 
+  imageContainer: {
+    marginVertical: hp(8.5),
+  },
   headingtext: {
     textAlign: 'left',
     marginTop: hp(1.5),
     marginBottom: hp(2),
-    fontWeight: '600',
+    fontSize:RFValue(11),
+    fontFamily:fontsFamily.bold
   },
   label: {
-    fontSize: RFValue(13),
+    fontSize: RFValue(12),
     color: colors.appBlack,
     fontFamily: fontsFamily.regular,
     fontWeight: '400',
@@ -41,7 +45,7 @@ const styles = StyleSheet.create({
     fontSize: RFValue(14),
   },
   button:{
-    marginTop:hp(4),
+    marginTop:hp(55),
   },
 
 });

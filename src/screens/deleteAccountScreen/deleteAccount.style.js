@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
     textAlign:'left',
   },
   description: {
-    fontSize: RFValue(14),
-    fontFamily: fontsFamily.medium,
+    fontSize: RFValue(13),
+    fontFamily: fontsFamily.regular,
     fontWeight: '500',
     color: colors.lightBlack,
     marginTop: hp(2),

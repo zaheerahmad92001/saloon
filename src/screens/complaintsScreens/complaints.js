@@ -14,7 +14,7 @@ const handleOnPress = (item) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header title={'Request or Complaints'} showBackButton onBackPress={() => navigation.goBack()} />
+      <Header title={'Request'} showBackButton onBackPress={() => navigation.goBack()} />
       <View style={styles.wraper}>
         <View style={styles.contentContainer}>
         <View style={styles.rowContainer}>
@@ -32,7 +32,7 @@ const handleOnPress = (item) => {
         </View>
         <AppButton
          onPress={()=>navigation.navigate('addNewComplaint')}
-         title={'Add Request or Complaints'} style={styles.button} 
+         title={'Add Complaints'} style={styles.button} 
          />
         </View>
       </View>

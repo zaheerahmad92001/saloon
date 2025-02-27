@@ -14,14 +14,13 @@ const MoreScreen = ({ navigation, route }) => {
                 case 'profileScreen':
                     navigation.navigate('profileScreen');
                     break;
-                case 'SettingsScreen':
-                    navigation.navigate('SettingsScreen', { data: item });
+                case 'accountManagementScreen':
+                   // navigation.navigate('accountManagementScreen');
+                    navigation.navigate('accountManagementScreen');
                     break;
-                case 'HelpScreen':
-                    navigation.navigate('HelpScreen', { data: item });
-                    break;
-                default:
-                    navigation.navigate('DefaultScreen', { data: item });
+                // case 'HelpScreen':
+                //     navigation.navigate('HelpScreen', { data: item });
+                //     break;
             }
         };
         return(

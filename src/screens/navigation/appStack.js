@@ -41,6 +41,12 @@ import OrderDetail from '../bookingDetailScreen/BookingDetail';
 import ProfileScreen from '../profileScreen/profile/profile';
 import PromotionScreen from '../Promotion/PromotionScreen';
 import AddPromotionScreen from '../PromotionAdd/PromotionAdd';
+import OffDays from '../OffDays/OffDays';
+import AccessAbilitySettingScreen from '../AccessAbilitySettings/AccessAbilitySettings';
+import AccessAbility from '../AccessAbilitScreen/AccessAbilityScreen';
+import PasswordSetupScreen from '../passwordSetUpScreen/PasswordSetUPScreen';
+import AccountManagementScreen from '../AccountManagement/AccountManagement'; 
+import EditPromotionScreen from '../EditPromotion/EditPromotion';
 
 const Stack = createNativeStackNavigator();
 
@@ -101,9 +107,17 @@ function AppStack() {
       <Stack.Screen name='promotionScreen' component={PromotionScreen}/>
 
       <Stack.Screen name='addPromotionScreen' component={AddPromotionScreen}/>
+      <Stack.Screen name='offDays' component={OffDays}/> 
+      <Stack.Screen name='accessAbilitySettingScreen' component={AccessAbilitySettingScreen}/>
+      <Stack.Screen name='accessAbility' component={AccessAbility}/>
+
+      <Stack.Screen name='passwordSetupScreen' component={PasswordSetupScreen}/>
+     
+      <Stack.Screen name='accountManagementScreen' component={AccountManagementScreen}/>
+      <Stack.Screen name='editPromotionScreen' component={EditPromotionScreen}/>
+
       
-
-
+      
 
     </Stack.Navigator>
   );

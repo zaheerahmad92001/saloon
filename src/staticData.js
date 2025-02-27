@@ -83,8 +83,8 @@ const menuOptions = [
   {title: 'Edit Salon Profile', img: EditIcon,  routeName:'editProfile'},
   {title: 'Bookings', img: HistoryIcon, routeName:'booking'},
   {title: 'Payment in & Payouts', img: CardTick, routeName:'savedCard'},
-  {title: 'Complaints', img: RequestIcon , routeName:'favorites'},
-  {title: 'Requests', img: RequestIcon, routeName:'invoiceList'},
+  {title: 'Complaints', img: RequestIcon , routeName:'complaints'},//favorites
+  {title: 'Requests', img: RequestIcon, routeName:'complaints'}, //invoiceList
   {title: 'Codes & Discount', img: Discount, routeName:'promotionScreen'}, //complaints
 ];
 
@@ -97,11 +97,13 @@ const categoriesOptions = [
 
 const settingOptions = [ 
   {title: 'Language', routeName:'language'},
+  {title: 'Off Days', routeName:'offDays'},
+  {title: 'Accessibility Settings ', routeName:'accessAbilitySettingScreen'},
   {title: 'Notification Settings' , routeName:'notificationSetting'},
   {title: 'Change Password', routeName:'changePassword'},
   {title: 'Privacy Policy', routeName:'privacyPolicy'},
   {title: 'Terms & Conditions', routeName:'termsCondition'},
-  {title: 'Delete Account', routeName:'deleteAccount'},
+  {title: 'Delete Account', routeName:'passwordSetupScreen'}, //deleteAccount
 ];
 
 const supportOptions = [{title: 'Customer Support', img: LikeTag ,routeName:'customerSupport'}];
@@ -151,7 +153,7 @@ const invoices = [
 ];
 
 const languages = ['English', 'Arabic', 'Urdu', 'French', 'Spanish', 'Chinese'];
-
+const offDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday','Sunday'];
 const salonCategories = ['Salon', 'Spa', 'Nail Art', 'Salon & Spa', 'Other'];
 const loginlang = ['English', 'العربية'];
 const toggleItems = [
@@ -160,6 +162,19 @@ const toggleItems = [
   {id: 3, label: 'Cancellation', isEnabled: false},
   {id: 4, label: 'Offers Notification', isEnabled: true},
   {id: 5, label: 'Other Notification', isEnabled: false},
+];
+
+
+
+const AccessAbilitytoggleItems = [
+  {id: 1, label: 'Payments in & Payouts', isEnabled: false},
+  {id: 2, label: 'Codes & Discount', isEnabled: false},
+  {id: 3, label: 'Account Management', isEnabled: false},
+  {id: 4, label: 'Service Management', isEnabled: true},
+  {id: 5, label: 'Promotions', isEnabled: false},
+  {id: 6, label: 'Chat', isEnabled: false},
+  {id: 7, label: 'Scheduling', isEnabled: false},
+  {id: 8, label: 'Statistics', isEnabled: false},
 ];
 
 const reasons = [
@@ -388,7 +403,7 @@ const messages = {
 const complaints =[
   {name:'Pending' , value:'02' , routeName:''},
   {name:'Resolved' , value:'10',routeName:''},
-  {name:'Rejected' , value:'01',routeName:''},
+  // {name:'Rejected' , value:'01',routeName:''},
 ]
 
 const professionals = [
@@ -399,11 +414,18 @@ const professionals = [
 ];
 const More =[
   {name:'Profile' , value:'Manage and update your salon profile, services, and availability easily.' ,img:images.profileimg,routeName:'profileScreen'},
-  {name:'Anaqa Commision' , value:"Track and manage salon pros' commission rates for accurate payouts and transparency." ,img:images.anaqacommision, routeName:''},
+  {name:'Anaqa Commision' , value:"Track and manage salon pros' commission rates for accurate payouts and transparency." ,img:images.anaqacommision, routeName:'accountManagementScreen'},
   {name:'Working Hours' , value:'Create timeslots according to professionals availability and service management.',img:images.hours,routeName:''},
   {name:'Service Management' , value:'Clear and flexible pricing & services options designed to suit your salon’s unique needs.',img:images.serviceimg,routeName:''},
   {name:'Professionals' , value:"Manage your salon's team of professionals and their availability with ease.",img:images.profession,routeName:''},
   {name:'Statistics' , value:"Comprehensive reports to help track and optimize your salon’s performance and growth.",img:images.statistics,routeName:''},
+
+]
+
+
+const AccessAbilitySettingsData =[
+  {name:'Change Password' , value:'If you want to switch up your password, you can do it right here!' ,routeName:''},
+  {name:'Accessibility' , value:"If you're looking for security features in your app, accessibility can totally help with that!" , routeName:'accessAbilityScreen'},
 
 ]
 
@@ -558,5 +580,8 @@ export {
   timeSlots,
   bookingDetails,
   More,
-  promotiondata
+  promotiondata,
+  offDays,
+  AccessAbilitySettingsData,
+  AccessAbilitytoggleItems
 };
