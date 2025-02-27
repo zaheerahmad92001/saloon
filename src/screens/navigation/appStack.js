@@ -9,6 +9,7 @@ import NotificationStack from './notificationStack';
 import AuthStack from './authStack';
 import AccessAbilitySettings from '../accessAbilitySettings/accessAbilitySettings';
 import AccessAbility from '../accessAbilitScreen/accessAbilityScreen';
+import OtpView from '../otpScreen/otp';
 
 
 import Categories from '../categoriesScreen/categories';
@@ -45,7 +46,7 @@ import OrderDetail from '../bookingDetailScreen/BookingDetail';
 import PromotionScreen from '../Promotion/PromotionScreen';
 import AddPromotionScreen from '../PromotionAdd/PromotionAdd';
 import OffDays from '../OffDays/OffDays';
-import PasswordSetupScreen from '../passwordSetUpScreen/PasswordSetUPScreen';
+import SecurityScreen from '../securityScreen/security';
 import CommissionScreen from '../Commission/commission';
 import EditPromotionScreen from '../EditPromotion/EditPromotion';
 
@@ -96,8 +97,10 @@ function AppStack() {
       <Stack.Screen name="language" component={Language}/>
       <Stack.Screen name="privacyPolicy" component={PrivacyPolicy}/>
       <Stack.Screen name="termsCondition" component={TermCondition}/>
-      <Stack.Screen name="passwordSetupScreen" component={PasswordSetupScreen}/>
+      <Stack.Screen name="security" component={SecurityScreen}/>
       <Stack.Screen name="customerSupport" component={Support}/>
+      <Stack.Screen name={"verifyIdentity"} component={OtpView}/>
+
 
 
       <Stack.Screen name="location" component={Location}/>

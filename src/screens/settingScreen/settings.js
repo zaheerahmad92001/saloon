@@ -10,7 +10,7 @@ import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 const Settings = ({navigation,route}) => {
 
   const handleNavigation =(routeName)=>{
-    navigation.navigate(routeName)
+    navigation.navigate(routeName,{isSettingRoute:true})
   }
   return (
     <SafeAreaView style={styles.container}>

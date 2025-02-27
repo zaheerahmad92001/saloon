@@ -106,7 +106,7 @@ const settingOptions = [
   {title: 'Change Password', routeName:'changePassword'},
   {title: 'Privacy Policy', routeName:'privacyPolicy'},
   {title: 'Terms & Conditions', routeName:'termsCondition'},
-  {title: 'Delete Account', routeName:'passwordSetupScreen'}, //deleteAccount
+  {title: 'Delete Account', routeName:'security'},
 ];
 
 const supportOptions = [{title: 'Customer Support', img: LikeTag ,routeName:'customerSupport'}];

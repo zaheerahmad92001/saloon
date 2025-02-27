@@ -13,8 +13,19 @@ import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {RFValue} from 'react-native-responsive-fontsize';
 import fontsFamily from '../../assets/fontsFamily';
 
-const PasswordSetupScreen = ({navigation}) => {
+const SecurityScreen = ({navigation, route}) => {
+  const {isSettingRoute} = route.params || {};
+  console.log('isSettingRoute', isSettingRoute);
   const [pin, setPin] = useState('');
+
+ const handleNavigation=()=>{
+  if(isSettingRoute){
+    navigation.navigate('deleteAccount')
+  }
+  else{
+     navigation.goBack()
+  }
+ }
 
   const handlePress = num => {
     if (pin.length < 6) {
@@ -58,12 +69,19 @@ const PasswordSetupScreen = ({navigation}) => {
             </View>
           ))}
         </View>
-        <Pressable
-          style={styles.saveButton}
-          disabled={pin.length < 6}
-          onPress={() => navigation.goBack()}>
-          <Text style={styles.saveButtonText}>Save Password</Text>
-        </Pressable>
+
+        {isSettingRoute ? (
+          <Pressable onPress={handleNavigation}>
+            <Text style={[styles.saveButtonText,{color:colors.appBlack}]}>{'Cancel'}</Text>
+          </Pressable>
+        ) : (
+          <Pressable
+            style={styles.saveButton}
+            disabled={pin.length < 6}
+            onPress={handleNavigation}>
+            <Text style={styles.saveButtonText}>{'Save Password'}</Text>
+          </Pressable>
+        )}
       </View>
     </SafeAreaView>
   );
@@ -139,4 +157,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PasswordSetupScreen;
+export default SecurityScreen;
