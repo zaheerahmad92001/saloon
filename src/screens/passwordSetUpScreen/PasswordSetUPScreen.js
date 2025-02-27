@@ -1,13 +1,22 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { AppButton } from '../../components/appButton';
+import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  SafeAreaView,
+  Pressable,
+} from 'react-native';
 import colors from '../../assets/colors';
+import {MediumText, XlargeText} from '../../components/Typography';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {RFValue} from 'react-native-responsive-fontsize';
 import fontsFamily from '../../assets/fontsFamily';
 
-const PasswordSetupScreen = ({navigation, route}) => {
+const PasswordSetupScreen = ({navigation}) => {
   const [pin, setPin] = useState('');
 
-  const handlePress = (num) => {
+  const handlePress = num => {
     if (pin.length < 6) {
       setPin(pin + num);
     }
@@ -18,68 +27,63 @@ const PasswordSetupScreen = ({navigation, route}) => {
   };
 
   return (
-    <View style={styles.container}>
-      {/* Header */}
-      <Text style={styles.header}>Set Up your Password</Text>
+    <SafeAreaView style={styles.wrapper}>
+      <View style={styles.container}>
+        <MediumText text={'Set Up your Password'} style={styles.header} />
 
-      {/* Pin Dots */}
-      <View style={styles.pinContainer}>
-        {[...Array(6)].map((_, index) => (
-          <View key={index} style={[styles.dot, pin.length > index && styles.filledDot]} />
-        ))}
+        <View style={styles.pinContainer}>
+          {[...Array(6)].map((_, index) => (
+            <View
+              key={index}
+              style={[styles.dot, pin.length > index && styles.filledDot]}
+            />
+          ))}
+        </View>
+
+        <View style={styles.keypad}>
+          {[[1, 2, 3], [4, 5, 6], [7, 8, 9], [0]].map((row, rowIndex) => (
+            <View key={rowIndex} style={styles.row}>
+              {row.map((num, index) => (
+                <TouchableOpacity
+                  key={index}
+                  style={styles.key}
+                  onPress={() =>
+                    num === '⌫'
+                      ? handleDelete()
+                      : num !== '' && handlePress(num)
+                  }>
+                  <XlargeText text={num} style={styles.keyText} />
+                </TouchableOpacity>
+              ))}
+            </View>
+          ))}
+        </View>
+        <Pressable
+          style={styles.saveButton}
+          disabled={pin.length < 6}
+          onPress={() => navigation.goBack()}>
+          <Text style={styles.saveButtonText}>Save Password</Text>
+        </Pressable>
       </View>
-
-      {/* Number Pad */}
-      <View style={styles.keypad}>
-        {[
-          [1, 2, 3],
-          [4, 5, 6],
-          [7, 8, 9],
-          [0], 
-        ].map((row, rowIndex) => (
-          <View key={rowIndex} style={styles.row}>
-            {row.map((num, index) => (
-              <TouchableOpacity
-                key={index}
-                style={styles.key}
-                onPress={() => (num === '⌫' ? handleDelete() : num !== '' && handlePress(num))}
-              >
-                <Text style={styles.keyText}>{num}</Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-        ))}
-      </View>
-
-      {/* Save Password Button */}
-      {/* <AppButton
-            onPress={() => navigation.navigate('addPromotionScreen')}
-            title={'Save Password'}
-            style={styles.saveButton}
-            textstyle={styles.buttonText}
-          /> */}
-          {/* ()=> navigation.navigate('deleteAccount') */}
-      <TouchableOpacity style={styles.saveButton} disabled={pin.length < 6} onPress={()=> ()=> navigation.navigate('deleteAccount')}>
-        <Text style={styles.saveButtonText}>Save Password</Text>
-      </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    backgroundColor: colors.white,
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: colors.white,
-    paddingHorizontal: 20,
+    // paddingHorizontal: 20,
   },
   header: {
-    fontSize: 16,
-    fontFamily:fontsFamily.medium,
-    fontWeight: '600',
     color: colors.primary,
-    marginBottom: 20,
+    marginBottom: hp(2.5),
   },
   pinContainer: {
     flexDirection: 'row',
@@ -106,31 +110,32 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   key: {
-    width: 60,
-    height: 60,
+    width: 70,
+    height: 70,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 0.5,
-    borderColor: '#AD6776',
+    borderColor: colors.sharpPrimary,
     borderRadius: 18,
-    margin: 10,
+    margin: 15,
   },
   keyText: {
-    fontSize: 15,
-    color: '#AD6776',
-    fontWeight: '600',
+    color: colors.sharpPrimary,
+    fontSize: 24,
   },
   saveButton: {
     width: '80%',
     backgroundColor: colors.primary,
-    paddingVertical: 10,
+    paddingVertical: 12,
     alignItems: 'center',
-    borderRadius: 10,
+    borderRadius: 6,
   },
   saveButtonText: {
-    color: '#FFFFFF',
-    fontSize: 18,
+    fontSize: RFValue(13),
     fontWeight: '600',
+    color: colors.white,
+    textAlign: 'center',
+    fontFamily: fontsFamily.regular,
   },
 });
 

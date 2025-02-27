@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, FlatList, SafeAreaView} from 'react-native';
-import {RFValue} from 'react-native-responsive-fontsize';
+import {View, StyleSheet, FlatList, SafeAreaView} from 'react-native';
 import colors from '../../assets/colors';
-import fontsFamily from '../../assets/fontsFamily';
 import Header from '../../components/appHeader';
 import ToggleSwitch from '../../components/toggleSwitch/toggleSwitch';
 import {toggleItems} from '../../staticData';
@@ -55,9 +53,6 @@ const styles = StyleSheet.create({
     color: colors.lightBlack,
     marginTop:hp(2),
     marginBottom:hp(2),
-    fontFamily:fontsFamily.regular,
-    fontSize:RFValue(13),
-    fontWeight:'500'
   },
 });
 

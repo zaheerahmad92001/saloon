@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, View, Text, Image} from 'react-native';
+import { View, Pressable} from 'react-native';
 import {RFValue} from 'react-native-responsive-fontsize';
 import colors from '../../assets/colors';
 import fontsFamily from '../../assets/fontsFamily';
@@ -10,7 +10,7 @@ import FastImage from 'react-native-fast-image';
 
 const MenuItem = ({title, Icon, showImage, showIcon , onPress , style}) => {
   return (
-    <TouchableOpacity onPress={onPress} style={[styles.menuItem,style]}>
+    <Pressable onPress={onPress} style={[styles.menuItem,style]}>
       <View style={styles.menuItemsTitleCard}>
         {showIcon && <Icon/>}
         {showImage &&
@@ -24,7 +24,7 @@ const MenuItem = ({title, Icon, showImage, showIcon , onPress , style}) => {
         <SmallText text={title} style={styles.menuText} />
       </View>
       <RightArrow/>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 
@@ -32,7 +32,7 @@ const styles = {
   menuItem: {
     paddingVertical: 15,
     paddingHorizontal:10,
-    marginBottom: 10,
+    marginBottom: 15,
     backgroundColor: colors.lightGray,
     borderRadius: 10,
     flexDirection: 'row',
@@ -58,7 +58,7 @@ const styles = {
     fontFamily:fontsFamily.extraLight,
     fontWeight: '500',
     color: colors.lightBlack,
-    marginLeft:18,
+    marginLeft:5,
   },
 };
 

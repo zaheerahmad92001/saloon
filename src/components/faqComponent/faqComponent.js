@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
-import {View, TouchableOpacity, StyleSheet, Pressable} from 'react-native';
+import {View, StyleSheet, Pressable} from 'react-native';
 import colors from '../../assets/colors';
 import fontsFamily from '../../assets/fontsFamily';
 import { LargeText, SmallText } from '../Typography';
 import DownArrow from '../../assets/svgs/down-arrow-light-black.svg';
 import UpArrow from '../../assets/svgs/up-arrow.svg';
+import { heightPercentageToDP } from 'react-native-responsive-screen';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 const FAQItem = ({question, answer}) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,9 +34,10 @@ const styles = StyleSheet.create({
 
   
   card: {
-    marginVertical: 8,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
+    marginTop:heightPercentageToDP(2),
+    marginBottom:heightPercentageToDP(1),
+    paddingHorizontal: 10,
+    paddingVertical: 16,
     backgroundColor: colors.lightGray,
     borderRadius: 8,
   },
@@ -52,6 +55,7 @@ const styles = StyleSheet.create({
     color: colors.lightBlack,
     fontFamily:fontsFamily.regular,
     fontWeight:'400',
+    fontSize:RFValue(13),
   },
 });
 

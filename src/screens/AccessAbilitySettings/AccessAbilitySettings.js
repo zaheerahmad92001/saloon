@@ -1,25 +1,26 @@
-import React from "react";
-import AccessAbilitySettingsCard from "../../components/AccessAbilitySettingsCard/AccessAbilitySettingsCard";
-import { Alert, FlatList, SafeAreaView, View } from "react-native";
-import styles from "./AccessAbilitySettings.Style";
-import Header from "../../components/appHeader";
-import { AccessAbilitySettingsData } from "../../staticData";
-const AccessAbilitySettingScreen = ({ navigation, route }) => {
+import React from 'react';
+import AccessAbilitySettingsCard from '../../components/AccessAbilitySettingsCard/AccessAbilitySettingsCard';
+import { FlatList, SafeAreaView, View } from 'react-native';
+import styles from './accessAbilitySettings.Style';
+import Header from '../../components/appHeader';
+import { AccessAbilitySettingsData } from '../../staticData';
 
 
-    const renderCard=({item})=>{
+const AccessAbilitySettings = ({ navigation, route }) => {
 
-        const handleNavigation =(routeName)=>{
-            console.log("Navigating to:", routeName);
-            navigation.navigate('accessAbility')
-          }
+
+    const handleNavigation = (routeName)=>{
+        navigation.navigate(routeName);
+      };
+
+    const renderCard = ({item})=>{
         return(
             <AccessAbilitySettingsCard
             item={item}
             onPress={() => handleNavigation(item.routeName)}
-            ></AccessAbilitySettingsCard>
+             />
         );
-    }
+    };
     return (
         <SafeAreaView style={styles.container}>
             <Header
@@ -31,10 +32,10 @@ const AccessAbilitySettingScreen = ({ navigation, route }) => {
                 <FlatList
                 data={AccessAbilitySettingsData}
                 renderItem={renderCard}
-                ></FlatList>
+                 />
 
             </View>
         </SafeAreaView>
     );
-}
-export default AccessAbilitySettingScreen;
+};
+export default AccessAbilitySettings;
