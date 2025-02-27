@@ -15,8 +15,13 @@ import ApplePay from './assets/svgs/appleIcon.svg';
 import CardPay from './assets/svgs/debtCard.svg';
 import CardTick from './assets/svgs/card-tick.svg';
 import LikeTag from './assets/svgs/like-tag.svg';
+import ProfileMore from './assets/svgs/morepProfile.svg';
+import Professionals from './assets/svgs/professionals.svg';
+import ServiceManagment from './assets/svgs/serviceManagment.svg';
+import Statistics from './assets/svgs/statistics.svg';
+import WorkingHours from './assets/svgs/workingHours.svg';
+import AnaqaCommission from './assets/svgs/anaqaCommission.svg';
 
-import moreIcon from './assets/svgs/more.svg'
 
 const recentSearches = [
   'Beauty Unleashed',
@@ -404,13 +409,13 @@ const professionals = [
   { id: 4, name: 'Alice Johnson', profession: 'Skin Care Specialist' },
 
 ];
-const More = [
-  {name:'Profile' , value:'Manage and update your salon profile, services, and availability easily.' ,img:images.profileimg,routeName:'profileScreen'},
-  {name:'Anaqa Commision' , value:"Track and manage salon pros' commission rates for accurate payouts and transparency." ,img:images.anaqacommision, routeName:''},
-  {name:'Working Hours' , value:'Create timeslots according to professionals availability and service management.',img:images.hours,routeName:''},
-  {name:'Service Management' , value:'Clear and flexible pricing & services options designed to suit your salon’s unique needs.',img:images.serviceimg,routeName:''},
-  {name:'Professionals' , value:"Manage your salon's team of professionals and their availability with ease.",img:images.profession,routeName:''},
-  {name:'Statistics' , value:'Comprehensive reports to help track and optimize your salon’s performance and growth.',img:images.statistics,routeName:''},
+const moreRoutes = [
+  {name:'Profile' , value:'Manage and update your salon profile, services, and availability easily.' ,Icon:ProfileMore,routeName:'profileScreen'},
+  {name:'Anaqa Commision' , value:"Track and manage salon pros' commission rates for accurate payouts and transparency." ,Icon:AnaqaCommission, routeName:'settings'},
+  {name:'Working Hours' , value:'Create timeslots according to professionals availability and service management.',Icon:WorkingHours,routeName:'HelpScreen'},
+  {name:'Service Management' , value:'Clear and flexible pricing & services options designed to suit your salon’s unique needs.',Icon:ServiceManagment,routeName:''},
+  {name:'Professionals' , value:"Manage your salon's team of professionals and their availability with ease.",Icon:Professionals,routeName:''},
+  {name:'Statistics' , value:'Comprehensive reports to help track and optimize your salon’s performance and growth.',Icon:Statistics,routeName:''},
 
 ];
 
@@ -587,7 +592,7 @@ export {
   professionals,
   timeSlots,
   bookingDetails,
-  More,
+  moreRoutes,
   promotiondata,
   graphTabs,
   bookingHistory
