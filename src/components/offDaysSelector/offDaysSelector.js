@@ -6,7 +6,7 @@ import fontsFamily from '../../assets/fontsFamily';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { MediumText } from '../Typography';
 
-const LanguageSelector = ({label, onSelect, selected}) => {
+const offDaysSelector = ({label, onSelect, selected}) => {
   return (
     <TouchableOpacity 
     onPress={() => onSelect(label)}
@@ -57,4 +57,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LanguageSelector;
+export default offDaysSelector;

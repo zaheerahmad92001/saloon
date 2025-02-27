@@ -1,7 +1,7 @@
 import {FlatList, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
-import {languages} from '../../staticData';
-import LanguageSelector from '../../components/languageSelector/languageSelector';
+import {offDays} from '../../staticData';
+import OffDaysSelector from '../../components/offDaysSelector/offDaysSelector';
 import Header from '../../components/appHeader';
 import colors from '../../assets/colors';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
@@ -9,25 +9,34 @@ import { MediumText } from '../../components/Typography';
 import fontsFamily from '../../assets/fontsFamily';
 import { RFValue } from 'react-native-responsive-fontsize';
 
-const Language = ({navigation, route}) => {
-  const [selectedLanguage, setSelectedLanguage] = useState(null);
+const OffDays = ({navigation, route}) => {
+  const [selectedOffDays, setSelectedOffDays] = useState([]);
 
-  const handleSelect = language => {
-    setSelectedLanguage(language);
+  const handleSelect = (offday) => {
+    setSelectedOffDays((prevSelected) => {
+      // Check if the item is already selected
+      if (prevSelected.includes(offday)) {
+        // Remove the item if already selected (unselect)
+        return prevSelected.filter((item) => item !== offday);
+      } else {
+        // Add the item if not selected
+        return [...prevSelected, offday];
+      }
+    });
   };
   return (
     <SafeAreaView style={styles.container}>
-      <Header title={'Languages'} showBackButton onBackPress={()=>navigation.goBack()} />
+      <Header title={'Off Days'} showBackButton onBackPress={()=>navigation.goBack()} />
       <View style={styles.wrapper}>
         <MediumText text='Please select your default language' style={styles.headerTitle}/>
       <FlatList
-        data={languages}
+        data={offDays}
         keyExtractor={item => item}
         renderItem={({item}) => (
-          <LanguageSelector
+          <OffDaysSelector
             label={item}
-            selected={item === selectedLanguage}
-            onSelect={handleSelect}
+            selected={Array.isArray(selectedOffDays) && selectedOffDays.includes(item)} 
+              onSelect={() => handleSelect(item)}
           />
         )}
       />
@@ -55,4 +64,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Language;
+export default OffDays;

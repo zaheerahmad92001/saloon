@@ -78,9 +78,8 @@ const styles = StyleSheet.create({
     paddingBottom:20
   },
   heading: {
-    fontSize: RFValue(16),
+    fontSize: RFValue(14),
     fontFamily: fontsFamily.bold,
-    fontWeight:'600',
     color: colors.appBlack,
     marginTop: hp(2),
     marginBottom: hp(1),

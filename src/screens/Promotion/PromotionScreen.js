@@ -10,11 +10,13 @@ const PromotionScreen =({navigation, route})=>{
     const handleEdit = ({}) => {
         console.log("Edit clicked for:");
         Alert.alert('Edit clicked for:');
+        navigation.navigate('editPromotionScreen');
       };
     
       const handleDelete = ({}) => {
         console.log("Delete clicked for:");
         Alert.alert('Delete clicked for:');
+        navigation.navigate('editPromotionScreen');
       };
 
      const renderPromotionCard =({item})=>{

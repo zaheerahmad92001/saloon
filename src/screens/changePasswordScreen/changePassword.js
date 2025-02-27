@@ -63,7 +63,7 @@ const ChangePassword = ({navigation,route}) => {
           onChange={text => updateState({confirmPass:text})}
         />
 
-        <AppButton title="Change Password" onPress={handleChangePassword} style= {{marginBottom : hp(1)}} />
+        <AppButton title="Change Password" onPress={handleChangePassword} style= {{marginBottom : hp(2)}} />
       </View>
     </SafeAreaView>
   );
@@ -82,8 +82,8 @@ const styles = StyleSheet.create({
     color: colors.lightBlack,
     marginTop: hp(2),
     marginBottom: hp(2),
-    fontFamily:fontsFamily.medium,
-    fontSize:RFValue(14),
+    fontFamily:fontsFamily.regular,
+    fontSize:RFValue(12),
     fontWeight:'500'
   },
   newPassText: {

@@ -86,8 +86,8 @@ const menuOptions = [
   {title: 'Edit Salon Profile', img: EditIcon,  routeName:'editProfile'},
   {title: 'Bookings', img: HistoryIcon, routeName:'booking'},
   {title: 'Payment in & Payouts', img: CardTick, routeName:'savedCard'},
-  {title: 'Complaints', img: RequestIcon , routeName:'favorites'},
-  {title: 'Requests', img: RequestIcon, routeName:'invoiceList'},
+  {title: 'Complaints', img: RequestIcon , routeName:'complaints'},//favorites
+  {title: 'Requests', img: RequestIcon, routeName:'complaints'}, //invoiceList
   {title: 'Codes & Discount', img: Discount, routeName:'promotionScreen'}, //complaints
 ];
 
@@ -100,11 +100,13 @@ const categoriesOptions = [
 
 const settingOptions = [
   {title: 'Language', routeName:'language'},
+  {title: 'Off Days', routeName:'offDays'},
+  {title: 'Accessibility Settings ', routeName:'accessAbilitySettingScreen'},
   {title: 'Notification Settings' , routeName:'notificationSetting'},
   {title: 'Change Password', routeName:'changePassword'},
   {title: 'Privacy Policy', routeName:'privacyPolicy'},
   {title: 'Terms & Conditions', routeName:'termsCondition'},
-  {title: 'Delete Account', routeName:'deleteAccount'},
+  {title: 'Delete Account', routeName:'passwordSetupScreen'}, //deleteAccount
 ];
 
 const supportOptions = [{title: 'Customer Support', img: LikeTag ,routeName:'customerSupport'}];
@@ -154,7 +156,7 @@ const invoices = [
 ];
 
 const languages = ['English', 'Arabic', 'Urdu', 'French', 'Spanish', 'Chinese'];
-
+const offDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday','Sunday'];
 const salonCategories = ['Salon', 'Spa', 'Nail Art', 'Salon & Spa', 'Other'];
 const loginlang = ['English', 'العربية'];
 const toggleItems = [
@@ -163,6 +165,19 @@ const toggleItems = [
   {id: 3, label: 'Cancellation', isEnabled: false},
   {id: 4, label: 'Offers Notification', isEnabled: true},
   {id: 5, label: 'Other Notification', isEnabled: false},
+];
+
+
+
+const AccessAbilitytoggleItems = [
+  {id: 1, label: 'Payments in & Payouts', isEnabled: false},
+  {id: 2, label: 'Codes & Discount', isEnabled: false},
+  {id: 3, label: 'Account Management', isEnabled: false},
+  {id: 4, label: 'Service Management', isEnabled: true},
+  {id: 5, label: 'Promotions', isEnabled: false},
+  {id: 6, label: 'Chat', isEnabled: false},
+  {id: 7, label: 'Scheduling', isEnabled: false},
+  {id: 8, label: 'Statistics', isEnabled: false},
 ];
 
 const reasons = [
@@ -391,8 +406,8 @@ const messages = {
 const complaints = [
   {name:'Pending' , value:'02' , routeName:''},
   {name:'Resolved' , value:'10',routeName:''},
-  {name:'Rejected' , value:'01',routeName:''},
 ];
+
 
 const professionals = [
   { id: 1, name: 'John Doe', profession: 'Hair Specialist' },
@@ -419,6 +434,15 @@ const moreRoutes = [
 
 ];
 
+
+
+const AccessAbilitySettingsData =[
+  {name:'Change Password' , value:'If you want to switch up your password, you can do it right here!' ,routeName:''},
+  {name:'Accessibility' , value:"If you're looking for security features in your app, accessibility can totally help with that!" , routeName:'accessAbilityScreen'},
+
+]
+
+
 const bookingStatus = [
   {name:'Total Bookings' , value:'56' , routeName:'',status:'Pending'},
   {name:'Pending' , value:'02' , routeName:''       ,status:'Pending'},
@@ -426,6 +450,7 @@ const bookingStatus = [
   {name:'Cancelled' , value:'301',routeName:''      ,status:'Cancelled'},
   {name:'Completed' , value:'101',routeName:''      ,status:'Completed'},
 ];
+
 const staticBookings = [
   {
     customer: 'Cheyenne Franci',
@@ -594,7 +619,12 @@ export {
   bookingDetails,
   moreRoutes,
   promotiondata,
+
+  offDays,
+  AccessAbilitySettingsData,
+  AccessAbilitytoggleItems,
   graphTabs,
   bookingHistory
+
 
 };

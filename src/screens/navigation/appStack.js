@@ -38,8 +38,19 @@ import Location from '../location/location';
 import RatingAndReview from '../ratingAndReviewScreen/ratingAndReview';
 import AvailableTimeSlot from '../availableTimeSlotScreen/availableTimeSlot';
 import OrderDetail from '../bookingDetailScreen/BookingDetail';
+
+import PromotionScreen from '../Promotion/PromotionScreen';
+import AddPromotionScreen from '../PromotionAdd/PromotionAdd';
+import OffDays from '../OffDays/OffDays';
+import AccessAbilitySettingScreen from '../AccessAbilitySettings/AccessAbilitySettings';
+import AccessAbility from '../AccessAbilitScreen/AccessAbilityScreen';
+import PasswordSetupScreen from '../passwordSetUpScreen/PasswordSetUPScreen';
+import AccountManagementScreen from '../AccountManagement/AccountManagement'; 
+import EditPromotionScreen from '../EditPromotion/EditPromotion';
+
 import ProfileScreen from '../profileScreen/profile';
 import SearchScreen from '../searchScreen/search/search';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -76,9 +87,6 @@ function AppStack() {
       <Stack.Screen name="settings" component={Settings}/>
       <Stack.Screen name="saloonPage" component={SaloonPage}/>
       <Stack.Screen name="invoiceDetail" component={invoiceDetail}/>
-
-
-
       <Stack.Screen name="location" component={Location}/>
       <Stack.Screen name="notificationStack" component={NotificationStack} />
       <Stack.Screen name="successScreen" component={SuccessScreen} />
@@ -101,10 +109,17 @@ function AppStack() {
       <Stack.Screen name='ratingAndReview' component={RatingAndReview}/>
       <Stack.Screen name='availableTimeSlot' component={AvailableTimeSlot}/>
       <Stack.Screen name='orderDetail' component={OrderDetail}/>  
+      <Stack.Screen name='promotionScreen' component={PromotionScreen}/>
+      <Stack.Screen name='addPromotionScreen' component={AddPromotionScreen}/>
+      <Stack.Screen name='offDays' component={OffDays}/> 
+      <Stack.Screen name='accessAbilitySettingScreen' component={AccessAbilitySettingScreen}/>
+      <Stack.Screen name='accessAbility' component={AccessAbility}/>
+      <Stack.Screen name='passwordSetupScreen' component={PasswordSetupScreen}/>
+      <Stack.Screen name='accountManagementScreen' component={AccountManagementScreen}/>
+      <Stack.Screen name='editPromotionScreen' component={EditPromotionScreen}/>
+
       
       
-
-
 
     </Stack.Navigator>
   );
