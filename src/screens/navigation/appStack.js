@@ -39,7 +39,6 @@ import RatingAndReview from '../ratingAndReviewScreen/ratingAndReview';
 import AvailableTimeSlot from '../availableTimeSlotScreen/availableTimeSlot';
 import OrderDetail from '../bookingDetailScreen/BookingDetail';
 
-import ProfileScreen from '../profileScreen/profile/profile';
 import PromotionScreen from '../Promotion/PromotionScreen';
 import AddPromotionScreen from '../PromotionAdd/PromotionAdd';
 import OffDays from '../OffDays/OffDays';
@@ -110,7 +109,6 @@ function AppStack() {
       <Stack.Screen name='ratingAndReview' component={RatingAndReview}/>
       <Stack.Screen name='availableTimeSlot' component={AvailableTimeSlot}/>
       <Stack.Screen name='orderDetail' component={OrderDetail}/>  
-      <Stack.Screen name='profileScreen' component={ProfileScreen}/>
       <Stack.Screen name='promotionScreen' component={PromotionScreen}/>
       <Stack.Screen name='addPromotionScreen' component={AddPromotionScreen}/>
       <Stack.Screen name='offDays' component={OffDays}/> 
