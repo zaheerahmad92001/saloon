@@ -53,7 +53,7 @@ const Bookings = ({navigation, route}) => {
     if (isCompleted) {
       navigation.navigate('invoiceDetail');
     } else {
-      navigation.navigate('availableTimeSlot');
+      navigation.navigate('availableTimeSlot',{isReschedule:true});
     }
 
   }
@@ -81,7 +81,6 @@ const Bookings = ({navigation, route}) => {
 
 
   const openBottomSheet = useCallback(item => {
-    console.log('item', item.status === 'Pending');
     updateState({selectedItem: item});
     if (item.status === 'Pending') {
       if (refRBSheetAssignProfessional.current) {
@@ -201,7 +200,7 @@ const Bookings = ({navigation, route}) => {
         style={{backgroundColor: colors.appBG}}
         height={hp(87)}>
         <AssignProfessional
-          onCancel={() => {}}
+          onCancel={hideBottomSheets}
           onAgree={() => {}}
           isChnagePrrofessional={isChnagePrrofessional}
         />

@@ -1,50 +1,40 @@
-import React from "react";
-import MoreCard from "../../components/moreCard/MoreCard";
-import { Alert, FlatList, SafeAreaView, View } from "react-native";
-import styles from "./MoreScreen.Style";
-import Header from "../../components/appHeader";
-import { More } from "../../staticData";
-const MoreScreen = ({ navigation, route }) => {
+import React from 'react';
+import MoreCard from '../../components/moreCard/MoreCard';
+import {FlatList, SafeAreaView, View} from 'react-native';
+import styles from './MoreScreen.Style';
+import Header from '../../components/appHeader';
+import {moreRoutes} from '../../staticData';
 
+const MoreScreen = ({navigation, route}) => {
 
-    const renderCard=({item})=>{
+  const handleNavigation = item => {
+    navigation.navigate(item.routeName, {item});
+  };
 
-        const handleNavigation = () => {
-            switch (item.routeName) {
-                case 'profileScreen':
-                    navigation.navigate('profileScreen');
-                    break;
-                case 'accountManagementScreen':
-                   // navigation.navigate('accountManagementScreen');
-                    navigation.navigate('accountManagementScreen');
-                    break;
-                // case 'HelpScreen':
-                //     navigation.navigate('HelpScreen', { data: item });
-                //     break;
-            }
-        };
-        return(
-            <MoreCard
-            item={item}
-            onPress={handleNavigation}
-            ></MoreCard>
-        );
-    }
+  const renderCard = ({item}) => {
     return (
-        <SafeAreaView style={styles.container}>
-            <Header
-                title={'More'}
-                showBackButton={false}
-                onBackPress={() => navigation.goBack()}
-            />
-            <View style={styles.mainContainer}>
-                <FlatList
-                data={More}
-                renderItem={renderCard}
-                ></FlatList>
-
-            </View>
-        </SafeAreaView>
+    <MoreCard 
+    item={item} 
+    onPress={()=>handleNavigation(item)} />
     );
-}
+  };
+
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <Header
+        title={'More'}
+        showBackButton={false}
+        onBackPress={() => navigation.goBack()}
+      />
+      <View style={styles.mainContainer}>
+        <FlatList
+          data={moreRoutes}
+          renderItem={renderCard}
+          keyExtractor={item => item.id}
+        />
+      </View>
+    </SafeAreaView>
+  );
+};
 export default MoreScreen;

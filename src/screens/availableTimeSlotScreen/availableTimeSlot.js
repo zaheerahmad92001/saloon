@@ -17,20 +17,21 @@ import CustomCalendar from '../../components/calendar';
 import AvailableSlotTimeCard from '../../components/availableSlotTime/AvaileableSlotTimeCard';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp, heightPercentageToDP } from 'react-native-responsive-screen';
 import { timeSlots } from '../../staticData';
+
+
 const AvailableTimeSlot = ({ navigation, route }) => {
+  const {isReschedule}= route.params
   const refRBSheet = useRef();
   const [selectedDate, setSelectedDate] = useState(
     moment().format('YYYY-MM-DD'),
   );
 
   const [selectedTimeSlots, setSelectedTimeSlots] = useState([]);
-  const [selectedTime, setSelectedTime] = useState('02:00 PM');
 
   // Generate dates for today and the next 4 days
   const dates = Array.from({ length: 5 }, (_, i) =>
     moment().add(i, 'days').format('YYYY-MM-DD'),
   );
-
 
   const openBottomSheet = useCallback((item) => {
     if (refRBSheet.current) {
@@ -120,7 +121,7 @@ const AvailableTimeSlot = ({ navigation, route }) => {
       
         <AppButton
           onPress={() => navigation.navigate('orderDetail')}
-          title={'Select & Continue'}
+          title={isReschedule ? 'Select' : 'Select & Continue'}
           style={styles.continueButton}
         />
       </View>
