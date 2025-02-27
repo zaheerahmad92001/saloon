@@ -6,8 +6,8 @@ import {settingOptions} from '../../staticData';
 import colors from '../../assets/colors';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
-const Settings = ({navigation,route}) => {
 
+const Settings = ({navigation,route}) => {
 
   const handleNavigation =(routeName)=>{
     navigation.navigate(routeName)
@@ -15,7 +15,8 @@ const Settings = ({navigation,route}) => {
   return (
     <SafeAreaView style={styles.container}>
       <Header title={'Settings'} showBackButton onBackPress={()=>navigation.goBack()}/>
-      <View style={styles.wrapper}>
+    <View style={styles.contentContainer}>
+    <View style={styles.wrapper}>
       <View style={styles.menuContainer}>
         {settingOptions.map((option, index) => (
           <MenuItem
@@ -28,6 +29,8 @@ const Settings = ({navigation,route}) => {
         ))}
       </View>
       </View>
+      </View>
+
     </SafeAreaView>
   );
 };
@@ -35,6 +38,10 @@ const Settings = ({navigation,route}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor:colors.white,
+  },
+  contentContainer:{
+    flex:1,
     backgroundColor:colors.white,
   },
   wrapper:{

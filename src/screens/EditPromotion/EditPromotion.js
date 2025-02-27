@@ -90,7 +90,7 @@ const EditPromotionScreen = ({ navigation, route }) => {
                         </View>
                     </View>
                 </View>
-                <AppButton onPress={()=>{}} title="Apply" style={styles.buttonStyle} />
+                <AppButton onPress={()=>{}} title="Update" style={styles.buttonStyle} />
             </ScrollView>
 
         </SafeAreaView>

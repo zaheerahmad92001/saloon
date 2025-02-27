@@ -101,7 +101,7 @@ const categoriesOptions = [
 const settingOptions = [
   {title: 'Language', routeName:'language'},
   {title: 'Off Days', routeName:'offDays'},
-  {title: 'Accessibility Settings ', routeName:'accessAbilitySettingScreen'},
+  {title: 'Accessibility Settings ', routeName:'accessAbilitySettings'},
   {title: 'Notification Settings' , routeName:'notificationSetting'},
   {title: 'Change Password', routeName:'changePassword'},
   {title: 'Privacy Policy', routeName:'privacyPolicy'},
@@ -155,7 +155,7 @@ const invoices = [
   },
 ];
 
-const languages = ['English', 'Arabic', 'Urdu', 'French', 'Spanish', 'Chinese'];
+const languages = ['English', 'العربية',];
 const offDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday','Sunday'];
 const salonCategories = ['Salon', 'Spa', 'Nail Art', 'Salon & Spa', 'Other'];
 const loginlang = ['English', 'العربية'];
@@ -426,7 +426,7 @@ const professionals = [
 ];
 const moreRoutes = [
   {name:'Profile' , value:'Manage and update your salon profile, services, and availability easily.' ,Icon:ProfileMore,routeName:'profileScreen'},
-  {name:'Anaqa Commision' , value:"Track and manage salon pros' commission rates for accurate payouts and transparency." ,Icon:AnaqaCommission, routeName:'settings'},
+  {name:'Anaqa Commision' , value:"Track and manage salon pros' commission rates for accurate payouts and transparency." ,Icon:AnaqaCommission, routeName:'commission'},
   {name:'Working Hours' , value:'Create timeslots according to professionals availability and service management.',Icon:WorkingHours,routeName:'HelpScreen'},
   {name:'Service Management' , value:'Clear and flexible pricing & services options designed to suit your salon’s unique needs.',Icon:ServiceManagment,routeName:''},
   {name:'Professionals' , value:"Manage your salon's team of professionals and their availability with ease.",Icon:Professionals,routeName:''},
@@ -437,8 +437,8 @@ const moreRoutes = [
 
 
 const AccessAbilitySettingsData =[
-  {name:'Change Password' , value:'If you want to switch up your password, you can do it right here!' ,routeName:''},
-  {name:'Accessibility' , value:"If you're looking for security features in your app, accessibility can totally help with that!" , routeName:'accessAbilityScreen'},
+  {name:'Change Password' , value:'If you want to switch up your password, you can do it right here!' ,routeName:'changePassword'},
+  {name:'Accessibility' , value:"If you're looking for security features in your app, accessibility can totally help with that!" , routeName:'accessAbility'},
 
 ]
 

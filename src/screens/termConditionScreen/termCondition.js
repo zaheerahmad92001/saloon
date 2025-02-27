@@ -11,7 +11,7 @@ const TermCondition = ({navigation,route}) => {
     <SafeAreaView style={styles.container}>
       <Header title={'Term & Conditions'} showBackButton onBackPress={()=> navigation.goBack()}/>
      <View style = {styles.mainContainer}>
-     <ScrollView>
+     <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.heading}>Term & Conditions</Text>
         <Text style={styles.description}>
           Lorem ipsum dolor sit amet consectetur. Eget turpis risus ut nullam
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   },
   mainContainer:{
     flex: 1,
-    backgroundColor:colors.lightGray,
+    backgroundColor:colors.white,
     paddingHorizontal:20,
     paddingBottom:20
   },
@@ -73,9 +73,10 @@ const styles = StyleSheet.create({
     paddingVertical:10,
   },
   description: {
-    fontSize: RFValue(12),
+    fontSize: RFValue(14),
     fontFamily: fontsFamily.regular,
     color: colors.lightBlack,
+    lineHeight:24,
   },
 });
 

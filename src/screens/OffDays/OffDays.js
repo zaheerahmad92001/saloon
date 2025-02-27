@@ -1,4 +1,4 @@
-import {FlatList, SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {FlatList, SafeAreaView, StyleSheet, View} from 'react-native';
 import React, {useState} from 'react';
 import {offDays} from '../../staticData';
 import OffDaysSelector from '../../components/offDaysSelector/offDaysSelector';
@@ -13,22 +13,24 @@ const OffDays = ({navigation, route}) => {
   const [selectedOffDays, setSelectedOffDays] = useState([]);
 
   const handleSelect = (offday) => {
+
     setSelectedOffDays((prevSelected) => {
-      // Check if the item is already selected
       if (prevSelected.includes(offday)) {
-        // Remove the item if already selected (unselect)
         return prevSelected.filter((item) => item !== offday);
       } else {
-        // Add the item if not selected
         return [...prevSelected, offday];
       }
     });
   };
   return (
     <SafeAreaView style={styles.container}>
-      <Header title={'Off Days'} showBackButton onBackPress={()=>navigation.goBack()} />
+      <Header 
+       title={'Off Days'} 
+       showBackButton 
+       onBackPress={()=>navigation.goBack()} 
+       />
       <View style={styles.wrapper}>
-        <MediumText text='Please select your default language' style={styles.headerTitle}/>
+        <MediumText text='Please select your off days' style={styles.headerTitle}/>
       <FlatList
         data={offDays}
         keyExtractor={item => item}

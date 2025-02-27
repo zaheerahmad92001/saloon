@@ -38,14 +38,6 @@ const ToggleSwitch = ({label, isEnabled, onToggle}) => {
           />
         </Animated.View>
       </TouchableOpacity>
-
-      {/* <Switch
-        trackColor={{ false: colors.inputGray, true: colors.primary }}
-        thumbColor={isEnabled ? colors.white : colors.white}
-        ios_backgroundColor={colors.lightGray}
-        onValueChange={handleToggle}
-        value={isEnabled}
-      /> */}
     </View>
   );
 };
@@ -55,16 +47,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-     paddingVertical:hp(1),
+     paddingVertical:hp(1.8),
     paddingHorizontal: 15,
     backgroundColor: colors.inputGray,
     borderRadius: 8,
-    marginVertical: 6,
+    marginVertical: 8,
   },
   label: {
     color: colors.lightBlack,
-    fontFamily: fontsFamily.regular,
-    fontSize:RFValue(12),
+    fontFamily: fontsFamily.medium,
+    fontSize:RFValue(14),
     fontWeight:'500',
     marginLeft:5
   },
@@ -81,11 +73,6 @@ const styles = StyleSheet.create({
     height: 20,
     backgroundColor: '#fff',
     borderRadius: 18 / 2,
-    //shadowColor: '#000',
-   // shadowOffset: {width: 0, height: 1},
-    //shadowOpacity: 0.2,
-   // shadowRadius: 1.41,
-    //elevation: 6,
   },
 });
 

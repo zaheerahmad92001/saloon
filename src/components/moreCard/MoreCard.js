@@ -16,7 +16,7 @@ const MoreCard = props => {
         <View style={styles.rowContainer}>
           <Icon/>
           <View style={styles.textContainer}>
-            <MediumText text={item.name} />
+            <MediumText text={item.name} style={styles.name} />
             <SmallText text={item.value} style={styles.profession} />
           </View>
         </View>
@@ -38,11 +38,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginVertical: 6,
     gap: 5,
-  },
-  profileImage: {
-    width: 45,
-    height: 45,
-    borderRadius: 8,
   },
   textContainer: {
     flex: 1,
@@ -67,5 +62,8 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     color: colors.appBlack,
   },
+  name:{
+    fontWeight:'500',
+  }
 });
 export default MoreCard;

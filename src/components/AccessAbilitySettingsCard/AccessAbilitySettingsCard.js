@@ -1,18 +1,22 @@
-import { Image, Text, View , StyleSheet, Pressable} from "react-native";
-import images from '../../assets/images';
-import RoundRightArrrow from '../../assets/svgs/round-arrowright.svg'
-import colors from "../../assets/colors";
-import fontsFamily from "../../assets/fontsFamily";
-import { RFValue } from "react-native-responsive-fontsize";
+import React from 'react';
+import {View , StyleSheet, Pressable} from 'react-native';
+import RoundRightArrrow from '../../assets/svgs/arrow-right.svg';
+import colors from '../../assets/colors';
+import { RFValue } from 'react-native-responsive-fontsize';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { MediumText, SmallText } from '../Typography';
+
+
 const AccessAbilitySettingsCard = (props) => {
-  const {item,isSelected, onPress} = props;
+  const {item, onPress} = props;
     return (
-      <Pressable
-      onPress={onPress}>
+      <Pressable onPress={onPress}>
         <View style={styles.card}>
+          <View style={styles.rowContainer}>
           <View style={styles.textContainer}>
-            <Text style={styles.name}>{item.name}</Text>
-            <Text style={styles.profession}>{item.value}</Text>
+            <MediumText text={item.name} style={styles.name}/>
+            <SmallText text={item.value}  style={styles.profession}/>
+          </View>
           </View>
           <View style={styles.arrowContainer}>
           <RoundRightArrrow/>
@@ -20,52 +24,37 @@ const AccessAbilitySettingsCard = (props) => {
         </View>
         </Pressable>
       );
-}
+};
 const styles = StyleSheet.create({
     card: {
-      flexDirection: "row",
-      alignItems: "center",
+      flexDirection: 'row',
+      alignItems: 'center',
       backgroundColor: colors.cardBG,
       borderRadius: 10,
       paddingVertical: 10,
-      paddingHorizontal:10,
-     
-      //margin: 6,
-       marginVertical:6,
-       
-      shadowColor: colors.white,
-      shadowOpacity: 0.1,
-      shadowRadius: 0,
-      elevation: 0, 
-    },
-    profileImage: {
-      width: 45,
-      height: 45,
-      borderRadius: 8,
-     
+      marginTop:hp(1),
+      marginBottom:hp(1),
+      gap: 5,
     },
     textContainer: {
       flex: 1,
       marginLeft: 12,
     },
     name: {
-      fontSize:RFValue(12),
-      fontFamily: fontsFamily.medium,
-      
+      fontWeight:'500',
     },
     profession: {
-      fontSize: RFValue(9),
       color: colors.lightBlack,
+      fontSize: RFValue(10),
       marginTop: 2,
     },
     arrowContainer: {
-      paddingRight:10
+      paddingRight:7,
     },
-    rating: {
-      fontSize: RFValue(10),
-      fontWeight: fontsFamily.bold,
-      marginLeft: 5,
-      color: colors.appBlack,
+    rowContainer: {
+      flex: 1,
+      flexDirection: 'row',
+      alignItems: 'center',
     },
   });
 export default AccessAbilitySettingsCard;
