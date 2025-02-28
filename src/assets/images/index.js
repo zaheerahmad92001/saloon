@@ -3,6 +3,7 @@ const images = {
   bookingTab: require('../images/booking.png'),
   messageTab: require('../images/message.png'),
   moreTab: require('../images/more.png'),
+  scheduleTab:require('../images/scheduleTab.png'),
   candle: require('../images/candle.png'),
   map: require('../images/map.png'),
   room: require('../images/room.png'),
@@ -26,12 +27,6 @@ const images = {
   transparentBG: require('../images/transparentBg.png'),
   masterCard: require('../images/masterCard.png'),
   visaCard: require('../images/visaCard.png'),
-  profileimg: require('../images/profile.png'),
-  anaqacommision: require('../images/anaqa-commision.png'),
-  hours: require('../images/hours.png'),
-  serviceimg: require('../images/statistics.png'),
-  profession: require('../images/profession.png'),
-  statistics: require('../images/statistics.png'),
   promotion: require('../images/promotion.png'),
 };
 export default images;

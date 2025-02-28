@@ -1,11 +1,13 @@
-import {FlatList, SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {FlatList, SafeAreaView, View} from 'react-native';
 import React, {useState} from 'react';
 import {salonCategories} from '../../staticData';
 import SalonSelector from '../../components/salonSelector/salonSelector';
 import {LargeText, SmallText} from '../../components/Typography';
 import styles from './salonCategory.style';
 import {AppButton} from '../../components/appButton';
-const salonCategorySelection = ({navigation, route}) => {
+
+
+const SalonCategorySelection = ({navigation, route}) => {
   const [selectedSalon, setSelectedSalon] = useState(null);
   const [isChecked, setChecked] = useState(false);
   const handleSelect = salon => {
@@ -41,4 +43,4 @@ const salonCategorySelection = ({navigation, route}) => {
     </SafeAreaView>
   );
 };
-export default salonCategorySelection;
+export default SalonCategorySelection;

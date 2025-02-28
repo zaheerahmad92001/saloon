@@ -1,84 +1,69 @@
-import { Image, Text, View , StyleSheet, Pressable} from "react-native";
-import images from '../../assets/images';
-import RoundRightArrrow from '../../assets/svgs/round-arrowright.svg'
-import colors from "../../assets/colors";
-import fontsFamily from "../../assets/fontsFamily";
-import { RFValue } from "react-native-responsive-fontsize";
-const MoreCard = (props) => {
-  const {item,isSelected, onPress} = props;
-    return (
-      <Pressable
-      onPress={onPress} // Handle selection
-            
-      >
-        <View style={styles.card}>
-          {/* Profile Image */}
-          <Image
-            source={item.img} 
-            style={styles.profileImage}
-          />
-    
-          {/* Name & Profession */}
+import React from 'react';
+import {Image, View, StyleSheet, Pressable} from 'react-native';
+import RoundRightArrrow from '../../assets/svgs/round-arrowright.svg';
+import colors from '../../assets/colors';
+import fontsFamily from '../../assets/fontsFamily';
+import {RFValue} from 'react-native-responsive-fontsize';
+import {MediumText, SmallText} from '../Typography';
+
+
+const MoreCard = props => {
+  const {item, onPress} = props;
+  const Icon = item.Icon;
+  return (
+    <Pressable onPress={onPress}>
+      <View style={styles.card}>
+        <View style={styles.rowContainer}>
+          <Icon/>
           <View style={styles.textContainer}>
-            <Text style={styles.name}>{item.name}</Text>
-            <Text style={styles.profession}>{item.value}</Text>
+            <MediumText text={item.name} style={styles.name} />
+            <SmallText text={item.value} style={styles.profession} />
           </View>
-          <View style={styles.arrowContainer}>
-          <RoundRightArrrow/>
-          </View>
-          {/* Rating */}
-          {/* <View style={styles.ratingContainer}>
-           <RoundRightArrrow/>
-          </View> */}
         </View>
-        </Pressable>
-      );
-}
+        <View style={styles.arrowContainer}>
+          <RoundRightArrrow />
+        </View>
+      </View>
+    </Pressable>
+  );
+};
 const styles = StyleSheet.create({
-    card: {
-      flexDirection: "row",
-      alignItems: "center",
-      backgroundColor: colors.cardBG,
-      borderRadius: 10,
-      paddingVertical: 10,
-      paddingHorizontal:10,
-     
-      //margin: 6,
-       marginVertical:6,
-       
-      shadowColor: colors.white,
-      shadowOpacity: 0.1,
-      shadowRadius: 0,
-      elevation: 0, 
-    },
-    profileImage: {
-      width: 45,
-      height: 45,
-      borderRadius: 8,
-     
-    },
-    textContainer: {
-      flex: 1,
-      marginLeft: 12,
-    },
-    name: {
-      fontSize:RFValue(12),
-      fontFamily: fontsFamily.medium,
-      
-    },
-    profession: {
-      fontSize: RFValue(9),
-      color: colors.lightBlack,
-      marginTop: 2,
-    },
-    arrowContainer: {
-      paddingRight:10
-    },
-    rating: {
-      fontSize: RFValue(10),
-      fontWeight: fontsFamily.bold,
-      marginLeft: 5,
-      color: colors.appBlack,
-    },
-  });
+  card: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: colors.cardBG,
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    marginVertical: 6,
+    gap: 5,
+  },
+  textContainer: {
+    flex: 1,
+    marginLeft: 12,
+  },
+  rowContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  profession: {
+    color: colors.lightBlack,
+    fontSize: RFValue(10),
+    marginTop: 2,
+  },
+  arrowContainer: {
+    marginRight: 5,
+  },
+  rating: {
+    fontSize: RFValue(10),
+    fontWeight: fontsFamily.bold,
+    marginLeft: 5,
+    color: colors.appBlack,
+  },
+  name:{
+    fontWeight:'500',
+  }
+});
 export default MoreCard;

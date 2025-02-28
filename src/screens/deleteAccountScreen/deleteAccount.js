@@ -10,7 +10,6 @@ import Header from '../../components/appHeader';
 import ReasonSelector from '../../components/reasonSelector/reasonSelector';
 import {reasons} from '../../staticData';
 import styles from './deleteAccount.style';
-import RadioButton from '../../components/radioButton';
 import { LargeText } from '../../components/Typography';
 
 const DeleteAccount = ({navigation,route}) => {
@@ -21,7 +20,7 @@ const DeleteAccount = ({navigation,route}) => {
   };
 
   const handleDeleteAccount = () => {
-
+   navigation.navigate('verifyIdentity',{isDeleteRoute:true})
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -48,7 +47,7 @@ const DeleteAccount = ({navigation,route}) => {
       <Pressable
         style={styles.deleteButton}
         onPress={handleDeleteAccount}
-        disabled={!selectedReason} // Disable the button if no reason is selected
+        disabled={!selectedReason} 
       >
         <Text style={styles.deleteButtonText}>Delete Account</Text>
       </Pressable>

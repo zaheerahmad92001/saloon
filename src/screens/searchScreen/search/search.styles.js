@@ -14,10 +14,10 @@ const styles = StyleSheet.create({
       paddingHorizontal:wp(4), 
       flex:1, 
       backgroundColor:colors.white,
+    },
+    recentSearchTitle:{
       marginTop:10,
     },
-
-    
     input: {
       flex: 1,
       fontSize: RFValue(12),
@@ -25,9 +25,8 @@ const styles = StyleSheet.create({
       color: colors.appBlack,
     },
     
-    
     recentSearchList: {
-      paddingTop: 8,
+      paddingTop: 10,
     },
     searchItem: {
       flexDirection: 'row',
@@ -41,9 +40,9 @@ const styles = StyleSheet.create({
       color: '#999',
     },
     horizontalLine: {
-      height: 1, // Thickness of the line
-      backgroundColor:colors.gray, // Line color
-      marginVertical: 4, // Space above and below the line
+     borderBottomWidth:1,
+     borderColor:colors.grayBorder,
+      marginTop: 10,
     },
     searchText: {
       fontSize:RFValue(13),

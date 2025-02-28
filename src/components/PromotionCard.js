@@ -4,7 +4,6 @@ import colors from "../assets/colors";
 
 import fontsFamily from '../assets/fontsFamily';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { MediumText, SmallText } from '../Typography';
 import {
    heightPercentageToDP as hp,
    widthPercentageToDP as wp,
@@ -30,9 +29,7 @@ const PromotionCard = props => {
             <Text style={styles.subcontent}>{max}</Text>
             <Text style={styles.subcontent}>{exp}</Text>
          </View>
-         {/* <Pressable>
-            <MoreDote/>
-            </Pressable> */}
+        
          <Menu
            
             visible={visible}
@@ -44,9 +41,9 @@ const PromotionCard = props => {
                </Pressable>
             }
          >
-            <Menu.Item onPress={() => { closeMenu(); onEdit; }} titleStyle={styles.menuItemText} style={styles.menuItem}  title="Edit" leadingIcon={() => <PincilIcon/>} />
+            <Menu.Item onPress={() => { closeMenu(); onEdit(); }} titleStyle={styles.menuItemText} style={styles.menuItem}  title="Edit" leadingIcon={() => <PincilIcon/>} />
             <Divider />
-            <Menu.Item onPress={() => { closeMenu(); onDelete; }} titleStyle={styles.menuItemText} style={styles.menuItem} title="Delete" leadingIcon={() => <TrashIcon/>} />
+            <Menu.Item onPress={() => { closeMenu(); onDelete(); }} titleStyle={styles.menuItemText} style={styles.menuItem} title="Delete" leadingIcon={() => <TrashIcon/>} />
          </Menu>
 
 
@@ -95,7 +92,7 @@ const styles = StyleSheet.create({
     },
     menuStyle:{
       backgroundColor:colors.white,
-     marginTop:-22,
+   //   marginTop:-22,
      //height:40
     },
     menuItemText:{

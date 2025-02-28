@@ -12,8 +12,9 @@ import Close from '../../../assets/svgs/close.svg';
 import Search from '../../../components/search';
 import {mockData, recentSearches} from '../../../staticData';
 import SearchResultStats from '../../../components/searchResultStats';
+import Header from '../../../components/appHeader';
 
-const SearchScreen = () => {
+const SearchScreen = ({navigation, route}) => {
   const [filteredSearches, setFilteredSearches] = useState(recentSearches);
   const [isInputActive, setIsInputActive] = useState(false);
 
@@ -33,9 +34,13 @@ const SearchScreen = () => {
     console.log(`Favorite pressed for salon ID: ${id}`);
   };
 
-  const renderSalonCard = ({item}) => (
+  const renderListHeader = () => {
+    return <SearchResultStats />;
+  };
+
+  const renderSearchData = ({item}) => (
     <SalonCard
-     item={item}
+      item={item}
       onFavorite={() => handleFavoritePress(item.id)}
       showFavoriteButton={true}
     />
@@ -44,12 +49,16 @@ const SearchScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.wrapper}>
+        <Header
+          title={'Search'}
+          showBackButton
+          onBackPress={() => navigation.goBack()}
+        />
         <Search
-          setFilteredSearches={setFilteredSearches}
+          handleSearch={setFilteredSearches}
           setIsInputActive={setIsInputActive}
         />
 
-        {/* Horizontat Line */}
         <View style={styles.horizontalLine} />
         {!isInputActive && (
           <>
@@ -66,11 +75,11 @@ const SearchScreen = () => {
 
         {isInputActive && (
           <View style={{flex: 1}}>
-            <SearchResultStats/>
             <FlatList
               data={mockData}
               keyExtractor={item => item.id.toString()}
-              renderItem={renderSalonCard}
+              renderItem={renderSearchData}
+              ListHeaderComponent={renderListHeader}
               contentContainerStyle={styles.list}
               nestedScrollEnabled
             />

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, StyleSheet, Pressable} from 'react-native';
 import {RFValue} from 'react-native-responsive-fontsize';
 import colors from '../../assets/colors';
 import fontsFamily from '../../assets/fontsFamily';
@@ -8,14 +8,14 @@ import { MediumText } from '../Typography';
 
 const LanguageSelector = ({label, onSelect, selected}) => {
   return (
-    <TouchableOpacity 
+    <Pressable 
     onPress={() => onSelect(label)}
     style={styles.container}>
       <View style={[styles.radioCircle, selected && styles.selected]}>
         {selected && <View style={styles.radioCircleInner} />}
       </View>
       <MediumText text={label} style={styles.label}/>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 
@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
   },
   label: {
     color: colors.lightBlack,
-    fontFamily: fontsFamily.regular,
-    fontSize:RFValue(10),
+    fontFamily: fontsFamily.medium,
+    fontSize:RFValue(14),
     marginLeft:15
   },
 });

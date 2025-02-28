@@ -33,7 +33,7 @@ const CategoriesList = ({navigation , route}) => {
       <View style={styles.wrapper}>
       <View style={styles.contantContainer}>
       <Search
-        setFilteredSearches={setFilteredSearches}
+        handleSearch={setFilteredSearches}
         setIsInputActive={setIsInputActive}
       />
         <FlatList

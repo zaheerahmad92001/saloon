@@ -4,6 +4,7 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
   Keyboard,
+  Alert,
 } from 'react-native';
 import React, {useState} from 'react';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
@@ -16,17 +17,37 @@ import {AppButton} from '../../components/appButton';
 import Header from '../../components/appHeader';
 
 const OtpView = ({navigation, route}) => {
+
+  const {isDeleteRoute} = route.params || {};
   const [otp, setOtp] = useState('');
+
+  const handleNavigation = () => {
+    if (isDeleteRoute) {
+      Alert.alert('Deleted Successfully');
+      setTimeout(() => {
+        navigation.goBack()
+      }, 1000);
+    } else {
+      navigation.navigate('salonCategory');
+    }
+  };
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <SafeAreaView style={styles.container}>
-        <Header
-          title={'OTP'}
-          showBackButton
-          onBackPress={() => navigation.goBack()}
-        />
-        <View style={styles.mainContainer}>
+        {!isDeleteRoute && (
+          <Header
+            title={'OTP'}
+            showBackButton
+            onBackPress={() => navigation.goBack()}
+          />
+        )}
+        <View
+          style={
+            isDeleteRoute
+              ? [styles.mainContainer, styles.securityView]
+              : [styles.mainContainer]
+          }>
           <XlargeText text={'Verify Your Identity'} style={styles.heading} />
           <SmallText
             text={
@@ -45,12 +66,19 @@ const OtpView = ({navigation, route}) => {
             codeInputHighlightStyle={styles.otpInputHighlight}
           />
 
-          <View style={styles.registerTextContainer}>
-            <SmallText text={'Time Left:'} style={styles.headingAcc} />
-            <SmallText text={'00:10'} style={styles.subHeadingAcc} />
-          </View>
+          {!isDeleteRoute && (
+            <View style={styles.registerTextContainer}>
+              <SmallText text={'Time Left:'} style={styles.headingAcc} />
+              <SmallText text={'00:10'} style={styles.subHeadingAcc} />
+            </View>
+          )}
 
-          <View style={styles.resendContainer}>
+          <View
+            style={
+              isDeleteRoute
+                ? [styles.resendContainer, styles.topMargin]
+                : [styles.resendContainer]
+            }>
             <SmallText
               text={'Didn’t receive a code?'}
               style={styles.headingAcc}
@@ -62,9 +90,7 @@ const OtpView = ({navigation, route}) => {
             title={'Continue'}
             style={styles.buttonContainer}
             textstyle={styles.buttontext}
-            onPress={() =>
-              navigation.navigate('salonCategory',)
-            }
+            onPress={handleNavigation}
           />
         </View>
       </SafeAreaView>
@@ -82,6 +108,13 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
     backgroundColor: colors.appBG,
+  },
+  securityView: {
+    backgroundColor: colors.white,
+    marginTop: hp(6),
+  },
+  topMargin: {
+    marginTop: hp(3),
   },
   heading: {
     fontSize: RFValue(18),

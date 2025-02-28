@@ -1,201 +1,175 @@
-import { FlatList, SafeAreaView, StyleSheet, View, Pressable, Text } from 'react-native';
-import React, { useCallback, useReducer, useRef, useState } from 'react';
+import {FlatList, SafeAreaView, View, Pressable} from 'react-native';
+import React, {useCallback, useMemo, useReducer, useRef, useState} from 'react';
 import BookingHistoryCard from '../../components/bookingHistoryCard/bookingHistoryCard';
-import images from '../../assets/images';
 import Header from '../../components/appHeader';
-import colors from '../../assets/colors';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp, heightPercentageToDP } from 'react-native-responsive-screen';
-import CancelBooking from '../../components/modal/cancelBooking';
-import { BottomSheet } from '../../components/bottomSheet';
-import { bookingStatus } from '../../staticData';
-import Filter from '../../assets/svgs/filter-search.svg';//'../../assets/svgs/svgs/filter-search.svg';
-import { RFValue } from 'react-native-responsive-fontsize';
-import FilterScreen from '../../components/modal/filterScreen';
-import ModalComponent from '../../components/modal/index';
-import { MediumText } from '../../components/Typography';
-import fontsFamily from '../../assets/fontsFamily';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+import ConfirmationSheet from '../../components/modal/confirmationSheet';
+import {BottomSheet} from '../../components/bottomSheet';
+import {bookingHistory, bookingStatus} from '../../staticData';
+import Filter from '../../assets/svgs/filter-search.svg';
+import {MediumText} from '../../components/Typography';
 import BookingFilter from '../../components/bookingFilter/BookingFilter';
-import ChangeProfessional from '../../components/modal/changeProfessional';
-import ChangeProfessionalBottomSheet from '../../components/modal/ChangeProfessionalBottomSheet';
-const BookingHistory = ({ navigation, route }) => {
+import AssignProfessional from '../../components/modal/AssignProfessional';
+import styles from './booking.styles';
+import BookingStatics from '../../components/bookingStatics';
+import colors from '../../assets/colors';
+
+const Bookings = ({navigation, route}) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const refRBSheet = useRef();
+  const refRBSheetAssignProfessional = useRef();
   const refRBSheetFilter = useRef();
-  const refRBSheetChangeProfessional = useRef();
-
-
-
-
-
-  const modalRef = useRef();
-  const openModal = () => {
-    if (modalRef?.current) {
-      modalRef.current.open();
-    } else {
-    }
-  };
-
-  const closeModal = () => {
-    if (modalRef?.current) {
-      modalRef.current.close();
-    } else {
-    }
-  };
-
 
   const [state, updateState] = useReducer(
-    (state, newState) => ({ ...state, ...newState }),
+    (state, newState) => ({...state, ...newState}),
     {
       selectedItem: null,
+      isChnagePrrofessional: false,
     },
   );
-  const { selectedItem } = state;
+  const {selectedItem, isChnagePrrofessional} = state;
 
-  const cancelBooking = useCallback(() => {
-    hideBottomSheet()
-    setTimeout(() => {
-      navigation.navigate('successScreen', { actionName: 'cancel' })
-    }, 200);
-  }, [navigation])
+  const filteredData = useMemo(() => {
+    const statusMap = ['All', 'Pending', 'Confirmed', 'Cancelled', 'Completed'];
+    return selectedIndex === 0
+      ? bookingHistory
+      : bookingHistory.filter(item => item.status === statusMap[selectedIndex]);
+  }, [selectedIndex]);
 
-
-  const ApplyFilter = (item) => {
-    // based on status will navigate to Book again or leave review screen 
-    //navigation.navigate('review')
-  };
-
-  const clearFilter = (item) => {
-    hideBottomSheetFilter();
-    // based on status will navigate to Book again or leave review screen 
-    //navigation.navigate('review')
-  };
-
-  const cancelFilter = useCallback(() => {
-    hideBottomSheetFilter();
-    setTimeout(() => {
-      //navigation.navigate('successScreen',{actionName:'cancel'})
-    }, 200);
-  }, [navigation])
-
-
-  const handleReschedule = (item) => {
-    // based on status will navigate to Book again or leave review screen 
-     navigation.navigate('orderDetail')
-
-     //navigation.navigate('invoiceDetail');
-    //navigation.navigate('review')
-    //navigation.navigate('availableTimeSlot')
-  };
-
-  const openBottomSheet = useCallback((item) => {
-    updateState({ selectedItem: item });
-    if (refRBSheet.current) {
-      setTimeout(() => refRBSheet.current.present(), 0);
-    }
-  }, [refRBSheet]);
-
-
-  const hideBottomSheet = () => {
-    if (refRBSheet.current) {
-      refRBSheet.current.close();
+  const handleBookingOptions = item => {
+    const isCompleted = item.status === 'Completed';
+    if (isCompleted) {
+      navigation.navigate('review');
+    } else {
+      openBottomSheet(item);
     }
   };
 
+  const reviewAndReschedule =(item)=>{
+    const isCompleted = item.status === 'Completed';
+    if (isCompleted) {
+      navigation.navigate('invoiceDetail');
+    } else {
+      navigation.navigate('availableTimeSlot',{isReschedule:true});
+    }
 
-  const openBottomSheetFilter = useCallback((item) => {
-    updateState({ selectedItem: item });
+  }
+
+
+  const handleChangeProfessional = () => {
+    updateState({isChnagePrrofessional: true});
+    setTimeout(() => {
+      if (refRBSheetAssignProfessional.current) {
+        refRBSheetAssignProfessional.current.present();
+        hideConfirmationSheet();
+      }
+    }, 0);
+  };
+
+  const ApplyFilter = item => {};
+
+  const clearFilter = item => {
+    hideBottomSheets();
+  };
+
+  const cancelFilter = () => {
+    hideBottomSheets();
+  };
+
+
+  const openBottomSheet = useCallback(item => {
+    updateState({selectedItem: item});
+    if (item.status === 'Pending') {
+      if (refRBSheetAssignProfessional.current) {
+        setTimeout(() => refRBSheetAssignProfessional.current.present(), 0);
+      }
+    }
+    if (item.status === 'Confirmed') {
+      console.log('item', 'Confirmed');
+      if (refRBSheet.current) {
+        setTimeout(() => refRBSheet.current.present(), 0);
+      }
+    }
+  }, []);
+
+  const openBottomSheetFilter = () => {
     if (refRBSheetFilter.current) {
-      setTimeout(() => refRBSheetFilter.current.present(), 0);
+      refRBSheetFilter.current.present();
     }
-  }, [refRBSheetFilter]);
+  };
 
+  const hideConfirmationSheet = () => {
+    if (refRBSheet.current) {
+      refRBSheet.current.dismiss();
+    }
+  };
 
-  const hideBottomSheetFilter = () => {
+  const hideBottomSheets = () => {
+    if (refRBSheetAssignProfessional.current) {
+      updateState({isChnagePrrofessional: false});
+      refRBSheetAssignProfessional.current.dismiss();
+    }
     if (refRBSheetFilter.current) {
-      refRBSheetFilter.current.close();
+      refRBSheetFilter.current.dismiss();
     }
   };
 
-
-
-  const openBottomSheetChangeProfessional = useCallback((item) => {
-    updateState({ selectedItem: item });
-    if (refRBSheetChangeProfessional.current) {
-      setTimeout(() => refRBSheetChangeProfessional.current.present(), 0);
-    }
-  }, [refRBSheetChangeProfessional]);
-
-
-  const hideBottomSheetChangeProfessional = () => {
-    if (refRBSheetChangeProfessional.current) {
-      refRBSheetChangeProfessional.current.close();
-    }
-  };
-  const cancelChangePRofessional = useCallback(() => {
-    hideBottomSheetChangeProfessional()
-    setTimeout(() => {
-      //navigation.navigate('successScreen',{actionName:'cancel'})
-    }, 200);
-  }, [navigation])
-
-
-  const renderItem = ({ item }) => {
+  const renderItem = ({item}) => {
     return (
       <BookingHistoryCard
-        date="Sep 10, 2024"
-        time="9:10 AM"
-        title="Hair Avenue"
-        professional="Unassigned "
-        services="Services: Hair Cut, Hair Wash"
-        price="SAR 200"
-        status={bookingStatus[selectedIndex].name}//"Confirmed"
-        imageUri={images.room}
-        bookinOptions={openBottomSheet}
-        reviewAndReschedule={() => handleReschedule(item)}
-        changeProfession={openBottomSheetChangeProfessional}
+        item={item}
+        isProfessionalAssigned={true}
+        bookinOptions={() => handleBookingOptions(item)}
+        reviewAndReschedule={() => reviewAndReschedule(item)}
+      />
+    );
+  };
+
+  const renderStaticsTabs = ({item, index}) => {
+    return (
+      <BookingStatics
+        item={item}
+        index={index}
+        selectedIndex={selectedIndex}
+        setSelectedIndex={setSelectedIndex}
       />
     );
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header title={'Booking History'} showBackButton onBackPress={() => navigation.goBack()} />
+      <Header
+        title={'Bookings'}
+        showBackButton
+        onBackPress={() => navigation.goBack()}
+      />
       <View style={styles.contentContainer}>
         <View style={styles.wrapper}>
-          <View>
-            <View style={styles.rowContainer}>
-              <FlatList
-                data={bookingStatus}
-                horizontal
-                renderItem={({ item, index }) => {
-                  const isSelected = selectedIndex === index;
-                  return (
-                    <Pressable onPress={() => setSelectedIndex(index)} style={[styles.box, isSelected && styles.selectedBox]}>
-                      <Text style={styles.statusText}>{item.name}</Text>
-                      <Text style={styles.innerTextValue}>{item.value}</Text>
+          <View style={styles.rowContainer}>
+            <FlatList
+              data={bookingStatus}
+              horizontal
+              renderItem={renderStaticsTabs}
+              showsHorizontalScrollIndicator={false}
+            />
+          </View>
 
-                    </Pressable>
-                  );
-                }}
-                showsHorizontalScrollIndicator={false}
-              ></FlatList>
-
-
-            </View>
-
-            <View style={styles.filterView}>
-              <Pressable onPress={openBottomSheetFilter} style={styles.filterIconView}>
-                <Filter />
-                <MediumText text={'Filter'} style={styles.textStyle} />
-              </Pressable>
-            </View>
+          <View style={styles.filterView}>
+            <Pressable
+              onPress={openBottomSheetFilter}
+              style={styles.filterIconView}>
+              <Filter />
+              <MediumText text={'Filter'} style={styles.textStyle} />
+            </Pressable>
           </View>
 
           <FlatList
-            data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-
+            data={filteredData}
             renderItem={renderItem}
-            contentContainerStyle={{ paddingTop: hp(2) }}
+            contentContainerStyle={{paddingTop: hp(2)}}
             keyExtractor={(item, index) => index.toString()}
             showsVerticalScrollIndicator={false}
           />
@@ -204,149 +178,49 @@ const BookingHistory = ({ navigation, route }) => {
 
       <BottomSheet
         refRBSheet={refRBSheet}
-        onClose={() => hideBottomSheet()}
+        onClose={() => hideConfirmationSheet()}
         scrollEnabled={false}
         disableDynamicSizing={true}
-        height={heightPercentageToDP(35)}
-      >
-        <CancelBooking
-          onCancel={hideBottomSheet}
-          onAgree={cancelBooking} />
+        height={hp(38)}>
+        <ConfirmationSheet
+          onCancel={hideConfirmationSheet}
+          onAgree={handleChangeProfessional}
+        />
       </BottomSheet>
 
-      {/* Change PRofessional */}
-      <BottomSheet
-        refRBSheet={refRBSheetChangeProfessional}
-        onClose={() => hideBottomSheetChangeProfessional()}
-        scrollEnabled={false}
-        disableDynamicSizing={true}
-        height={heightPercentageToDP(37)}
-      >
-        <ChangeProfessional
-          onCancel={hideBottomSheetChangeProfessional}
-          onAgree={cancelChangePRofessional} />
-      </BottomSheet>
       {/* Assign Professional */}
 
       <BottomSheet
-        refRBSheet={refRBSheet}
-        onClose={() => hideBottomSheet()}
-        scrollEnabled={true}
+        refRBSheet={refRBSheetAssignProfessional}
+        onClose={() => hideBottomSheets()}
+        scrollEnabled={false}
         disableDynamicSizing={true}
-        height={heightPercentageToDP(80)}
-      >
-        <ChangeProfessionalBottomSheet
-          onCancel={()=>{}}
-          onAgree={()=>{}}
-           />
+        removeSheetScrolllView={true}
+        sheetModalStyle={{backgroundColor: colors.appBG}}
+        style={{backgroundColor: colors.appBG}}
+        height={hp(87)}>
+        <AssignProfessional
+          onCancel={hideBottomSheets}
+          onAgree={() => {}}
+          isChnagePrrofessional={isChnagePrrofessional}
+        />
       </BottomSheet>
-
-
 
       {/* Booking Filter */}
       <BottomSheet
         refRBSheet={refRBSheetFilter}
-        onClose={() => hideBottomSheetFilter()}
+        onClose={() => hideBottomSheets()}
         scrollEnabled={false}
         disableDynamicSizing={true}
-        height={heightPercentageToDP(65)}
-      >
+        height={hp(68)}>
         <BookingFilter
           onCancel={cancelFilter}
           onApply={ApplyFilter}
           onClear={clearFilter}
         />
       </BottomSheet>
-
     </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.white,
-  },
-  contentContainer: {
-    flex: 1,
-    backgroundColor: colors.appBG,
-  },
-  wrapper: {
-    flex: 1,
-    marginHorizontal: wp(4),
-  },
-  box: {
-    width: wp(29),
-    height: hp(10),
-    backgroundColor: colors.white,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: colors.white,
-    marginBottom: 0,
-    marginHorizontal: 6,
-    //alignItems: 'center',
-    //justifyContent: 'center',
-    padding: 15
-  },
-  selectedBox: {
-    backgroundColor: colors.lightPrimary,
-    borderColor: colors.primary,
-    borderWidth: 1,
-    borderRadius: 8,
-  },
-  rowContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: hp(2),
-  },
-  statusText: {
-    fontSize: RFValue(11),
-    fontFamily: fontsFamily.regular,
-    color: colors.appBlack,
-
-    //textAlign: 'center',
-  },
-  innerRoundedBox: {
-    width: 50,
-    height: 50,
-    backgroundColor: colors.lighterPrimary,
-    borderRadius: 25,
-    marginTop: hp(1),
-    // alignItems: 'center',
-    // justifyContent: 'center',
-  },
-  innerTextValue: {
-    marginTop: hp(1),
-    fontSize: RFValue(15),
-    fontFamily: fontsFamily.bold,
-    color: colors.appBlack,
-    textAlign: 'left',
-  },
-  filterView: {
-    paddingTop: hp(2),
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    //alignSelf: 'flex-end'
-    marginBottom: 20
-  },
-  filterIconView: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: colors.darkGray,
-    paddingVertical: 10,
-    paddingHorizontal: 12,
-    borderRadius: 7,
-    gap: 5,
-  },
-  contentContainerStyle: {
-    marginTop: hp(2),
-  },
-  textStyle: {
-    fontWeight: '500',
-    color: colors.lightBlack,
-  }
-
-});
-
-export default BookingHistory;
+export default Bookings;

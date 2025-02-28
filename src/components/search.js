@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
 import {Platform, Pressable, StyleSheet, TextInput, View} from 'react-native';
-import FilterIcon from '../assets/svgs/candle.svg';
-import MapIcon from '../assets/svgs/map.svg';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import colors from '../assets/colors';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
@@ -10,26 +8,26 @@ import {recentSearches} from '../staticData';
 
 
 const Search = props => {
-  const {setFilteredSearches, setIsInputActive , isHome, isSearch = false} = props;
+  const {handleSearch, setIsInputActive , handleOnPress, inActive,} = props;
 
   const [searchText, setSearchText] = useState('');
 
-  const handleSearch = text => {
+  const handleOnChangeText = text => {
     setSearchText(text);
 
     if (text.trim() === '') {
-      setFilteredSearches(recentSearches);
+      handleSearch(recentSearches);
     } else {
       const filtered = recentSearches.filter(item =>
         item.toLowerCase().includes(text.toLowerCase()),
       );
-      setFilteredSearches(filtered);
+      handleSearch(filtered);
     }
   };
 
   return (
-    <View style={styles.searchBarContainer}>
-      <View style={[styles.searchBar,{width:isSearch?'100%':wp(80)}]}>
+    <Pressable onPress={()=>{ inActive ? handleOnPress() :{} } } style={styles.searchBarContainer}>
+      <View style={[styles.searchBar,{width:'100%'}]}>
         <Icon
           name="search"
           size={24}
@@ -41,23 +39,13 @@ const Search = props => {
           placeholder="Search..."
           placeholderTextColor="#99A0A6"
           value={searchText}
-          onChangeText={handleSearch}
+          editable={inActive? false : true}
+          onChangeText={handleOnChangeText}
           onFocus={() => setIsInputActive(true)} // Input active
           onBlur={() => setIsInputActive(false)} // Input inactive
         />
       </View>
-      <View>
-        { !isSearch &&
-        <Pressable onPress={() => {}} style={styles.button}>
-          {isHome ?
-          <MapIcon/>:
-          <FilterIcon/>
-          }
-        </Pressable>
-}
-      </View>
-
-    </View>
+    </Pressable>
   );
 };
 

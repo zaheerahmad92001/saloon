@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native";
-import colors from "../../assets/colors";
+import { StyleSheet } from 'react-native';
+import colors from '../../assets/colors';
 
 const styles = StyleSheet.create({
     container: {
@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
         backgroundColor: colors.appBG,
-        padding:20
-    }
+        padding:20,
+    },
 });
 export default styles;

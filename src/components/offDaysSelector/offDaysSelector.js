@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
   },
   label: {
     color: colors.lightBlack,
-    fontFamily: fontsFamily.regular,
-    fontSize:RFValue(10),
+    fontFamily: fontsFamily.medium,
+    fontSize:RFValue(14),
     marginLeft:15
   },
 });
