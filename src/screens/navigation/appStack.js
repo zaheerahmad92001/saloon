@@ -47,6 +47,7 @@ import AccessAbility from '../AccessAbilitScreen/AccessAbilityScreen';
 import PasswordSetupScreen from '../passwordSetUpScreen/PasswordSetUPScreen';
 import AccountManagementScreen from '../AccountManagement/AccountManagement'; 
 import EditPromotionScreen from '../EditPromotion/EditPromotion';
+import WorkingHoursScreen from '../WorkingHours/WorkingHours';
 
 const Stack = createNativeStackNavigator();
 
@@ -115,10 +116,7 @@ function AppStack() {
      
       <Stack.Screen name='accountManagementScreen' component={AccountManagementScreen}/>
       <Stack.Screen name='editPromotionScreen' component={EditPromotionScreen}/>
-
-      
-      
-
+      <Stack.Screen name='workingHoursScreen' component={WorkingHoursScreen}/>
     </Stack.Navigator>
   );
 }

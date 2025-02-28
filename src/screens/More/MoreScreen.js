@@ -18,9 +18,9 @@ const MoreScreen = ({ navigation, route }) => {
                    // navigation.navigate('accountManagementScreen');
                     navigation.navigate('accountManagementScreen');
                     break;
-                // case 'HelpScreen':
-                //     navigation.navigate('HelpScreen', { data: item });
-                //     break;
+                case 'workingHoursScreen':
+                    navigation.navigate('workingHoursScreen');
+                    break;
             }
         };
         return(
