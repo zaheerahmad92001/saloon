@@ -9,13 +9,16 @@ import {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.white
-    },
-    mainContainer: {
+        backgroundColor: colors.white,
+      },
+      wrapper: {
         flex: 1,
-        backgroundColor: colors.appBG,
-        padding: 20
-    },
+        backgroundColor:colors.appBG,
+      },
+      contentContainer:{
+        flex:1,
+        marginHorizontal:wp(4),
+      },
     discountText: {
         fontFamily: fontsFamily.bold,
         fontSize: RFValue(12),

@@ -11,7 +11,7 @@ const App = () => {
     <BottomSheetModalProvider>
       <NavigationContainer>
         <AppStatusBar/>
-        <AppStack />
+          <AppStack />
       </NavigationContainer>
       </BottomSheetModalProvider>
     </GestureHandlerRootView>

@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, Pressable} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import styles from './complaints.styles';
+import styles from './requests.styles';
 import Header from '../../components/appHeader';
 import {complaints} from '../../staticData';
 import { AppButton } from '../../components/appButton';
@@ -14,7 +14,7 @@ const handleOnPress = (item) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header title={'Complaints'} showBackButton onBackPress={() => navigation.goBack()} />
+      <Header title={'Requests'} showBackButton onBackPress={() => navigation.goBack()} />
       <View style={styles.wraper}>
         <View style={styles.contentContainer}>
         <View style={styles.rowContainer}>
@@ -31,8 +31,8 @@ const handleOnPress = (item) => {
           })}
         </View>
         <AppButton
-         onPress={()=>navigation.navigate('addComplaint')}
-         title={'Add Complaints'} style={styles.button} 
+         onPress={()=>navigation.navigate('addRequest')}
+         title={'Add Request'} style={styles.button} 
          />
         </View>
       </View>

@@ -20,7 +20,6 @@ import fontsFamily from '../../assets/fontsFamily';
 import { RFValue } from 'react-native-responsive-fontsize';
 import DownArrow from '../../assets/svgs/downarrow.svg';
 import MyDropdown from '../../components/dropdown/dropdown';
-import { heightPercentageToDP } from 'react-native-responsive-screen';
 
 
 const EditProfile = ({ navigation, route }) => {

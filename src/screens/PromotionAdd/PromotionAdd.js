@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { SafeAreaView, ScrollView, Text, View } from 'react-native';
-
 import MyDropdown from '../../components/dropdown/dropdown';
-
-//import DateTimePickerComponent from '../../components/datePicker/datePicker';
 import DatePickerComponent from '../../components/datePicker/datePicker';
 import { AppButton } from '../../components/appButton';
 import styles from './PromotionAdd.Style';
 import TextField from '../../components/textField/textField';
 import Header from '../../components/appHeader';
+import { LargeText } from '../../components/Typography';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
+
 const AddPromotionScreen = ({ navigation, route }) => {
 
     const [selectedValue, setSelectedValue] = useState(null);
@@ -26,9 +27,9 @@ const AddPromotionScreen = ({ navigation, route }) => {
     return (
         <SafeAreaView style={styles.contianer}>
             <Header title={'Promotion'} showBackButton onBackPress={() => navigation.goBack()}></Header>
-            <ScrollView>
+            <KeyboardAwareScrollView>
                 <View style={styles.mainContainer}>
-                    <Text style={styles.addnewPromotionText}>Add New Promotion</Text>
+                    <LargeText text={'Add New Promotion'} style={styles.addnewPromotionText}/>
 
                     <TextField
                         label={'Title'}
@@ -90,8 +91,8 @@ const AddPromotionScreen = ({ navigation, route }) => {
                         </View>
                     </View>
                 </View>
-                <AppButton onPress={()=>{}} title="Apply" style={styles.buttonStyle} />
-            </ScrollView>
+                <AppButton onPress={()=>{}} title="Save" style={styles.buttonStyle} />
+            </KeyboardAwareScrollView>
 
         </SafeAreaView>
     );

@@ -9,14 +9,15 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import fontsFamily from '../../assets/fontsFamily';
 import { LargeText, SmallText } from '../Typography';
 
-const ComplaintsCard = (Item) => {
+const ComplaintsCard = (props) => {
+    const {isPendng} = props
     return (
         <View style={styles.card}>
             <View style={styles.complainView}>
                 <LargeText text={'Request Status'} style={{fontsFamily:fontsFamily.medium,fontSize:RFValue(10)}}/>
-                <View style={styles.statusView}>
-                    <Text style={styles.statusText}>
-                        Resolved
+                <View style={isPendng? [styles.statusView,{backgroundColor:colors.white}]: [styles.statusView]}>
+                    <Text style={isPendng? [styles.statusText,{color:colors.appBlack}] : [styles.statusText]}>
+                   { isPendng? 'Pending' : 'Resolved'}
                     </Text>
                 </View>
             </View>
@@ -38,19 +39,7 @@ const ComplaintsCard = (Item) => {
                     <LargeText text={'Issue'} style={styles.label}/>
                     <SmallText text={'Service Addition'} style={styles.value}/>
                 </View>
-
-                {/* <View style={styles.columnOneView}>
-                    <LargeText text={'Complain type'} style={styles.label}/>
-                    <SmallText text={'Service'} style={styles.value}/>
-                </View> */}
             </View>
-
-            {/* <View style={styles.columnView}>
-                <View style={styles.columnOneView}>
-                    <LargeText text={'Charging amount'} style={styles.label}/>
-                    <SmallText text={'Sar 200'} style={styles.value}/>
-                </View>
-            </View> */}
 
             <View style={styles.descriptionView}>
                 <LargeText text={'Description'} style={styles.label}/>

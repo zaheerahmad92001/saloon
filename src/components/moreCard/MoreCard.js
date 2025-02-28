@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, View, StyleSheet, Pressable} from 'react-native';
+import { View, StyleSheet, Pressable} from 'react-native';
 import RoundRightArrrow from '../../assets/svgs/round-arrowright.svg';
 import colors from '../../assets/colors';
 import fontsFamily from '../../assets/fontsFamily';

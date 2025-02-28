@@ -74,9 +74,10 @@ const styles = StyleSheet.create({
     }
     ,
     addnewPromotionText: {
-        fontFamily: fontsFamily.bold,
-        fontSize: RFValue(14),
-        marginBottom: 10
+        marginBottom:hp(2),
+        // fontFamily: fontsFamily.bold,
+        // fontSize: RFValue(14),
+        // marginBottom: 10
     },
     textInput: {
         marginTop: 15,

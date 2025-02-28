@@ -1,53 +1,76 @@
-import React from 'react';
-import { FlatList, SafeAreaView, Text, View } from 'react-native';
+import React, { useRef } from 'react';
+import {FlatList, SafeAreaView, Text, View} from 'react-native';
 import styles from './PromotionScreen.Style';
 import Header from '../../components/appHeader';
 import PromotionCard from '../../components/PromotionCard';
-import { promotiondata } from '../../staticData';
-import { AppButton } from '../../components/appButton';
-import {Provider } from 'react-native-paper';
-const PromotionScreen = ({navigation, route})=>{
+import {promotiondata} from '../../staticData';
+import {AppButton} from '../../components/appButton';
+import ModalComponent from '../../components/modal';
+import { widthPercentageToDP } from 'react-native-responsive-screen';
+import DeleteModal from '../../components/modal/deleteModal';
 
-    const handleEdit = ({}) => {
-        navigation.navigate('editPromotionScreen');
-      };
+const PromotionScreen = ({navigation, route}) => {
+const modalRef = useRef();
 
-      const handleDelete = ({}) => {
-        navigation.navigate('editPromotionScreen');
-      };
+  const handleEdit = () => {
+    navigation.navigate('editPromotionScreen');
+  };
 
-     const renderPromotionCard = ({item})=>{
-        return(
-           <PromotionCard title={item.title}
-           max={item.max}
-           exp={item.exp}
-           onEdit={() =>handleEdit(item)}
-           onDelete={() =>handleDelete(item)}
-            />
-        );
-     };
- 
-    return(
+  const openModal = () => {
+    if (modalRef?.current) {
+      modalRef.current.open();
+    }
+  };
 
-        <SafeAreaView style={styles.container}>
-            <Header title={'Promotion'} showBackButton onBackPress={()=> navigation.goBack()} />
-            <Provider>
-            <View style={styles.mainContainer}>
-           <Text style={styles.discountText}>Discounts</Text>
-                <FlatList
-                data={promotiondata}
-                renderItem={renderPromotionCard}
-                 />
-            </View>
-          </Provider>
-            <AppButton
-            onPress={() => navigation.navigate('addPromotionScreen')}
-            title={'Add Discount'}
-            style={styles.button}
-            textstyle={styles.buttonText}
-          />
+  const closeModal = () => {
+    if (modalRef?.current) {
+      modalRef.current.close();
+    }
+  };
 
-        </SafeAreaView>
+  const renderPromotionCard = ({item}) => {
+    return (
+      <PromotionCard
+        item={item}
+        onEdit={() => handleEdit(item)}
+        onDelete={openModal}
+      />
     );
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <Header
+        title={'Promotion'}
+        showBackButton
+        onBackPress={() => navigation.goBack()}
+      />
+
+      <View style={styles.wrapper}>
+        <View style={styles.contentContainer}>
+          <Text style={styles.discountText}>Discounts</Text>
+          <FlatList
+            data={promotiondata}
+            renderItem={renderPromotionCard}
+            keyExtractor={item => item.id}
+          />
+        </View>
+      </View>
+
+      <AppButton
+        onPress={() => navigation.navigate('addPromotionScreen')}
+        title={'Add Discount'}
+        style={styles.button}
+        textstyle={styles.buttonText}
+      />
+
+<ModalComponent
+        ref={modalRef}
+        onClose={closeModal}
+        style={{width: widthPercentageToDP(80)}}>
+        <DeleteModal handleLogout={() => {}} handleCancel={closeModal} />
+      </ModalComponent>
+    </SafeAreaView>
+  );
 };
 export default PromotionScreen;

@@ -64,18 +64,10 @@ const styles = StyleSheet.create({
     marginVertical: hp(2),
   },
   sectionTitle: {
-    fontFamily: fontsFamily.bold,
     color: colors.appBlack,
-    fontWeight: '600',
-    fontSize: RFValue(16),
-    textAlign: 'left'
   },
   totalSalesTitle: {
-    fontFamily: fontsFamily.bold,
     color: colors.appBlack,
-    fontWeight: '600',
-    fontSize: RFValue(16),
-    textAlign: 'left',
     paddingTop: 10
   },
   dropDownView: {
@@ -144,76 +136,12 @@ const styles = StyleSheet.create({
     width: null,
     height: null,
   },
-
-  totalBookingView: {
-    backgroundColor: colors.white,
-    borderRadius: 5,
-    paddingVertical: 12,
-    flexDirection: 'row',
-    paddingLeft: 15,
-    paddingRight: 25,
-    width: wp('43%')
-  },
-
-  lableText: {
-    fontFamily: fontsFamily.regular,
-    color: colors.lightBlack,
-  },
-  ValueText: {
-    fontFamily: fontsFamily.medium,
-    color: colors.appBlack,
-    marginLeft: 6
-  },
-  textlableValueView: {
-    marginLeft: 8,
-
-  },
-  overView: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 2,
-    paddingVertical: 7
-  },
+  
   mainGraphView: {
     flex:1,
      paddingVertical:20,
   },
-  TradeUpView:{
-    flexDirection:'row',
-    alignItems:'center',
-    justifyContent:'center',
-    gap:5,
-    backgroundColor:colors.confirmYellowLight,
-    width:wp(15),
-    borderRadius:5,
-  },
-  tradeText:{
-    color:colors.confirmYellow
-  },
-  rowWrap:{
-    flexDirection:'row',
-    alignItems:'center',
-    gap:10,
-  },
-  filterView: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  filterIconView: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: colors.darkGray,
-    paddingVertical: 10,
-    paddingHorizontal: 12,
-    borderRadius: 7,
-    gap: 5,
-  },
-  spaceBetween:{
-    justifyContent:'space-between',
-    marginHorizontal:wp(3),
-  },
+
   tabView:{
     backgroundColor: 'white',
     marginTop: 20,
@@ -222,10 +150,6 @@ const styles = StyleSheet.create({
     borderRadius:12,
     paddingVertical:5,
   },
-  filterTextStyle: {
-    fontWeight: '500',
-    color: colors.lightBlack,
-  }
   
 
 

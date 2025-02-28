@@ -1,14 +1,12 @@
-import {StyleSheet, Dimensions} from 'react-native';
-import colors from '../../../assets/colors';
+import {StyleSheet} from 'react-native';
+import colors from '../../assets/colors';
 import {RFValue} from 'react-native-responsive-fontsize';
-import {widthPercentageToDP} from 'react-native-responsive-screen';
 import {
-  heightPercentageToDP,
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
-import fontsFamily from '../../../assets/fontsFamily';
+import fontsFamily from '../../assets/fontsFamily';
 
 const styles = StyleSheet.create({
   container: {
@@ -40,8 +38,21 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  filterIconView:{
+    flexDirection:'row',
+    alignItems:'center',
+    backgroundColor:colors.darkGray,
+    paddingVertical:10,
+    paddingHorizontal:12,
+    borderRadius:7,
+    gap:5,
+  },
   contentContainerStyle:{
     marginTop:hp(2),
+  },
+  textStyle:{
+    fontWeight:'500',
+    color:colors.lightBlack,
   }
 });
 

@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
         backgroundColor: colors.appBG,
-        padding: 20
+        paddingHorizontal: wp(4),
     },
 
     statusText: {
@@ -74,9 +74,7 @@ const styles = StyleSheet.create({
     }
     ,
     addnewPromotionText: {
-        fontFamily: fontsFamily.bold,
-        fontSize: RFValue(14),
-        marginBottom: 10
+        marginBottom:hp(2),
     },
     textInput: {
         marginTop: 15,

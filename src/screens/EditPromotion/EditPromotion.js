@@ -9,6 +9,7 @@ import { AppButton } from '../../components/appButton';
 import styles from './EditPromotion.Style';
 import TextField from '../../components/textField/textField';
 import Header from '../../components/appHeader';
+import { LargeText } from '../../components/Typography';
 const EditPromotionScreen = ({ navigation, route }) => {
 
     const [selectedValue, setSelectedValue] = useState(null);
@@ -28,7 +29,7 @@ const EditPromotionScreen = ({ navigation, route }) => {
             <Header title={'Promotion'} showBackButton onBackPress={() => navigation.goBack()}></Header>
             <ScrollView>
                 <View style={styles.mainContainer}>
-                    <Text style={styles.addnewPromotionText}>Edit Promotion</Text>
+                    <LargeText text={'Edit Promotion'} style={styles.addnewPromotionText} />
 
                     <TextField
                         label={'Title'}

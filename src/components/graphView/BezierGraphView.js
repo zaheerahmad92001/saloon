@@ -22,7 +22,7 @@ const BezierGraphView = (props) => {
     };
 
     return (
-        <View style={{ backgroundColor: 'white',position:'relative', paddingTop:0 }}>
+        <View style={{ backgroundColor:colors.white,position:'relative', paddingTop:0, }}>
             {tooltip && (
                 <View style={[styles.tooltip, { top: tooltip.y, left: tooltip.x }]}>
                     <Text style={styles.tooltipText}>${tooltip.value}</Text>
