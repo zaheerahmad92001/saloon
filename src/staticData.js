@@ -435,14 +435,20 @@ const moreRoutes = [
 
 ];
 
+const More =[
+  {name:'Profile' , value:'Manage and update your salon profile, services, and availability easily.' ,img:images.profileimg,routeName:'profileScreen'},
+  {name:'Anaqa Commision' , value:"Track and manage salon pros' commission rates for accurate payouts and transparency." ,img:images.anaqacommision, routeName:'accountManagementScreen'},
+  {name:'Working Hours' , value:'Create timeslots according to professionals availability and service management.',img:images.hours,routeName:'workingHoursScreen'},
+  {name:'Service Management' , value:'Clear and flexible pricing & services options designed to suit your salon’s unique needs.',img:images.serviceimg,routeName:''},
+  {name:'Professionals' , value:"Manage your salon's team of professionals and their availability with ease.",img:images.profession,routeName:''},
+  {name:'Statistics' , value:"Comprehensive reports to help track and optimize your salon’s performance and growth.",img:images.statistics,routeName:''}
+];
 
 
 const AccessAbilitySettingsData =[
   {name:'Change Password' , value:'If you want to switch up your password, you can do it right here!' ,routeName:'changePassword'},
-  {name:'Accessibility' , value:"If you're looking for security features in your app, accessibility can totally help with that!" , routeName:'accessAbility'},
-
-]
-
+  {name:'Accessibility' , value:"If you're looking for security features in your app, accessibility can totally help with that!" , routeName:'accessAbility'}
+];
 
 const bookingStatus = [
   {name:'Total Bookings' , value:'56' , routeName:'',status:'Pending'},

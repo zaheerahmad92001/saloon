@@ -4,14 +4,17 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-} from 'react-native';
-import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import CalendarIcon from '../../assets/svgs/calendargray.svg';
-import ClockIcon from '../../assets/svgs/clock.svg';
-import colors from '../../assets/colors';
 
-const DateTimePickerComponent = ({ mode, onSelect }) => {
-  const [value, setValue] = useState(''); // Stores selected date or time
+} from "react-native";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+import CalendarIcon from "../../assets/svgs/calendargray.svg"; 
+import ClockIcon from "../../assets/svgs/clock.svg"; 
+import colors from "../../assets/colors";
+import Downarrowlightblack from '../../assets/svgs/down-arrow-light-black.svg';
+
+const DateTimePickerComponent = ({ mode, onSelect , isworkingHours = false}) => {
+  const [value, setValue] = useState(""); // Stores selected date or time
+
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
   const showPicker = () => {
@@ -43,12 +46,17 @@ const DateTimePickerComponent = ({ mode, onSelect }) => {
     <View style={styles.container}>
       <TouchableOpacity style={styles.dateInput} onPress={showPicker}>
 
-      {mode === 'time' && <ClockIcon style={styles.iconLeft} />}
+
+       
+      {mode === "time" && (!isworkingHours && <ClockIcon style={styles.iconLeft} />)}
 
         <Text style={[styles.dateText, !value && styles.placeholder]}>
-          {value || (mode === 'date' ? 'DD/MM/YYYY' : 'HH:MM')}
+          {value || (mode === "date" ? "DD/MM/YYYY" : (isworkingHours ?'00:00':"HH:MM"))}
         </Text>
-        {mode === 'date' && <CalendarIcon style={styles.iconRight} />}
+
+        {mode === "time" && (isworkingHours && <Downarrowlightblack style={styles.iconLeft} />)}
+        {mode === "date" && <CalendarIcon style={styles.iconRight} />}
+
         {/* <CalendarIcon /> */}
         {/* <ClockIcon/> */}
       </TouchableOpacity>

@@ -50,6 +50,8 @@ import OffDays from '../OffDays/OffDays';
 import SecurityScreen from '../securityScreen/security';
 import CommissionScreen from '../Commission/commission';
 import EditPromotionScreen from '../EditPromotion/EditPromotion';
+import WorkingHoursScreen from '../WorkingHours/WorkingHours';
+
 import ProfileScreen from '../profileScreen/profile';
 import SearchScreen from '../searchScreen/search/search';
 
@@ -127,6 +129,7 @@ function AppStack() {
       <Stack.Screen name="addPromotionScreen" component={AddPromotionScreen}/>
       <Stack.Screen name="commission" component={CommissionScreen}/>
       <Stack.Screen name="editPromotionScreen" component={EditPromotionScreen}/>
+
 
 
 

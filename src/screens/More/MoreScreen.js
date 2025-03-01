@@ -10,8 +10,8 @@ const MoreScreen = ({navigation, route}) => {
   const handleNavigation = item => {
     navigation.navigate(item.routeName, {item});
   };
-
   const renderCard = ({item}) => {
+
     return (
     <MoreCard 
     item={item} 
