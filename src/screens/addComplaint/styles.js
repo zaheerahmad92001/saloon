@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     marginHorizontal: wp(4),
   },
   subContainer: {
-    marginVertical: hp(0.5),
+    marginVertical: hp(0.8),
   },
 
   imageContainer: {
@@ -43,9 +43,6 @@ const styles = StyleSheet.create({
     minHeight: hp(13),
     textAlignVertical: 'top',
     fontSize: RFValue(14),
-  },
-  button:{
-    marginTop:hp(55),
   },
 
 });

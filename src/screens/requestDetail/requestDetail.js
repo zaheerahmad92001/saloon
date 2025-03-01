@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import Header from '../../components/appHeader';
 import { FlatList, Pressable, SafeAreaView, View } from 'react-native';
-import style from './complaintDetail.style';
+import style from './requestDetail.style';
 import ComplaintsCard from '../../components/complaintsCard/conplaintsCard';
 import Filter from '../../assets/svgs/filter-search.svg';
 import { LargeText, MediumText } from '../../components/Typography';

@@ -17,7 +17,8 @@ const Header = ({
   showBackButton = false,
   showTitle = true,
   textstyle,
-  iconColor
+  iconColor,
+  titleTextStyle
 }) => {
   return (
     <View style={[styles.header]}>
@@ -30,7 +31,7 @@ const Header = ({
         </TouchableOpacity>
       )}
 
-      {showTitle && <Text style={styles.title}>{title}</Text>}
+      {showTitle && <Text style={[styles.title,titleTextStyle]}>{title}</Text>}
     </View>
   );
 };

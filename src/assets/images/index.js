@@ -27,6 +27,5 @@ const images = {
   transparentBG: require('../images/transparentBg.png'),
   masterCard: require('../images/masterCard.png'),
   visaCard: require('../images/visaCard.png'),
-  promotion: require('../images/promotion.png'),
 };
 export default images;

@@ -21,6 +21,7 @@ import ServiceManagment from './assets/svgs/serviceManagment.svg';
 import Statistics from './assets/svgs/statistics.svg';
 import WorkingHours from './assets/svgs/workingHours.svg';
 import AnaqaCommission from './assets/svgs/anaqaCommission.svg';
+import PromotionIcon from './assets/svgs/promotion.svg';
 
 
 const recentSearches = [
@@ -85,9 +86,9 @@ const mockData = [
 const menuOptions = [
   {title: 'Edit Salon Profile', img: EditIcon,  routeName:'editProfile'},
   {title: 'Bookings', img: HistoryIcon, routeName:'booking'},
-  {title: 'Payment in & Payouts', img: CardTick, routeName:'savedCard'},
+  {title: 'Payment in & Payouts', img: CardTick, routeName:'payout'},
   {title: 'Complaints', img: RequestIcon , routeName:'complaints'},//favorites
-  {title: 'Requests', img: RequestIcon, routeName:'complaints'}, //invoiceList
+  {title: 'Requests', img: RequestIcon, routeName:'requests'}, //invoiceList
   {title: 'Codes & Discount', img: Discount, routeName:'promotionScreen'}, //complaints
 ];
 
@@ -440,17 +441,14 @@ const More =[
   {name:'Working Hours' , value:'Create timeslots according to professionals availability and service management.',img:images.hours,routeName:'workingHoursScreen'},
   {name:'Service Management' , value:'Clear and flexible pricing & services options designed to suit your salon’s unique needs.',img:images.serviceimg,routeName:''},
   {name:'Professionals' , value:"Manage your salon's team of professionals and their availability with ease.",img:images.profession,routeName:''},
-  {name:'Statistics' , value:"Comprehensive reports to help track and optimize your salon’s performance and growth.",img:images.statistics,routeName:''},
-
-
+  {name:'Statistics' , value:"Comprehensive reports to help track and optimize your salon’s performance and growth.",img:images.statistics,routeName:''}
+];
 
 
 const AccessAbilitySettingsData =[
   {name:'Change Password' , value:'If you want to switch up your password, you can do it right here!' ,routeName:'changePassword'},
-  {name:'Accessibility' , value:"If you're looking for security features in your app, accessibility can totally help with that!" , routeName:'accessAbility'},
-
-]
-
+  {name:'Accessibility' , value:"If you're looking for security features in your app, accessibility can totally help with that!" , routeName:'accessAbility'}
+];
 
 const bookingStatus = [
   {name:'Total Bookings' , value:'56' , routeName:'',status:'Pending'},
@@ -529,35 +527,35 @@ const timeSlots = [
 const promotiondata = [
   {
     id: "1",
-    image:images.promotion,
+    Icon:PromotionIcon,
     title: "20% off on Hair cut for first-time customers.",
     max: "Max booking: Sar 400",
     exp: "Exp date: 18-10-2024",
   },
   {
     id: "2",
-    image:images.promotion,
+    Icon:PromotionIcon,
     title: "Visit us to avail exciting offers.",
     max: "Max order: Sar 200",
     exp: "Exp date: 30-06-2025",
   },
   {
     id: "3",
-    image:images.promotion,
+    Icon:PromotionIcon,
     title: "30% off on all services for first-time customers.",
     max: "Max purchase: Sar 300",
     exp: "Exp date: 25-12-2024",
   },
   {
     id: "4",
-    image:images.promotion,
+    Icon:PromotionIcon,
     title: "Limited period offer: Book now!",
     max: "Max spend: Sar 500",
     exp: "Exp date: 15-03-2026",
   },
   {
     id: "5",
-    image:images.promotion,
+    Icon:PromotionIcon,
     title: "Discount code: NEWCLIENT",
     max: "Max transaction: Sar 350",
     exp: "Exp date: 05-09-2027",

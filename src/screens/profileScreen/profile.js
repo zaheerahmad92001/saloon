@@ -25,6 +25,7 @@ import ModalComponent from '../../components/modal';
 import LogoutModal from '../../components/modal/logout';
 import {widthPercentageToDP} from 'react-native-responsive-screen';
 import Camera from '../../assets/svgs/camera.svg';
+
 const Profile = ({navigation, route}) => {
   const modalRef = useRef();
 
