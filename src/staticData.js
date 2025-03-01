@@ -586,6 +586,41 @@ const bookingHistory = Array.from({ length: 20 }, (_, index) => ({
   imageUri: images.room,
 }));
 
+const bookings = [
+  {
+    time: "11:00 AM",
+    endTime: "12:00 PM",
+    name: "Christopher White",
+    service: "Hair Cut, Facial",
+    professional: "Brooklyn Williamson",
+    image: "https://randomuser.me/api/portraits/women/44.jpg",
+  },
+  {
+    time: "12:15 PM",
+    endTime: "12:45 PM",
+    name: "Olivia Martin",
+    service: "Manicure, Pedicure",
+    professional: "Julie Watson",
+    image: "https://randomuser.me/api/portraits/women/45.jpg",
+  },
+  {
+    time: "03:30 PM",
+    endTime: "04:30 PM",
+    name: "Mia Taylor",
+    service: "Manicure, Pedicure",
+    professional: "Julie Watson",
+    image: "https://randomuser.me/api/portraits/women/46.jpg",
+  },
+  {
+    time: "04:30 PM",
+    endTime: "05:30 PM",
+    name: "Richard Thompson",
+    service: "Hair Cut",
+    professional: "Jenny Alexander",
+    image: "https://randomuser.me/api/portraits/women/47.jpg",
+  },
+];
+
 
 export {
   salonCategories,
@@ -631,7 +666,8 @@ export {
   AccessAbilitySettingsData,
   AccessAbilitytoggleItems,
   graphTabs,
-  bookingHistory
+  bookingHistory,
+  bookings
 
 
 };
