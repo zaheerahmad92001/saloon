@@ -6,6 +6,7 @@ import HomeStack from '../homeStack';
 import Booking from '../../bookingScreen/booking';
 import ChatList from '../../chatList/chatList';
 import MoreScreen from '../../More/MoreScreen';
+import Schedule from '../../scheduleScreen/schedule';
 
 
 
@@ -82,7 +83,7 @@ const BottomStack = () => {
     >
       <Tab.Screen name="homeStack" component={HomeStack} />
       <Tab.Screen name="Booking" component={Booking} />
-      <Tab.Screen name="Schedule" component={Booking} />
+      <Tab.Screen name="Schedule" component={Schedule} />
       <Tab.Screen name="Messages" component={ChatList} />
       <Tab.Screen name="More" component={MoreScreen} />
     </Tab.Navigator>
