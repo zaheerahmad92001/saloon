@@ -3,18 +3,20 @@ import {View, Text, StyleSheet, Pressable} from 'react-native';
 import colors from '../assets/colors';
 
 const RadioButton = props => {
-  const {options} = props;
+  const {options ,activeOption, setActiveOption} = props;
 
   const [selectedOption, setSelectedOption] = useState(null);
 
   const handleSelect = option => {
-    setSelectedOption(option);
+    setSelectedOption(option.key);
+    setActiveOption(option.key)
   };
 
   return (
     <View style={styles.container}>
       {options?.map((option, index) => {
-        const isSelected = selectedOption?.key === option.key;
+        const isSelected = activeOption === option.key || selectedOption === option.key;
+        
         return (
           <Pressable
             key={index}

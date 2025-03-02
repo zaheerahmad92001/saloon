@@ -8,11 +8,10 @@ import {AppButton} from '../../../components/appButton';
 
 const InvoiceDetail = ({navigation, route}) => {
   const handlePrint = () => {
-    console.log('Print button pressed');
+
   };
 
   const handleDownload = () => {
-    console.log('Download button pressed');
   };
 
   const isCancelled = mockData[0].position === 'Cancelled' ? true : false;

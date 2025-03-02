@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
     signUpButton: {
         marginTop:hp(5),
         marginHorizontal:wp(4),
+        marginBottom:hp(2),
       },
       signUpText: {
         fontSize: RFValue(13),

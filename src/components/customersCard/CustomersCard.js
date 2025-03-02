@@ -10,12 +10,12 @@ import {
 } from 'react-native-responsive-screen';
 
 const CustomersCard = props => {
-  const {item, handleOnPress} = props;
+  const {item} = props;
   const {name, cancelCount, completedCount, pendingCount ,  image, todaysBooking} =
     item;
 
   return (
-    <Pressable onPress={handleOnPress} style={styles.cardContainer}>
+    <View style={styles.cardContainer}>
      
       <View style={styles.cardImage}>
         <Image source={image} style={styles.imageStyle} />
@@ -53,7 +53,7 @@ const CustomersCard = props => {
           </View>
         </View>
       </View>
-    </Pressable>
+    </View>
   );
 };
 
@@ -98,8 +98,9 @@ const styles = StyleSheet.create({
   },
   distanceText: {
     color: colors.lightBlack,
-    fontFamily: fontsFamily.extraLight,
+    fontFamily: fontsFamily.regular,
     alignSelf: 'flex-start',
+    fontSize:RFValue(12),
     fontWeight: '400',
   },
   nameContainer: {

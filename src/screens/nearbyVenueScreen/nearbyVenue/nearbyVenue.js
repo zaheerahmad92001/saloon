@@ -9,8 +9,7 @@ import Search from '../../../components/search';
 import {mockData, recentSearches} from '../../../staticData';
 
 const NearbyVenue = () => {
-  const handleFavoritePress = id => {
-    console.log(`Favorite pressed for salon ID: ${id}`);
+  const handleFavoritePress = id => {;
   };
   const renderSalonCard = ({item}) => (
     <SalonCard

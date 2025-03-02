@@ -88,7 +88,6 @@ const Bookings = ({navigation, route}) => {
       }
     }
     if (item.status === 'Confirmed') {
-      console.log('item', 'Confirmed');
       if (refRBSheet.current) {
         setTimeout(() => refRBSheet.current.present(), 0);
       }

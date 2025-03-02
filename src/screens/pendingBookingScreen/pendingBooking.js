@@ -6,11 +6,9 @@ import styles  from './pendingBooking.style';
 
 const PendingBooking = () => {
   const handleCancel = () => {
-    console.log('Cancel Booking');
   };
 
   const handleReschedule = () => {
-    console.log('Reschedule Booking');
   };
   return (
     <SafeAreaView style={styles.container}>

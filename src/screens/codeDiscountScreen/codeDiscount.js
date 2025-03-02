@@ -10,7 +10,6 @@ import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const CodeDiscount = () => {
   const handleApply = title => {
-    console.log('Discount Applied', `You have applied: ${title}`);
   };
 
   const renderItem = ({item}) => (

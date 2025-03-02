@@ -26,8 +26,6 @@ import ComplaintDetail from '../complaintDetail/complaintDetail';
 import Requests from '../requestsScreen/requests';
 import Addrequest from '../addRequest/addRequest';
 import RequestDetail from '../requestDetail/requestDetail' ;
-
-import LoyaltyPoints from '../loyaltyPointsScreen/loyaltyPoints';
 import Settings from '../settingScreen/settings';
 import Chat from '../chatView/chatView';
 import Language from '../languageScreen/language';
@@ -40,7 +38,16 @@ import Support from '../supportScreen';
 import Payouts from '../payout/payout';
 import SuccessScreen from '../successMessageScreen/succesScreen';
 import SaloonPage from '../saloonPage/saloonPage';
-import Location from '../location/location';
+import ProfileScreen from '../profileScreen/profile';
+import SearchScreen from '../searchScreen/search/search';
+import Professionals from '../professionals/professionals';
+import AddProfessional from '../addProfessional/addProfessional';
+import ProfessionalSchedule from '../addProfessionalSchedule/addProfessionalSchedule';
+
+
+
+
+import LoyaltyPoints from '../loyaltyPointsScreen/loyaltyPoints';
 import RatingAndReview from '../ratingAndReviewScreen/ratingAndReview';
 import AvailableTimeSlot from '../availableTimeSlotScreen/availableTimeSlot';
 import OrderDetail from '../bookingDetailScreen/BookingDetail';
@@ -52,8 +59,7 @@ import CommissionScreen from '../Commission/commission';
 import EditPromotionScreen from '../EditPromotion/EditPromotion';
 import WorkingHoursScreen from '../WorkingHours/WorkingHours';
 
-import ProfileScreen from '../profileScreen/profile';
-import SearchScreen from '../searchScreen/search/search';
+
 
 
 const Stack = createNativeStackNavigator();
@@ -109,11 +115,11 @@ function AppStack() {
       <Stack.Screen name="requests" component={Requests}/>
       <Stack.Screen name="addRequest" component={Addrequest}/>
       <Stack.Screen name="requestDetail" component={RequestDetail}/>
+      <Stack.Screen name="professionals" component={Professionals}/>
+      <Stack.Screen name="addProfessional" component={AddProfessional}/>
+      <Stack.Screen name="professionalSchedule" component={ProfessionalSchedule}/>
 
 
-
-
-      <Stack.Screen name="location" component={Location}/>
       <Stack.Screen name="categories" component={Categories}/>
       <Stack.Screen name="categoryListing" component={CategoryListing}/>
       <Stack.Screen name="favorites" component={Favorites} />

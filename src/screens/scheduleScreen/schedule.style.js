@@ -37,48 +37,6 @@ const styles = StyleSheet.create({
   todayText:{
     color:colors.sharpPrimary,
   },
-  dates: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: hp(2),
-  },
-  dateItem: {
-    paddingHorizontal: 5,
-    borderRadius: 5,
-    backgroundColor: colors.lightPrimary,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width:wp(13),
-    height: wp(18),
-  },
-  selectedItem: {
-    backgroundColor: colors.primary,
-  },
-  dayTextDate: {
-    color: colors.lightBlack,
-  },
-  dateTextDate: {
-    fontSize:RFValue(20),  
-    color: colors.appBlack,
-  },
-  selectedText: {
-    color: colors.white,
-  },
-  moreDatesItem: {
-    padding: 10,
-    borderRadius: 5,
-    backgroundColor: colors.lightPrimary,
-    alignItems: 'center',
-    width: wp(14),
-    height: wp(18),
-  },
-  moreDatesText: {
-    fontSize: RFValue(10),
-    textAlign: 'center',
-    marginTop: 5,
-  },
-
 
   heading: {
     fontSize: RFValue(18),

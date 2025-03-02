@@ -29,7 +29,6 @@ const SignUp = ({navigation, route}) => {
   const [address, setAddress] = useState('');
 
   const handleLocationPress = () => {
-    console.log("Fetching user's location...");
   };
 
   return (
@@ -42,7 +41,6 @@ const SignUp = ({navigation, route}) => {
         <View style={styles.mainContainer}>
           <XlargeText text={'Create your Account!'} style={styles.heading} />
           <SmallText text={'Phone Number'} style={styles.label} />
-          {console.log('phoneNumber', phoneNumber, 'countryCode', countryCode)}
 
           <PhoneInput
             ref={phoneInput}
