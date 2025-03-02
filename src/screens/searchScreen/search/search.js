@@ -31,7 +31,6 @@ const SearchScreen = ({navigation, route}) => {
   );
 
   const handleFavoritePress = id => {
-    console.log(`Favorite pressed for salon ID: ${id}`);
   };
 
   const renderListHeader = () => {

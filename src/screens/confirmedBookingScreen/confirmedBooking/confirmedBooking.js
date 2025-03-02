@@ -4,13 +4,11 @@ import BookingHistoryCard from '../../../components/bookingHistoryCard/bookingHi
 import images from '../../../assets/images';
 
 const ConfirmedBooking = () => {
-  const handleCancel = () => {
-    console.log('Cancel Booking');
-  };
+  
+  const handleCancel = () => {};
 
-  const handleReschedule = () => {
-    console.log('Reschedule Booking');
-  };
+  const handleReschedule = () => {};
+
   return (
     <SafeAreaView style={styles.container}>
       <BookingHistoryCard

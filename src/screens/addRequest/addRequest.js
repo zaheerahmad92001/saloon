@@ -29,9 +29,7 @@ const AddrequestScreen = ({navigation, route}) => {
 
   const [comments, setComments] = useState('');
 
-  const addrequest = () => {
-    console.log('add request');
-  };
+  const addrequest = () => {};
 
   return (
     <SafeAreaView style={styles.container}>

@@ -7,7 +7,7 @@ import {mockData, recentSearches} from '../../../staticData';
 
 const Spa = () => {
   const handleFavoritePress = id => {
-    console.log(`Favorite pressed for salon ID: ${id}`);
+   
   };
   const renderSalonCard = ({item}) => (
     <SalonCard

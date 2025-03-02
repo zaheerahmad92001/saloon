@@ -8,8 +8,7 @@ import colors from '../assets/colors';
 const CustomCalendar = () => {
   const [selectedDate, setSelectedDate] = React.useState(moment().format('YYYY-MM-DD'));
   const maxFutureDate = moment().add(50, 'months').format('YYYY-MM-DD');
-
-  console.log('selectedDate', selectedDate);
+  
   return (
     <View style={styles.container}>
       <CalendarList

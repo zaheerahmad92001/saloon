@@ -15,7 +15,6 @@ import fontsFamily from '../../assets/fontsFamily';
 
 const SecurityScreen = ({navigation, route}) => {
   const {isSettingRoute} = route.params || {};
-  console.log('isSettingRoute', isSettingRoute);
   const [pin, setPin] = useState('');
 
  const handleNavigation=()=>{

@@ -3,9 +3,7 @@ import {SafeAreaView, TouchableOpacity, View} from 'react-native';
 import styles from './schedule.style';
 import Header from '../../components/appHeader';
 import moment from 'moment';
-import Calendar from '../../assets/svgs/calendar.svg';
 import {
-  LargeText,
   MediumText,
   SmallText,
   XlargeText,
@@ -16,6 +14,8 @@ import {bookings} from '../../staticData';
 import { heightPercentageToDP } from 'react-native-responsive-screen';
 import CustomCalendar from '../../components/calendar';
 import { BottomSheet } from '../../components/bottomSheet';
+import { NextFourDays } from '../../functions';
+import DateSelector from '../../components/dateSelector';
 
 const Schedule = ({navigation}) => {
   const refRBSheet = useRef();
@@ -24,15 +24,8 @@ const Schedule = ({navigation}) => {
   const month = currentDate.format('MMM');
   const year = currentDate.format('YYYY');
   const Date = moment(currentDate).format('DD');
-
-  // Generate dates for today and the next 4 days
-  const dates = Array.from({length: 5}, (_, i) =>
-    moment().add(i, 'days').format('YYYY-MM-DD'),
-  );
-
-  const [selectedDate, setSelectedDate] = useState(
-    moment().format('YYYY-MM-DD'),
-  );
+  const dates = NextFourDays()
+  const [activeDate , setActiveDate] = useState(moment().format('YYYY-MM-DD'),)
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const openBottomSheet = useCallback(
@@ -88,40 +81,9 @@ const Schedule = ({navigation}) => {
 
             <MediumText text={'Today'} style={styles.todayText} />
           </View>
-
-          <View style={styles.dates}>
-            {dates.map(date => (
-              <TouchableOpacity
-                key={date}
-                style={[
-                  styles.dateItem,
-                  selectedDate === date && styles.selectedItem,
-                ]}
-                onPress={() => setSelectedDate(date)}>
-                <SmallText
-                  text={moment(date).format('ddd')}
-                  style={[
-                    styles.dayTextDate,
-                    selectedDate === date && styles.selectedText,
-                  ]}
-                />
-
-                <LargeText
-                  text={moment(date).format('D')}
-                  style={[
-                    styles.dateTextDate,
-                    selectedDate === date && styles.selectedText,
-                  ]}
-                />
-              </TouchableOpacity>
-            ))}
-            <TouchableOpacity
-              style={styles.moreDatesItem}
-              onPress={openBottomSheet}>
-              <Calendar />
-              <MediumText text={'More Dates'} style={styles.moreDatesText} />
-            </TouchableOpacity>
-          </View>
+      
+           <DateSelector dates={dates} setActiveDate={setActiveDate} openBottomSheet={openBottomSheet} style={{marginTop:heightPercentageToDP(1.5)}}/>
+ 
 
           <View style={styles.headerContainer}>
             {/* Header Section */}

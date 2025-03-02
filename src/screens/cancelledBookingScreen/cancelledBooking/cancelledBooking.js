@@ -5,11 +5,9 @@ import images from '../../../assets/images';
 
 const CancelledBooking = () => {
   const handleCancel = () => {
-    console.log('Cancel Booking');
   };
 
   const handleReschedule = () => {
-    console.log('Reschedule Booking');
   };
   return (
     <SafeAreaView style={styles.container}>

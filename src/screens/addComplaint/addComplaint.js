@@ -37,9 +37,7 @@ const AddComplaint = ({navigation, route}) => {
 
   const [comments, setComments] = useState('');
 
-  const addrequest = () => {
-    console.log('add request');
-  };
+  const addrequest = () => {};
 
   const handleImagePicked = image => {
     updateState({ isVisible: false, selectedFile: image });
