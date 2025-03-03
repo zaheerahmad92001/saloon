@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {SafeAreaView, View} from 'react-native';
-import styles from './addProfessionalSchedule.style';
+import styles from './editProfessional.style';
 import Header from '../../components/appHeader';
 import AnaqaProfessionalHeader from '../../components/anaqaProfessionalHeader';
 import colors from '../../assets/colors';
@@ -12,53 +12,23 @@ import CheckBox from '../../components/checkBox';
 import { AppButton } from '../../components/appButton';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-const ProfessionalSchedule = ({navigation,route}) => {
+const EditProfessionalSchedule = ({navigation, route}) => {
+    
   const [selectedSlots, setSelectedSlots] = useState([]);
-  const [selectedOptions, setSelectedOptions] = useState([]);
-  const [schedulePeriod, setSchedulePeriod] = useState('weekly');
-  const [weeklySelection, setWeeklySelection] = useState([]);
-  const [monthlySelection, setMonthlySelection] = useState([]);
-
-  const handleNavigaton=()=>{
-    navigation.navigate('editProfessionalSchedule',{
-      selectedSlots:selectedSlots,
-      selectedItems:selectedOptions
-    });
-  };
-
-
-  const handleWeeklyChange = (selectedDays) => {
-    setWeeklySelection(selectedDays);
-  };
-  
-  const handleMonthlyChange = (selectedDays) => {
-    setMonthlySelection(selectedDays);
-  };
-
-  const handleSchedulePeriod=(timePeriod)=>{
-    setSchedulePeriod(timePeriod)
-  }
+  const [selectedItems, setSelectedItems] = useState([]);
 
   return (
     <SafeAreaView style={styles.wrapper}>
       <Header
-        title={'Add Professional'}
+        title={'Eidt Professional'}
         showBackButton
         onBackPress={() => navigation.goBack()}
       />
       <KeyboardAwareScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.contantContainer}>
-          <AnaqaProfessionalHeader
-            isSchedule={true}
-            availabilityStyle={{color: colors.primary}}
-          />
+
           <MediumText text={'Schedule'} style={styles.headingtext} />
-          <ScheduleSelector
-          selectedOption={schedulePeriod}
-          handleSchedulePeriod={handleSchedulePeriod}
-           onWeeklySelectionChange={handleWeeklyChange} 
-           onMonthlySelectionChange={handleMonthlyChange}
-          />
+          <ScheduleSelector />
           <TimeSlots
             title={'Time slot'}
             availableSlots={AvailableTimeSlots}
@@ -70,17 +40,17 @@ const ProfessionalSchedule = ({navigation,route}) => {
             <View
               style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               {changeScheduleStatus.map((item, index) => {
-                const isChecked = selectedOptions.includes(item.id);
+                const isChecked = selectedItems.includes(item.id);
                 return (
                   <CheckBox
                     item={item}
                     isChecked={isChecked}
-                    setSelectedItems={setSelectedOptions}
+                    setSelectedItems={setSelectedItems}
                   />
                 );
               })}
             </View>
-            <AppButton title={'Save'} onPress={handleNavigaton} style={styles.smallButton} />
+            <AppButton title={'Save'} onPress={() => {}} style={styles.smallButton} />
           </View>
           <AppButton title={'Save'} onPress={() => {}} style={styles.button} />
         </View>
@@ -90,4 +60,4 @@ const ProfessionalSchedule = ({navigation,route}) => {
   );
 };
 
-export default ProfessionalSchedule;
+export default EditProfessionalSchedule;

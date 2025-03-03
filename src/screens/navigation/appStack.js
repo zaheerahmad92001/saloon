@@ -43,6 +43,7 @@ import SearchScreen from '../searchScreen/search/search';
 import Professionals from '../professionals/professionals';
 import AddProfessional from '../addProfessional/addProfessional';
 import ProfessionalSchedule from '../addProfessionalSchedule/addProfessionalSchedule';
+import EditProfessionalSchedule from '../editProfessional/editProfessional';
 
 
 
@@ -118,6 +119,8 @@ function AppStack() {
       <Stack.Screen name="professionals" component={Professionals}/>
       <Stack.Screen name="addProfessional" component={AddProfessional}/>
       <Stack.Screen name="professionalSchedule" component={ProfessionalSchedule}/>
+      <Stack.Screen name="editProfessionalSchedule" component={EditProfessionalSchedule}/>
+
 
 
       <Stack.Screen name="categories" component={Categories}/>

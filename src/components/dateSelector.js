@@ -13,27 +13,59 @@ import {RFValue} from 'react-native-responsive-fontsize';
 import {FlatList} from 'react-native-gesture-handler';
 
 const DateSelector = props => {
-  const {dates, openBottomSheet, isWeekly, isMonthly , style} = props;
+  const {
+    dates, 
+    openBottomSheet, isWeekly, isMonthly , style,
+    onWeeklySelectionChange,  // Callback for weekly selection
+    onMonthlySelectionChange  // Callback for monthly selection
+  } = props;
 
   const [selectedDate, setSelectedDate] = useState(
     moment().format('YYYY-MM-DD'),
   );
-  const [selectedDays, setSelectedDays] = useState([]);
+
+  const [selectedWeeklyDays, setSelectedWeeklyDays] = useState([]);
+  const [selectedMonthlyDays, setSelectedMonthlyDays] = useState([]);
 
   const handleSingleDayPress = date => {
     setSelectedDate(date);
   };
-  const handleMultiDaySelect = id => {
-    setSelectedDays(prevSelected =>
-      prevSelected.includes(id)
-        ? prevSelected.filter(dayId => dayId !== id)
-        : [...prevSelected, id],
-    );
-  };
+
+ const handleMultiDaySelect = (id) => {
+  if (isWeekly) {
+    setSelectedWeeklyDays((prevSelected) => {
+      const updatedSelection = prevSelected.includes(id)
+        ? prevSelected.filter((dayId) => dayId !== id)
+        : [...prevSelected, id];
+
+      // Pass updated weekly selection to parent
+      onWeeklySelectionChange && onWeeklySelectionChange(updatedSelection);
+      return updatedSelection;
+    });
+  } else if (isMonthly) {
+    setSelectedMonthlyDays((prevSelected) => {
+      const updatedSelection = prevSelected.includes(id)
+        ? prevSelected.filter((dayId) => dayId !== id)
+        : [...prevSelected, id];
+
+      // Pass updated monthly selection to parent
+      onMonthlySelectionChange && onMonthlySelectionChange(updatedSelection);
+      return updatedSelection;
+    });
+  }
+};
+  
+  // const handleMultiDaySelect = id => {
+  //   setSelectedDays(prevSelected =>
+  //     prevSelected.includes(id)
+  //       ? prevSelected.filter(dayId => dayId !== id)
+  //       : [...prevSelected, id],
+  //   );
+  // };
 
   const renderItem = ({item, index}) => {
-    
-    const isSelected = selectedDays.includes(item);
+
+    const isSelected = selectedMonthlyDays.includes(item)
     const isSunday = moment(item).format('ddd') === 'Sun';
     
 
@@ -108,14 +140,14 @@ const DateSelector = props => {
   };
 
   const renderWeeklySchedule = () =>
-    weeklySchedule.map((day, index) => {
-      const isSelected = selectedDays.includes(index);
-      const isSunday = day.day === 'Sun';
+    weeklySchedule.map((item, index) => {
+      const isSelected = selectedWeeklyDays.includes(item.day)
+      const isSunday = item.day === 'Sun';
 
       return (
         <Pressable
           key={index}
-          onPress={() => handleMultiDaySelect(index)}
+          onPress={() => handleMultiDaySelect(item.day)}
           style={[
             styles.dayItem,
             {
@@ -127,7 +159,7 @@ const DateSelector = props => {
             },
           ]}>
           <SmallText
-            text={day.day}
+            text={item.day}
             style={[
               styles.dayText,
               (isSunday || isSelected) && styles.selectedDay,
