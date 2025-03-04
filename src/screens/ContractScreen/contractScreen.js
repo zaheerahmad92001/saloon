@@ -7,6 +7,7 @@ import Signature from 'react-native-signature-canvas';
 import {AppButton} from '../../components/appButton';
 import {MediumText, SmallText} from '../../components/Typography';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const ContractScreen = ({navigation, route}) => {
   const [isChecked, setChecked] = useState(false);
@@ -25,7 +26,7 @@ const ContractScreen = ({navigation, route}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
+      <KeyboardAwareScrollView>
         <View style={styles.mainContainer}>
           <Text style={styles.headerTitle}>Contract</Text>
 
@@ -93,7 +94,7 @@ const ContractScreen = ({navigation, route}) => {
             textstyle={styles.signUpText}
             onPress={()=>navigation.navigate('registrationInProcess',{actionName:'registerProcess'})}
           />
-      </ScrollView>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 };

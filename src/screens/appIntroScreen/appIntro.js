@@ -37,7 +37,6 @@ const AppIntro = ({ navigation, route }) => {
 
 
   const renderItem = ({ item }) => {
-    console.log('item', item);
     return (
       <ImageBackground
         // resizeMode='contain'

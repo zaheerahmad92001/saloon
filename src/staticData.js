@@ -426,6 +426,7 @@ const professionals = [
 
 ];
 const moreRoutes = [
+
   {name:'Profile' , value:'Manage and update your salon profile, services, and availability easily.' ,Icon:ProfileMore,routeName:'profileScreen'},
   {name:'Anaqa Commision' , value:"Track and manage salon pros' commission rates for accurate payouts and transparency." ,Icon:AnaqaCommission, routeName:'commission'},
   {name:'Working Hours' , value:'Create timeslots according to professionals availability and service management.',Icon:WorkingHours,routeName:'workingHours'},
@@ -433,17 +434,15 @@ const moreRoutes = [
   {name:'Professionals' , value:"Manage your salon's team of professionals and their availability with ease.",Icon:Professionals,routeName:''},
   {name:'Statistics' , value:'Comprehensive reports to help track and optimize your salon’s performance and growth.',Icon:Statistics,routeName:''},
 
-];
+  {id:1 ,name:'Profile' , value:'Manage and update your salon profile, services, and availability easily.' ,Icon:ProfileMore,routeName:'profileScreen'},
+  {id:2 ,name:'Anaqa Commision' , value:"Track and manage salon pros' commission rates for accurate payouts and transparency." ,Icon:AnaqaCommission, routeName:'commission'},
+  {id:3 ,name:'Working Hours' , value:'Create timeslots according to professionals availability and service management.',Icon:WorkingHours,routeName:'HelpScreen'},
+  {id:4 ,name:'Service Management' , value:'Clear and flexible pricing & services options designed to suit your salon’s unique needs.',Icon:ServiceManagment,routeName:''},
+  {id:5 ,name:'Professionals' , value:"Manage your salon's team of professionals and their availability with ease.",Icon:Professionals,routeName:'professionals'},
+  {id:6 ,name:'Statistics' , value:'Comprehensive reports to help track and optimize your salon’s performance and growth.',Icon:Statistics,routeName:''},
 
-const More =[
-  {name:'Profile' , value:'Manage and update your salon profile, services, and availability easily.' ,img:images.profileimg,routeName:'profileScreen'},
-  {name:'Anaqa Commision' , value:"Track and manage salon pros' commission rates for accurate payouts and transparency." ,img:images.anaqacommision, routeName:'accountManagementScreen'},
-  {name:'Working Hours' , value:'Create timeslots according to professionals availability and service management.',img:images.hours,routeName:'workingHoursScreen'},
-  {name:'Service Management' , value:'Clear and flexible pricing & services options designed to suit your salon’s unique needs.',img:images.serviceimg,routeName:''},
-  {name:'Professionals' , value:"Manage your salon's team of professionals and their availability with ease.",img:images.profession,routeName:''},
-  {name:'Statistics' , value:"Comprehensive reports to help track and optimize your salon’s performance and growth.",img:images.statistics,routeName:''}
-];
 
+];
 
 const AccessAbilitySettingsData =[
   {name:'Change Password' , value:'If you want to switch up your password, you can do it right here!' ,routeName:'changePassword'},
@@ -628,6 +627,23 @@ const bookings = [
   },
 ];
 
+const weeklySchedule = [
+  { id: 1, day: 'Mon' },
+  { id: 2, day: 'Tue' },
+  { id: 3, day: 'Wed' },
+  { id: 4, day: 'Thu' },
+  { id: 5, day: 'Fri' },
+  { id: 6, day: 'Sat' },
+  { id: 7, day: 'Sun' }
+];
+
+const changeScheduleStatus = [
+  { id: 1, value: '1 Week' },
+  { id: 2, value: '2 Weeks'},
+  { id: 3, value: '3 Weeks'},
+  { id: 4, value: 'Untill i change'},
+];
+
 
 export {
   salonCategories,
@@ -675,7 +691,12 @@ export {
   graphTabs,
   bookingHistory,
   bookings,
-  professionalsData
 
+  professionalsData,
+
+
+
+  weeklySchedule,
+  changeScheduleStatus
 
 };

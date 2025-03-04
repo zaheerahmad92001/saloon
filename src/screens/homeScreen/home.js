@@ -10,6 +10,7 @@ import Search from '../../components/search';
 import {graphTabs, mockData} from '../../staticData';
 import {
   LargeText,
+  MediumText,
   SmallText,
   XlargeText,
 } from '../../components/Typography';
@@ -50,8 +51,6 @@ const HomeScreen = ({navigation, route}) => {
   const renderCustomers = ({item}) => (
     <CustomersCard
       item={item}
-      onFavorite={()=>{}}
-      showFavoriteButton={true}
     />
   );
 
@@ -106,7 +105,7 @@ const HomeScreen = ({navigation, route}) => {
 
           <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.sectionHeader}>
-              <LargeText text={'Overview'} style={styles.sectionTitle} />
+              <MediumText text={'Overview'} style={styles.sectionTitle} />
               <OverViewDropdown
                 data={items}
                 value={selectedValue}
@@ -116,7 +115,7 @@ const HomeScreen = ({navigation, route}) => {
             </View>
             <AnaqaPills/>
 
-            <LargeText text={'Total Sales'} style={styles.totalSalesTitle} />
+            <MediumText text={'Total Sales'} style={styles.totalSalesTitle} />
 
             <View style={styles.tabView}>
               <GraphTabs setActiveTab={setActiveTab} />

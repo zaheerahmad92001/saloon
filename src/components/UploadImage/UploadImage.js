@@ -14,7 +14,7 @@ import FastImage from 'react-native-fast-image';
 const UploadImageComponent = props => {
   const {handleOnPress, selectedFile} = props;
 
-  console.log('selected file', selectedFile);
+  
   return (
     <Pressable onPress={handleOnPress}>
       <Text style={styles.title}>Upload</Text>

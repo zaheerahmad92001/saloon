@@ -69,7 +69,6 @@ const closeModal = () => {
         <FilterScreen
           onCancel={closeModal}
           onApply={() => {
-            console.log('Apply')
           }}
         />
       </ModalComponent>

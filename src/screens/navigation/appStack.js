@@ -26,8 +26,6 @@ import ComplaintDetail from '../complaintDetail/complaintDetail';
 import Requests from '../requestsScreen/requests';
 import Addrequest from '../addRequest/addRequest';
 import RequestDetail from '../requestDetail/requestDetail' ;
-
-import LoyaltyPoints from '../loyaltyPointsScreen/loyaltyPoints';
 import Settings from '../settingScreen/settings';
 import Chat from '../chatView/chatView';
 import Language from '../languageScreen/language';
@@ -40,7 +38,17 @@ import Support from '../supportScreen';
 import Payouts from '../payout/payout';
 import SuccessScreen from '../successMessageScreen/succesScreen';
 import SaloonPage from '../saloonPage/saloonPage';
-import Location from '../location/location';
+import ProfileScreen from '../profileScreen/profile';
+import SearchScreen from '../searchScreen/search/search';
+import Professionals from '../professionals/professionals';
+import AddProfessional from '../addProfessional/addProfessional';
+import ProfessionalSchedule from '../addProfessionalSchedule/addProfessionalSchedule';
+import EditProfessionalSchedule from '../editProfessional/editProfessional';
+
+
+
+
+import LoyaltyPoints from '../loyaltyPointsScreen/loyaltyPoints';
 import RatingAndReview from '../ratingAndReviewScreen/ratingAndReview';
 import AvailableTimeSlot from '../availableTimeSlotScreen/availableTimeSlot';
 import OrderDetail from '../bookingDetailScreen/BookingDetail';
@@ -51,6 +59,7 @@ import SecurityScreen from '../securityScreen/security';
 import CommissionScreen from '../Commission/commission';
 import EditPromotionScreen from '../EditPromotion/EditPromotion';
 import WorkingHours from '../WorkingHours/WorkingHours';
+
 
 import ProfileScreen from '../profileScreen/profile';
 import SearchScreen from '../searchScreen/search/search';
@@ -112,6 +121,7 @@ function AppStack() {
       <Stack.Screen name="requests" component={Requests}/>
       <Stack.Screen name="addRequest" component={Addrequest}/>
       <Stack.Screen name="requestDetail" component={RequestDetail}/>
+
       <Stack.Screen name="workingHours" component={ WorkingHours}/>
       <Stack.Screen name="serviceManagment" component={ServiceManagment}/>
       <Stack.Screen name="addNewServiceScreen" component={AddNewServiceScreen}/>
@@ -123,6 +133,15 @@ function AppStack() {
 
       
       <Stack.Screen name="location" component={Location}/>
+
+      <Stack.Screen name="professionals" component={Professionals}/>
+      <Stack.Screen name="addProfessional" component={AddProfessional}/>
+      <Stack.Screen name="professionalSchedule" component={ProfessionalSchedule}/>
+      <Stack.Screen name="editProfessionalSchedule" component={EditProfessionalSchedule}/>
+
+
+
+
       <Stack.Screen name="categories" component={Categories}/>
       <Stack.Screen name="categoryListing" component={CategoryListing}/>
       <Stack.Screen name="favorites" component={Favorites} />
