@@ -50,11 +50,14 @@ import OffDays from '../OffDays/OffDays';
 import SecurityScreen from '../securityScreen/security';
 import CommissionScreen from '../Commission/commission';
 import EditPromotionScreen from '../EditPromotion/EditPromotion';
-import WorkingHoursScreen from '../WorkingHours/WorkingHours';
+import WorkingHours from '../WorkingHours/WorkingHours';
 
 import ProfileScreen from '../profileScreen/profile';
 import SearchScreen from '../searchScreen/search/search';
-
+import ServiceManagment from '../servicemanagement/servicemanagementscreen';
+import AddNewServiceScreen from '../AddNewService/addnewservice';
+import SubServiceListScreen from '../subservicelist/subservicelist';
+import AssignSubServiceListScreen from '../assingServiceScreen/assignServiceScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -109,10 +112,16 @@ function AppStack() {
       <Stack.Screen name="requests" component={Requests}/>
       <Stack.Screen name="addRequest" component={Addrequest}/>
       <Stack.Screen name="requestDetail" component={RequestDetail}/>
+      <Stack.Screen name="workingHours" component={ WorkingHours}/>
+      <Stack.Screen name="serviceManagment" component={ServiceManagment}/>
+      <Stack.Screen name="addNewServiceScreen" component={AddNewServiceScreen}/>
+      <Stack.Screen name="subServiceListScreen" component={SubServiceListScreen}/>
+      <Stack.Screen name="assignSubServiceListScreen" component={AssignSubServiceListScreen}/>
+      
+      
+      
 
-
-
-
+      
       <Stack.Screen name="location" component={Location}/>
       <Stack.Screen name="categories" component={Categories}/>
       <Stack.Screen name="categoryListing" component={CategoryListing}/>
@@ -129,7 +138,7 @@ function AppStack() {
       <Stack.Screen name="addPromotionScreen" component={AddPromotionScreen}/>
       <Stack.Screen name="commission" component={CommissionScreen}/>
       <Stack.Screen name="editPromotionScreen" component={EditPromotionScreen}/>
-
+     
 
 
 
