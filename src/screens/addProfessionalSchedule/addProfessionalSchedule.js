@@ -16,23 +16,26 @@ const ProfessionalSchedule = ({navigation,route}) => {
   const [selectedSlots, setSelectedSlots] = useState([]);
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [schedulePeriod, setSchedulePeriod] = useState('weekly');
-  const [weeklySelection, setWeeklySelection] = useState([]);
-  const [monthlySelection, setMonthlySelection] = useState([]);
+  const [weeklyDaysSelection, setWeeklyDaysSelection] = useState([]);
+  const [monthlyDatesSelection, setMonthlyDatesSelection] = useState([]);
 
   const handleNavigaton=()=>{
     navigation.navigate('editProfessionalSchedule',{
-      selectedSlots:selectedSlots,
-      selectedItems:selectedOptions
+       period:schedulePeriod,
+       slots:selectedSlots,
+       options:selectedOptions,
+       weeklyDays :weeklyDaysSelection,
+       monthlyDays:monthlyDatesSelection,
     });
   };
 
-
+  
   const handleWeeklyChange = (selectedDays) => {
-    setWeeklySelection(selectedDays);
+    setWeeklyDaysSelection(selectedDays);
   };
   
   const handleMonthlyChange = (selectedDays) => {
-    setMonthlySelection(selectedDays);
+    setMonthlyDatesSelection(selectedDays);
   };
 
   const handleSchedulePeriod=(timePeriod)=>{
@@ -54,8 +57,8 @@ const ProfessionalSchedule = ({navigation,route}) => {
           />
           <MediumText text={'Schedule'} style={styles.headingtext} />
           <ScheduleSelector
-          selectedOption={schedulePeriod}
-          handleSchedulePeriod={handleSchedulePeriod}
+           selectedOption={schedulePeriod}
+           handleSchedulePeriod={handleSchedulePeriod}
            onWeeklySelectionChange={handleWeeklyChange} 
            onMonthlySelectionChange={handleMonthlyChange}
           />

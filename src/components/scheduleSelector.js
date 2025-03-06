@@ -16,7 +16,16 @@ const radioButton = [
 ];
 
 const ScheduleSelector = (props) => {
-  const {onMonthlySelectionChange ,onWeeklySelectionChange , selectedOption , handleSchedulePeriod } = props
+  const {
+    isEdit ,
+    onMonthlySelectionChange ,
+    onWeeklySelectionChange ,
+    selectedOption , 
+    handleSchedulePeriod ,
+    weeklyDaysSelection,
+    monthlyDatesSelection,
+
+  } = props
 
   const monthlySchedule = CurrentMonthDates();
   const isWeekly = selectedOption === 'weekly';
@@ -45,6 +54,9 @@ const ScheduleSelector = (props) => {
         dates={dates}
         isWeekly={isWeekly}
         isMonthly={isMonthly}
+        isEdit={isEdit}
+        weeklyDaysSelection={weeklyDaysSelection}
+        monthlyDatesSelection={monthlyDatesSelection}
         onWeeklySelectionChange={onWeeklySelectionChange} 
         onMonthlySelectionChange={onMonthlySelectionChange}
         style={{marginTop: hp(1.5)}}

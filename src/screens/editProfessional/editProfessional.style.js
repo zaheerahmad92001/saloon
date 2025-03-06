@@ -28,8 +28,8 @@ const styles = StyleSheet.create({
    alignSelf:'flex-end',
  },
  button:{
-   marginTop:hp(5),
-   marginBottom:hp(1)
+   marginBottom:hp(1),
+   marginHorizontal:wp(4),
  },
 });
 

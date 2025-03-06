@@ -6,9 +6,8 @@ import fontsFamily from '../assets/fontsFamily';
 import colors from '../assets/colors';
 
 const TimeSlots = (props)=>{
-    const {availableSlots , title , setSelectedSlots} = props;
+    const {availableSlots ,selectedSlots,setSelectedSlots, title , isEdit=false ,handleSlotSelection} = props;
  const [selectedTime, setSelectedTime] = React.useState([]);
-
 
 const toggleSelection = (slot) => {
   setSelectedTime((prevSelected) => {
@@ -21,12 +20,16 @@ const toggleSelection = (slot) => {
   });
 };
 
+let isSelected = false;
     return(
-        <View style={styles.timePicker}>
+        <View style={!isEdit? styles.timePicker : styles.timePicker2}>
+          {!isEdit &&
         <Text style={styles.sectionTitle}>{title}</Text>
+        }
         <View style={styles.times}>
-          {availableSlots.map(time =>{ 
-            const isSelected = selectedTime.includes(time);
+          {availableSlots.map(time =>{
+            // selectedSlotes passing from parent to child while  selectedTime is local state
+            isSelected =isEdit ? selectedSlots?.includes(time): selectedTime.includes(time);
           return(
             <TouchableOpacity
               key={time}
@@ -34,7 +37,12 @@ const toggleSelection = (slot) => {
                 styles.timeItem,
                 isSelected && styles.selectedItem,
               ]}
-              onPress={() => toggleSelection(time)}>
+              onPress={() => {
+              isEdit?
+              handleSlotSelection(time) :  // selecte slot with respect to date
+              toggleSelection(time)
+            }
+              }>
               <Text
                 style={[
                   styles.timeText,
@@ -53,6 +61,9 @@ const toggleSelection = (slot) => {
 const styles = StyleSheet.create({
     timePicker: {
         marginTop: 20,
+      },
+      timePicker2: {
+        marginTop: 0,
       },
       times: {
         flexDirection: 'row',

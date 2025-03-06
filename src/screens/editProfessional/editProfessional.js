@@ -1,21 +1,91 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView, View} from 'react-native';
 import styles from './editProfessional.style';
 import Header from '../../components/appHeader';
-import AnaqaProfessionalHeader from '../../components/anaqaProfessionalHeader';
-import colors from '../../assets/colors';
 import {LargeText, MediumText} from '../../components/Typography';
 import ScheduleSelector from '../../components/scheduleSelector';
-import TimeSlots from '../../components/timeSlots';
-import {AvailableTimeSlots, changeScheduleStatus} from '../../staticData';
+import {changeScheduleStatus, scheduleTimePeriod} from '../../staticData';
 import CheckBox from '../../components/checkBox';
 import { AppButton } from '../../components/appButton';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import TimeSlotsDropDown from '../../components/timeSlotsDropDown';
 
 const EditProfessionalSchedule = ({navigation, route}) => {
+  const {
+    period,
+    slots,
+    options,
+    weeklyDays,
+    monthlyDays,
+  } = route.params
+    const [selectedOptions, setSelectedOptions] = useState(options);
+    const [schedulePeriod, setSchedulePeriod] = useState(period);
+    const [weeklyDaysSelection, setWeeklyDaysSelection] = useState(weeklyDays);
+    const [monthlyDatesSelection, setMonthlyDatesSelection] = useState(monthlyDays);
+    const [weeklyTimeSlots, setWeeklySelectedTimeSlots] = useState([])
+    const [monthlyTimeSlots, setMonthlySelectedTimeSlots] = useState([])
+
+  useEffect(() => {
+    if (period === scheduleTimePeriod.weekly) {
+      const slotsData = weeklyDays.reduce((acc, day) => {
+        acc[day] = slots;
+        return acc;
+      }, {});
+  
+      setWeeklySelectedTimeSlots(slotsData);
+    } else {
+      const slotsData = monthlyDays.reduce((acc, date) => {
+        acc[date] = slots;
+        return acc;
+      }, {});
+  
+      setMonthlySelectedTimeSlots(slotsData);
+    }
+  }, [period, weeklyDays, monthlyDays, slots]);
+
+
+
+   const dataSet  = schedulePeriod===scheduleTimePeriod.weekly ? weeklyDaysSelection : monthlyDatesSelection
+   const slotSets = schedulePeriod===scheduleTimePeriod.weekly ? weeklyTimeSlots : monthlyTimeSlots
+   const isWeekly = schedulePeriod===scheduleTimePeriod.weekly ? true:false
+
+    const handleWeeklyChange = (selectedDays) => {
+      setWeeklyDaysSelection(selectedDays);
+    };
     
-  const [selectedSlots, setSelectedSlots] = useState([]);
-  const [selectedItems, setSelectedItems] = useState([]);
+    const handleMonthlyChange = (selectedDays) => {
+      setMonthlyDatesSelection(selectedDays);
+    };
+  
+    const handleSchedulePeriod=(timePeriod)=>{
+      setSchedulePeriod(timePeriod)
+    }
+
+    const handleSlotSelection = (date, slot) => {
+      const updateSlots = (prev) => {
+        const updatedSlots = { ...prev };
+    
+        if (!updatedSlots[date]) {
+          updatedSlots[date] = [slot]; // Add new date with slot
+        } else {
+          const slotIndex = updatedSlots[date].indexOf(slot);
+          if (slotIndex > -1) {
+            updatedSlots[date].splice(slotIndex, 1); // Remove slot
+            if (updatedSlots[date].length === 0) {
+              delete updatedSlots[date]; // Remove date if no slots left
+            }
+          } else {
+            updatedSlots[date] = [...updatedSlots[date], slot]; // Add slot
+          }
+        }
+        return updatedSlots;
+      };
+    
+      isWeekly
+        ? setWeeklySelectedTimeSlots(updateSlots)
+        : setMonthlySelectedTimeSlots(updateSlots);
+    };    
+  
 
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -28,34 +98,49 @@ const EditProfessionalSchedule = ({navigation, route}) => {
         <View style={styles.contantContainer}>
 
           <MediumText text={'Schedule'} style={styles.headingtext} />
-          <ScheduleSelector />
-          <TimeSlots
-            title={'Time slot'}
-            availableSlots={AvailableTimeSlots}
-            setSelectedSlots={setSelectedSlots}
+          <ScheduleSelector 
+           selectedOption={schedulePeriod}
+           handleSchedulePeriod={handleSchedulePeriod}
+           weeklyDaysSelection={weeklyDaysSelection}
+           monthlyDatesSelection={monthlyDatesSelection}
+           onWeeklySelectionChange={handleWeeklyChange} 
+           onMonthlySelectionChange={handleMonthlyChange}
+           isEdit={true}
           />
+          <View style={{marginTop:20}}>
+          {dataSet?.length>0 && dataSet.map((item , index)=>{
+            return(
+              <TimeSlotsDropDown
+              day={item}
+              selectedSlots={slotSets[item]??[]}
+              handleSlotSelection={(slot)=>handleSlotSelection(item, slot)}
+             />
+            )
+          })
+          }
+          </View>
 
           <View style={styles.checkBoxContainer}>
             <LargeText text={'How long the schedule will be recur?'} />
             <View
               style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               {changeScheduleStatus.map((item, index) => {
-                const isChecked = selectedItems.includes(item.id);
+                const isChecked = selectedOptions.includes(item.id);
                 return (
                   <CheckBox
                     item={item}
                     isChecked={isChecked}
-                    setSelectedItems={setSelectedItems}
+                    setSelectedItems={setSelectedOptions}
                   />
                 );
               })}
             </View>
-            <AppButton title={'Save'} onPress={() => {}} style={styles.smallButton} />
+            {/* <AppButton title={'Save'} onPress={() => {}} style={styles.smallButton} /> */}
           </View>
-          <AppButton title={'Save'} onPress={() => {}} style={styles.button} />
+         
         </View>
-     
       </KeyboardAwareScrollView>
+      <AppButton title={'Update Professional'} onPress={() => {}} style={styles.button} />
     </SafeAreaView>
   );
 };

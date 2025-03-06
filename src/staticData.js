@@ -627,6 +627,8 @@ const changeScheduleStatus = [
   { id: 3, value: '3 Weeks'},
   { id: 4, value: 'Untill i change'},
 ];
+const scheduleTimePeriod = {weekly:'weekly',monthly:'monthly'}
+
 
 
 export {
@@ -676,5 +678,6 @@ export {
   bookingHistory,
   bookings,
   weeklySchedule,
-  changeScheduleStatus
+  changeScheduleStatus,
+  scheduleTimePeriod,
 };
