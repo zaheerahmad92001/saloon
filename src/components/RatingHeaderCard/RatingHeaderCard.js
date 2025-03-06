@@ -1,22 +1,21 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import colors from '../../assets/colors';
-import Star from '../../assets/svgs/star.svg';
 import {RFValue} from 'react-native-responsive-fontsize';
 import fontsFamily from '../../assets/fontsFamily';
 import {ProgressBar} from 'react-native-paper';
 import {widthPercentageToDP} from 'react-native-responsive-screen';
 import {XlargeText} from '../Typography';
-import {Rating, AirbnbRating} from 'react-native-ratings';
+import {AirbnbRating} from 'react-native-ratings';
 
 const RatingHeaderCard = props => {
-  const {item, totalRating} = props;
+  const {item, totalRating , style} = props;
 
   return (
-    <View style={style.mainContainer}>
-      <View style={style.overallRating}>
-        <XlargeText text={4.5} style={style.ratingText} />
-        <View style={style.totalRatingView}>
+    <View style={[styles.mainContainer,style]}>
+      <View style={styles.overallRating}>
+        <XlargeText text={4.5} style={styles.ratingText} />
+        <View style={styles.totalRatingView}>
           <AirbnbRating
             type="custom"
             count={5}
@@ -26,16 +25,16 @@ const RatingHeaderCard = props => {
             showRating={false}
             isDisabled={true}
             selectedColor={colors.confirmYellow}
-            starContainerStyle={style.starContainerStyle}
+            starContainerStyle={styles.starContainerStyle}
           />
-          <Text style={style.totalRatings}> {totalRating} Ratings</Text>
+          <Text style={styles.totalRatings}> {totalRating} Ratings</Text>
         </View>
       </View>
 
       {[...Array(5)].map((item, index) => {
         return (
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <View style={style.starContainer}>
+            <View style={styles.starContainer}>
                 <AirbnbRating
                   type="custom"
                   count={5}
@@ -44,18 +43,18 @@ const RatingHeaderCard = props => {
                   onFinishRating={() => {}}
                   showRating={false}
                   selectedColor={colors.confirmYellow}
-                  starContainerStyle={style.starContainerStyle}
+                  starContainerStyle={styles.starContainerStyle}
                   isDisabled={true}
                 />
             </View>
             <View style={{maxWidth: widthPercentageToDP(70)}}>
               <ProgressBar
-                progress={0.2}
+                progress={index ===0 ? 0.2 : index/5}
                 width={250}
                 color={colors.primary}
                 unfilledColor={colors.appBlack}
                 borderWidth={0}
-                style={style.progressBar}
+                style={styles.progressBar}
               />
             </View>
           </View>
@@ -65,9 +64,8 @@ const RatingHeaderCard = props => {
   );
 };
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   mainContainer: {
-    //padding: 15,
     paddingHorizontal: 20,
     backgroundColor: colors.appBG,
   },
