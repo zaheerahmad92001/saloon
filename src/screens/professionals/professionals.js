@@ -8,6 +8,7 @@ import OverViewDropdown from '../../components/overviewDropdown/overviewDropdown
 import {mockData} from '../../staticData';
 import CustomersCard from '../../components/customersCard/CustomersCard';
 import { AppButton } from '../../components/appButton';
+import StaticsProfessionalCard from '../../components/statisticsTab/staticsProfessionalCard';
 
 const Location = ({navigation, route}) => {
   const [selectedValue, setSelectedValue] = useState(null);
@@ -20,7 +21,8 @@ const Location = ({navigation, route}) => {
   ];
 
   const renderItem = ({item, index}) => {
-    return <CustomersCard item={item} />;
+    // return <CustomersCard item={item} />;
+    return <StaticsProfessionalCard/>
   };
 
   return (
