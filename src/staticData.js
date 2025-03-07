@@ -135,6 +135,57 @@ const dummyData = {
   vatRate: 15,
 };
 
+
+const statisticsservices = [
+  {
+    id: "1",
+    name: "Hair Cut",
+    subService: 3,
+    professionals: 4,
+    rating: 4.7,
+    reviews: 312,
+    bookings: 12,
+    isTopRated: true,
+  },
+  {
+    id: "2",
+    name: "Facial",
+    professionals: 2,
+    rating: 4.0,
+    reviews: 312,
+    bookings: 4,
+    isTopRated: false,
+  },
+  {
+    id: "3",
+    name: "Nail Art",
+    professionals: 5,
+    rating: 3.9,
+    reviews: 312,
+    bookings: 2,
+    isTopRated: false,
+  },
+  {
+    id: "4",
+    name: "Manicure",
+    professionals: 3,
+    rating: 4.8,
+    reviews: 312,
+    bookings: 12,
+    isTopRated: true,
+  },
+  {
+    id: "5",
+    name: "Pedicure",
+    professionals: 2,
+    rating: 4.2,
+    reviews: 312,
+    bookings: 3,
+    isTopRated: false,
+  },
+];
+
+
 const invoices = [
   {
     id: '1',
@@ -432,7 +483,7 @@ const moreRoutes = [
   {id:3 ,name:'Working Hours' , value:'Create timeslots according to professionals availability and service management.',Icon:WorkingHours,routeName:'HelpScreen'},
   {id:4 ,name:'Service Management' , value:'Clear and flexible pricing & services options designed to suit your salon’s unique needs.',Icon:ServiceManagment,routeName:'serviceManagment'},
   {id:5 ,name:'Professionals' , value:"Manage your salon's team of professionals and their availability with ease.",Icon:Professionals,routeName:'professionals'},
-  {id:6 ,name:'Statistics' , value:'Comprehensive reports to help track and optimize your salon’s performance and growth.',Icon:Statistics,routeName:'serviceReport'},
+  {id:6 ,name:'Statistics' , value:'Comprehensive reports to help track and optimize your salon’s performance and growth.',Icon:Statistics,routeName:'statScreen'}, //serviceReport
 
 
 ];
@@ -690,4 +741,5 @@ export {
   weeklySchedule,
   changeScheduleStatus,
   scheduleTimePeriod,
+  statisticsservices
 };

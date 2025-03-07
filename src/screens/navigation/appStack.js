@@ -60,6 +60,7 @@ import SecurityScreen from '../securityScreen/security';
 import CommissionScreen from '../Commission/commission';
 import EditPromotionScreen from '../EditPromotion/EditPromotion';
 import WorkingHours from '../WorkingHours/WorkingHours';
+import StatisticsScreen from '../statisticsScreen/statistics';
 
 
 import ServiceManagment from '../servicemanagement/servicemanagementscreen';
@@ -130,8 +131,9 @@ function AppStack() {
       <Stack.Screen name="professionalSchedule" component={ProfessionalSchedule}/>
       <Stack.Screen name="editProfessionalSchedule" component={EditProfessionalSchedule}/>
       <Stack.Screen name="serviceReport" component={ServiceReport}/>
+      <Stack.Screen name="statScreen" component={StatisticsScreen}/>
 
-
+      
 
 
       <Stack.Screen name="categories" component={Categories}/>
