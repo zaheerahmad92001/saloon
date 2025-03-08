@@ -54,7 +54,7 @@ const ProfessionalScreen = () => {
 
 
     const handNavigation = () => {
-        navigation.navigate('serviceReport');
+        navigation.navigate('serviceReportDetailsScreen');
     };
 
     const handleFilterPress = () => { }
