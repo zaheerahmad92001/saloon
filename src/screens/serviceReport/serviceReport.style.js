@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     },
     ratingBg:{
         backgroundColor:colors.white,
-    }
+    },
+   
 })
 export default styles;

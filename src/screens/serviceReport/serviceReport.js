@@ -1,4 +1,4 @@
-import React,{useCallback, useReducer, useRef, useState} from 'react';
+import React, {useCallback, useReducer, useRef, useState} from 'react';
 import {View, SafeAreaView, Pressable} from 'react-native';
 import styles from './serviceReport.style';
 import Header from '../../components/appHeader';
@@ -11,8 +11,11 @@ import FilterIcon from '../../components/FilterIcon';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import RatingHeaderCard from '../../components/RatingHeaderCard/RatingHeaderCard';
 import {heightPercentageToDP} from 'react-native-responsive-screen';
-import { BottomSheet } from '../../components/bottomSheet';
+import {BottomSheet} from '../../components/bottomSheet';
 import BookingFilter from '../../components/bookingFilter/BookingFilter';
+import BezierGraphView from '../../components/graphView/BezierGraphView';
+import ServiceTabs from '../../components/serviceTabs';
+import colors from '../../assets/colors';
 const ratingsData = [
   {stars: 5, count: 180},
   {stars: 4, count: 80},
@@ -23,73 +26,70 @@ const ratingsData = [
 const totalRatings = ratingsData.reduce((acc, item) => acc + item.count, 0);
 
 const ServiceReport = ({navigation, route}) => {
-const refRBSheet = useRef();
+  const refRBSheet = useRef();
 
-const refRBSheetTime = useRef();
+  const refRBSheetTime = useRef();
   const handleFilterPress = () => {};
   const handlePeakTime = () => {};
 
-
- const [state, updateState] = useReducer(
-        (state, newState) => ({ ...state, ...newState }),
-        {
-            selectedItem: null,
-        },
-    );
-
-
-    const hideBottomSheet = () => {
-        if (refRBSheet.current) {
-            refRBSheet.current.close();
-        }
-    };
-    const openBottomSheet = useCallback((item) => {
-        updateState({ selectedItem: item });
-        if (refRBSheet.current) {
-            setTimeout(() => refRBSheet.current.present(), 0);
-        }
+  const [state, updateState] = useReducer(
+    (state, newState) => ({...state, ...newState}),
+    {
+      selectedItem: null,
     },
-        [refRBSheet],
-    );
+  );
 
-    const ApplyFilter = item => { };
+  const hideBottomSheet = () => {
+    if (refRBSheet.current) {
+      refRBSheet.current.close();
+    }
+  };
+  const openBottomSheet = useCallback(
+    item => {
+      updateState({selectedItem: item});
+      if (refRBSheet.current) {
+        setTimeout(() => refRBSheet.current.present(), 0);
+      }
+    },
+    [refRBSheet],
+  );
 
-    const clearFilter = item => {
-        hideBottomSheet();
-    };
+  const ApplyFilter = item => {};
 
-    const cancelFilter = useCallback(() => {
-        hideBottomSheet();
-    }, []);
+  const clearFilter = item => {
+    hideBottomSheet();
+  };
 
-///////////// Time Bottom Sheet////////
+  const cancelFilter = useCallback(() => {
+    hideBottomSheet();
+  }, []);
 
+  ///////////// Time Bottom Sheet////////
 
-
-const hideTimeBottomSheet = () => {
-  if (refRBSheetTime.current) {
+  const hideTimeBottomSheet = () => {
+    if (refRBSheetTime.current) {
       refRBSheetTime.current.close();
-  }
-};
-const openTimeBottomSheet = useCallback((item) => {
-  updateState({ selectedItem: item });
-  if (refRBSheetTime.current) {
-      setTimeout(() => refRBSheetTime.current.present(), 0);
-  }
-},
-  [refRBSheetTime],
-);
+    }
+  };
+  const openTimeBottomSheet = useCallback(
+    item => {
+      updateState({selectedItem: item});
+      if (refRBSheetTime.current) {
+        setTimeout(() => refRBSheetTime.current.present(), 0);
+      }
+    },
+    [refRBSheetTime],
+  );
 
-const ApplyTimeFilter = item => { };
+  const ApplyTimeFilter = item => {};
 
-const clearTimeFilter = item => {
-  hideTimeBottomSheet();
-};
+  const clearTimeFilter = item => {
+    hideTimeBottomSheet();
+  };
 
-const cancelTimeFilter = useCallback(() => {
-  hideTimeBottomSheet();
-}, []);
-
+  const cancelTimeFilter = useCallback(() => {
+    hideTimeBottomSheet();
+  }, []);
 
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -101,14 +101,15 @@ const cancelTimeFilter = useCallback(() => {
       <KeyboardAwareScrollView style={styles.container}>
         <View style={styles.contentContainer}>
           <ServiceEstTime />
+          <ServiceTabs />
+          <View style={{backgroundColor: 'white', paddingHorizontal: 5}}>
+            <FilterIcon handleFilterPress={openBottomSheet} />
 
-          <FilterIcon handleFilterPress={openBottomSheet} />
-
-          <View style={styles.rowView}>
-            <MediumText text={`Total Booking (18)`} />
-            <SmallText text={'See All'} style={styles.seeAllText} />
+            <View style={styles.rowView}>
+              <MediumText text={`Total Booking (18)`} />
+              <SmallText text={'See All'} style={styles.seeAllText} />
+            </View>
           </View>
-
           {[...Array(3)].map((item, index) => {
             let status = index % 2 === 0 ? 'Completed' : 'Pending';
             return <TodayBookings status={status} />;
@@ -123,7 +124,7 @@ const cancelTimeFilter = useCallback(() => {
               />
             </View>
             <View style={styles.borderView}></View>
-            <BarChartView />
+            <BezierGraphView activeTab={() => {}} />
           </View>
 
           <View style={styles.ratingView}>
@@ -144,38 +145,35 @@ const cancelTimeFilter = useCallback(() => {
         </View>
       </KeyboardAwareScrollView>
 
+      {/* Booking Filter */}
+      <BottomSheet
+        refRBSheet={refRBSheet}
+        onClose={() => hideBottomSheet()}
+        scrollEnabled={false}
+        disableDynamicSizing={true}
+        height={heightPercentageToDP(58)}>
+        <BookingFilter
+          onCancel={cancelFilter}
+          onApply={ApplyFilter}
+          onClear={clearFilter}
+          isHome={true}
+        />
+      </BottomSheet>
 
-
-       {/* Booking Filter */}
-       <BottomSheet
-                refRBSheet={refRBSheet}
-                onClose={() => hideBottomSheet()}
-                scrollEnabled={false}
-                disableDynamicSizing={true}
-                height={heightPercentageToDP(58)}>
-                <BookingFilter
-                    onCancel={cancelFilter}
-                    onApply={ApplyFilter}
-                    onClear={clearFilter}
-                    isHome={true}
-                />
-            </BottomSheet>
-
-
-            {/* Booking Filter */}
-       <BottomSheet
-                refRBSheet={refRBSheetTime}
-                onClose={() => hideTimeBottomSheet()}
-                scrollEnabled={false}
-                disableDynamicSizing={true}
-                height={heightPercentageToDP(58)}>
-                <BookingFilter
-                    onCancel={cancelTimeFilter}
-                    onApply={ApplyTimeFilter}
-                    onClear={clearTimeFilter}
-                    isHome={true}
-                />
-            </BottomSheet>
+      {/* Booking Filter */}
+      <BottomSheet
+        refRBSheet={refRBSheetTime}
+        onClose={() => hideTimeBottomSheet()}
+        scrollEnabled={false}
+        disableDynamicSizing={true}
+        height={heightPercentageToDP(58)}>
+        <BookingFilter
+          onCancel={cancelTimeFilter}
+          onApply={ApplyTimeFilter}
+          onClear={clearTimeFilter}
+          isHome={true}
+        />
+      </BottomSheet>
     </SafeAreaView>
   );
 };
