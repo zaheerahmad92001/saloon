@@ -61,7 +61,7 @@ import CommissionScreen from '../Commission/commission';
 import EditPromotionScreen from '../EditPromotion/EditPromotion';
 import WorkingHours from '../WorkingHours/WorkingHours';
 import StatisticsScreen from '../statisticsScreen/statistics';
-
+import ServiceReportDetailsScreen from '../professionalReportDetails/professionalReportDetailsScreen';
 
 import ServiceManagment from '../servicemanagement/servicemanagementscreen';
 import AddNewServiceScreen from '../AddNewService/addnewservice';
@@ -132,9 +132,10 @@ function AppStack() {
       <Stack.Screen name="editProfessionalSchedule" component={EditProfessionalSchedule}/>
       <Stack.Screen name="serviceReport" component={ServiceReport}/>
       <Stack.Screen name="statScreen" component={StatisticsScreen}/>
+      <Stack.Screen name="serviceReportDetailsScreen" component={ServiceReportDetailsScreen}/>
 
       
-
+      
 
       <Stack.Screen name="categories" component={Categories}/>
       <Stack.Screen name="categoryListing" component={CategoryListing}/>
