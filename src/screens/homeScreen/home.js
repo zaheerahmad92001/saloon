@@ -9,7 +9,6 @@ import {
 import Search from '../../components/search';
 import {graphTabs, mockData} from '../../staticData';
 import {
-  LargeText,
   MediumText,
   SmallText,
   XlargeText,
@@ -20,11 +19,11 @@ import {heightPercentageToDP} from 'react-native-responsive-screen';
 import OverViewDropdown from '../../components/overviewDropdown/overviewDropdown';
 import BezierGraphView from '../../components/graphView/BezierGraphView';
 import GraphTabs from '../../components/graphTabs';
-import CustomersCard from '../../components/customersCard/CustomersCard';
 import {BottomSheet} from '../../components/bottomSheet';
 import BookingFilter from '../../components/bookingFilter/BookingFilter';
 import AnaqaPills from '../../components/AnaqaPills';
 import AnaqaPayoutStatistics from '../../components/AnaqaPayoutStatistics';
+import StaticsProfessionalCard from '../../components/statisticsTab/staticsProfessionalCard';
 
 const HomeScreen = ({navigation, route}) => {
   const refRBSheet = useRef();
@@ -48,9 +47,14 @@ const HomeScreen = ({navigation, route}) => {
     {label: 'Weekly', value: '5'},
   ];
 
+  const handNavigation = () => {
+    navigation.navigate('ProfessionalService');
+};
+
   const renderCustomers = ({item}) => (
-    <CustomersCard
-      item={item}
+    <StaticsProfessionalCard
+      onClick={() => handNavigation()}
+      showServiceCount={false}
     />
   );
 
@@ -125,7 +129,7 @@ const HomeScreen = ({navigation, route}) => {
 
             <View style={styles.sectionHeader}>
               <XlargeText text={'Professionals'} style={styles.sectionTitle} />
-              <TouchableOpacity onPress={() => handleSeeAll('categories')}>
+              <TouchableOpacity onPress={() => handleSeeAll('professionals')}>
                 <SmallText text={'See All'} style={styles.seeAllText} />
               </TouchableOpacity>
             </View>

@@ -11,7 +11,11 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    marginHorizontal: wp(4),
+    backgroundColor:colors.appBG
+  },
+  mainContainer:{
+    flex:1,
+    marginHorizontal: wp(4),    
   },
   summaryRow: {
     flexDirection: 'row',

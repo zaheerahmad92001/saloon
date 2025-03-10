@@ -71,8 +71,6 @@ const styles = StyleSheet.create({
       flex: 1,
     },
     button: {
-      marginTop:hp(8),
-      marginBottom:hp(3)
     },
     buttonText: {
       color: colors.white,
@@ -91,8 +89,6 @@ const styles = StyleSheet.create({
     phoneContainer: {
       width: '100%',
       height: 50,
-      
-      
     },
     cityText: {
       fontSize: RFValue(12),
@@ -100,8 +96,7 @@ const styles = StyleSheet.create({
       fontFamily: fontsFamily.regular,
       fontWeight: '400',
       marginBottom: 10,
-      //marginTop: 10,
-      // marginVertical:hp(2),
   },
+  addressInput:{minHeight: 80, marginBottom:20},
   });
 export default styles;

@@ -1,14 +1,14 @@
-import React, { useCallback, useReducer, useRef, useState } from "react";
-import { FlatList, SafeAreaView, View } from "react-native";
-import styles from "./servicesScreen.style";
-import { BottomSheet } from '../../../components/bottomSheet';
-import BookingFilter from '../../../components/bookingFilter/BookingFilter';
-import { heightPercentageToDP } from "react-native-responsive-screen";
-import FilterIcon from "../../../components/FilterIcon";
-import { MediumText } from "../../../components/Typography";
-import { statisticsservices } from "../../../staticData";
-import StaticServiceCard from "../../../components/statisticsTab/staticServiceCard";
-import { useNavigation } from "@react-navigation/native";
+import React, { useCallback, useReducer, useRef } from 'react';
+import { FlatList, SafeAreaView, View } from 'react-native';
+import styles from './servicesScreen.style';
+import { BottomSheet } from '../../components/bottomSheet';
+import BookingFilter from '../../components/bookingFilter/BookingFilter';
+import { heightPercentageToDP } from 'react-native-responsive-screen';
+import FilterIcon from '../../components/FilterIcon';
+import { MediumText } from '../../components/Typography';
+import { statisticsservices } from '../../staticData';
+import StaticServiceCard from '../../components/statisticsTab/staticServiceCard';
+import { useNavigation } from '@react-navigation/native';
 
 
 const ServicesScreen = () => {
@@ -49,23 +49,24 @@ const ServicesScreen = () => {
         navigation.navigate('serviceReport');
     };
 
-    const renderCard = ({ item }) => {
+    const renderItem = ({ item }) => {
         return (
             <StaticServiceCard service={item} onClick={() => handNavigation()} />
         );
-    }
+    };
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.headerSection}>
                 <MediumText text={'Services (06)'} style={styles.heading}
-                ></MediumText>
+                 />
                 <FilterIcon handleFilterPress={() => openBottomSheet()} />
             </View>
 
             <FlatList
                 data={statisticsservices}
-                renderItem={renderCard}
-            ></FlatList>
+                renderItem={renderItem}
+                keyExtractor={(item)=>item.id}
+             />
 
 
 
@@ -87,5 +88,5 @@ const ServicesScreen = () => {
             </BottomSheet>
         </SafeAreaView>
     );
-}
+};
 export default ServicesScreen;

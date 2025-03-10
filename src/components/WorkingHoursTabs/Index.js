@@ -1,5 +1,5 @@
 import React from 'react';
-import TopTabView from './TopTabButton';
+import TopTabView from '../topTabs/TopTabButton';
 import { SceneMap } from 'react-native-tab-view';
 import SlotsScreen from '../../screens/WorkingHours/SlotsScreen';
 import SeatsScreen from '../../screens/WorkingHours/SeatsScreen';

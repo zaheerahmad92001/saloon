@@ -1,29 +1,22 @@
-import React, { useRef, useState, useReducer, useCallback } from "react";
-import { SafeAreaView, View, FlatList, ScrollView } from "react-native";
-import styles from './professionalReportDetailsScreen.style';
-import StatUSerProfileCard from "../../components/statUserProfileCard/statUserProfileCard";
-import Header from "../../components/appHeader";
-import DateNavigator from "../../components/dateNavigator/dateNavigator";
+import React, { useRef, useState, useReducer, useCallback } from 'react';
+import { SafeAreaView, View, FlatList, ScrollView } from 'react-native';
+import styles from './professionalReport.style';
+import StatUSerProfileCard from '../../components/statUserProfileCard/statUserProfileCard';
+import Header from '../../components/appHeader';
+import DateNavigator from '../../components/dateNavigator/dateNavigator';
 import BookingStatics from '../../components/bookingStatics';
-import { bookingHistory, bookingStatus } from '../../staticData';
-import { MediumText, SmallText } from "../../components/Typography";
+import {bookingStatus } from '../../staticData';
+import { MediumText, SmallText } from '../../components/Typography';
 import TodayBookings from '../../components/todaysBookingCard';
 import FilterIcon from '../../components/FilterIcon';
 
 import { BottomSheet } from '../../components/bottomSheet';
 import BookingFilter from '../../components/bookingFilter/BookingFilter';
 import BarChartView from '../../components/graphView/BarChart';
-import { heightPercentageToDP } from "react-native-responsive-screen";
-const ratingsData = [
-    { stars: 5, count: 180 },
-    { stars: 4, count: 80 },
-    { stars: 3, count: 30 },
-    { stars: 2, count: 15 },
-    { stars: 1, count: 7 },
-];
-const totalRatings = ratingsData.reduce((acc, item) => acc + item.count, 0);
+import { heightPercentageToDP } from 'react-native-responsive-screen';
 
-const ServiceReportDetailsScreen = ({ navigation, route }) => {
+
+const ProfessionalServiceReport = ({ navigation, route }) => {
 
     const refRBSheet = useRef();
 
@@ -67,8 +60,6 @@ const ServiceReportDetailsScreen = ({ navigation, route }) => {
     ///////////// Time Bottom Sheet////////
 
 
-
-
     const [selectedIndex, setSelectedIndex] = useState(0);
     const renderStaticsTabs = ({ item, index }) => {
         return (
@@ -83,10 +74,10 @@ const ServiceReportDetailsScreen = ({ navigation, route }) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Header title={'Statistics'} showBackButton onBackPress={() => navigation.goBack()}></Header>
+            <Header title={'Statistics'} showBackButton onBackPress={() => navigation.goBack()} />
 
             <View style={styles.mainContainer}>
-                <ScrollView>
+                <ScrollView showsVerticalScrollIndicator={false}>
                     <StatUSerProfileCard />
                     <DateNavigator />
 
@@ -101,7 +92,7 @@ const ServiceReportDetailsScreen = ({ navigation, route }) => {
 
 
                     <View style={styles.rowView}>
-                        <MediumText text={`Total Booking`} />
+                        <MediumText text={'Total Booking'} />
                         <SmallText text={'See All'} style={styles.seeAllText} />
                     </View>
 
@@ -118,7 +109,7 @@ const ServiceReportDetailsScreen = ({ navigation, route }) => {
                                 filterInnerView={{ paddingVertical: 5 }}
                             />
                         </View>
-                        <View style={styles.borderView}></View>
+                        <View style={styles.borderView} />
                         <BarChartView />
                     </View>
                 </ScrollView>
@@ -141,6 +132,6 @@ const ServiceReportDetailsScreen = ({ navigation, route }) => {
             </BottomSheet>
         </SafeAreaView>
     );
-}
+};
 
-export default ServiceReportDetailsScreen;
+export default ProfessionalServiceReport;

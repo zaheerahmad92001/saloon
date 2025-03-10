@@ -6,29 +6,46 @@ import {
   Keyboard,
   Alert,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
 import {SmallText, XlargeText} from '../../components/Typography';
 import colors from '../../assets/colors';
 import fontsFamily from '../../assets/fontsFamily';
 import {RFValue} from 'react-native-responsive-fontsize';
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {heightPercentageToDP as hp , widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import {AppButton} from '../../components/appButton';
 import Header from '../../components/appHeader';
+import ModalComponent from '../../components/modal';
+import DeleteModal from '../../components/modal/deleteModal';
 
 const OtpView = ({navigation, route}) => {
 
+  const modalRef = useRef();
   const {isDeleteRoute} = route.params || {};
   const [otp, setOtp] = useState('');
 
   const handleNavigation = () => {
     if (isDeleteRoute) {
-      Alert.alert('Deleted Successfully');
-      setTimeout(() => {
-        navigation.goBack()
-      }, 1000);
+       openModal()
     } else {
       navigation.navigate('salonCategory');
+    }
+  };
+
+  const handleGoBack=()=>{
+    closeModal()
+    navigation.navigate('authStack')
+  }
+
+  const openModal = () => {
+    if (modalRef?.current) {
+      modalRef.current.open();
+    }
+  };
+
+  const closeModal = () => {
+    if (modalRef?.current) {
+      modalRef.current.close();
     }
   };
 
@@ -93,6 +110,13 @@ const OtpView = ({navigation, route}) => {
             onPress={handleNavigation}
           />
         </View>
+
+        <ModalComponent
+        ref={modalRef}
+        onClose={closeModal}
+        style={{width: wp(80)}}>
+        <DeleteModal handleDelete={() => {}} handleCancel={isDeleteRoute ? handleGoBack : closeModal} isDeleteRoute = {true} />
+      </ModalComponent>
       </SafeAreaView>
     </TouchableWithoutFeedback>
   );

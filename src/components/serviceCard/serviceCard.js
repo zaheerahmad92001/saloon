@@ -25,7 +25,6 @@ const ServiceCard = props => {
           <Marker />
           <SmallText text={location} style={styles.date} />
         </View>
-        {/* <SmallText text={`Service: ${service}`} style={styles.date} /> */}
         <View style={styles.profContainer}>
           <SmallText
             text={`Service: ${service}`}
@@ -60,6 +59,7 @@ const styles = StyleSheet.create({
   detailsContainer: {
     flex: 1,
     marginLeft: 10,
+    rowGap:5,
   },
   headerContainer: {
     flexDirection: 'row',
@@ -68,13 +68,9 @@ const styles = StyleSheet.create({
   },
   title: {
     color: colors.appBlack,
-    fontFamily:fontsFamily.bold,
-    fontSize:RFValue(10)
   },
   date: {
     color: colors.lightBlack,
-   fontFamily:fontsFamily.regular,
-   fontSize:RFValue(9)
   },
   location: {
     fontSize: RFValue(12),

@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Platform, Text, View } from "react-native";
 import React from "react";
 import {StyleSheet} from 'react-native';
 import { Dropdown } from "react-native-element-dropdown";
@@ -7,11 +7,11 @@ import fontsFamily from "../../assets/fontsFamily";
 import { RFValue } from "react-native-responsive-fontsize";
 
 
-const MyDropdown = ({labelField, placeholder, value, data, onChange}) => {
+const MyDropdown = ({labelField, placeholder, value, data, onChange ,style}) => {
    return (
     <View style={styles.container}>
        <Dropdown 
-      style={styles.dropdown}
+      style={[styles.dropdown, style ]}
       data={data}
       placeholder={placeholder || 'Select an option'}
       labelField="label" 
@@ -67,13 +67,13 @@ const styles = StyleSheet.create({
     
   },
   placeholderStyle : {
-    fontSize: RFValue(12),
+   fontSize:RFValue(Platform.OS==='android'? 13: 12),
     color: colors.lightBlack,
     fontsFamily:fontsFamily.regular,
     marginLeft:10
   },
   selectedTextStyle : {
-    fontSize: RFValue(12),
+ fontSize:RFValue(Platform.OS==='android'? 13: 12),
     color: colors.lightBlack,
     fontsFamily:fontsFamily.regular,
     marginLeft:10

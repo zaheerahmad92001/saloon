@@ -3,30 +3,28 @@ import { StyleSheet } from "react-native";
 import colors from "../../assets/colors";
 import { RFValue } from "react-native-responsive-fontsize";
 import fontsFamily from "../../assets/fontsFamily";
+import { heightPercentageToDP as hp , widthPercentageToDP as wp } from "react-native-responsive-screen";
 
 const styles = StyleSheet.create({
 
-    
     container: {
       flex: 1,
       backgroundColor: colors.white,
-     
     },
     maincontainer: {
       flex: 1,
       backgroundColor: colors.appBG,
-      padding:20
-     
+    },
+    wrapper:{
+      flex:1,
+      marginHorizontal:wp(4),
     },
   
     sectionTitle: {
-      marginTop:30,
-      fontSize: RFValue(16),
-      fontFamily:fontsFamily.bold,
+      marginTop:hp(2),
       marginBottom: 5,
     },
     description: {
-      fontSize: RFValue(12),
       color: colors.lightBlack,
       marginBottom: 20,
     },
@@ -49,22 +47,17 @@ const styles = StyleSheet.create({
       marginBottom: 5,
     },
     percntage:{
-      color:colors.primary
+      color:colors.primary,
     },
     required: {
-      color: 'red',
+      color: colors.error,
     },
     Box: {
-      backgroundColor: '#f9e6e6',
+      backgroundColor:colors.lighterPrimary,
       borderRadius: 5,
       paddingVertical: 8,
       paddingHorizontal:10,
       alignItems: 'flex-end',
-    },
-    input: {
-      fontSize: 16,
-      color: '#d63333',
-      fontWeight: 'bold',
     },
   });
 

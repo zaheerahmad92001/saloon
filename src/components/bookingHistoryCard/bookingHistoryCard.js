@@ -10,6 +10,7 @@ const BookingHistoryCard = ({
   isProfessionalAssigned,
   bookinOptions,
   reviewAndReschedule,
+  handleCancelBooking,
 }) => {
   const {date, time, title, services, professional, price, status, imageUri} = item;
 
@@ -117,7 +118,7 @@ const BookingHistoryCard = ({
           {status !== 'Completed' && (
             <AppButton
               title={cancelBooking}
-              onPress={bookinOptions}
+              onPress={handleCancelBooking}
               style={styles.cancelBookingButton}
               textstyle={styles.cancelBookingText}
             />

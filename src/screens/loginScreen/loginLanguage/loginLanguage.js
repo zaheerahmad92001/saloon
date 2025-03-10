@@ -1,11 +1,11 @@
-import {View, Text, StyleSheet, SafeAreaView, FlatList} from 'react-native';
+import {StyleSheet, SafeAreaView, FlatList} from 'react-native';
 import React, {useState} from 'react';
 import {SmallText, XlargeText} from '../../../components/Typography';
 import colors from '../../../assets/colors';
 import {RFValue} from 'react-native-responsive-fontsize';
 import fontsFamily from '../../../assets/fontsFamily';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {languages, loginlang} from '../../../staticData';
+import {languages} from '../../../staticData';
 import LanguageSelector from '../../../components/languageSelector/languageSelector';
 import {AppButton} from '../../../components/appButton';
 
@@ -23,7 +23,7 @@ const LanguageLogin = () => {
         style={styles.subHeading}
       />
       <FlatList
-        data={loginlang}
+        data={languages}
         keyExtractor={item => item}
         renderItem={({item}) => (
           <LanguageSelector

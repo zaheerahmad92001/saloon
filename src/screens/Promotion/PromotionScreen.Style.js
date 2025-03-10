@@ -20,9 +20,7 @@ const styles = StyleSheet.create({
         marginHorizontal:wp(4),
       },
     discountText: {
-        fontFamily: fontsFamily.bold,
-        fontSize: RFValue(12),
-        marginBottom: 10
+      marginTop:hp(1.5),
     },
     button: {
         marginTop: hp(0),
@@ -32,6 +30,9 @@ const styles = StyleSheet.create({
     buttonText:{
         fontFamily:fontsFamily.regular,
         fontSize:RFValue(13)
+    },
+    contentContainerStyle:{
+      marginTop:hp(1),
     }
 
 });

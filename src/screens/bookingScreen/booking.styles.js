@@ -33,11 +33,11 @@ const styles = StyleSheet.create({
       },
       
       filterView: {
-        paddingTop: hp(2),
+        paddingTop: hp(1),
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'center',
-        marginBottom:hp(1),
+        // marginBottom:hp(1),
       },
       filterIconView: {
         flexDirection: 'row',
@@ -55,6 +55,15 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         color: colors.lightBlack,
       },
+      timePickerContainer: {
+        flex: 0.5,
+    },
+    filterByDate:{
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      marginTop:hp(2)
+    }
 
 });
 

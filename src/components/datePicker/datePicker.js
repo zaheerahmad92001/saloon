@@ -5,15 +5,16 @@ import {
   TouchableOpacity,
   StyleSheet,
 
-} from "react-native";
-import DateTimePickerModal from "react-native-modal-datetime-picker";
-import CalendarIcon from "../../assets/svgs/calendargray.svg"; 
-import ClockIcon from "../../assets/svgs/clock.svg"; 
-import colors from "../../assets/colors";
+} from 'react-native';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import CalendarIcon from '../../assets/svgs/calendargray.svg';
+import ClockIcon from '../../assets/svgs/clock.svg';
+import colors from '../../assets/colors';
 import Downarrowlightblack from '../../assets/svgs/down-arrow-light-black.svg';
 
-const DateTimePickerComponent = ({ mode, onSelect , isworkingHours = false}) => {
-  const [value, setValue] = useState(""); // Stores selected date or time
+const DateTimePickerComponent = (props) => {
+  const {mode, onSelect , isworkingHours = false , slot, field} = props;
+  const [value, setValue] = useState('');
 
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
@@ -38,7 +39,7 @@ const DateTimePickerComponent = ({ mode, onSelect , isworkingHours = false}) => 
     }
 
     setValue(formattedValue);
-    onSelect(formattedValue); // Pass selected value back to parent screen
+    onSelect(formattedValue , slot?.id , field); // Pass selected value back to parent screen
     hideDatePicker();
   };
 
@@ -47,15 +48,15 @@ const DateTimePickerComponent = ({ mode, onSelect , isworkingHours = false}) => 
       <TouchableOpacity style={styles.dateInput} onPress={showPicker}>
 
 
-       
-      {mode === "time" && (!isworkingHours && <ClockIcon style={styles.iconLeft} />)}
+
+      {mode === 'time' && (!isworkingHours && <ClockIcon style={styles.iconLeft} />)}
 
         <Text style={[styles.dateText, !value && styles.placeholder]}>
-          {value || (mode === "date" ? "DD/MM/YYYY" : (isworkingHours ?'00:00':"HH:MM"))}
+          {value || (mode === 'date' ? 'DD/MM/YYYY' : (isworkingHours ? '00:00' : 'HH:MM'))}
         </Text>
 
-        {mode === "time" && (isworkingHours && <Downarrowlightblack style={styles.iconLeft} />)}
-        {mode === "date" && <CalendarIcon style={styles.iconRight} />}
+        {mode === 'time' && (isworkingHours && <Downarrowlightblack style={styles.iconLeft} />)}
+        {mode === 'date' && <CalendarIcon style={styles.iconRight} />}
 
         {/* <CalendarIcon /> */}
         {/* <ClockIcon/> */}

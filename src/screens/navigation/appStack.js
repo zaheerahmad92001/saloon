@@ -10,15 +10,12 @@ import AuthStack from './authStack';
 import AccessAbilitySettings from '../accessAbilitySettings/accessAbilitySettings';
 import AccessAbility from '../accessAbilitScreen/accessAbilityScreen';
 import OtpView from '../otpScreen/otp';
-import Categories from '../categoriesScreen/categories';
-import CategoryListing from '../categoryListing/categoryListing';
 import EditProfile from '../editProfile/editProfile';
 import ReviewScreen from '../reviewScreen/review';
-import Favorites from '../favoritesScreen/favourites';
 import Bookings from '../bookingScreen/booking';
 import SavedCard from '../cardScreen/savedCard/saveCard';
 import AddCard from '../cardScreen/addCard/addCard';
-import invoiceDetail from '../invoiceScreen/invoiceDetail/invoiceDetail';
+import InvoiceDetail from '../invoiceScreen/invoiceDetail/invoiceDetail';
 import InvoiceList from '../invoiceScreen/invoiceList/invoiceList';
 import Complaints from '../complaintsScreens/complaints';
 import AddComplaint from '../addComplaint/addComplaint';
@@ -45,27 +42,21 @@ import AddProfessional from '../addProfessional/addProfessional';
 import ProfessionalSchedule from '../addProfessionalSchedule/addProfessionalSchedule';
 import EditProfessionalSchedule from '../editProfessional/editProfessional';
 import ServiceReport from '../serviceReport/serviceReport';
-
-
-
-
-import LoyaltyPoints from '../loyaltyPointsScreen/loyaltyPoints';
+import WorkingHours from '../WorkingHours/WorkingHours';
+import StatisticsScreen from '../statisticsScreen/statistics';
+import ProfessionalReport from '../professionalReport/professionalReport';
+import ServiceManagment from '../serviceManagement/serviceManagement';
+import AddNewServiceScreen from '../AddNewService/addNewService';
+import SubServiceListScreen from '../subServiceList/subServiceList';
 import RatingAndReview from '../ratingAndReviewScreen/ratingAndReview';
 import AvailableTimeSlot from '../availableTimeSlotScreen/availableTimeSlot';
 import OrderDetail from '../bookingDetailScreen/BookingDetail';
 import PromotionScreen from '../Promotion/PromotionScreen';
 import AddPromotionScreen from '../PromotionAdd/PromotionAdd';
+import EditPromotionScreen from '../EditPromotion/EditPromotion';
 import OffDays from '../OffDays/OffDays';
 import SecurityScreen from '../securityScreen/security';
 import CommissionScreen from '../Commission/commission';
-import EditPromotionScreen from '../EditPromotion/EditPromotion';
-import WorkingHours from '../WorkingHours/WorkingHours';
-import StatisticsScreen from '../statisticsScreen/statistics';
-import ServiceReportDetailsScreen from '../professionalReportDetails/professionalReportDetailsScreen';
-
-import ServiceManagment from '../servicemanagement/servicemanagementscreen';
-import AddNewServiceScreen from '../AddNewService/addnewservice';
-import SubServiceListScreen from '../subservicelist/subservicelist';
 import AssignSubServiceListScreen from '../assingServiceScreen/assignServiceScreen';
 
 const Stack = createNativeStackNavigator();
@@ -96,13 +87,15 @@ function AppStack() {
       <Stack.Screen name="editProfile" component={EditProfile}/>
       <Stack.Screen name="search" component={SearchScreen}/>
       <Stack.Screen name="review" component={ReviewScreen}/>
+      <Stack.Screen name="ratingAndReview" component={RatingAndReview}/>
       <Stack.Screen name="booking" component={Bookings}/>
       <Stack.Screen name="chat" component={Chat}/>
       <Stack.Screen name="notificationSetting" component={NotificationSetting}/>
       <Stack.Screen name="changePassword" component={ChangePassword}/>
       <Stack.Screen name="settings" component={Settings}/>
       <Stack.Screen name="saloonPage" component={SaloonPage}/>
-      <Stack.Screen name="invoiceDetail" component={invoiceDetail}/>
+      <Stack.Screen name="invoiceList" component={InvoiceList}/>
+      <Stack.Screen name="invoiceDetail" component={InvoiceDetail}/>
       <Stack.Screen name="notificationStack" component={NotificationStack} />
       <Stack.Screen name="successScreen" component={SuccessScreen} />
       <Stack.Screen name="accessAbilitySettings" component={AccessAbilitySettings}/>
@@ -124,7 +117,7 @@ function AppStack() {
       <Stack.Screen name="workingHours" component={ WorkingHours}/>
       <Stack.Screen name="serviceManagment" component={ServiceManagment}/>
       <Stack.Screen name="addNewServiceScreen" component={AddNewServiceScreen}/>
-      <Stack.Screen name="subServiceListScreen" component={SubServiceListScreen}/>
+      <Stack.Screen name="subServiceList" component={SubServiceListScreen}/>
       <Stack.Screen name="assignSubServiceListScreen" component={AssignSubServiceListScreen}/>
       <Stack.Screen name="professionals" component={Professionals}/>
       <Stack.Screen name="addProfessional" component={AddProfessional}/>
@@ -132,30 +125,18 @@ function AppStack() {
       <Stack.Screen name="editProfessionalSchedule" component={EditProfessionalSchedule}/>
       <Stack.Screen name="serviceReport" component={ServiceReport}/>
       <Stack.Screen name="statScreen" component={StatisticsScreen}/>
-      <Stack.Screen name="serviceReportDetailsScreen" component={ServiceReportDetailsScreen}/>
+      <Stack.Screen name="ProfessionalService" component={ProfessionalReport}/>
+      <Stack.Screen name="commission" component={CommissionScreen}/>
 
-      
-      
-
-      <Stack.Screen name="categories" component={Categories}/>
-      <Stack.Screen name="categoryListing" component={CategoryListing}/>
-      <Stack.Screen name="favorites" component={Favorites} />
       <Stack.Screen name="addCard" component={AddCard}/>
       <Stack.Screen name="savedCard" component={SavedCard}/>
-      <Stack.Screen name="invoiceList" component={InvoiceList}/>
-      <Stack.Screen name="loyaltyPoints" component={LoyaltyPoints}/>
       <Stack.Screen name="deleteAccount" component={DeleteAccount}/>
-      <Stack.Screen name="ratingAndReview" component={RatingAndReview}/>
+      
       <Stack.Screen name="availableTimeSlot" component={AvailableTimeSlot}/>
       <Stack.Screen name="orderDetail" component={OrderDetail}/>
       <Stack.Screen name="promotionScreen" component={PromotionScreen}/>
       <Stack.Screen name="addPromotionScreen" component={AddPromotionScreen}/>
-      <Stack.Screen name="commission" component={CommissionScreen}/>
       <Stack.Screen name="editPromotionScreen" component={EditPromotionScreen}/>
-
-
-
-
 
     </Stack.Navigator>
   );

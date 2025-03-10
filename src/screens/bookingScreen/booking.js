@@ -6,31 +6,36 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import ConfirmationSheet from '../../components/modal/confirmationSheet';
 import {BottomSheet} from '../../components/bottomSheet';
 import {bookingHistory, bookingStatus} from '../../staticData';
 import Filter from '../../assets/svgs/filter-search.svg';
-import {MediumText} from '../../components/Typography';
+import {MediumText, SmallText} from '../../components/Typography';
 import BookingFilter from '../../components/bookingFilter/BookingFilter';
 import AssignProfessional from '../../components/modal/AssignProfessional';
 import styles from './booking.styles';
 import BookingStatics from '../../components/bookingStatics';
 import colors from '../../assets/colors';
+import CancelBooking from '../../components/modal/cancelBooking';
+import ChangeProfessional from '../../components/modal/changeProfessional';
+import FilterIcon from '../../components/FilterIcon';
+import DateTimePickerComponent from '../../components/datePicker/datePicker';
 
 const Bookings = ({navigation, route}) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const refRBSheet = useRef();
   const refRBSheetAssignProfessional = useRef();
   const refRBSheetFilter = useRef();
+  const refCancelBooking = useRef();
 
   const [state, updateState] = useReducer(
     (state, newState) => ({...state, ...newState}),
     {
       selectedItem: null,
       isChnagePrrofessional: false,
+      selectedDate: null,
     },
   );
-  const {selectedItem, isChnagePrrofessional} = state;
+  const {selectedItem, isChnagePrrofessional, selectedDate} = state;
 
   const filteredData = useMemo(() => {
     const statusMap = ['All', 'Pending', 'Confirmed', 'Cancelled', 'Completed'];
@@ -48,16 +53,18 @@ const Bookings = ({navigation, route}) => {
     }
   };
 
-  const reviewAndReschedule =(item)=>{
+  const reviewAndReschedule = item => {
     const isCompleted = item.status === 'Completed';
     if (isCompleted) {
       navigation.navigate('invoiceDetail');
     } else {
-      navigation.navigate('availableTimeSlot',{isReschedule:true});
+      navigation.navigate('availableTimeSlot', {isReschedule: true});
     }
+  };
 
-  }
-
+  const handleCancelBooking = () => {
+    hideBottomSheets();
+  };
 
   const handleChangeProfessional = () => {
     updateState({isChnagePrrofessional: true});
@@ -79,14 +86,22 @@ const Bookings = ({navigation, route}) => {
     hideBottomSheets();
   };
 
-
-  const openBottomSheet = useCallback(item => {
+  const openBottomSheet = useCallback((item, sheetName) => {
     updateState({selectedItem: item});
+
+    if (sheetName === 'cancel') {
+      if (refCancelBooking.current) {
+        setTimeout(() => refCancelBooking.current.present(), 0);
+      }
+      return true;
+    }
+
     if (item.status === 'Pending') {
       if (refRBSheetAssignProfessional.current) {
         setTimeout(() => refRBSheetAssignProfessional.current.present(), 0);
       }
     }
+
     if (item.status === 'Confirmed') {
       if (refRBSheet.current) {
         setTimeout(() => refRBSheet.current.present(), 0);
@@ -94,7 +109,7 @@ const Bookings = ({navigation, route}) => {
     }
   }, []);
 
-  const openBottomSheetFilter = () => {
+  const openFilter = () => {
     if (refRBSheetFilter.current) {
       refRBSheetFilter.current.present();
     }
@@ -107,12 +122,18 @@ const Bookings = ({navigation, route}) => {
   };
 
   const hideBottomSheets = () => {
+    updateState({isChnagePrrofessional: false, selectedItem: ''});
+
     if (refRBSheetAssignProfessional.current) {
-      updateState({isChnagePrrofessional: false});
       refRBSheetAssignProfessional.current.dismiss();
     }
+
     if (refRBSheetFilter.current) {
       refRBSheetFilter.current.dismiss();
+    }
+
+    if (refCancelBooking.current) {
+      refCancelBooking.current.dismiss();
     }
   };
 
@@ -123,6 +144,7 @@ const Bookings = ({navigation, route}) => {
         isProfessionalAssigned={true}
         bookinOptions={() => handleBookingOptions(item)}
         reviewAndReschedule={() => reviewAndReschedule(item)}
+        handleCancelBooking={() => openBottomSheet(item, 'cancel')}
       />
     );
   };
@@ -156,14 +178,22 @@ const Bookings = ({navigation, route}) => {
             />
           </View>
 
-          <View style={styles.filterView}>
-            <Pressable
-              onPress={openBottomSheetFilter}
-              style={styles.filterIconView}>
-              <Filter />
-              <MediumText text={'Filter'} style={styles.textStyle} />
-            </Pressable>
-          </View>
+          {selectedIndex >= 2 && (
+            <View style={styles.filterByDate}>
+              <SmallText text={'Filter by date'} />
+              <View style={styles.timePickerContainer}>
+              <DateTimePickerComponent
+                mode="date"
+                onSelect={date => updateState({selectedDate: date})}
+              />
+             </View>
+            </View>
+          )}
+          {selectedIndex <= 1 && (
+            <View style={styles.filterView}>
+              <FilterIcon handleFilterPress={openFilter} />
+            </View>
+          )}
 
           <FlatList
             data={filteredData}
@@ -181,7 +211,7 @@ const Bookings = ({navigation, route}) => {
         scrollEnabled={false}
         disableDynamicSizing={true}
         height={hp(38)}>
-        <ConfirmationSheet
+        <ChangeProfessional
           onCancel={hideConfirmationSheet}
           onAgree={handleChangeProfessional}
         />
@@ -216,6 +246,18 @@ const Bookings = ({navigation, route}) => {
           onCancel={cancelFilter}
           onApply={ApplyFilter}
           onClear={clearFilter}
+        />
+      </BottomSheet>
+
+      <BottomSheet
+        refRBSheet={refCancelBooking}
+        onClose={() => hideBottomSheets()}
+        scrollEnabled={false}
+        disableDynamicSizing={true}
+        height={hp(35)}>
+        <CancelBooking
+          onCancel={() => hideBottomSheets()}
+          onApply={handleCancelBooking}
         />
       </BottomSheet>
     </SafeAreaView>

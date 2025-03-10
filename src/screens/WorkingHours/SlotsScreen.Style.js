@@ -1,13 +1,13 @@
+import { StyleSheet } from 'react-native';
+import colors from '../../assets/colors';
+import fontsFamily from '../../assets/fontsFamily';
+import { RFValue } from 'react-native-responsive-fontsize';
+import { widthPercentageToDP } from 'react-native-responsive-screen';
 
-import React from "react";
-import { StyleSheet } from "react-native";
-import colors from "../../assets/colors";
-import fontsFamily from "../../assets/fontsFamily";
-import { RFValue } from "react-native-responsive-fontsize";
-import { heightPercentageToDP, widthPercentageToDP } from "react-native-responsive-screen";
 const styles = StyleSheet.create({
     container: {
-        marginTop: 5
+        flex:1,
+        marginTop: 5,
     },
     timeRow: {
         flexDirection: 'row',
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         fontWeight:'500',
         fontSize: RFValue(12),
         marginBottom: 10,
-        marginTop: 15
+        marginTop: 15,
     },
     addMoreView: {
         borderColor: colors.primary,
@@ -47,10 +47,8 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 20,
         width: widthPercentageToDP(33),
-        marginBottom: 10
-        //height:heightPercentageToDP(2)
-
-    }
+        marginBottom: 10,
+    },
 
 });
 

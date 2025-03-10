@@ -1,15 +1,17 @@
-import React, { useCallback, useReducer, useRef, useState } from "react";
-import { FlatList, SafeAreaView, View } from "react-native";
-import styles from "./professionals.style";
+import React, { useCallback, useReducer, useRef, useState } from 'react';
+import { FlatList, SafeAreaView, View } from 'react-native';
+import styles from './professionalsTab.style';
 
-import FilterIcon from "../../../components/FilterIcon";
-import OverViewDropdown from '../../../components/overviewDropdown/overviewDropdown';
-import StaticsProfessionalCard from "../../../components/statisticsTab/staticsProfessionalCard";
+import FilterIcon from '../../components/FilterIcon';
+import OverViewDropdown from '../../components/overviewDropdown/overviewDropdown';
+import StaticsProfessionalCard from '../../components/statisticsTab/staticsProfessionalCard';
 
-import { BottomSheet } from '../../../components/bottomSheet';
-import BookingFilter from '../../../components/bookingFilter/BookingFilter';
-import { heightPercentageToDP } from "react-native-responsive-screen";
-import { useNavigation } from "@react-navigation/native";
+import { BottomSheet } from '../../components/bottomSheet';
+import BookingFilter from '../../components/bookingFilter/BookingFilter';
+import { heightPercentageToDP } from 'react-native-responsive-screen';
+import { useNavigation } from '@react-navigation/native';
+
+
 const ProfessionalScreen = () => {
     const navigation = useNavigation();
     const refRBSheet = useRef();
@@ -54,16 +56,14 @@ const ProfessionalScreen = () => {
 
 
     const handNavigation = () => {
-        navigation.navigate('serviceReportDetailsScreen');
+        navigation.navigate('ProfessionalService');
     };
-
-    const handleFilterPress = () => { }
 
     const renderCard = ({ item }) => {
         return (
             <StaticsProfessionalCard onClick={() => handNavigation()} />
-        )
-    }
+        );
+    };
 
     return (
         <SafeAreaView style={styles.container}>
@@ -83,7 +83,8 @@ const ProfessionalScreen = () => {
             <FlatList
                 data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
                 renderItem={renderCard}
-            ></FlatList>
+                showsVerticalScrollIndicator={false}
+             />
 
 
             {/* Booking Filter */}
@@ -104,5 +105,5 @@ const ProfessionalScreen = () => {
 
         </SafeAreaView>
     );
-}
-export default ProfessionalScreen
+};
+export default ProfessionalScreen;

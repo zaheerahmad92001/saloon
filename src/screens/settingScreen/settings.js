@@ -4,33 +4,44 @@ import Header from '../../components/appHeader';
 import MenuItem from '../../components/menItems/menuItems';
 import {settingOptions} from '../../staticData';
 import colors from '../../assets/colors';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
-
-const Settings = ({navigation,route}) => {
-
-  const handleNavigation =(routeName)=>{
-    navigation.navigate(routeName,{isSettingRoute:true})
-  }
+const Settings = ({navigation, route}) => {
+  
+  const handleNavigation = routeName => {
+    let screenName = '';
+    if (routeName === 'accessAbilitySettings') {
+      screenName = 'accessAbility';
+      navigation.navigate('security', {screenName});
+    } else if (routeName === 'deleteAccount') {
+      screenName = 'deleteAccount';
+      navigation.navigate('security', {screenName});
+    } else {
+      navigation.navigate(routeName);
+    }
+  };
   return (
     <SafeAreaView style={styles.container}>
-      <Header title={'Settings'} showBackButton onBackPress={()=>navigation.goBack()}/>
-    <View style={styles.contentContainer}>
-    <View style={styles.wrapper}>
-      <View style={styles.menuContainer}>
-        {settingOptions.map((option, index) => (
-          <MenuItem
-            key={index}
-            title={option.title}
-            img={option.img}
-            showImage={false}
-            onPress={() => handleNavigation(option.routeName)}
-          />
-        ))}
+      <Header
+        title={'Settings'}
+        showBackButton
+        onBackPress={() => navigation.goBack()}
+      />
+      <View style={styles.contentContainer}>
+        <View style={styles.wrapper}>
+          <View style={styles.menuContainer}>
+            {settingOptions.map((option, index) => (
+              <MenuItem
+                key={index}
+                title={option.title}
+                img={option.img}
+                showImage={false}
+                onPress={() => handleNavigation(option.routeName)}
+              />
+            ))}
+          </View>
+        </View>
       </View>
-      </View>
-      </View>
-
     </SafeAreaView>
   );
 };
@@ -38,15 +49,15 @@ const Settings = ({navigation,route}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:colors.white,
+    backgroundColor: colors.white,
   },
-  contentContainer:{
-    flex:1,
-    backgroundColor:colors.white,
+  contentContainer: {
+    flex: 1,
+    backgroundColor: colors.white,
   },
-  wrapper:{
-    flex:1,
-    marginHorizontal:wp(4)
+  wrapper: {
+    flex: 1,
+    marginHorizontal: wp(4),
   },
   menuContainer: {
     marginTop: 10,

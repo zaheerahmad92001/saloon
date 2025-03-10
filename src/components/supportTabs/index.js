@@ -1,5 +1,5 @@
 import React from 'react';
-import TopTabView from '../../components/loyaltyTabs/TopTabButton';
+import TopTabView from '../topTabs/TopTabButton';
 import { SceneMap } from 'react-native-tab-view';
 import Faq from '../../screens/supportScreen/faq';
 import CustomerSupport from '../../screens/supportScreen/customerSupport';

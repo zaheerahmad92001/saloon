@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
   dateItem: {
     paddingHorizontal: 5,
     borderRadius: 5,
-    backgroundColor: colors.lighterPrimary,
+    backgroundColor: colors.lightPrimary,
     alignItems: 'center',
     justifyContent: 'center',
     width: wp(13),
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
   dayItem: {
     paddingHorizontal: 5,
     borderRadius: 5,
-    backgroundColor: colors.lighterPrimary,
+    backgroundColor: colors.lightPrimary,
     alignItems: 'center',
     justifyContent: 'center',
     width: wp(12),

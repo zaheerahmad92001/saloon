@@ -1,8 +1,8 @@
 import React from 'react';
-import TopTabView from './TopTabButton';
+import TopTabView from '../topTabs/TopTabButton';
 import { SceneMap } from 'react-native-tab-view';
-import ServicesScreen from '../../screens/statisticsScreen/serviceScreen/servicesScreen';
-import ProfessionalScreen from '../../screens/statisticsScreen/professionalsScreen/professionals';
+import ServicesScreen from '../../screens/serviceScreen/servicesScreen';
+import ProfessionalScreen from '../../screens/professionalsTab/professionalsTab';
 
 const scenes = SceneMap({
   service: () => <ServicesScreen />,

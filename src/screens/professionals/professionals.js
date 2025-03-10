@@ -6,7 +6,6 @@ import styles from './professionals.style';
 import {MediumText} from '../../components/Typography';
 import OverViewDropdown from '../../components/overviewDropdown/overviewDropdown';
 import {mockData} from '../../staticData';
-import CustomersCard from '../../components/customersCard/CustomersCard';
 import { AppButton } from '../../components/appButton';
 import StaticsProfessionalCard from '../../components/statisticsTab/staticsProfessionalCard';
 
@@ -20,9 +19,12 @@ const Location = ({navigation, route}) => {
     {label: 'Weekly', value: '5'},
   ];
 
+  const handNavigation = () => {
+    navigation.navigate('ProfessionalService');
+};
+
   const renderItem = ({item, index}) => {
-    // return <CustomersCard item={item} />;
-    return <StaticsProfessionalCard/>
+    return <StaticsProfessionalCard onClick={() => handNavigation()}/>
   };
 
   return (

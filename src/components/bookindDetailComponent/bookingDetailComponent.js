@@ -18,9 +18,7 @@ const BookingCard = (props) => {
       <View style={styles.statusView}>
       <LargeText text={'Booking Details'} style={styles.title}/>
       <View style={[styles.statusValueView, {backgroundColor:colors.darkGray}]}>
-        <Text style={{fontFamily:fontsFamily.regular,fontSize:RFValue(10)}}>
-          Pending
-        </Text>
+        <SmallText text={'Pending'}/>
         </View>
       </View>
      
@@ -49,25 +47,27 @@ const BookingCard = (props) => {
 
       {services.map((service, index) => (
         <View key={index} style={styles.row}>
-          <SmallText text={service.name} style={styles.pricelabel} />
+          <SmallText text={service.name} style={styles.value} />
           <SmallText text={`SAR ${service.price}`} style={styles.value}/>
         </View>
       ))}
-<View style={styles.row}>
+      
+      <View style={styles.row}>
         <Text style={[styles.label, styles.discount]}>Discount</Text>
         <Text style={[styles.price, styles.discount]}>SAR {-20}</Text>
       </View>
+
       <View style={styles.divider} />
 
       {/* Pricing Summary */}
       <View style={styles.row}>
-          <SmallText text={'Total:'} style={[styles.label,{color:colors.appBlack}]} />
-          <SmallText text={`SAR ${total.toFixed(2)}`} style={[styles.value,{color:colors.appBlack}]}/>
+          <SmallText text={'Total:'} style={[{color:colors.appBlack}]} />
+          <SmallText text={`SAR ${total.toFixed(2)}`} style={{color:colors.appBlack}}/>
       </View>
 
       <View style={styles.row}>
-        <SmallText text={'VAT 15%:'} style={[styles.label,{color:colors.lightBlack}]} />
-        <SmallText text={`SAR ${vat.toFixed(2)}`} style={[styles.value]}/>
+        <SmallText text={'VAT 15%:'} style={styles.label} />
+        <SmallText text={`SAR ${vat.toFixed(2)}`} style={styles.label}/>
       </View>
 
       <View style={styles.row}>
@@ -83,7 +83,6 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: colors.white,
     marginVertical: 15,
-    //marginHorizontal:wp(4),
     borderRadius: 10,
     paddingTop:16,
     paddingHorizontal:10,
@@ -107,8 +106,6 @@ const styles = StyleSheet.create({
   title: {
     textAlign:"left",
     marginBottom: 10,
-    fontFamily:fontsFamily.bold,
-    fontSize:RFValue(10)
     },
   subTitle: {
     fontSize: RFValue(14),
@@ -121,28 +118,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginVertical: 4,
   },
-  label: {
-    fontWeight:'500',
-    fontFamily:fontsFamily.semiBold,
-
-    fontSize:RFValue(11)
-  },
 
   pricelabel: {
-    fontWeight:'500',
-    fontFamily:fontsFamily.regular,
-    fontSize:RFValue(10),
     color:colors.lightBlack
   },
   value: {
     color: colors.lightBlack,
-    fontWeight:'500',
-    fontFamily:fontsFamily.regular,
-    fontSize:RFValue(10)
   },
   grandTotal: {
-    fontSize: RFValue(10), 
-    fontFamily:fontsFamily.semiBold, 
     color: colors.appBlack,
     paddingBottom:10
   },
@@ -160,6 +143,9 @@ const styles = StyleSheet.create({
       color: colors.success,
       paddingBottom:10
     },
+    label:{
+      color:colors.lightBlack
+    }
 });
 
 export default BookingCard;

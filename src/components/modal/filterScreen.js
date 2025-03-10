@@ -11,6 +11,8 @@ import fontsFamily from '../../assets/fontsFamily';
 import DatePickerComponent from '../datePicker/datePicker';
 import {AppButton} from '../appButton';
 import { requestStatus } from '../../staticData';
+
+
 const FilterScreen = props => {
   const {onCancel, onApply} = props;
   const [selectedValue, setSelectedValue] = useState(null);
@@ -112,13 +114,11 @@ const styles = StyleSheet.create({
   filterText: {
     fontFamily: fontsFamily.bold,
     fontSize: RFValue(14),
-    //alignItems:'center'
   },
-  statusText: {
-    fontFamily: fontsFamily.bold,
-    fontSize: RFValue(13),
-    //alignItems:'center'
-  },
+  // statusText: {
+  //   fontFamily: fontsFamily.bold,
+  //   fontSize: RFValue(13),
+  // },
 
   statusContainer: {
     flexDirection: 'row',
@@ -149,7 +149,6 @@ const styles = StyleSheet.create({
 
   subContainer: {
     marginVertical: hp(0.5),
-    //marginTop:5
   },
 
   headingtext: {
@@ -164,7 +163,6 @@ const styles = StyleSheet.create({
     fontFamily: fontsFamily.medium,
     fontWeight: '400',
     marginBottom: 4,
-    // marginVertical:hp(2),
   },
   complaintTypeText: {
     fontSize: RFValue(12),
@@ -173,7 +171,6 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     marginBottom: 4,
     marginTop: 10,
-    // marginVertical:hp(2),
   },
 
   inputstyles: {
@@ -220,7 +217,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   dateView: {
-    //flex: 1,
     paddingHorizontal: 0,
     marginTop: 5,
   },

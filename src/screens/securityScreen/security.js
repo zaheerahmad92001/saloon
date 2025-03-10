@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -14,17 +14,21 @@ import {RFValue} from 'react-native-responsive-fontsize';
 import fontsFamily from '../../assets/fontsFamily';
 
 const SecurityScreen = ({navigation, route}) => {
-  const {isSettingRoute} = route.params || {};
+  const {screenName} = route.params || {};
   const [pin, setPin] = useState('');
 
- const handleNavigation=()=>{
-  if(isSettingRoute){
-    navigation.navigate('deleteAccount')
-  }
-  else{
-     navigation.goBack()
-  }
- }
+  useEffect(() => {
+    if (pin.length === 6 && screenName === 'deleteAccount') {
+      navigation.navigate('deleteAccount');
+    }
+    if (pin.length === 6 && screenName === 'accessAbility') {
+      navigation.navigate('accessAbilitySettings');
+    }
+  }, [pin, navigation, screenName]);
+
+  const handleNavigation = () => {
+    navigation.goBack();
+  };
 
   const handlePress = num => {
     if (pin.length < 6) {
@@ -39,7 +43,18 @@ const SecurityScreen = ({navigation, route}) => {
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.container}>
-        <MediumText text={'Set Up your Password'} style={styles.header} />
+        <MediumText
+          text={
+            screenName === 'deleteAccount'
+              ? 'Touch ID or Enter Passcode'
+              : 'Set Up your Password'
+          }
+          style={
+            screenName === 'deleteAccount'
+              ? [styles.header, {color: colors.lightBlack}]
+              : [styles.header]
+          }
+        />
 
         <View style={styles.pinContainer}>
           {[...Array(6)].map((_, index) => (
@@ -69,9 +84,11 @@ const SecurityScreen = ({navigation, route}) => {
           ))}
         </View>
 
-        {isSettingRoute ? (
+        {screenName === 'deleteAccount' ? (
           <Pressable onPress={handleNavigation}>
-            <Text style={[styles.saveButtonText,{color:colors.appBlack}]}>{'Cancel'}</Text>
+            <Text style={[styles.saveButtonText, {color: colors.appBlack}]}>
+              {'Cancel'}
+            </Text>
           </Pressable>
         ) : (
           <Pressable

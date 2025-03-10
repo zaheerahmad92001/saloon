@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
-import { View, TouchableOpacity, SafeAreaView, Text } from 'react-native';
-import React, { useRef, useReducer, useState } from 'react';
+import {View, TouchableOpacity, SafeAreaView, Text} from 'react-native';
+import React, {useRef, useReducer, useState} from 'react';
 
 import TextField from '../../components/textField/textField';
 import images from '../../assets/images';
@@ -10,39 +10,36 @@ import FastImage from 'react-native-fast-image';
 import Camera from '../../assets/svgs/camera.svg';
 import ModalComponent from '../../components/modal';
 import MediaPicker from '../../components/modal/mediaPicker';
-import { captureImageWithCamera, pickImageFromLibrary } from '../../functions';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { AppButton } from '../../components/appButton';
+import {captureImageWithCamera, pickImageFromLibrary} from '../../functions';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {AppButton} from '../../components/appButton';
 import PhoneInput from 'react-native-phone-number-input';
-import { SmallText } from '../../components/Typography';
+import {SmallText} from '../../components/Typography';
 import colors from '../../assets/colors';
 import fontsFamily from '../../assets/fontsFamily';
-import { RFValue } from 'react-native-responsive-fontsize';
+import {RFValue} from 'react-native-responsive-fontsize';
 import DownArrow from '../../assets/svgs/downarrow.svg';
 import MyDropdown from '../../components/dropdown/dropdown';
 
-
-const EditProfile = ({ navigation, route }) => {
-
+const EditProfile = ({navigation, route}) => {
   const [selectedValue, setSelectedValue] = useState(null);
   const items = [
-    { label: 'Option A', value: '1' },
-    { label: 'Option B', value: '2' },
-    { label: 'Option C', value: '3' },
-    { label: 'Option D', value: '4' },
-    { label: 'Option E', value: '5' },
+    {label: 'Option A', value: '1'},
+    {label: 'Option B', value: '2'},
+    {label: 'Option C', value: '3'},
+    {label: 'Option D', value: '4'},
+    {label: 'Option E', value: '5'},
   ];
 
   const emailRef = useRef(null);
   const ownerRef = useRef(null);
   const postCodeRef = useRef(null);
-  const modalRef = useRef()
+  const modalRef = useRef();
   const phoneInput = useRef(null);
   const addressRef = useRef(null);
 
-
   const [state, updateState] = useReducer(
-    (state, newState) => ({ ...state, ...newState }),
+    (state, newState) => ({...state, ...newState}),
     {
       isVisible: false,
       profileImage: null,
@@ -50,15 +47,25 @@ const EditProfile = ({ navigation, route }) => {
       ownerName: null,
       email: null,
       phoneNumber: null,
-      formattedValue:null,
+      formattedValue: null,
       countryCode: null,
       dob: null,
     },
   );
-  const { isVisible, profileImage, salonName, ownerName, email, phoneNumber, formattedValue , countryCode, dob } = state;
+  const {
+    isVisible,
+    profileImage,
+    salonName,
+    ownerName,
+    email,
+    phoneNumber,
+    formattedValue,
+    countryCode,
+    dob,
+  } = state;
 
   const handleImagePicked = image => {
-    updateState({ isVisible: false, profileImage: image.uri });
+    updateState({isVisible: false, profileImage: image.uri});
   };
 
   const openModal = () => {
@@ -79,7 +86,7 @@ const EditProfile = ({ navigation, route }) => {
     navigation.goBack();
   };
 
-  const updateProfile = () => { };
+  const updateProfile = () => {};
 
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -88,13 +95,13 @@ const EditProfile = ({ navigation, route }) => {
         showBackButton={true}
         onBackPress={handleNavigation}
       />
-      <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.container}>
+      <View style={styles.container}>
+        <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.profileImageContainer}>
             <View style={styles.innerProfileImageContainer}>
               <View style={styles.ImageContainer}>
                 <FastImage
-                  source={profileImage ? { uri: profileImage } : images.room}
+                  source={profileImage ? {uri: profileImage} : images.room}
                   // resizeMode={FastImage.resizeMode.contain}
                   style={styles.profileImage}
                 />
@@ -111,7 +118,7 @@ const EditProfile = ({ navigation, route }) => {
               placeholder={'Salon Name'}
               label={'Salon Name'}
               onChangeText={val => {
-                updateState({ salonName: val });
+                updateState({salonName: val});
               }}
               value={salonName}
               returnKeyType="next"
@@ -125,7 +132,7 @@ const EditProfile = ({ navigation, route }) => {
               ref={ownerRef}
               label={'Owner Name'}
               onChangeText={val => {
-                updateState({ ownerName: val });
+                updateState({ownerName: val});
               }}
               value={ownerName}
               returnKeyType="next"
@@ -146,8 +153,10 @@ const EditProfile = ({ navigation, route }) => {
             onChangeText={text => {
               updateState({phoneNumber: text});
             }}
-            onChangeFormattedText={text => updateState({formattedValue:text})}
-            onChangeCountry={country => updateState({countryCode: country.callingCode})}
+            onChangeFormattedText={text => updateState({formattedValue: text})}
+            onChangeCountry={country =>
+              updateState({countryCode: country.callingCode})
+            }
             withShadow={false}
             containerStyle={styles.phoneContainer}
             textContainerStyle={styles.textInput}
@@ -156,7 +165,7 @@ const EditProfile = ({ navigation, route }) => {
               placeholderTextColor: colors.lightBlack,
               fontFamily: fontsFamily.regular,
               fontSize: RFValue(12),
-              style: { paddingLeft: 0, marginLeft: -20, textAlign: 'left' },
+              style: {paddingLeft: 0, marginLeft: -20, textAlign: 'left'},
             }}
             renderDropdownImage={<DownArrow />}
           />
@@ -167,7 +176,7 @@ const EditProfile = ({ navigation, route }) => {
               ref={emailRef}
               label={'Email(Optional)'}
               onChangeText={val => {
-                updateState({ email: val });
+                updateState({email: val});
               }}
               value={email}
               returnKeyType="next"
@@ -177,7 +186,7 @@ const EditProfile = ({ navigation, route }) => {
           </View>
 
           <View style={styles.dropdownContainer}>
-          <SmallText text={'City'} style={styles.label} />
+            <SmallText text={'City'} style={styles.label} />
             <MyDropdown
               data={items}
               value={selectedValue}
@@ -185,7 +194,6 @@ const EditProfile = ({ navigation, route }) => {
               placeholder="Select Status"
             />
           </View>
-
 
           <View style={styles.inputContainer}>
             <TextField
@@ -201,33 +209,30 @@ const EditProfile = ({ navigation, route }) => {
               onSubmitEditing={() => addressRef.current?.focus()}
             />
           </View>
-         
-            <TextField
-              ref={emailRef}
-              placeholder={'Address'}
-              label={'Address'}
-              multiline={true}
-              onChangeText={val => {
-                updateState({email: val});
-              }}
-              value={email}
-              returnKeyType="done"
-              blurOnSubmit={true}
-              style={{minHeight:80,}}
-              inputStyle={{minHeight:80}}
-            />
- 
-          <AppButton
-            onPress={updateProfile}
-            title={'Update Profile'}
-            style={styles.button}
-          />
-        </View>
-      </KeyboardAwareScrollView>
 
-      <ModalComponent
-        ref={modalRef}
-        onClose={closeModal}>
+          <TextField
+            ref={emailRef}
+            placeholder={'Address'}
+            label={'Address'}
+            multiline={true}
+            onChangeText={val => {
+              updateState({email: val});
+            }}
+            value={email}
+            returnKeyType="done"
+            blurOnSubmit={true}
+            style={styles.addressInput}
+            inputStyle={{minHeight: 80}}
+          />
+        </KeyboardAwareScrollView>
+        <AppButton
+          onPress={updateProfile}
+          title={'Update Profile'}
+          style={styles.button}
+        />
+      </View>
+
+      <ModalComponent ref={modalRef} onClose={closeModal}>
         <MediaPicker
           onCancel={closeModal}
           captureWithCamera={() => {

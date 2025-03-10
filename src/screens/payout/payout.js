@@ -14,7 +14,7 @@ import AnaqaPills from '../../components/AnaqaPills';
 import GraphTabs from '../../components/graphTabs';
 import AnaqaPayoutStatistics from '../../components/AnaqaPayoutStatistics';
 import BezierGraphView from '../../components/graphView/BezierGraphView';
-import {graphTabs, mockData} from '../../staticData';
+import {graphTabs, invoices} from '../../staticData';
 import {BottomSheet} from '../../components/bottomSheet';
 import {
   heightPercentageToDP,
@@ -22,7 +22,7 @@ import {
 } from 'react-native-responsive-screen';
 import BookingFilter from '../../components/bookingFilter/BookingFilter';
 import {ScrollView} from 'react-native-gesture-handler';
-import CustomersCard from '../../components/customersCard/CustomersCard';
+import InvoiceCard from '../../components/invoiceCard/invoiceCard';
 
 const Payouts = ({navigation, route}) => {
   const insets = useSafeAreaInsets();
@@ -62,14 +62,18 @@ const Payouts = ({navigation, route}) => {
   const cancelFilter = useCallback(() => {
     hideBottomSheet();
   }, []);
-
-  const renderCustomers = ({item}) => (
-    <CustomersCard
-      item={item}
-      onFavorite={() => {}}
-      showFavoriteButton={true}
-    />
-  );
+    
+  const handleNavigation = (routeName) => {
+      navigation.navigate(routeName);
+    };
+  
+    const renderItem = ({item, index}) => {
+      return <InvoiceCard 
+      invoice={item} 
+      handleOnPress={()=>handleNavigation('invoiceDetail')} 
+      showStatus={false}
+      />;
+    };
 
   return (
     <View style={[styles.container, {paddingTop: insets.top}]}>
@@ -107,16 +111,16 @@ const Payouts = ({navigation, route}) => {
           </View>
           <View style={{marginHorizontal: widthPercentageToDP(4)}}>
             <View style={styles.sectionHeader}>
-              <XlargeText text={'Professionals'} style={styles.sectionTitle} />
-              <TouchableOpacity onPress={() => {}}>
+              <XlargeText text={'Invoices'} style={styles.sectionTitle} />
+              <TouchableOpacity onPress={()=>handleNavigation('invoiceList')}>
                 <SmallText text={'See All'} style={styles.seeAllText} />
               </TouchableOpacity>
             </View>
 
             <FlatList
-              data={mockData}
+              data={invoices}
               keyExtractor={item => item.id.toString()}
-              renderItem={renderCustomers}
+              renderItem={renderItem}
               scrollEnabled={false}
               contentContainerStyle={{paddingBottom: heightPercentageToDP(2)}}
             />

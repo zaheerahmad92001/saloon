@@ -9,6 +9,7 @@ import { heightPercentageToDP, widthPercentageToDP } from "react-native-responsi
 const styles = StyleSheet.create({
 
   container: {
+    flex:1,
     marginTop: 5
   },
   slotContainer: {
@@ -40,8 +41,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     width: widthPercentageToDP(33),
     marginBottom: 10
-
-}
+},
+label: {
+  fontSize: RFValue(11),
+  fontFamily: fontsFamily.regular,
+  marginBottom: 5,
+},
+removeText: {
+  color: colors.error,
+  fontSize: RFValue(11),
+},
+subServiceHeader: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+},
 
 
 });

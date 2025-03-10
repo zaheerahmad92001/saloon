@@ -2,7 +2,6 @@ import React, {useCallback, useReducer, useRef, useState} from 'react';
 import {View, SafeAreaView, Pressable} from 'react-native';
 import styles from './serviceReport.style';
 import Header from '../../components/appHeader';
-import BarChartView from '../../components/graphView/BarChart';
 import ServiceEstTime from '../../components/serviceTime';
 
 import TodayBookings from '../../components/todaysBookingCard';
@@ -15,7 +14,7 @@ import {BottomSheet} from '../../components/bottomSheet';
 import BookingFilter from '../../components/bookingFilter/BookingFilter';
 import BezierGraphView from '../../components/graphView/BezierGraphView';
 import ServiceTabs from '../../components/serviceTabs';
-import colors from '../../assets/colors';
+
 const ratingsData = [
   {stars: 5, count: 180},
   {stars: 4, count: 80},
@@ -128,14 +127,16 @@ const ServiceReport = ({navigation, route}) => {
           </View>
 
           <View style={styles.ratingView}>
-            <Pressable
+            <View
               style={[
                 styles.graphInnerView,
                 {marginBottom: heightPercentageToDP(2)},
               ]}>
               <MediumText text={`Service Report`} />
+              <Pressable onPress={()=>navigation.navigate('ratingAndReview')}>
               <SmallText text={'See All'} style={styles.seeAllText} />
-            </Pressable>
+              </Pressable>
+            </View>
             <RatingHeaderCard
               item={ratingsData}
               totalRating={totalRatings}

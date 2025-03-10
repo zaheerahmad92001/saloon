@@ -8,6 +8,7 @@ import {AppButton} from '../../components/appButton';
 import ModalComponent from '../../components/modal';
 import { widthPercentageToDP } from 'react-native-responsive-screen';
 import DeleteModal from '../../components/modal/deleteModal';
+import { MediumText } from '../../components/Typography';
 
 const PromotionScreen = ({navigation, route}) => {
 const modalRef = useRef();
@@ -48,10 +49,11 @@ const modalRef = useRef();
 
       <View style={styles.wrapper}>
         <View style={styles.contentContainer}>
-          <Text style={styles.discountText}>Discounts</Text>
+          <MediumText text={'Discounts'} style={styles.discountText}/>
           <FlatList
             data={promotiondata}
             renderItem={renderPromotionCard}
+            contentContainerStyle={styles.contentContainerStyle}
             keyExtractor={item => item.id}
           />
         </View>
@@ -68,7 +70,7 @@ const modalRef = useRef();
         ref={modalRef}
         onClose={closeModal}
         style={{width: widthPercentageToDP(80)}}>
-        <DeleteModal handleLogout={() => {}} handleCancel={closeModal} />
+        <DeleteModal handleDelete={() => {}} handleCancel={closeModal} />
       </ModalComponent>
     </SafeAreaView>
   );

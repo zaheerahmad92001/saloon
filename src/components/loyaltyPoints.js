@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Switch, Text} from 'react-native';
+import {View, StyleSheet, Switch} from 'react-native';
 import {LargeText, MediumText, SmallText} from './Typography';
-import style from '../screens/chatView/chatView.Style';
+
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,

@@ -32,7 +32,9 @@ const Profile = ({navigation, route}) => {
   const handleNavigation = routeName => {
     if (routeName === 'logout') {
       openModal();
-    } else {
+    } else if(routeName==='booking') {
+      navigation.navigate('BottomStack',{screen:'Booking'});
+    }else{
       navigation.navigate(routeName);
     }
   };

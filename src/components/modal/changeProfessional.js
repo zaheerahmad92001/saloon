@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
   description: {
     marginVertical: hp(1.5),
     color: colors.lightBlack,
+    fontWeight:'normal',
   },
   yesButton: {
     marginTop: 10,

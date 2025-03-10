@@ -11,8 +11,6 @@ import Salon from './assets/svgs/salon.svg';
 import Clock from './assets/svgs/clock.svg';
 import Calendar from './assets/svgs/calendar-black.svg';
 import Service from './assets/svgs/document-text.svg';
-import ApplePay from './assets/svgs/appleIcon.svg';
-import CardPay from './assets/svgs/debtCard.svg';
 import CardTick from './assets/svgs/card-tick.svg';
 import LikeTag from './assets/svgs/like-tag.svg';
 import ProfileMore from './assets/svgs/morepProfile.svg';
@@ -92,13 +90,6 @@ const menuOptions = [
   {title: 'Codes & Discount', img: Discount, routeName:'promotionScreen'}, //complaints
 ];
 
-const categoriesOptions = [
-  {title: 'Salon', img: images.salon},
-  {title: 'Spa', img: images.spa},
-  {title: 'Nail Art', img: images.nail},
-  {title: 'Salon & Spa', img: images.salonSpa},
-];
-
 const settingOptions = [
   {title: 'Language', routeName:'language'},
   {title: 'Off Days', routeName:'offDays'},
@@ -107,7 +98,7 @@ const settingOptions = [
   {title: 'Change Password', routeName:'changePassword'},
   {title: 'Privacy Policy', routeName:'privacyPolicy'},
   {title: 'Terms & Conditions', routeName:'termsCondition'},
-  {title: 'Delete Account', routeName:'security'},
+  {title: 'Delete Account', routeName:'deleteAccount'},
 ];
 
 const supportOptions = [{title: 'Customer Support', img: LikeTag ,routeName:'customerSupport'}];
@@ -210,7 +201,6 @@ const invoices = [
 const languages = ['English', 'العربية',];
 const offDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday','Sunday'];
 const salonCategories = ['Salon', 'Spa', 'Nail Art', 'Salon & Spa', 'Other'];
-const loginlang = ['English', 'العربية'];
 const toggleItems = [
   {id: 1, label: 'Payments', isEnabled: false},
   {id: 2, label: 'Schedule', isEnabled: false},
@@ -218,8 +208,6 @@ const toggleItems = [
   {id: 4, label: 'Offers Notification', isEnabled: true},
   {id: 5, label: 'Other Notification', isEnabled: false},
 ];
-
-
 
 const AccessAbilitytoggleItems = [
   {id: 1, label: 'Payments in & Payouts', isEnabled: false},
@@ -274,23 +262,6 @@ const discounts = [
   },
 ];
 
-const allPointData = [
-  {id: 1, points: 25, expiryDate: '02/12/2024'},
-  {id: 2, points: -50, expiryDate: '03/15/2024'},
-  {id: 3, points: 100, expiryDate: '04/10/2024'},
-];
-
-const earnPointData = [
-  {id: 1, points: 25, expiryDate: '02/12/2024'},
-  {id: 2, points: 50, expiryDate: '03/15/2024'},
-  {id: 3, points: 100, expiryDate: '04/10/2024'},
-];
-
-const usedPointData = [
-  {id: 1, points: -25, expiryDate: '02/12/2024'},
-  {id: 2, points: -50, expiryDate: '03/15/2024'},
-  {id: 3, points: -100, expiryDate: '04/10/2024'},
-];
 
 const serviceData = [
   {
@@ -359,24 +330,6 @@ const invoiceDetailRows = [
     label: 'Notes',
     value: 'Lorem ipsum dolor sit amet consectetur. pretium etiam.',
     image: Notes,
-  },
-];
-
-const invoiceSummry = [
-  {
-    id: 1,
-    title: 'All Invoices',
-    count: '06',
-  },
-  {
-    id: 1,
-    title: 'Paid',
-    count: '04',
-  },
-  {
-    id: 1,
-    title: 'Cancelled',
-    count: '02',
   },
 ];
 
@@ -477,10 +430,9 @@ const professionals = [
 
 ];
 const moreRoutes = [
-
   {id:1 ,name:'Profile' , value:'Manage and update your salon profile, services, and availability easily.' ,Icon:ProfileMore,routeName:'profileScreen'},
   {id:2 ,name:'Anaqa Commision' , value:"Track and manage salon pros' commission rates for accurate payouts and transparency." ,Icon:AnaqaCommission, routeName:'commission'},
-  {id:3 ,name:'Working Hours' , value:'Create timeslots according to professionals availability and service management.',Icon:WorkingHours,routeName:'HelpScreen'},
+  {id:3 ,name:'Working Hours' , value:'Create timeslots according to professionals availability and service management.',Icon:WorkingHours,routeName:'workingHours'},
   {id:4 ,name:'Service Management' , value:'Clear and flexible pricing & services options designed to suit your salon’s unique needs.',Icon:ServiceManagment,routeName:'serviceManagment'},
   {id:5 ,name:'Professionals' , value:"Manage your salon's team of professionals and their availability with ease.",Icon:Professionals,routeName:'professionals'},
   {id:6 ,name:'Statistics' , value:'Comprehensive reports to help track and optimize your salon’s performance and growth.',Icon:Statistics,routeName:'statScreen'}, //serviceReport
@@ -514,21 +466,6 @@ const staticBookings = [
   },
 ];
 
-const paymentMethods = [
-  {
-  id: '1',
-  key:'applePay',
-  name: 'Apple Pay',
-  Icon: ApplePay,
-  },
-  {
-    id: '2',
-    key:'creditCard',
-    name: 'Credit/Debit Card',
-    Icon: CardPay,
-  },
-];
-const pointsButtons = ['All', 'Earned Points', 'Used Points'];
 const requestStatus = ['Pending', 'Resolved', 'Rejected'];
 
 const openingHours = [
@@ -706,21 +643,13 @@ export {
   reasons,
   faqs,
   discounts,
-  allPointData,
-  earnPointData,
-  usedPointData,
-  categoriesOptions,
   serviceData,
   slides,
   invoiceDetailRows,
-  invoiceSummry,
-  loginlang,
   notificationData,
   messages,
   complaints,
   staticBookings,
-  paymentMethods,
-  pointsButtons,
   requestStatus,
   openingHours,
   AvailableTimeSlots,

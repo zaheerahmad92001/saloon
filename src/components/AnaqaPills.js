@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Pressable} from 'react-native';
 
 import TotalBookingIcon from '../assets/svgs/TotalBookingsIcon.svg';
 import ServicesIcon from '../assets/svgs/ServicesIcon.svg';
@@ -12,44 +12,53 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import { useNavigation } from '@react-navigation/native';
 
 const AnaqaPills = () => {
+
+ const navigation = useNavigation()
+
+const handleNavigation=(routeName)=>{
+  navigation.navigate(routeName)
+}
+
+
   return (
     <View>
       <View style={styles.overView}>
-        <View style={styles.totalBookingView}>
+        <Pressable onPress={()=>handleNavigation('Booking')} style={styles.totalBookingView}>
           <TotalBookingIcon />
           <View style={styles.textlableValueView}>
             <SmallText text="Total Booking" style={styles.lableText} />
             <MediumText text={'56'} style={styles.ValueText} />
           </View>
-        </View>
+        </Pressable>
 
-        <View style={styles.totalBookingView}>
+        <Pressable onPress={()=>handleNavigation('payout')} style={styles.totalBookingView}>
           <RevenueIcon />
           <View style={styles.textlableValueView}>
             <Text style={styles.lableText}> Total Income</Text>
             <Text style={styles.ValueText}>SAR 2000</Text>
           </View>
-        </View>
+        </Pressable>
       </View>
 
       <View style={styles.overView}>
-        <View style={styles.totalBookingView}>
+        <Pressable onPress={()=>handleNavigation('serviceManagment')} style={styles.totalBookingView}>
           <ServicesIcon />
           <View style={styles.textlableValueView}>
             <Text style={styles.lableText}> Services</Text>
             <Text style={styles.ValueText}>08</Text>
           </View>
-        </View>
+        </Pressable>
 
-        <View style={styles.totalBookingView}>
+        <Pressable onPress={()=>handleNavigation('professionals')} style={styles.totalBookingView}>
           <ReviewIcon />
           <View style={styles.textlableValueView}>
             <Text style={styles.lableText}> Professional</Text>
             <Text style={styles.ValueText}>32</Text>
           </View>
-        </View>
+        </Pressable>
       </View>
     </View>
   );
