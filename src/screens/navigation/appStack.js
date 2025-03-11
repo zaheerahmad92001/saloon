@@ -1,7 +1,10 @@
 // In App.js in a new project
 
 import * as React from 'react';
+import { useEffect } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SplashScreen from 'react-native-splash-screen';
+
 
 import AppIntro from '../appIntroScreen/appIntro';
 import BottomStack from './bottomTabs/bottomStack';
@@ -74,6 +77,14 @@ const IntroStack = ()=>{
 
 
 function AppStack() {
+
+  useEffect(() => {
+
+    setTimeout(() => {
+      SplashScreen.hide();
+    },500);
+  }, []);
+
   return (
     <Stack.Navigator
     initialRouteName="IntroStack"

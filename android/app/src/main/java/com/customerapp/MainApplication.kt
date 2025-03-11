@@ -1,4 +1,4 @@
-package com.customerapp
+package com.anaqa.salon
 
 import android.app.Application
 import com.facebook.react.PackageList

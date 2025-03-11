@@ -2,20 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>ANAQA will access you location to show you nearest saloon </string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>ANAQA will access you location to show you nearest saloon </string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>ANAQA will access you location to show you nearest saloon </string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>ANAQA will use your Photo library for Image usege to update your profile</string>
-	<key>NSCameraUsageDescription</key>
-	<string>ANAQA will  use your device camera to update yoru profile</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Saloon</string>
+	<string>Salon</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -41,20 +31,16 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>arm64</string>
-	</array>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
+	<key>NSCameraUsageDescription</key>
+	<string>ANAQA will  use your device camera to update yoru profile</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>ANAQA will access you location to show you nearest saloon </string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>ANAQA will access you location to show you nearest saloon </string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>ANAQA will access you location to show you nearest saloon </string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>ANAQA will use your Photo library for Image usege to update your profile</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Outfit-Black.ttf</string>
@@ -83,5 +69,19 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
 	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>arm64</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>
