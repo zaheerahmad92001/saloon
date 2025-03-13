@@ -140,7 +140,7 @@ const EditProfessionalSchedule = ({navigation, route}) => {
          
         </View>
       </KeyboardAwareScrollView>
-      <AppButton title={'Update Professional'} onPress={() => {}} style={styles.button} />
+      <AppButton title={'Update Professional'} onPress={() => navigation.navigate('singleprofessionalProfile')} style={styles.button} />
     </SafeAreaView>
   );
 };
