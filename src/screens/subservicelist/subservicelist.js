@@ -10,7 +10,7 @@ import {
 import Downarrow from '../../assets/svgs/down-arrow-light-black.svg';
 import UpArrow from '../../assets/svgs/up-arrow.svg';
 
-import styles from './subServiceList.style';
+import styles from './subservicelist.style';//'./subServiceList.style';
 import Header from '../../components/appHeader';
 
 import {AppButton} from '../../components/appButton';

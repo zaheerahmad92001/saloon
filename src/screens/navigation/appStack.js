@@ -10,7 +10,7 @@ import AppIntro from '../appIntroScreen/appIntro';
 import BottomStack from './bottomTabs/bottomStack';
 import NotificationStack from './notificationStack';
 import AuthStack from './authStack';
-import AccessAbilitySettings from '../accessAbilitySettings/accessAbilitySettings';
+import AccessAbilitySettings from '../accessAbilitySettings/AccessAbilitySettings';
 import AccessAbility from '../accessAbilitScreen/accessAbilityScreen';
 import OtpView from '../otpScreen/otp';
 import EditProfile from '../editProfile/editProfile';
@@ -49,8 +49,8 @@ import WorkingHours from '../WorkingHours/WorkingHours';
 import StatisticsScreen from '../statisticsScreen/statistics';
 import ProfessionalReport from '../professionalReport/professionalReport';
 import ServiceManagment from '../serviceManagement/serviceManagement';
-import AddNewServiceScreen from '../AddNewService/addNewService';
-import SubServiceListScreen from '../subServiceList/subServiceList';
+import AddNewServiceScreen from '../AddNewService/addnewservice';
+import SubServiceListScreen from '../subServiceList/subservicelist';
 import RatingAndReview from '../ratingAndReviewScreen/ratingAndReview';
 import AvailableTimeSlot from '../availableTimeSlotScreen/availableTimeSlot';
 import OrderDetail from '../bookingDetailScreen/BookingDetail';
@@ -61,6 +61,9 @@ import OffDays from '../OffDays/OffDays';
 import SecurityScreen from '../securityScreen/security';
 import CommissionScreen from '../Commission/commission';
 import AssignSubServiceListScreen from '../assingServiceScreen/assignServiceScreen';
+import SingleProfessionalProfile from '../SingleProfessionalProfileScreen/singleProfessionalprofile';
+import EditSingleProfessionalProfile from '../editSingleProfessionalProfile/editSingleProfessionalProfile';
+import ProfessionalBookings from '../../screens/singlProfessionalbookingScreen/ProfessionalBooking'
 
 const Stack = createNativeStackNavigator();
 
@@ -148,7 +151,12 @@ function AppStack() {
       <Stack.Screen name="promotionScreen" component={PromotionScreen}/>
       <Stack.Screen name="addPromotionScreen" component={AddPromotionScreen}/>
       <Stack.Screen name="editPromotionScreen" component={EditPromotionScreen}/>
+      <Stack.Screen name="singleprofessionalProfile" component={SingleProfessionalProfile}/>
 
+      <Stack.Screen name="editsingleprofessionalProfile" component={EditSingleProfessionalProfile}/>
+      <Stack.Screen name="professionalBookings" component={ProfessionalBookings}/>
+
+      
     </Stack.Navigator>
   );
 }

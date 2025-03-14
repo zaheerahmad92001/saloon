@@ -6,7 +6,7 @@ import {
   FlatList,
   Pressable,
 } from 'react-native';
-import styles from './addNewService.style';
+import styles from './addnewservice.style';//'./addNewService.style';
 import Header from '../../components/appHeader';
 import MyDropdown from '../../components/dropdown/dropdown';
 import {MediumText, SmallText} from '../../components/Typography';

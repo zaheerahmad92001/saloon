@@ -20,7 +20,9 @@ import Statistics from './assets/svgs/statistics.svg';
 import WorkingHours from './assets/svgs/workingHours.svg';
 import AnaqaCommission from './assets/svgs/anaqaCommission.svg';
 import PromotionIcon from './assets/svgs/promotion.svg';
-
+import AvailabilityIcon from './assets/svgs/Clockprofessional.svg';
+import TotalBookingIcon from './assets/svgs/Document-history.svg';
+import StateIcon from './assets/svgs/chart-2.svg';
 
 const recentSearches = [
   'Beauty Unleashed',
@@ -89,6 +91,16 @@ const menuOptions = [
   {title: 'Requests', img: RequestIcon, routeName:'requests'}, //invoiceList
   {title: 'Codes & Discount', img: Discount, routeName:'promotionScreen'}, //complaints
 ];
+
+
+const singleProfessionalmenuOptions = [
+  {title: 'Edit Professional', img: EditIcon,  routeName:'editsingleprofessionalProfile'},
+  {title: 'Availability ', img: AvailabilityIcon, routeName:'editProfessionalSchedule'},  //'editProfessionalSchedule'},
+  {title: 'Total Bookings', img: TotalBookingIcon, routeName:'professionalBookings'},
+  {title: 'Statistics', img: StateIcon , routeName:'statScreen'},//favorites
+  
+];
+
 
 const settingOptions = [
   {title: 'Language', routeName:'language'},
@@ -670,5 +682,6 @@ export {
   weeklySchedule,
   changeScheduleStatus,
   scheduleTimePeriod,
-  statisticsservices
+  statisticsservices,
+  singleProfessionalmenuOptions
 };
