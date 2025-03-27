@@ -78,7 +78,7 @@ const Profile = ({navigation, route}) => {
           <View style={styles.titleContainer}>
             <XlargeText text={'Alexandra’s Salon'} style={styles.title} />
             <Pressable
-              onPress={() => handleNavigation('saloonPage')}
+              onPress={() => handleNavigation('salonPage')}
               style={styles.viewSalonPageView}>
               <Text style={styles.pageViewText}>View Salon Page</Text>
             </Pressable>

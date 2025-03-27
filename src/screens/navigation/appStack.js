@@ -37,7 +37,7 @@ import DeleteAccount from '../deleteAccountScreen/deleteAccount';
 import Support from '../supportScreen';
 import Payouts from '../payout/payout';
 import SuccessScreen from '../successMessageScreen/succesScreen';
-import SaloonPage from '../saloonPage/saloonPage';
+import SalonPage from '../salonPage/salonPage';
 import ProfileScreen from '../profileScreen/profile';
 import SearchScreen from '../searchScreen/search/search';
 import Professionals from '../professionals/professionals';
@@ -50,7 +50,7 @@ import StatisticsScreen from '../statisticsScreen/statistics';
 import ProfessionalReport from '../professionalReport/professionalReport';
 import ServiceManagment from '../serviceManagement/serviceManagement';
 import AddNewServiceScreen from '../AddNewService/addNewService';
-import SubServiceListScreen from '../subServiceList/subServiceList';
+import SubServiceListScreen from '../subServiceList/subServicelist';
 import RatingAndReview from '../ratingAndReviewScreen/ratingAndReview';
 import AvailableTimeSlot from '../availableTimeSlotScreen/availableTimeSlot';
 import OrderDetail from '../bookingDetailScreen/BookingDetail';
@@ -61,6 +61,10 @@ import OffDays from '../OffDays/OffDays';
 import SecurityScreen from '../securityScreen/security';
 import CommissionScreen from '../Commission/commission';
 import AssignSubServiceListScreen from '../assingServiceScreen/assignServiceScreen';
+import SingleProfessionalProfile from '../SingleProfessionalProfile/singleProfessionalProfile';
+import EditSingleProfessionalProfile from '../editSingleProfessionalProfile/editSingleProfessionalProfile';
+import ProfessionalBookings from '../professionalBookingScreen/ProfessionalBooking';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -104,7 +108,7 @@ function AppStack() {
       <Stack.Screen name="notificationSetting" component={NotificationSetting}/>
       <Stack.Screen name="changePassword" component={ChangePassword}/>
       <Stack.Screen name="settings" component={Settings}/>
-      <Stack.Screen name="saloonPage" component={SaloonPage}/>
+      <Stack.Screen name="salonPage" component={SalonPage}/>
       <Stack.Screen name="invoiceList" component={InvoiceList}/>
       <Stack.Screen name="invoiceDetail" component={InvoiceDetail}/>
       <Stack.Screen name="notificationStack" component={NotificationStack} />
@@ -148,7 +152,11 @@ function AppStack() {
       <Stack.Screen name="promotionScreen" component={PromotionScreen}/>
       <Stack.Screen name="addPromotionScreen" component={AddPromotionScreen}/>
       <Stack.Screen name="editPromotionScreen" component={EditPromotionScreen}/>
+      <Stack.Screen name="singleProfessionalProfile" component={SingleProfessionalProfile}/>
+      <Stack.Screen name="editSingleProfessionalProfile" component={EditSingleProfessionalProfile}/>
+      <Stack.Screen name="professionalBookings" component={ProfessionalBookings}/>
 
+      
     </Stack.Navigator>
   );
 }

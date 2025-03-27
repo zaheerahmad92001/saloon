@@ -1,7 +1,8 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import { heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import DeleteIcon from '../../assets/svgs/deleteIcon.svg';
+import DeleteAccountIcon from '../../assets/svgs/account-deleted-icon.svg';
 import {MediumText, SmallText} from '../Typography';
 import fontsFamily from '../../assets/fontsFamily';
 import {AppButton} from '../appButton';
@@ -22,14 +23,14 @@ const DeleteModal = props => {
   const text3 = 'deleted';
   return (
     <View style={styles.container}>
-      <DeleteIcon />
+      {isDeleteRoute ? <DeleteAccountIcon /> : <DeleteIcon />}
       <MediumText text={text1} style={styles.mediumText} />
       {!isDeleteRoute && <MediumText text={text2} style={styles.mediumText} />}
 
       {isDeleteRoute && (
-        <View style={{marginTop:5}}>
-          <SmallText text={text2} style={styles.smallText}/>
-          <SmallText text={text3} style={styles.smallText}/>
+        <View style={{marginTop: 5}}>
+          <SmallText text={text2} style={styles.smallText} />
+          <SmallText text={text3} style={styles.smallText} />
         </View>
       )}
       {!isDeleteRoute && (
@@ -70,9 +71,9 @@ const styles = StyleSheet.create({
   cancelText: {
     color: colors.primary,
   },
-  smallText:{
-    color:colors.lightBlack,
-    textAlign:'center',
-  }
+  smallText: {
+    color: colors.lightBlack,
+    textAlign: 'center',
+  },
 });
 export default DeleteModal;

@@ -20,7 +20,9 @@ import Statistics from './assets/svgs/statistics.svg';
 import WorkingHours from './assets/svgs/workingHours.svg';
 import AnaqaCommission from './assets/svgs/anaqaCommission.svg';
 import PromotionIcon from './assets/svgs/promotion.svg';
-
+import AvailabilityIcon from './assets/svgs/Clockprofessional.svg';
+import TotalBookingIcon from './assets/svgs/Document-history.svg';
+import StateIcon from './assets/svgs/chart-2.svg';
 
 const recentSearches = [
   'Beauty Unleashed',
@@ -89,6 +91,16 @@ const menuOptions = [
   {title: 'Requests', img: RequestIcon, routeName:'requests'}, //invoiceList
   {title: 'Codes & Discount', img: Discount, routeName:'promotionScreen'}, //complaints
 ];
+
+
+const singleProfessionalMenuOptions = [
+  {title: 'Edit Professional', img: EditIcon,  routeName:'editSingleProfessionalProfile'},
+  {title: 'Availability ', img: AvailabilityIcon, routeName:'availability'},  //'editProfessionalSchedule'},
+  {title: 'Total Bookings', img: TotalBookingIcon, routeName:'professionalBookings'},
+  {title: 'Statistics', img: StateIcon , routeName:'statScreen'},//favorites
+  
+];
+
 
 const settingOptions = [
   {title: 'Language', routeName:'language'},
@@ -402,6 +414,11 @@ const messages = {
     title: 'Canceled Successfully!',
     subheading: 'Your booking has been canceled successfully.',
   },
+  reschedule: {
+    title: 'Reschedule Successfully!',
+    subheading: 'Your rescheduling has been successfully done.',
+    subheading2:'We will notify user about appointment rescheduled.'
+  },
   remove: {
     title: 'Removed Successfully!',
     subheading: 'Your salon has been successfully removed from favorites.',
@@ -670,5 +687,6 @@ export {
   weeklySchedule,
   changeScheduleStatus,
   scheduleTimePeriod,
-  statisticsservices
+  statisticsservices,
+  singleProfessionalMenuOptions
 };

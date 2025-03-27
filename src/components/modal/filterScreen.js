@@ -33,7 +33,7 @@ const FilterScreen = props => {
       <Text style={styles.filterText}>Filter</Text>
       <View style={styles.divider}></View>
       <Text style={styles.statusText}>Status</Text>
-      <View style={styles.statusContainer}>
+      {/* <View style={styles.statusContainer}>
         {requestStatus.map(status => (
           <TouchableOpacity
             key={status}
@@ -51,7 +51,7 @@ const FilterScreen = props => {
             </Text>
           </TouchableOpacity>
         ))}
-      </View>
+      </View> */}
       <View style={styles.subContainer}>
         <Text style={styles.complaintTypeText}>Complaint Type</Text>
         <MyDropdown

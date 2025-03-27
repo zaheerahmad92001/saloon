@@ -30,6 +30,19 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 
+  label2: {
+    fontSize: RFValue(11),
+    fontFamily: fontsFamily.regular,
+    marginBottom: 5,
+  },
+  input2: {
+    borderRadius: 8,
+    backgroundColor: colors.inputGray,
+    marginBottom: 10,
+    color: colors.lightBlack,
+    fontSize: RFValue(9),
+  },
+
   subServiceContainer: {
     // backgroundColor: colors.appBG,
     borderRadius: 10,
@@ -92,6 +105,14 @@ const styles = StyleSheet.create({
   },
   dropDownStyle:{
     backgroundColor:colors.inputGray
-  }
+  },
+
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  column: {
+    width: '48%',
+  },
 });
 export default styles;

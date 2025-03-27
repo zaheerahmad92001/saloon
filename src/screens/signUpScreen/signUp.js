@@ -100,16 +100,17 @@ const SignUp = ({navigation, route}) => {
               numberOfLines={20} />
           </View>
 
-          <Pressable
-            onPress={() => setChecked(!isChecked)}
+          <View
             style={styles.checkboxContainer}>
-            <View style={{alignSelf: 'flex-start'}}>
+            <Pressable 
+             onPress={() => setChecked(!isChecked)}
+            style={{alignSelf: 'flex-start'}}>
               <MaterialIcons
                 name={isChecked ? 'check-box' : 'check-box-outline-blank'}
                 size={25}
                 color={isChecked ? colors.primary : colors.lightBlack}
               />
-            </View>
+            </Pressable>
             <View style={styles.termViews}>
               <Text style={styles.termsText}>
                 I agree to the anaqq{' '}
@@ -120,7 +121,7 @@ const SignUp = ({navigation, route}) => {
                 Privacy Policy
               </Text>
             </View>
-          </Pressable>
+          </View>
 
           <AppButton
             title={'Sign Up'}

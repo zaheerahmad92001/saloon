@@ -149,7 +149,7 @@ const AddProfessional = ({navigation, route}) => {
 
         </View>
       </KeyboardAwareScrollView>
-      <AppButton title={'Next'} style={styles.button} onPress={() => navigation.navigate('professionalSchedule')} />
+      <AppButton title={'Next'} style={styles.button} onPress={() => navigation.navigate('professionalSchedule',{isSingleProfessional:false})} />
 
       <ModalComponent
         ref={modalRef}

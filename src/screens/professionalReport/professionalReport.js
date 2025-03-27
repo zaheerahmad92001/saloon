@@ -77,7 +77,7 @@ const ProfessionalServiceReport = ({ navigation, route }) => {
             <Header title={'Statistics'} showBackButton onBackPress={() => navigation.goBack()} />
 
             <View style={styles.mainContainer}>
-                <ScrollView showsVerticalScrollIndicator={false}>
+                <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
                     <StatUSerProfileCard />
                     <DateNavigator />
 
@@ -127,7 +127,7 @@ const ProfessionalServiceReport = ({ navigation, route }) => {
                     onCancel={cancelFilter}
                     onApply={ApplyFilter}
                     onClear={clearFilter}
-                    isHome={true}
+                    isHome={false}
                 />
             </BottomSheet>
         </SafeAreaView>

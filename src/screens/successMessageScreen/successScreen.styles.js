@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
       fontFamily: fontsFamily.regular,
       color: colors.lightBlack,
       marginBottom: wp(18),
-      marginHorizontal:40,
+      // marginHorizontal:40,
       textAlign:'center'
     },
     bookingsButton: {

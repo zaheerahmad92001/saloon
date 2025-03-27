@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     zIndex: 2,
     position: 'absolute',
-    height: hp(24),
+    height: hp(26),
     bottom: 0,
   },
 
