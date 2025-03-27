@@ -1,18 +1,18 @@
 import {FlatList, StyleSheet, View} from 'react-native';
 import React, {useCallback, useReducer, useRef} from 'react';
-import BookingHistoryCard from '../../../components/bookingHistoryCard/bookingHistoryCard';
-import images from '../../../assets/images';
+import ProfessionalBookingCard from '../../components/professionalBookingCard/professionalBookingCard';
+import images from '../../assets/images';
 import {
   heightPercentageToDP,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {useNavigation} from '@react-navigation/native';
-import {BottomSheet} from '../../../components/bottomSheet';
-import CancelBooking from '../../../components/modal/cancelBooking';
+import {BottomSheet} from '../../components/bottomSheet';
+import CancelBooking from '../../components/modal/cancelBooking';
 
-import BookingFilter from '../../../components/bookingFilter/BookingFilter';
-import { MediumText } from '../../../components/Typography';
-import FilterIcon from '../../../components/FilterIcon';
+import BookingFilter from '../../components/bookingFilter/BookingFilter';
+import { MediumText } from '../../components/Typography';
+import FilterIcon from '../../components/FilterIcon';
 
 const data = {
   date: 'Sep 10, 2024',
@@ -90,20 +90,13 @@ const PendingBooking = () => {
         hideBottomSheetFilter();
     }, []);
 
-
-
-
-
-
-
-
   const handleReschedule = item => {
     navigation.navigate('availableTimeSlot', {item , isReschedule:true});
   };
 
   const renderItem = ({item, index}) => {
     return (
-      <BookingHistoryCard
+      <ProfessionalBookingCard
         item={data}
         bookingOptions={openBottomSheet}
         reviewAndReschedule={() => handleReschedule(item)}

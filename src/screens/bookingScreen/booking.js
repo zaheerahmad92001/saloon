@@ -1,4 +1,4 @@
-import {FlatList, SafeAreaView, View, Pressable} from 'react-native';
+import {FlatList, SafeAreaView, View, Pressable, Alert} from 'react-native';
 import React, {useCallback, useMemo, useReducer, useRef, useState} from 'react';
 import BookingHistoryCard from '../../components/bookingHistoryCard/bookingHistoryCard';
 import Header from '../../components/appHeader';
@@ -55,7 +55,8 @@ const Bookings = ({navigation, route}) => {
 
   const reviewAndReschedule = item => {
     const isCompleted = item.status === 'Completed';
-    if (isCompleted) {
+    const isCancelled = item.status === 'Cancelled'
+    if (isCompleted || isCancelled) {
       navigation.navigate('invoiceDetail');
     } else {
       navigation.navigate('availableTimeSlot', {isReschedule: true});
@@ -145,6 +146,7 @@ const Bookings = ({navigation, route}) => {
         bookinOptions={() => handleBookingOptions(item)}
         reviewAndReschedule={() => reviewAndReschedule(item)}
         handleCancelBooking={() => openBottomSheet(item, 'cancel')}
+        canceledBooking={() => reviewAndReschedule(item)}
       />
     );
   };
@@ -185,6 +187,7 @@ const Bookings = ({navigation, route}) => {
               <DateTimePickerComponent
                 mode="date"
                 onSelect={date => updateState({selectedDate: date})}
+                routeName={'booking'}
               />
              </View>
             </View>

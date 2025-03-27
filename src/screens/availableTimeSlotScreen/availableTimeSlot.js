@@ -55,15 +55,19 @@ const AvailableTimeSlot = ({ navigation, route }) => {
 };
 
 
-
-
   const renderItem = ({item}) => {
     return (
       <AvailableSlotTimeCard item ={item} isSelected={selectedTimeSlots.includes(item)} onPress={()=> toggleSelection(item)} />
     );
   };
 
-
+const handleNavigation=()=>{
+  if(isReschedule){
+    navigation.navigate('successScreen', {actionName: 'reschedule'});
+  }else{
+    navigation.navigate('orderDetail')
+  }
+}
 
 
 
@@ -120,7 +124,7 @@ const AvailableTimeSlot = ({ navigation, route }) => {
 
       
         <AppButton
-          onPress={() => navigation.navigate('orderDetail')}
+          onPress={handleNavigation}
           title={isReschedule ? 'Select' : 'Select & Continue'}
           style={styles.continueButton}
         />

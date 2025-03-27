@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image,} from 'react-native';
+import {View, Text, Image, Pressable} from 'react-native';
 import {MediumText} from '../Typography';
 import styles from './booking.style';
 import {AppButton} from '../appButton';
@@ -11,12 +11,15 @@ const BookingHistoryCard = ({
   bookinOptions,
   reviewAndReschedule,
   handleCancelBooking,
+  canceledBooking
+
+
 }) => {
   const {date, time, title, services, professional, price, status, imageUri} = item;
 
   const confirmORBook =
     status === 'Pending'
-      ? isProfessionalAssigned ? 'Confirm': 'Confirm & Assign'
+      ? isProfessionalAssigned ? 'Confirm' : 'Confirm & Assign'
       : status === 'Confirmed'
       ? 'Change Professional'
       : status === 'Completed'
@@ -31,9 +34,10 @@ const BookingHistoryCard = ({
       ? 'View Invoice'
       : '';
   const cancelBooking = 'Cancel Booking';
+console.log('status',status)
 
   return (
-    <View style={styles.card}>
+    <Pressable onPress={()=>{status === 'Cancelled' ? canceledBooking() : {};}} style={styles.card}>
       <View style={styles.header}>
         <Text style={styles.date}>
           {date} - {time}
@@ -94,12 +98,12 @@ const BookingHistoryCard = ({
               style={[
                 status == 'Pending'
                   ? styles.rescheduleButton
-                  : status ==='Completed'
-                  ? styles.cancelBookingButton 
-                  : styles.cancelButton
+                  : status === 'Completed'
+                  ? styles.cancelBookingButton
+                  : styles.cancelButton,
               ]}
               textstyle={[
-                status == 'Pending' ? styles.rescheduleText : status==='Completed'? styles.cancelBookingText : styles.cancelText,
+                status == 'Pending' ? styles.rescheduleText : status === 'Completed' ? styles.cancelBookingText : styles.cancelText,
               ]}
             />
             <AppButton
@@ -125,8 +129,8 @@ const BookingHistoryCard = ({
           )}
         </View>
       )}
-      
-    </View>
+
+    </Pressable>
   );
 };
 

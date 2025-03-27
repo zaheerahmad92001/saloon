@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
         color: colors.lightBlack,
       },
       timePickerContainer: {
-        flex: 0.5,
+        flex: 0.53,
     },
     filterByDate:{
       flexDirection: 'row',

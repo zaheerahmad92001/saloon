@@ -8,7 +8,7 @@ import PinkHeart from '../../assets/svgs/pinkHeart.svg';
 import Clock from '../../assets/svgs/clock.svg';
 import Location from '../../assets/svgs/locationMarker.svg';
 import Star from '../../assets/svgs/star.svg';
-import styles from './saloonPage.style';
+import styles from './salonPage.style';
 import {SmallText, XlargeText} from '../../components/Typography';
 import AvailableService from '../../components/availableServices/serviceDropDown';
 import {
@@ -25,7 +25,7 @@ import FastImage from 'react-native-fast-image';
 import ModalComponent from '../../components/modal';
 import OpeningHours from '../../components/modal/openingHours';
 
-const SaloonPage = ({navigation, route}) => {
+const SalonPage = ({navigation, route}) => {
   const mapRef = useRef(null);
   const modalRef = useRef();
 
@@ -121,7 +121,7 @@ const SaloonPage = ({navigation, route}) => {
                 text={'4.5'}
                 style={[styles.locationText, {textDecorationLine: 'none'}]}
               />
-              <SmallText text={'312'} style={styles.locationText} />
+              <SmallText text={'(312)'} style={styles.locationText} />
             </View>
           </Pressable>
         </View>
@@ -210,4 +210,4 @@ const SaloonPage = ({navigation, route}) => {
   );
 };
 
-export default SaloonPage;
+export default SalonPage;

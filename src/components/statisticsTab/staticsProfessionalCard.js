@@ -24,14 +24,19 @@ const StaticsProfessionalCard = (props) => {
         </View>
         <View style={styles.statusContainer}>
           <View style={styles.dotedViewAndText}>
-            <View style={styles.greenDotView} />
-            <SmallText text={'Completed:34'} style={styles.statusText} />
+          <View style={styles.innerRow}>
+              <View style={styles.greenDotView} />
+              <SmallText text={'Completed:'} style={[styles.statusText]} />
+           </View>
+              <SmallText text={'34'} style={styles.statusText} />
           </View>
+
           <View style={styles.dotedViewAndText}>
-            <View style={styles.redDotView} />
-            <SmallText text={'Pending:23'} style={styles.statusText} />
-
-
+           <View style={styles.innerRow}>
+             <View style={styles.redDotView} />
+             <SmallText text={'Pending:'} style={[styles.statusText]} />
+           </View>
+            <SmallText text={'23'} style={styles.statusText} />
           </View>
         </View>
       </View>
@@ -69,7 +74,7 @@ const styles = StyleSheet.create({
     color: colors.lightBlack,
   },
   statusContainer: {
-    alignItems: 'flex-start',
+    // backgroundColor:'yellow',
 
   },
   statusText: {
@@ -93,7 +98,8 @@ const styles = StyleSheet.create({
   dotedViewAndText: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
+    justifyContent:'space-between',
+    gap:5,
     paddingVertical: 3,
   },
   imageContainer:{
@@ -103,6 +109,11 @@ const styles = StyleSheet.create({
     marginRight: 10,
     overflow:'hidden',
     alignSelf:'flex-start',
+  },
+  innerRow:{
+    flexDirection:'row',
+    alignItems:'center',
+    gap:10
   }
 });
 

@@ -38,7 +38,7 @@ const BookingFilter = props => {
             placeholder="Select Status"
           />
         </View>
-      )}
+       )}
 
       <View style={styles.subContainer}>
         <SmallText text={'From Date'} style={styles.label} />

@@ -9,7 +9,11 @@ const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
         backgroundColor: colors.appBG,
-        padding: 20,
+    },
+    wrapper:{
+        flex:1,
+        marginTop:hp(1),
+        marginHorizontal:wp(4),
     },
     rowContainer: {
         flexDirection: 'row',

@@ -26,7 +26,6 @@ const ContractScreen = ({navigation, route}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <KeyboardAwareScrollView>
         <View style={styles.mainContainer}>
           <Text style={styles.headerTitle}>Contract</Text>
 
@@ -67,14 +66,15 @@ const ContractScreen = ({navigation, route}) => {
             />
           </View>
           <SmallText text="Draw your signature here" style={styles.drawText} />
-          <Pressable onPress={()=>setChecked(!isChecked)} style={styles.checkboxContainer}>
-            <View style={{alignSelf: 'flex-start'}}>
+          <View onPress={()=>setChecked(!isChecked)} style={styles.checkboxContainer}>
+            <Pressable onPress={()=>setChecked(!isChecked)}
+              style={{alignSelf: 'flex-start'}}>
               <MaterialIcons
                 name={isChecked ? 'check-box' : 'check-box-outline-blank'}
                 size={25}
                 color={isChecked ? colors.primary : colors.lightBlack}
               />
-            </View>
+            </Pressable>
             <View style={styles.termViews}>
               <Text style={styles.termsText}>
                 I agree to the anaqq{' '}
@@ -83,7 +83,7 @@ const ContractScreen = ({navigation, route}) => {
               </Text>
               <Text style={styles.privacyPolicyText}>Privacy Policy</Text>
             </View>
-          </Pressable>
+          </View>
 
           
         </View>
@@ -94,7 +94,6 @@ const ContractScreen = ({navigation, route}) => {
             textstyle={styles.signUpText}
             onPress={()=>navigation.navigate('registrationInProcess',{actionName:'registerProcess'})}
           />
-      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 };

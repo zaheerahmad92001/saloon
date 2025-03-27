@@ -37,13 +37,20 @@ const VerticalBarChart = (props) => {
       <View style={styles.barContainer}>
         {datasets.map((value, index) => (
           <View key={index} style={styles.barInsideContent}>
+      
             <Pressable onPress={() => handleBarPress(index, value)}>
+
+            {selectedBar && barIndex === index &&
+             <View style={[styles.innerCircle,{bottom:(value / maxValue) * 100}]}/>}
+            }
+
               <View
                 style={[
                   styles.innerContent,
                   {height: (value / maxValue) * 200},
                 ]}>
-                <SmallText text={`SAR ${value}`} style={styles.incomeStyle} />
+                <SmallText text={`Sar`} style={styles.incomeStyle} />
+                <SmallText text={`${value}`} style={styles.incomeStyle} />
               </View>
             </Pressable>
             {selectedBar && barIndex === index && (
@@ -51,8 +58,8 @@ const VerticalBarChart = (props) => {
                 style={[
                   styles.overlay,
                   {
-                    bottom: (value / maxValue) * 200 + 10,
-                    left: barIndex === lastIndex ? -10 : 5,
+                    bottom: (value / maxValue) * 130 + 10,
+                    left: barIndex === lastIndex ? -30 : 5,
                   },
                 ]}>
                 <SmallText
@@ -121,7 +128,18 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize:RFValue(11),
         fontWeight:'normal',
-  }
+  },
+innerCircle:{
+    width:12,
+    height:12, 
+    borderRadius:12/2, 
+    borderWidth:1,
+    borderColor:colors.white,
+    backgroundColor:'#B76271', 
+    position:'absolute',
+    zIndex:1,
+    alignSelf:'center',
+    }
 });
 
 export default function App() {

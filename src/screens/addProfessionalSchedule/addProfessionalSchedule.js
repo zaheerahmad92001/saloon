@@ -13,11 +13,13 @@ import { AppButton } from '../../components/appButton';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const ProfessionalSchedule = ({navigation,route}) => {
+
   const [selectedSlots, setSelectedSlots] = useState([]);
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [schedulePeriod, setSchedulePeriod] = useState('weekly');
   const [weeklyDaysSelection, setWeeklyDaysSelection] = useState([]);
   const [monthlyDatesSelection, setMonthlyDatesSelection] = useState([]);
+  const {isSingleProfessional} = route.params || {}
 
   const handleNavigaton=()=>{
     navigation.navigate('editProfessionalSchedule',{
@@ -45,16 +47,19 @@ const ProfessionalSchedule = ({navigation,route}) => {
   return (
     <SafeAreaView style={styles.wrapper}>
       <Header
-        title={'Add Professional'}
+        title={isSingleProfessional ? 'Edit Professional' : 'Add Professional'}
         showBackButton
         onBackPress={() => navigation.goBack()}
       />
       <KeyboardAwareScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.contantContainer}>
+
+          { !isSingleProfessional &&
           <AnaqaProfessionalHeader
             isSchedule={true}
             availabilityStyle={{color: colors.primary}}
           />
+          }
           <MediumText text={'Schedule'} style={styles.headingtext} />
           <ScheduleSelector
            selectedOption={schedulePeriod}

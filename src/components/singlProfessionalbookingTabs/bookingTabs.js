@@ -1,22 +1,19 @@
 import React from 'react';
-import TopTabView from '../../components/topTabs/TopTabButton';//'../../../components/loyaltyTabs/TopTabButton';
+import TopTabView from '../../components/topTabs/TopTabButton';
 import { SceneMap } from 'react-native-tab-view';
-import PendingBooking from '../../screens/singlProfessionalbookingScreen/pendingBookingScreen/pendingBooking';
-import CompletedBooking from '../../screens/singlProfessionalbookingScreen/completedBookingScreen/completedBooking';
-import CancelledBooking from '../../screens/singlProfessionalbookingScreen/cancelledBookingScreen/cancelledBooking';
-import ConfirmedBooking from '../../screens/singlProfessionalbookingScreen/confirmedBookingScreen/confirmedBooking';
+import TotalBookings from '../../screens/professionalBookingScreen/totalBookings';
+import CompletedBooking from '../../screens/professionalBookingScreen/completedBooking';
+import PendingBooking from '../../screens/professionalBookingScreen/pendingBooking';
 
 const scenes = SceneMap({
+  totalbookings: () => <TotalBookings/>,
   pending: () => <PendingBooking />,
-  confirmed: () => <ConfirmedBooking />,
-  cancelled: () => <CancelledBooking />,
   completed: () => <CompletedBooking />,
 });
 
 const routes = [
+  { key: 'totalbookings', title: 'Total Bookings' },
   { key: 'pending', title: 'Pending' },
-  { key: 'confirmed', title: 'Confirmed' },
-  { key: 'cancelled', title: 'Cancelled' },
   { key: 'completed', title: 'Completed' },
 ];
 

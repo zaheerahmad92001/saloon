@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import { View, TouchableOpacity, SafeAreaView, Text } from 'react-native';
+import { View, TouchableOpacity, SafeAreaView } from 'react-native';
 import React, { useRef, useReducer, useState } from 'react';
 
 import TextField from '../../components/textField/textField';
@@ -19,17 +19,10 @@ import colors from '../../assets/colors';
 import fontsFamily from '../../assets/fontsFamily';
 import { RFValue } from 'react-native-responsive-fontsize';
 import DownArrow from '../../assets/svgs/downarrow.svg';
-import MyDropdown from '../../components/dropdown/dropdown';
+
 
 const EditSingleProfessionalProfile = ({ navigation, route }) => {
-  const [selectedValue, setSelectedValue] = useState(null);
-  const items = [
-    { label: 'Option A', value: '1' },
-    { label: 'Option B', value: '2' },
-    { label: 'Option C', value: '3' },
-    { label: 'Option D', value: '4' },
-    { label: 'Option E', value: '5' },
-  ];
+
 
   const emailRef = useRef(null);
   const ownerRef = useRef(null);

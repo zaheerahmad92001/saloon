@@ -20,7 +20,7 @@ const Location = ({navigation, route}) => {
   ];
 
   const handNavigation = () => {
-    navigation.navigate('ProfessionalService');
+    navigation.navigate('singleProfessionalProfile');
 };
 
   const renderItem = ({item, index}) => {

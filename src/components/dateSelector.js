@@ -127,7 +127,8 @@ const DateSelector = props => {
         data={dates}
         horizontal
         renderItem={renderItem}
-       contentContainerStyle={{gap: 10}}
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{gap: 10}}
         keyExtractor={item => item}
       />
     );

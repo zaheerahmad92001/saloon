@@ -17,6 +17,7 @@ const SuccessScreen = ({navigation, route}) => {
     return message;
   }
   const {title, subheading,subheading2} = getMessage(actionName);
+  const isReschedule = title === messages.reschedule.title ? true : false;
 
   const goToHome = () => {
     navigation.navigate('BottomStack', {screen: 'homeStack'});
@@ -29,12 +30,15 @@ const SuccessScreen = ({navigation, route}) => {
         <View style={styles.contentContainer}>
           <Complete />
           <XlargeText text={`${title}`} style={styles.heading} />
-          <SmallText text={`${subheading}`} style={styles.description} />
+          <SmallText text={`${subheading}`} style={isReschedule ? [styles.description,{marginBottom:15,}] : [styles.description] } />
+          { isReschedule &&
+           <SmallText text={`${subheading2}`} style={[styles.description,]} />
+         }
           <View style={styles.bookingsButton}>
             <AppButton 
             onPress={() => {isRegister? goToHome(): navigation.goBack()}} 
-            title="Ok, Got it" />
-            {!isRegister && (
+            title={isReschedule? "Done" : "Ok, Got it"} />
+            {!isRegister && !isReschedule && (
               <AppButton
                 onPress={goToHome}
                 title="Go to Home Page"

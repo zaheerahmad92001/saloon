@@ -56,6 +56,7 @@ const SubServiceCard = props => {
           />
         </View>
       </View>
+      
       {!isNewService && (
         <View style={styles.Assineerow}>
           <SmallText text={'Assigned Professionals'} style={styles.label} />

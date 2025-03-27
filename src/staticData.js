@@ -93,9 +93,9 @@ const menuOptions = [
 ];
 
 
-const singleProfessionalmenuOptions = [
-  {title: 'Edit Professional', img: EditIcon,  routeName:'editsingleprofessionalProfile'},
-  {title: 'Availability ', img: AvailabilityIcon, routeName:'editProfessionalSchedule'},  //'editProfessionalSchedule'},
+const singleProfessionalMenuOptions = [
+  {title: 'Edit Professional', img: EditIcon,  routeName:'editSingleProfessionalProfile'},
+  {title: 'Availability ', img: AvailabilityIcon, routeName:'availability'},  //'editProfessionalSchedule'},
   {title: 'Total Bookings', img: TotalBookingIcon, routeName:'professionalBookings'},
   {title: 'Statistics', img: StateIcon , routeName:'statScreen'},//favorites
   
@@ -414,6 +414,11 @@ const messages = {
     title: 'Canceled Successfully!',
     subheading: 'Your booking has been canceled successfully.',
   },
+  reschedule: {
+    title: 'Reschedule Successfully!',
+    subheading: 'Your rescheduling has been successfully done.',
+    subheading2:'We will notify user about appointment rescheduled.'
+  },
   remove: {
     title: 'Removed Successfully!',
     subheading: 'Your salon has been successfully removed from favorites.',
@@ -683,5 +688,5 @@ export {
   changeScheduleStatus,
   scheduleTimePeriod,
   statisticsservices,
-  singleProfessionalmenuOptions
+  singleProfessionalMenuOptions
 };

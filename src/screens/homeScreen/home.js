@@ -48,7 +48,7 @@ const HomeScreen = ({navigation, route}) => {
   ];
 
   const handNavigation = () => {
-    navigation.navigate('ProfessionalService');
+    // navigation.navigate('ProfessionalService');
 };
 
   const renderCustomers = ({item}) => (
