@@ -45,14 +45,14 @@ const ServiceManagementCard = props => {
       <View style={{flex: 1}}>
         <View style={styles.rowCenter}>
           <MediumText
-            text={'Pedicure'}
+            text={item?.service?.name}
             style={isPending ? {} : [styles.title]}
           />
           {!isPending && <TopRatedIcon />}
         </View>
 
         <View style={[styles.rowCenter, {gap: 15}]}>
-          <SmallText text={isPending? 'Price: SAR 10' : '3 Sub services'} style={styles.price} />
+          <SmallText text={isPending? `Price: SAR ${item?.price}` : '3 Sub services'} style={styles.price} />
           <View style={[styles.rowCenter]}>
             <Star />
             <SmallText text={'4.7'} style={styles.ratingText} />
@@ -63,7 +63,7 @@ const ServiceManagementCard = props => {
           <View style={styles.rowCenter}>
             <SmallText text={'Estimated Time:'} style={styles.estimatedTime} />
             <SmallText
-              text={'30 Mins'}
+              text={`${item?.duration} Mins`}
               style={[styles.price, {marginLeft: 5}]}
             />
           </View>

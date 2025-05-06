@@ -91,12 +91,20 @@ const SecurityScreen = ({navigation, route}) => {
             </Text>
           </Pressable>
         ) : (
+          <>
           <Pressable
             style={styles.saveButton}
             disabled={pin.length < 6}
             onPress={handleNavigation}>
             <Text style={styles.saveButtonText}>{'Save Password'}</Text>
           </Pressable>
+
+          <Pressable onPress={handleNavigation}>
+            <Text style={[styles.saveButtonText, {color: colors.appBlack}]}>
+              {'Cancel'}
+            </Text>
+          </Pressable>
+          </>
         )}
       </View>
     </SafeAreaView>

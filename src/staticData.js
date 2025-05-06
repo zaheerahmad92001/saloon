@@ -24,6 +24,12 @@ import AvailabilityIcon from './assets/svgs/Clockprofessional.svg';
 import TotalBookingIcon from './assets/svgs/Document-history.svg';
 import StateIcon from './assets/svgs/chart-2.svg';
 
+const storagekeys = {
+  authToken:'authToken',
+  isFirstLaunch:'isFirstLaunch',
+  refreshToken:'refreshToken',
+};
+
 const recentSearches = [
   'Beauty Unleashed',
   'Big Hair We Care',
@@ -95,10 +101,11 @@ const menuOptions = [
 
 const singleProfessionalMenuOptions = [
   {title: 'Edit Professional', img: EditIcon,  routeName:'editSingleProfessionalProfile'},
-  {title: 'Availability ', img: AvailabilityIcon, routeName:'availability'},  //'editProfessionalSchedule'},
+  {title: 'Availability ', img: AvailabilityIcon, routeName:'editProfessionalSchedule'},
+  // {title: 'Availability ', img: AvailabilityIcon, routeName:'availability'},  //'editProfessionalSchedule'},
   {title: 'Total Bookings', img: TotalBookingIcon, routeName:'professionalBookings'},
   {title: 'Statistics', img: StateIcon , routeName:'statScreen'},//favorites
-  
+
 ];
 
 
@@ -141,8 +148,8 @@ const dummyData = {
 
 const statisticsservices = [
   {
-    id: "1",
-    name: "Hair Cut",
+    id: '1',
+    name: 'Hair Cut',
     subService: 3,
     professionals: 4,
     rating: 4.7,
@@ -151,8 +158,8 @@ const statisticsservices = [
     isTopRated: true,
   },
   {
-    id: "2",
-    name: "Facial",
+    id: '2',
+    name: 'Facial',
     professionals: 2,
     rating: 4.0,
     reviews: 312,
@@ -160,8 +167,8 @@ const statisticsservices = [
     isTopRated: false,
   },
   {
-    id: "3",
-    name: "Nail Art",
+    id: '3',
+    name: 'Nail Art',
     professionals: 5,
     rating: 3.9,
     reviews: 312,
@@ -169,8 +176,8 @@ const statisticsservices = [
     isTopRated: false,
   },
   {
-    id: "4",
-    name: "Manicure",
+    id: '4',
+    name: 'Manicure',
     professionals: 3,
     rating: 4.8,
     reviews: 312,
@@ -178,8 +185,8 @@ const statisticsservices = [
     isTopRated: true,
   },
   {
-    id: "5",
-    name: "Pedicure",
+    id: '5',
+    name: 'Pedicure',
     professionals: 2,
     rating: 4.2,
     reviews: 312,
@@ -210,14 +217,14 @@ const invoices = [
   },
 ];
 
-const languages = ['English', 'العربية',];
+const languages = ['English', 'العربية'];
 const offDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday','Sunday'];
 const salonCategories = ['Salon', 'Spa', 'Nail Art', 'Salon & Spa', 'Other'];
 const toggleItems = [
   {id: 1, label: 'Payments', isEnabled: false},
   {id: 2, label: 'Schedule', isEnabled: false},
   {id: 3, label: 'Cancellation', isEnabled: false},
-  {id: 4, label: 'Offers Notification', isEnabled: true},
+  {id: 4, label: 'Offers Notification', isEnabled: false},
   {id: 5, label: 'Other Notification', isEnabled: false},
 ];
 
@@ -417,7 +424,7 @@ const messages = {
   reschedule: {
     title: 'Reschedule Successfully!',
     subheading: 'Your rescheduling has been successfully done.',
-    subheading2:'We will notify user about appointment rescheduled.'
+    subheading2:'We will notify user about appointment rescheduled.',
   },
   remove: {
     title: 'Removed Successfully!',
@@ -429,6 +436,11 @@ const complaints = [
   {name:'Pending' , value:'02' , routeName:''},
   {name:'Resolved' , value:'10',routeName:''},
 ];
+
+const requestComplaintEnum={
+  request:'request',
+  complaints:'complaints',
+}
 
 
 const professionals = [
@@ -457,9 +469,9 @@ const moreRoutes = [
 
 ];
 
-const AccessAbilitySettingsData =[
+const AccessAbilitySettingsData = [
   {name:'Change Password' , value:'If you want to switch up your password, you can do it right here!' ,routeName:'changePassword'},
-  {name:'Accessibility' , value:"If you're looking for security features in your app, accessibility can totally help with that!" , routeName:'accessAbility'}
+  {name:'Accessibility' , value:"If you're looking for security features in your app, accessibility can totally help with that!" , routeName:'accessAbility'},
 ];
 
 const bookingStatus = [
@@ -523,46 +535,46 @@ const timeSlots = [
 
 const promotiondata = [
   {
-    id: "1",
+    id: '1',
     Icon:PromotionIcon,
-    title: "20% off on Hair cut for first-time customers.",
-    max: "Max booking: Sar 400",
-    exp: "Exp date: 18-10-2024",
+    title: '20% off on Hair cut for first-time customers.',
+    max: 'Max booking: Sar 400',
+    exp: 'Exp date: 18-10-2024',
   },
   {
-    id: "2",
+    id: '2',
     Icon:PromotionIcon,
-    title: "Visit us to avail exciting offers.",
-    max: "Max order: Sar 200",
-    exp: "Exp date: 30-06-2025",
+    title: 'Visit us to avail exciting offers.',
+    max: 'Max order: Sar 200',
+    exp: 'Exp date: 30-06-2025',
   },
   {
-    id: "3",
+    id: '3',
     Icon:PromotionIcon,
-    title: "30% off on all services for first-time customers.",
-    max: "Max purchase: Sar 300",
-    exp: "Exp date: 25-12-2024",
+    title: '30% off on all services for first-time customers.',
+    max: 'Max purchase: Sar 300',
+    exp: 'Exp date: 25-12-2024',
   },
   {
-    id: "4",
+    id: '4',
     Icon:PromotionIcon,
-    title: "Limited period offer: Book now!",
-    max: "Max spend: Sar 500",
-    exp: "Exp date: 15-03-2026",
+    title: 'Limited period offer: Book now!',
+    max: 'Max spend: Sar 500',
+    exp: 'Exp date: 15-03-2026',
   },
   {
-    id: "5",
+    id: '5',
     Icon:PromotionIcon,
-    title: "Discount code: NEWCLIENT",
-    max: "Max transaction: Sar 350",
-    exp: "Exp date: 05-09-2027",
+    title: 'Discount code: NEWCLIENT',
+    max: 'Max transaction: Sar 350',
+    exp: 'Exp date: 05-09-2027',
   },
 ];
 
 const graphTabs = {
   sales: 'sales',
   customers:'customers',
-}
+};
 
 const statuses = ['Completed', 'Pending', 'Cancelled', 'Confirmed'];
 const professionalsList = ['Unassigned', 'Zaheer', 'Waqar', 'Mudassar', 'Rizwan', 'Zeeshan'];
@@ -571,14 +583,14 @@ const getRandomStatus = () => statuses[Math.floor(Math.random() * statuses.lengt
 const getRandomProfessional = () => professionalsList[Math.floor(Math.random() * professionalsList.length)];
 
 const professionalsData = [
-  { id: 1, name: "Kianna Stanton", image: images.room, time: "10:00 AM - 02:00 PM" , selected:false},
-  { id: 2, name: "Tatiana Baptista", image: images.room, time: "01:00 AM - 04:00 PM",selected: false },
-  { id: 3, name: "Kianna Stanton", image: images.room, time: "10:00 AM - 02:00 PM",selected: false },
+  { id: 1, name: 'Kianna Stanton', image: images.room, time: '10:00 AM - 02:00 PM' , selected:false},
+  { id: 2, name: 'Tatiana Baptista', image: images.room, time: '01:00 AM - 04:00 PM',selected: false },
+  { id: 3, name: 'Kianna Stanton', image: images.room, time: '10:00 AM - 02:00 PM',selected: false },
 ];
 
 
 const bookingHistory = Array.from({ length: 20 }, (_, index) => ({
-  id: index + 1, 
+  id: index + 1,
   date: 'Sep 10, 2024',
   time: '9:10 AM',
   title: 'Hair Avenue',
@@ -592,36 +604,36 @@ const bookingHistory = Array.from({ length: 20 }, (_, index) => ({
 
 const bookings = [
   {
-    time: "11:00 AM",
-    endTime: "12:00 PM",
-    name: "Christopher White",
-    service: "Hair Cut, Facial",
-    professional: "Brooklyn Williamson",
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
+    time: '11:00 AM',
+    endTime: '12:00 PM',
+    name: 'Christopher White',
+    service: 'Hair Cut, Facial',
+    professional: 'Brooklyn Williamson',
+    image: 'https://randomuser.me/api/portraits/women/44.jpg',
   },
   {
-    time: "12:15 PM",
-    endTime: "12:45 PM",
-    name: "Olivia Martin",
-    service: "Manicure, Pedicure",
-    professional: "Julie Watson",
-    image: "https://randomuser.me/api/portraits/women/45.jpg",
+    time: '12:15 PM',
+    endTime: '12:45 PM',
+    name: 'Olivia Martin',
+    service: 'Manicure, Pedicure',
+    professional: 'Julie Watson',
+    image: 'https://randomuser.me/api/portraits/women/45.jpg',
   },
   {
-    time: "03:30 PM",
-    endTime: "04:30 PM",
-    name: "Mia Taylor",
-    service: "Manicure, Pedicure",
-    professional: "Julie Watson",
-    image: "https://randomuser.me/api/portraits/women/46.jpg",
+    time: '03:30 PM',
+    endTime: '04:30 PM',
+    name: 'Mia Taylor',
+    service: 'Manicure, Pedicure',
+    professional: 'Julie Watson',
+    image: 'https://randomuser.me/api/portraits/women/46.jpg',
   },
   {
-    time: "04:30 PM",
-    endTime: "05:30 PM",
-    name: "Richard Thompson",
-    service: "Hair Cut",
-    professional: "Jenny Alexander",
-    image: "https://randomuser.me/api/portraits/women/47.jpg",
+    time: '04:30 PM',
+    endTime: '05:30 PM',
+    name: 'Richard Thompson',
+    service: 'Hair Cut',
+    professional: 'Jenny Alexander',
+    image: 'https://randomuser.me/api/portraits/women/47.jpg',
   },
 ];
 
@@ -632,16 +644,128 @@ const weeklySchedule = [
   { id: 4, day: 'Thu' },
   { id: 5, day: 'Fri' },
   { id: 6, day: 'Sat' },
-  { id: 7, day: 'Sun' }
+  { id: 7, day: 'Sun' },
 ];
 
 const changeScheduleStatus = [
-  { id: 1, value: '1 Week' },
-  { id: 2, value: '2 Weeks'},
-  { id: 3, value: '3 Weeks'},
-  { id: 4, value: 'Untill i change'},
+  { id: 'one', value: '1 Week' },
+  { id: 'two', value: '2 Weeks'},
+  { id: 'three', value: '3 Weeks'},
+  { id: 'untilIChange', value: 'Untill i change'},
 ];
-const scheduleTimePeriod = {weekly:'weekly',monthly:'monthly'}
+const scheduleTimePeriod = {weekly:'weekly',monthly:'monthly'};
+
+const filterList = [
+    {label: 'daily', value: '1'},
+    {label: 'weekly', value: '2'},
+    {label: 'monthly', value: '3'},
+    {label: 'yearly', value: '4'},
+  ];
+const imageBaseUrl = 'https://be.anaqa.sa';
+
+
+ const saudiArabiaCities = [
+  { label: 'Riyadh', value: 'riyadh' },
+  { label: 'Jeddah', value: 'jeddah' },
+  { label: 'Mecca', value: 'mecca' },
+  { label: 'Medina', value: 'medina' },
+  { label: 'Dammam', value: 'dammam' },
+  { label: 'Khobar', value: 'khobar' },
+  { label: 'Dhahran', value: 'dhahran' },
+  { label: 'Taif', value: 'taif' },
+  { label: 'Abha', value: 'abha' },
+  { label: 'Khamis Mushait', value: 'khamis_mushait' },
+  { label: 'Buraidah', value: 'buraidah' },
+  { label: 'Unaizah', value: 'unaizah' },
+  { label: 'Al Kharj', value: 'al_kharj' },
+  { label: "Al Majma'ah", value: 'al_majmaah' },
+  { label: 'Al Zulfi', value: 'al_zulfi' },
+  { label: 'Shaqra', value: 'shaqra' },
+  { label: 'Hail', value: 'hail' },
+  { label: 'Tabuk', value: 'tabuk' },
+  { label: 'Arar', value: 'arar' },
+  { label: 'Rafha', value: 'rafha' },
+  { label: 'Turayf', value: 'turayf' },
+  { label: 'Sakaka', value: 'sakaka' },
+  { label: 'Al Qurayyat', value: 'al_qurayyat' },
+  { label: 'Najran', value: 'najran' },
+  { label: 'Jazan', value: 'jazan' },
+  { label: 'Sabya', value: 'sabya' },
+  { label: 'Al Baha', value: 'al_baha' },
+  { label: 'Baljurashi', value: 'baljurashi' },
+  { label: 'Yanbu', value: 'yanbu' },
+  { label: 'Al Ula', value: 'al_ula' },
+  { label: 'Al Wajh', value: 'al_wajh' },
+  { label: 'Al Khafji', value: 'al_khafji' },
+  { label: 'Al Hofuf', value: 'al_hofuf' },
+  { label: 'Al Mubarraz', value: 'al_mubarraz' },
+  { label: 'Qatif', value: 'qatif' },
+  { label: 'Ahsa (Al-Ahsa)', value: 'ahsa' },
+  { label: 'Thadiq', value: 'thadiq' },
+  { label: 'Diriyah', value: 'diriyah' },
+  { label: 'Dhurma', value: 'dhurma' },
+  { label: 'Wadi Al-Dawasir', value: 'wadi_al_dawasir' },
+  { label: 'Afif', value: 'afif' },
+  { label: 'Turaif', value: 'turaif' },
+  { label: 'Adham', value: 'adham' },
+  { label: 'Rabigh', value: 'rabigh' },
+  { label: 'Mahd adh Dhahab', value: 'mahd_adh_dhahab' },
+  { label: 'Badr', value: 'badr' },
+  { label: 'Duba', value: 'duba' },
+  { label: 'Hafr Al-Batin', value: 'hafr_al_batin' },
+  { label: 'Samtah', value: 'samtah' },
+  { label: 'Dawadmi', value: 'dawadmi' },
+  { label: 'Layla', value: 'layla' },
+  { label: 'Tanomah', value: 'tanomah' },
+  { label: 'Ranyah', value: 'ranyah' },
+  { label: 'Al Qunfudhah', value: 'al_qunfudhah' },
+  { label: 'Al Lith', value: 'al_lith' },
+  { label: 'Al Bukayriyah', value: 'al_bukayriyah' },
+  { label: "Al Bad'", value: 'al_bad' },
+  { label: 'Al Hanakiyah', value: 'al_hanakiyah' },
+  { label: 'Al Khurmah', value: 'al_khurmah' },
+  { label: 'Khulays', value: 'khulays' },
+  { label: 'Al Jumum', value: 'al_jumum' },
+  { label: 'Al Mahd', value: 'al_mahd' },
+  { label: 'Al Qassim', value: 'al_qassim' },
+];
+
+const settingsEnum = {
+  Language:'Language',
+  OffDays:'OffDays',
+  AccessibilitySettings:'AccessibilitySettings',
+  NotificationSettings:'NotificationSettings',
+  ChangePassword:'ChangePassword',
+  PrivacyPolicy:'PrivacyPolicy',
+  TermsAndCondition:'TermsAndCondition',
+  DeleteAccount:'DeleteAccount',
+};
+
+ const notificationSettingKeys = {
+  payments: true,
+  schedule: true,
+  cancellation: true,
+  others: true,
+  promotions: true,
+};
+const labelToKeyMap = {
+  'Payments': 'payments',
+  'Schedule': 'schedule',
+  'Cancellation': 'cancellation',
+  'Offers Notification': 'promotions',
+  'Other Notification': 'others',
+};
+
+const accessAbilityLabelToKeyMap = {
+  'Payments in & Payouts': 'paymentsandpayouts',
+  'Codes & Discount': 'codesandDiscount',
+  'Account Management': 'accountManagement',
+  'Service Management': 'serviceManagement',
+  'Promotions': 'promotions',
+  'Chat': 'chat',
+  'Scheduling': 'schedule',
+  'Statistics': 'statics',
+};
 
 
 
@@ -688,5 +812,14 @@ export {
   changeScheduleStatus,
   scheduleTimePeriod,
   statisticsservices,
-  singleProfessionalMenuOptions
+  singleProfessionalMenuOptions,
+  storagekeys ,
+  filterList,
+  imageBaseUrl,
+  saudiArabiaCities,
+  settingsEnum,
+  notificationSettingKeys,
+  labelToKeyMap,
+  accessAbilityLabelToKeyMap,
+  requestComplaintEnum,
 };

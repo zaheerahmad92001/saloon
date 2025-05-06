@@ -1,5 +1,5 @@
-import React, {useRef} from 'react';
-import {FlatList, SafeAreaView, Text, View} from 'react-native';
+import React, {useEffect, useRef} from 'react';
+import {ActivityIndicator, FlatList, SafeAreaView, Text, View} from 'react-native';
 import Header from '../../components/appHeader';
 import styles from './serviceManagement.style';
 import ServiceManagementCard from '../../components/serviceManagementCard';
@@ -9,11 +9,31 @@ import ModalComponent from '../../components/modal';
 import {widthPercentageToDP} from 'react-native-responsive-screen';
 import DeleteModal from '../../components/modal/deleteModal';
 import {SmallText} from '../../components/Typography';
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchServices} from '../../redux/actions/servicesAction';
+import colors from '../../assets/colors';
+
 const ServiceManagmentScreen = ({navigation, route}) => {
+
+  const limit = 10;
+  const status = 'Pending';
+
+  const dispatch = useDispatch();
+  const {servicesList, pagination, loading, error} = useSelector(state => state.services);
+  const {user} = useSelector((state)=>state.auth)
+  const salonId = user?.id
+
   const modalRef = useRef();
 
-  const handleAssign = () => {
-    navigation.navigate('subServiceList');
+  useEffect(() => {
+    const fetchSalonService = async () => {
+      const response = await dispatch(fetchServices({page:1 , limit ,status ,salonId })).unwrap();
+    };
+    fetchSalonService();
+  }, [dispatch]);
+
+  const handleAssign = (item) => {
+    navigation.navigate('subServiceList',{item});
   };
 
   const handleEdit = () => {
@@ -32,17 +52,37 @@ const ServiceManagmentScreen = ({navigation, route}) => {
     }
   };
 
+  const renderFooter = () => {
+    if (!pagination || !pagination.page || !loading) {
+      return null;
+    }
+    if (pagination.page > 1 && loading) {
+      return (
+        <View style={styles.footerLoader}>
+          <ActivityIndicator color={colors.error} size="small" />
+        </View>
+      );
+    }
+    return null;
+  };
   const renderItem = ({item, index}) => {
     return (
       <ServiceManagementCard
+        item={item}
         index={index}
         onEdit={() => handleEdit(item)}
         onDelete={openModal}
-        onAssign={handleAssign}
+        onAssign={()=>handleAssign(item)}
         isPending={index % 2 === 0}
       />
     );
   };
+
+  const loadMore = () => {
+      if ( !loading && pagination.page < pagination.totalPages ) {
+        dispatch(fetchServices({ page: pagination.page + 1, limit, status , salonId })).unwrap();
+      }
+    };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -53,14 +93,23 @@ const ServiceManagmentScreen = ({navigation, route}) => {
       />
       <View style={styles.mainContainer}>
         <View style={styles.wrapper}>
-          <SmallText text={`My Salon Services (20)`} style={styles.heading} />
+          <SmallText text={`My Salon Services (${pagination?.totalRecords})`} style={styles.heading} />
+
+          { pagination.page === 1 && loading &&
+            <View style={styles.loaderStyle}>
+                <ActivityIndicator color={colors.error} size={'small'}/>
+            </View>
+          }
 
           <FlatList
-            data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]}
+            data={servicesList}
             renderItem={renderItem}
-            keyExtractor={item => Math.random()}
+            keyExtractor={item => item?.id}
             contentContainerStyle={styles.contentContainerStyle}
             showsVerticalScrollIndicator={false}
+            onEndReached={loadMore}
+            onEndReachedThreshold={0.5}
+            ListFooterComponent={renderFooter}
           />
 
           <AppButton
@@ -75,7 +124,11 @@ const ServiceManagmentScreen = ({navigation, route}) => {
         ref={modalRef}
         onClose={closeModal}
         style={{width: widthPercentageToDP(80)}}>
-        <DeleteModal handleDelete={() => {}} handleCancel={closeModal} isService={true} />
+        <DeleteModal
+          handleDelete={() => {}}
+          handleCancel={closeModal}
+          isService={true}
+        />
       </ModalComponent>
     </SafeAreaView>
   );

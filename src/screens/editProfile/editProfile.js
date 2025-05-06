@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
-import {View, TouchableOpacity, SafeAreaView, Text} from 'react-native';
-import React, {useRef, useReducer, useState} from 'react';
+import {View, TouchableOpacity, SafeAreaView} from 'react-native';
+import React, {useRef, useReducer, useState, useEffect} from 'react';
+import Toast from 'react-native-simple-toast';
 
 import TextField from '../../components/textField/textField';
 import images from '../../assets/images';
@@ -10,7 +11,11 @@ import FastImage from 'react-native-fast-image';
 import Camera from '../../assets/svgs/camera.svg';
 import ModalComponent from '../../components/modal';
 import MediaPicker from '../../components/modal/mediaPicker';
-import {captureImageWithCamera, pickImageFromLibrary} from '../../functions';
+import {
+  captureImageWithCamera,
+  pickImageFromLibrary,
+  signUpFormValide,
+} from '../../functions';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {AppButton} from '../../components/appButton';
 import PhoneInput from 'react-native-phone-number-input';
@@ -20,16 +25,19 @@ import fontsFamily from '../../assets/fontsFamily';
 import {RFValue} from 'react-native-responsive-fontsize';
 import DownArrow from '../../assets/svgs/downarrow.svg';
 import MyDropdown from '../../components/dropdown/dropdown';
+import {useDispatch, useSelector} from 'react-redux';
+
+import {getSalon, updateSalonProfile} from '../../redux/actions/profileAction';
+import {imageBaseUrl, saudiArabiaCities} from '../../staticData';
+
+
 
 const EditProfile = ({navigation, route}) => {
-  const [selectedValue, setSelectedValue] = useState(null);
-  const items = [
-    {label: 'Option A', value: '1'},
-    {label: 'Option B', value: '2'},
-    {label: 'Option C', value: '3'},
-    {label: 'Option D', value: '4'},
-    {label: 'Option E', value: '5'},
-  ];
+  const dispatch = useDispatch();
+  const {user} = useSelector(state => state.auth);
+  const {loading} = useSelector((state)=>state.profile)
+
+  const salonId = user?.id;
 
   const emailRef = useRef(null);
   const ownerRef = useRef(null);
@@ -38,34 +46,52 @@ const EditProfile = ({navigation, route}) => {
   const phoneInput = useRef(null);
   const addressRef = useRef(null);
 
+  const [selectedValue, setSelectedValue] = useState(null);
   const [state, updateState] = useReducer(
     (state, newState) => ({...state, ...newState}),
     {
-      isVisible: false,
       profileImage: null,
-      salonName: null,
-      ownerName: null,
-      email: null,
-      phoneNumber: null,
-      formattedValue: null,
-      countryCode: null,
-      dob: null,
+      salonName: user?.name,
+      ownerName: user?.userName,
+      email: user?.email,
+      address: user?.address,
+      postCode: user?.postalCode,
+      phoneNumber: user?.phoneNumber,
+      formattedValue: user?.phoneNumber,
+      countryCode: '',
     },
   );
   const {
-    isVisible,
     profileImage,
     salonName,
     ownerName,
     email,
+    address,
+    postCode,
     phoneNumber,
     formattedValue,
     countryCode,
-    dob,
   } = state;
 
+
+  const [errors, setErrors] = useState({
+    phoneNumber: '',
+    ownerName: '',
+    address: '',
+    salonName: '',
+  });
+
+  useEffect(() => {
+    const fetchSalonProfileById = async () => {
+      const response = await dispatch(getSalon(user?.id));
+      console.log('get salon',response)
+    };
+    fetchSalonProfileById();
+  }, [dispatch, user?.id]);
+
   const handleImagePicked = image => {
-    updateState({isVisible: false, profileImage: image.uri});
+    closeModal();
+    updateState({profileImage: image});
   };
 
   const openModal = () => {
@@ -86,7 +112,45 @@ const EditProfile = ({navigation, route}) => {
     navigation.goBack();
   };
 
-  const updateProfile = () => {};
+  const updateProfile = async () => {
+    const {valid, errors} = signUpFormValide(
+      phoneNumber,
+      phoneInput,
+      salonName,
+      ownerName,
+      address,
+      email,
+    );
+
+    setErrors(errors);
+    if (!valid) {
+      Toast.showWithGravity(
+        'Please fill the required field and agree with terms and condition ',
+        Toast.LONG,
+        Toast.BOTTOM,
+      );
+      return;
+    }
+
+    let requestData = {
+      profileImage,
+      address,
+      salonName,
+      ownerName,
+      email,
+      postCode,
+      phoneNumber,
+      formattedValue,
+      selectedValue,
+      existingImage: user?.file?.id,
+      salonId,
+    };
+    const response = await dispatch(updateSalonProfile({data: requestData}));
+    console.log('response',response)
+    if(response?.payload?.success){
+      navigation.goBack();
+    }
+  };
 
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -101,7 +165,13 @@ const EditProfile = ({navigation, route}) => {
             <View style={styles.innerProfileImageContainer}>
               <View style={styles.ImageContainer}>
                 <FastImage
-                  source={profileImage ? {uri: profileImage} : images.room}
+                  source={
+                    profileImage?.uri
+                      ? {uri: profileImage.uri}
+                      : user?.file?.url
+                      ? {uri: `${imageBaseUrl}${user?.file?.url}`}
+                      : images.room
+                  }
                   // resizeMode={FastImage.resizeMode.contain}
                   style={styles.profileImage}
                 />
@@ -119,8 +189,12 @@ const EditProfile = ({navigation, route}) => {
               label={'Salon Name'}
               onChangeText={val => {
                 updateState({salonName: val});
+                let errorList = errors;
+                errorList.salonName = '';
+                setErrors(errorList);
               }}
               value={salonName}
+              error={errors.salonName}
               returnKeyType="next"
               blurOnSubmit={false}
               onSubmitEditing={() => ownerRef.current?.focus()}
@@ -133,8 +207,12 @@ const EditProfile = ({navigation, route}) => {
               label={'Owner Name'}
               onChangeText={val => {
                 updateState({ownerName: val});
+                let errorList = errors;
+                errorList.ownerName = '';
+                setErrors(errorList);
               }}
               value={ownerName}
+              error={errors.ownerName}
               returnKeyType="next"
               blurOnSubmit={false}
               onSubmitEditing={() => emailRef.current?.focus()}
@@ -152,10 +230,15 @@ const EditProfile = ({navigation, route}) => {
             disableCountryCode={true}
             onChangeText={text => {
               updateState({phoneNumber: text});
+              let errorList = errors;
+              errorList.phoneNumber = '';
+              setErrors(errorList);
             }}
             onChangeFormattedText={text => updateState({formattedValue: text})}
-            onChangeCountry={country =>
+            onChangeCountry={country =>{
+              // console.log('console', country);
               updateState({countryCode: country.callingCode})
+            }
             }
             withShadow={false}
             containerStyle={styles.phoneContainer}
@@ -170,6 +253,13 @@ const EditProfile = ({navigation, route}) => {
             renderDropdownImage={<DownArrow />}
           />
 
+          {errors.phoneNumber && (
+            <SmallText
+              text={errors.phoneNumber}
+              style={{color: colors.error}}
+            />
+          )}
+
           <View style={styles.emailContainer}>
             <TextField
               placeholder={'Email'}
@@ -177,8 +267,12 @@ const EditProfile = ({navigation, route}) => {
               label={'Email(Optional)'}
               onChangeText={val => {
                 updateState({email: val});
+                let errorList = errors;
+                errorList.email = '';
+                setErrors(errorList);
               }}
               value={email}
+              error={errors.email}
               returnKeyType="next"
               blurOnSubmit={false}
               onSubmitEditing={() => postCodeRef.current?.focus()}
@@ -188,7 +282,7 @@ const EditProfile = ({navigation, route}) => {
           <View style={styles.dropdownContainer}>
             <SmallText text={'City'} style={styles.label} />
             <MyDropdown
-              data={items}
+              data={saudiArabiaCities}
               value={selectedValue}
               onChange={item => setSelectedValue(item.value)}
               placeholder="Select Status"
@@ -201,9 +295,9 @@ const EditProfile = ({navigation, route}) => {
               placeholder={'Postal Code'}
               label={'Postal Code'}
               onChangeText={val => {
-                updateState({email: val});
+                updateState({postCode: val});
               }}
-              value={email}
+              value={postCode}
               returnKeyType="next"
               blurOnSubmit={false}
               onSubmitEditing={() => addressRef.current?.focus()}
@@ -211,23 +305,29 @@ const EditProfile = ({navigation, route}) => {
           </View>
 
           <TextField
-            ref={emailRef}
+            ref={addressRef}
             placeholder={'Address'}
             label={'Address'}
             multiline={true}
             onChangeText={val => {
-              updateState({email: val});
+              updateState({address: val});
+              let errorList = errors;
+              errorList.address = '';
+              setErrors(errorList);
             }}
-            value={email}
+            value={address}
+            error={errors.address}
             returnKeyType="done"
             blurOnSubmit={true}
             style={styles.addressInput}
-            inputStyle={{minHeight: 80}}
+            inputStyle={styles.addressInput}
           />
+          <View style={styles.emptyView}></View>
         </KeyboardAwareScrollView>
         <AppButton
           onPress={updateProfile}
           title={'Update Profile'}
+          isLoading={loading}
           style={styles.button}
         />
       </View>

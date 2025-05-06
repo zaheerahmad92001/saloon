@@ -13,10 +13,13 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+
 
 const AnaqaPills = () => {
 
  const navigation = useNavigation()
+   const {overViewData} = useSelector((state)=>state.dashboard)
 
 const handleNavigation=(routeName)=>{
   navigation.navigate(routeName)
@@ -30,7 +33,7 @@ const handleNavigation=(routeName)=>{
           <TotalBookingIcon />
           <View style={styles.textlableValueView}>
             <SmallText text="Total Booking" style={styles.lableText} />
-            <MediumText text={'56'} style={styles.ValueText} />
+            <MediumText text={overViewData?.noOfBookings} style={styles.ValueText} />
           </View>
         </Pressable>
 
@@ -38,7 +41,8 @@ const handleNavigation=(routeName)=>{
           <RevenueIcon />
           <View style={styles.textlableValueView}>
             <Text style={styles.lableText}> Total Income</Text>
-            <Text style={styles.ValueText}>SAR 2000</Text>
+            <MediumText text={`SAR ${overViewData?.totalIncome}`} style={styles.ValueText} />
+            {/* <Text style={styles.ValueText}>{`SAR ${overViewData?.totalIncome}`}</Text> */}
           </View>
         </Pressable>
       </View>
@@ -48,7 +52,9 @@ const handleNavigation=(routeName)=>{
           <ServicesIcon />
           <View style={styles.textlableValueView}>
             <Text style={styles.lableText}> Services</Text>
-            <Text style={styles.ValueText}>08</Text>
+            {/* <Text style={styles.ValueText}>{overViewData?.noOfServices}</Text> */}
+            <MediumText text={overViewData?.noOfServices} style={styles.ValueText} />
+
           </View>
         </Pressable>
 
@@ -56,7 +62,9 @@ const handleNavigation=(routeName)=>{
           <ReviewIcon />
           <View style={styles.textlableValueView}>
             <Text style={styles.lableText}> Professional</Text>
-            <Text style={styles.ValueText}>32</Text>
+            {/* <Text style={styles.ValueText}>{overViewData?.noOfProfessionals}</Text> */}
+            <MediumText text={overViewData?.noOfProfessionals} style={styles.ValueText} />
+
           </View>
         </Pressable>
       </View>
@@ -89,9 +97,11 @@ const styles = StyleSheet.create({
     color: colors.lightBlack,
   },
   ValueText: {
-    fontFamily: fontsFamily.medium,
+    fontFamily: fontsFamily.regular,
     color: colors.appBlack,
+    fontSize:13,
     marginLeft: 6,
+    fontWeight:'600',
   },
 });
 export default AnaqaPills;

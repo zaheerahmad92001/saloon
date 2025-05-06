@@ -1,14 +1,18 @@
 import React from 'react';
-import {Pressable, StyleSheet, Text} from 'react-native';
+import {ActivityIndicator, Pressable, StyleSheet, Text} from 'react-native';
 import colors from '../assets/colors';
 import {RFValue} from 'react-native-responsive-fontsize';
 import fontsFamily from '../assets/fontsFamily';
 
 const AppButton = props => {
-  const {onPress, title, style, textstyle} = props;
+  const {onPress, title, style, textstyle,isLoading} = props;
   return (
-    <Pressable onPress={onPress} style={[styles.wrapper, style]}>
+    <Pressable onPress={isLoading ? ()=>{} : onPress} style={[styles.wrapper, style]}>
+      {isLoading? 
+      <ActivityIndicator color={colors.white} size={'small'}/>
+      :
       <Text style={[styles.buttonText, textstyle]}>{title}</Text>
+    }
     </Pressable>
   );
 };

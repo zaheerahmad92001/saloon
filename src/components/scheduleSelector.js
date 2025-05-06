@@ -8,7 +8,7 @@ import ForwardArrow from '../assets/svgs/forward-arrow-box.svg';
 import {CurrentMonthDates} from '../functions';
 import moment from 'moment';
 import DateSelector from './dateSelector';
-import { weeklySchedule } from '../staticData';
+import { scheduleTimePeriod, weeklySchedule } from '../staticData';
 
 const radioButton = [
   {key: 'weekly', value: 'Weekly'},
@@ -24,12 +24,14 @@ const ScheduleSelector = (props) => {
     handleSchedulePeriod ,
     weeklyDaysSelection,
     monthlyDatesSelection,
+    disabledDays,
+    disabledDates,
 
   } = props
 
   const monthlySchedule = CurrentMonthDates();
-  const isWeekly = selectedOption === 'weekly';
-  const isMonthly = selectedOption === 'monthly';
+  const isWeekly = selectedOption === scheduleTimePeriod.weekly;
+  const isMonthly = selectedOption === scheduleTimePeriod.monthly;
   const currentDate = moment();
   const month = currentDate.format('MMMM');
   const year = currentDate.format('YYYY');
@@ -59,6 +61,8 @@ const ScheduleSelector = (props) => {
         monthlyDatesSelection={monthlyDatesSelection}
         onWeeklySelectionChange={onWeeklySelectionChange} 
         onMonthlySelectionChange={onMonthlySelectionChange}
+        disabledDays={disabledDays}
+        disabledDates={disabledDates}
         style={{marginTop: hp(1.5)}}
       />
     </View>

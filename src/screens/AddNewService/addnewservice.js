@@ -1,5 +1,6 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {SafeAreaView, Text, View, FlatList, Pressable} from 'react-native';
+import Toast from 'react-native-simple-toast';
 import styles from './addNewService.style';
 import Header from '../../components/appHeader';
 import MyDropdown from '../../components/dropdown/dropdown';
@@ -11,27 +12,43 @@ import ModalComponent from '../../components/modal';
 import ServiceAddedModal from '../../components/modal/serviceAddedModal';
 import {widthPercentageToDP} from 'react-native-responsive-screen';
 import TextField from '../../components/textField/textField';
+import {useDispatch, useSelector} from 'react-redux';
+import {addService, fetchAllServices} from '../../redux/actions/servicesAction';
+import { validateAndBuildServiceObject } from '../../functions';
 
-const items = [
-  {label: 'Option A', value: '1'},
-  {label: 'Option B', value: '2'},
-  {label: 'Option C', value: '3'},
-  {label: 'Option D', value: '4'},
-  {label: 'Option E', value: '5'},
-];
+
 
 const AddNewServiceScreen = ({navigation, route}) => {
-  const modalRef = useRef();
-
   let subservice = [
     {id: 1, name: 'Long Hair cut', price: 'Sar 100', duration: '30 mins'},
     {id: 2, name: 'Short Hair cut', price: 'Sar 150', duration: '45 mins'},
   ];
 
+  const modalRef = useRef();
   const [selectedValue, setSelectedValue] = useState(null);
   const [subServicesData, setSubServicesData] = useState(subservice);
   const [price, setPrice] = useState('');
   const [duration, setDuration] = useState('');
+  const limit = 10;
+
+  const dispatch = useDispatch();
+  const {salonServices, allServicesPagination: pagination, serviceLoading, error , inProgress} = useSelector(state => state.services);
+  const {user} = useSelector((state)=>state.auth)
+  const salonId = user?.id
+
+  useEffect(() => {
+    const loadAllServices = async () => {
+      const response = await dispatch(fetchAllServices({page: 1, limit})).unwrap();
+    };
+    loadAllServices();
+  }, [dispatch]);
+
+
+  const loadMoreServices = () => {
+    if (!serviceLoading && pagination.page < pagination.totalPages) {
+      dispatch(fetchAllServices({page: pagination.page + 1, limit})).unwrap();
+    }
+  };
 
   const openModal = () => {
     if (modalRef?.current) {
@@ -44,6 +61,11 @@ const AddNewServiceScreen = ({navigation, route}) => {
       modalRef.current.close();
     }
   };
+
+  const handleCloseModal=()=>{
+    navigation.goBack();
+    closeModal();
+  }
 
   const addSubService = () => {
     const newId = Date.now();
@@ -74,6 +96,30 @@ const AddNewServiceScreen = ({navigation, route}) => {
       ),
     );
   };
+
+  const handleAddServices= async ()=>{
+
+    const { errors, data } = validateAndBuildServiceObject({
+      salonId,
+      serviceId:selectedValue,
+      price,
+      duration,
+      subServicesData,
+    });
+    if(errors?.length > 0 ){
+      Toast.showWithGravity(
+        'some values are missing or invalid',
+        Toast.LONG,
+        Toast.CENTER,
+      );
+    }else{
+     const response = await dispatch(addService(data)).unwrap();
+     if(response?.success){
+        openModal()
+     }
+     console.log('response',response)
+    }
+  }
 
   const renderItem = ({item, index}) => {
     return (
@@ -108,9 +154,10 @@ const AddNewServiceScreen = ({navigation, route}) => {
           <View style={styles.subContainer}>
             <SmallText text={'Select Service'} style={styles.label} />
             <MyDropdown
-              data={items}
+              data={salonServices}
               value={selectedValue}
               onChange={item => setSelectedValue(item.value)}
+              handleLoadMore={loadMoreServices}
               placeholder="Select Service"
               style={styles.dropDownStyle}
             />
@@ -135,6 +182,7 @@ const AddNewServiceScreen = ({navigation, route}) => {
                   <TextField
                     style={styles.input2}
                     value={duration}
+                    keyboardType="numeric"
                     onChangeText={text => setDuration(text)}
                   />
                 </View>
@@ -155,16 +203,18 @@ const AddNewServiceScreen = ({navigation, route}) => {
         </View>
       </KeyboardAwareScrollView>
       <AppButton
-        onPress={() => openModal()}
+      onPress={handleAddServices}
+        // onPress={() => openModal()}
         title="Save"
         style={styles.buttonStyle}
+        isLoading={inProgress}
       />
 
       <ModalComponent
         ref={modalRef}
         onClose={closeModal}
         style={{width: widthPercentageToDP(80)}}>
-        <ServiceAddedModal onPress={closeModal} />
+        <ServiceAddedModal onPress={handleCloseModal} />
       </ModalComponent>
     </SafeAreaView>
   );

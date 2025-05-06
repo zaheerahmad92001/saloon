@@ -1,27 +1,33 @@
-import React, { useState } from 'react';
-import {View, StyleSheet, TouchableOpacity, Pressable} from 'react-native';
+import React from 'react';
+import {View, StyleSheet, Pressable} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import colors from '../assets/colors';
 import { SmallText } from './Typography';
-import { RFValue } from 'react-native-responsive-fontsize';
-import fontsFamily from '../assets/fontsFamily';
 
 
 const CheckBox=(props) => {
     const {isChecked, onSelectionChange, setSelectedItems, item} = props;
 
 
-    const toggleSelection = (item) => {
-        setSelectedItems((prevSelected) => {
-          const isSelected = prevSelected.includes(item.id);
-          const newSelection = isSelected
-            ? prevSelected.filter((id) => id !== item.id)
-            : [...prevSelected, item.id];
-          if (onSelectionChange) {
-            onSelectionChange(newSelection);
-          }
-          return newSelection;
-        });
+    // const toggleSelection = (item) => {
+    //     setSelectedItems((prevSelected) => {
+    //       const isSelected = prevSelected.includes(item.id);
+    //       const newSelection = isSelected
+    //         ? prevSelected.filter((id) => id !== item.id)
+    //         : [...prevSelected, item.id];
+    //       if (onSelectionChange) {
+    //         onSelectionChange(newSelection);
+    //       }
+    //       return newSelection;
+    //     });
+    //   };
+
+      const toggleSelection = (item) => {
+        const selectedId = item.id;
+        setSelectedItems(selectedId);
+        if (onSelectionChange) {
+          onSelectionChange(selectedId);
+        }
       };
     return(
         <Pressable

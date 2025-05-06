@@ -12,7 +12,7 @@ import { AppButton } from '../../components/appButton';
 import { widthPercentageToDP } from 'react-native-responsive-screen';
 import ModalComponent from '../../components/modal';
 import MediaPicker from '../../components/modal/mediaPicker';
-import { captureImageWithCamera, pickImageFromLibrary } from '../../functions';
+import { captureImageWithCamera, pickImageFromLibrary, professionalFormValidate } from '../../functions';
 import AnaqaProfessionalHeader from '../../components/anaqaProfessionalHeader';
 
 
@@ -31,12 +31,13 @@ const AddProfessional = ({navigation, route}) => {
       name: '',
       email: '',
       phone: '',
-      specialty: '',
+      speciality: '',
       experience: '',
       profile:null,
+      base64Image:null,
     },
   );
-  const {name, email, phone, specialty, experience , profile} = state;
+  const {name, email, phone, speciality, experience , profile , base64Image} = state;
 
   const openModal = () => {
     if (modalRef?.current) {
@@ -52,9 +53,22 @@ const AddProfessional = ({navigation, route}) => {
 
   const handleImagePicked = image => {
     closeModal();
-    updateState({ profile: image.uri });
+    const base64String = `data:${image.type};base64,${image.base64}`;
+    updateState({ profile: image,base64Image:base64String });
   };
+const handleNavigation=()=>{
 
+  const {valid , errors} =  professionalFormValidate(name , email , phone , profile , speciality ,experience)
+  const data = {
+    name,
+    email , 
+    phone,
+    profile,
+    speciality,
+    experience
+  }
+  navigation.navigate('professionalSchedule',{isSingleProfessional:false , paramsData:data})
+}
 
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -106,13 +120,13 @@ const AddProfessional = ({navigation, route}) => {
             <TextField
               label={'Specialty'}
               ref={specialtyRef}
-              value={specialty}
+              value={speciality}
               placeholder={'Specialty'}
               returnKeyType="next"
               onSubmitEditing={() => experienceRef.current.focus()}
               blurOnSubmit={false}
               inputStyle={styles.inputStyle}
-              onChangeText={val => updateState({specialty: val})}
+              onChangeText={val => updateState({speciality: val})}
             />
 
             <TextField
@@ -132,7 +146,7 @@ const AddProfessional = ({navigation, route}) => {
         {profile ?
             <View style={styles.imageContainer}>
             <FastImage
-             source={{uri:profile}}
+             source={{uri:profile?.uri}}
              style={styles.image}
             />
             </View>
@@ -149,7 +163,10 @@ const AddProfessional = ({navigation, route}) => {
 
         </View>
       </KeyboardAwareScrollView>
-      <AppButton title={'Next'} style={styles.button} onPress={() => navigation.navigate('professionalSchedule',{isSingleProfessional:false})} />
+      <AppButton title={'Next'} style={styles.button} onPress={
+        ()=>handleNavigation()
+        // () => navigation.navigate('professionalSchedule',{isSingleProfessional:false})
+        } />
 
       <ModalComponent
         ref={modalRef}

@@ -8,19 +8,34 @@ import {
 import React, {useState} from 'react';
 import Header from '../../components/appHeader';
 import ReasonSelector from '../../components/reasonSelector/reasonSelector';
-import {reasons} from '../../staticData';
+import {reasons, settingsEnum} from '../../staticData';
 import styles from './deleteAccount.style';
 import { LargeText } from '../../components/Typography';
+import { useDispatch, useSelector } from 'react-redux';
+import { addSettingsByType } from '../../redux/actions/settingsAction';
 
 const DeleteAccount = ({navigation,route}) => {
+
+  const dispatch = useDispatch();
+  const {user} = useSelector(state => state.auth);
+  const {loading, inProgress } = useSelector(state => state.settings);
+  const salonId = user?.id;
+
   const [selectedReason, setSelectedReason] = useState(null);
 
   const handleSelect = reason => {
     setSelectedReason(reason);
   };
 
-  const handleDeleteAccount = () => {
-   navigation.navigate('verifyIdentity',{isDeleteRoute:true})
+  const handleDeleteAccount = async () => {
+  //  navigation.navigate('verifyIdentity',{isDeleteRoute:true})
+  let payload={
+    type:settingsEnum.DeleteAccount,
+    reason:selectedReason,
+    salonId:salonId,
+  };
+//  const response = await dispatch(addSettingsByType(payload)).unwrap();
+
   };
   return (
     <SafeAreaView style={styles.container}>

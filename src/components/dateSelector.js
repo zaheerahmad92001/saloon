@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {View, StyleSheet, TouchableOpacity, Pressable} from 'react-native';
 import {
   heightPercentageToDP as hp,
@@ -20,7 +20,9 @@ const DateSelector = props => {
     monthlyDatesSelection,
     openBottomSheet, isWeekly, isMonthly , style,
     onWeeklySelectionChange,  // Callback for weekly selection
-    onMonthlySelectionChange  // Callback for monthly selection
+    onMonthlySelectionChange,  // Callback for monthly selection
+    disabledDays,
+    disabledDates,
   } = props;
 
   const [selectedDate, setSelectedDate] = useState(
@@ -29,6 +31,14 @@ const DateSelector = props => {
 
   const [selectedWeeklyDays, setSelectedWeeklyDays] = useState(isEdit ? weeklyDaysSelection :[]);
   const [selectedMonthlyDays, setSelectedMonthlyDays] = useState(isEdit ? monthlyDatesSelection:[]);
+
+  useEffect(()=>{
+   if(isEdit){
+    setSelectedMonthlyDays(monthlyDatesSelection);
+    setSelectedWeeklyDays(weeklyDaysSelection)
+   }
+  },[isEdit, monthlyDatesSelection, weeklyDaysSelection])
+
 
   const handleSingleDayPress = date => {
     setSelectedDate(date);
@@ -57,18 +67,18 @@ const DateSelector = props => {
   
 
   const renderItem = ({item, index}) => {
-
-    const isSelected = selectedMonthlyDays.includes(item)
+    const isSelected = selectedMonthlyDays?.includes(item)
+    const isDisabled = disabledDates?.includes(item);
     const isSunday = moment(item).format('ddd') === 'Sun';
     
 
     return (
       <TouchableOpacity
-      disabled={isSunday}
+      disabled={isSunday || isDisabled}
         key={item}
         style={[styles.dateItem, 
             {
-             backgroundColor: isSunday
+             backgroundColor: isSunday || isDisabled
               ? colors.error
               : isSelected
               ? colors.sharpPrimary
@@ -80,14 +90,14 @@ const DateSelector = props => {
             text={moment(item).format('ddd')}
             style={[
               styles.dayTextDate,
-              selectedDate === item && styles.selectedText,
+              (isSunday || isSelected || isDisabled) && styles.selectedText,
             ]}
           />
           <LargeText
             text={moment(item).format('D')}
             style={[
               styles.monthlyDate,
-              (isSunday || isSelected) && styles.selectedDay,
+              (isSunday || isSelected || isDisabled) && styles.selectedDay,
             ]}
           />
         </Fragment>
@@ -136,18 +146,19 @@ const DateSelector = props => {
 
   const renderWeeklySchedule = () =>
     weeklySchedule.map((item, index) => {
-      const isSelected = selectedWeeklyDays.includes(item.day)
+      const isSelected = selectedWeeklyDays?.includes(item.day)
+      const isDisabled = disabledDays?.includes(item.day);
       const isSunday = item.day === 'Sun';
 
       return (
         <Pressable
-         disabled={isSunday}
+         disabled={isSunday || isDisabled}
           key={index}
           onPress={() => handleMultiDaySelect(item.day)}
           style={[
             styles.dayItem,
             {
-              backgroundColor: isSunday
+              backgroundColor: isSunday || isDisabled
                 ? colors.error
                 : isSelected
                 ? colors.sharpPrimary
@@ -158,7 +169,7 @@ const DateSelector = props => {
             text={item.day}
             style={[
               styles.dayText,
-              (isSunday || isSelected) && styles.selectedDay,
+              (isSunday || isSelected || isDisabled) && styles.selectedDay,
             ]}
           />
         </Pressable>

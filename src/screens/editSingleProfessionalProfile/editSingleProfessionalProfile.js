@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
-import { View, TouchableOpacity, SafeAreaView } from 'react-native';
-import React, { useRef, useReducer, useState } from 'react';
-
+import {View, TouchableOpacity, SafeAreaView} from 'react-native';
+import React, {useRef, useReducer, useEffect} from 'react';
+import Toast from 'react-native-simple-toast';
 import TextField from '../../components/textField/textField';
 import images from '../../assets/images';
 import Header from '../../components/appHeader';
@@ -10,55 +10,79 @@ import FastImage from 'react-native-fast-image';
 import Camera from '../../assets/svgs/camera.svg';
 import ModalComponent from '../../components/modal';
 import MediaPicker from '../../components/modal/mediaPicker';
-import { captureImageWithCamera, pickImageFromLibrary } from '../../functions';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { AppButton } from '../../components/appButton';
+import {
+  captureImageWithCamera,
+  pickImageFromLibrary,
+  professionalFormValidate,
+} from '../../functions';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {AppButton} from '../../components/appButton';
 import PhoneInput from 'react-native-phone-number-input';
-import { SmallText } from '../../components/Typography';
+import {SmallText} from '../../components/Typography';
 import colors from '../../assets/colors';
 import fontsFamily from '../../assets/fontsFamily';
-import { RFValue } from 'react-native-responsive-fontsize';
+import {RFValue} from 'react-native-responsive-fontsize';
 import DownArrow from '../../assets/svgs/downarrow.svg';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  singleProfessionalProfile,
+  updateSingleProfessionalProfile,
+} from '../../redux/actions/professionalsAction';
+import {imageBaseUrl} from '../../staticData';
 
-
-const EditSingleProfessionalProfile = ({ navigation, route }) => {
-
+const EditSingleProfessionalProfile = ({navigation, route}) => {
+  const {item} = route?.params ?? {};
+  const dispatch = useDispatch();
+  const {user} = useSelector(state => state.auth);
+  const {loading} = useSelector(state => state.professionals);
 
   const emailRef = useRef(null);
-  const ownerRef = useRef(null);
-  const postCodeRef = useRef(null);
+  const professionalRef = useRef(null);
+  const specialtyRef = useRef(null);
   const modalRef = useRef();
   const phoneInput = useRef(null);
-  const addressRef = useRef(null);
+  const experienceRef = useRef(null);
 
   const [state, updateState] = useReducer(
-    (state, newState) => ({ ...state, ...newState }),
+    (state, newState) => ({...state, ...newState}),
     {
       isVisible: false,
       profileImage: null,
-      salonName: null,
-      ownerName: null,
-      email: null,
-      phoneNumber: null,
-      specialty: null,
-      experience: null,
-      dob: null,
+      name: item?.name ?? '',
+      email: item?.email ?? '',
+      phoneNumber: item?.phoneNumber ?? '',
+      formattedValue: item?.phoneNumber ?? '',
+      speciality: item?.speciality,
+      experience: item?.experience ?? '',
+      singleProfessional: {},
     },
   );
   const {
     isVisible,
     profileImage,
-    salonName,
-    ownerName,
+    name,
     email,
     phoneNumber,
-    specialty,
+    formattedValue,
+    speciality,
     experience,
-    dob,
+    singleProfessional,
   } = state;
 
+  useEffect(() => {
+    const fetchSingleProfessional = async () => {
+      let professionalId = item?.id ?? '';
+      const response = await dispatch(
+        singleProfessionalProfile(professionalId),
+      ).unwrap();
+      updateState({singleProfessional: response});
+    };
+    fetchSingleProfessional();
+  }, [dispatch, item?.id]);
+
   const handleImagePicked = image => {
-    updateState({ isVisible: false, profileImage: image.uri });
+    closeModal();
+    updateState({isVisible: false, profileImage: image});
   };
 
   const openModal = () => {
@@ -79,7 +103,37 @@ const EditSingleProfessionalProfile = ({ navigation, route }) => {
     navigation.goBack();
   };
 
-  const updateProfile = () => { };
+  const updateProfile = async () => {
+    const {valid, errors} = professionalFormValidate(
+      name,
+      email,
+      formattedValue,
+      speciality,
+      experience,
+      profileImage,
+    );
+    const data = {
+      name,
+      formattedValue,
+      email,
+      experience,
+      salonId: user?.id,
+      professionalId: item?.id,
+      profileImage,
+      existingImage:singleProfessional?.file?.url,
+      speciality,
+    };
+    if (!valid) {
+      Toast.showWithGravity(
+        'Please fill the required field and try again ',
+        Toast.LONG,
+        Toast.BOTTOM,
+      );
+      return;
+    }
+    const response = await dispatch(updateSingleProfessionalProfile(data)).unwrap();
+    console.log('here is response edit single professional', response);
+  };
 
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -88,16 +142,32 @@ const EditSingleProfessionalProfile = ({ navigation, route }) => {
         showBackButton={true}
         onBackPress={handleNavigation}
       />
+      {/* {console.log('file',`${imageBaseUrl}${singleProfessional?.file?.url}`)} */}
       <View style={styles.container}>
         <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.profileImageContainer}>
             <View style={styles.innerProfileImageContainer}>
               <View style={styles.ImageContainer}>
                 <FastImage
-                  source={profileImage ? { uri: profileImage } : images.room}
+                  source={
+                    profileImage?.uri
+                      ? {uri: profileImage.uri}
+                    : singleProfessional?.file?.url
+                      ? {uri: `${imageBaseUrl}${singleProfessional?.file?.url}`} 
+                      : images.room
+                  }
+                  style={styles.profileImage}
+                  // resizeMode={FastImage.resizeMode.contain} // optional: uncomment if needed
+                />
+                {/* <FastImage
+                  source={
+                    singleProfessional && singleProfessional?.file?.url ?
+                    {uri:`${imageBaseUrl}${singleProfessional?.file?.url}`}
+                    :
+                    profileImage ? { uri: profileImage.uri } : images.room}
                   // resizeMode={FastImage.resizeMode.contain}
                   style={styles.profileImage}
-                />
+                /> */}
               </View>
               <TouchableOpacity onPress={openModal} style={styles.editIcon}>
                 <Camera />
@@ -107,16 +177,16 @@ const EditSingleProfessionalProfile = ({ navigation, route }) => {
 
           <View style={styles.inputContainer}>
             <TextField
-              ref={emailRef}
+              ref={professionalRef}
               placeholder={'Professional Name'}
               label={'Professional Name'}
               onChangeText={val => {
-                updateState({ salonName: val });
+                updateState({name: val});
               }}
-              value={salonName}
+              value={name}
               returnKeyType="next"
               blurOnSubmit={false}
-              onSubmitEditing={() => ownerRef.current?.focus()}
+              onSubmitEditing={() => emailRef.current?.focus()}
             />
           </View>
 
@@ -130,11 +200,11 @@ const EditSingleProfessionalProfile = ({ navigation, route }) => {
             placeholder="Enter your phone number"
             disableCountryCode={true}
             onChangeText={text => {
-              updateState({ phoneNumber: text });
+              updateState({phoneNumber: text});
             }}
-            onChangeFormattedText={text => updateState({ formattedValue: text })}
+            onChangeFormattedText={text => updateState({formattedValue: text})}
             onChangeCountry={country =>
-              updateState({ countryCode: country.callingCode })
+              updateState({countryCode: country.callingCode})
             }
             withShadow={false}
             containerStyle={styles.phoneContainer}
@@ -144,61 +214,60 @@ const EditSingleProfessionalProfile = ({ navigation, route }) => {
               placeholderTextColor: colors.lightBlack,
               fontFamily: fontsFamily.regular,
               fontSize: RFValue(12),
-              style: { paddingLeft: 0, marginLeft: -20, textAlign: 'left' },
+              style: {paddingLeft: 0, marginLeft: -20, textAlign: 'left'},
             }}
             renderDropdownImage={<DownArrow />}
           />
 
           <View style={styles.emailContainer}>
             <TextField
-              placeholder={'Email'}
               ref={emailRef}
+              placeholder={'Email'}
               label={'Email(Optional)'}
               onChangeText={val => {
-                updateState({ email: val });
+                updateState({email: val});
               }}
               value={email}
               returnKeyType="next"
               blurOnSubmit={false}
-              onSubmitEditing={() => postCodeRef.current?.focus()}
+              onSubmitEditing={() => specialtyRef.current?.focus()}
             />
           </View>
 
           <View style={styles.inputContainer}>
             <TextField
-              ref={postCodeRef}
+              ref={specialtyRef}
               placeholder={'Specialty'}
               label={'Specialty'}
               onChangeText={val => {
-                updateState({ specialty: val });
+                updateState({speciality: val});
               }}
-              value={email}
+              value={speciality}
               returnKeyType="next"
               blurOnSubmit={false}
-              onSubmitEditing={() => addressRef.current?.focus()}
+              onSubmitEditing={() => experienceRef.current?.focus()}
             />
           </View>
 
           <View style={styles.inputContainer}>
             <TextField
-              ref={postCodeRef}
+              ref={experienceRef}
               placeholder={'Experience'}
               label={'Experience'}
               onChangeText={val => {
-                updateState({ experience: val });
+                updateState({experience: val});
               }}
-              value={email}
-              returnKeyType="next"
-              blurOnSubmit={false}
-              onSubmitEditing={() => addressRef.current?.focus()}
+              value={experience}
+              returnKeyType="done"
+              blurOnSubmit={true}
+              // onSubmitEditing={() => addressRef.current?.focus()}
             />
           </View>
-
-
         </KeyboardAwareScrollView>
         <AppButton
           onPress={updateProfile}
           title={'Update Professional'}
+          isLoading={loading}
           style={styles.button}
         />
       </View>

@@ -24,7 +24,16 @@ const styles = StyleSheet.create({
   },
   contentContainerStyle:{
     paddingBottom:hp(1.5)
-  }
+  },
+  footerLoader:{ 
+    marginTop: 10,
+    marginBottom: 10,
+   },
+ loaderStyle:{ 
+   flex:1 , 
+   justifyContent:'center', 
+   alignItems:'center' 
+ },
 
 });
 export default styles;

@@ -10,7 +10,7 @@ import { AvailableTimeSlots } from '../staticData';
 
 const TimeSlotsDropDown = (props)=>{
     const [isOpen, setIsOpen] = useState(false);
-    const {selectedSlots ,handleSlotSelection, day} = props;
+    const {selectedSlots ,handleSlotSelection, day , availableSlots} = props;
 
     return(
         <View>
@@ -29,10 +29,9 @@ const TimeSlotsDropDown = (props)=>{
       {isOpen &&
        <TimeSlots
             title={'Time slot'}
-            availableSlots={AvailableTimeSlots}
+            availableSlots={availableSlots}
             selectedSlots={selectedSlots}
-            hand
-            leSlotSelection={handleSlotSelection}
+            handleSlotSelection={handleSlotSelection}
             isEdit={true}
           />
         }

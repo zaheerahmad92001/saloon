@@ -6,30 +6,77 @@ import TextField from '../../components/textField/textField';
 import Pluse from '../../assets/svgs/Pluse.svg';
 import {SmallText} from '../../components/Typography';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {useDispatch, useSelector} from 'react-redux';
+import {addSlots} from '../../redux/actions/professionalsAction';
+import { useNavigation } from '@react-navigation/native';
 
 const SeatsScreen = () => {
-  const [slots, setSlots] = useState([{id: Date.now(), seats: '3'}]);
+
+  const navigation = useNavigation()
+  const [seats, setSeats] = useState([{id: Date.now(), seats: '3'}]);
+  const {slotData} = useSelector(state => state.slots);
+  const {addSlotsInProgress} = useSelector((state)=>state.professionals)
+  
+  const user = useSelector(state => state.auth.user);
+  const dispatch = useDispatch();
 
   const addMoreSlot = () => {
-    setSlots([...slots, {id: Date.now(), seats: ''}]);
+    setSeats([...seats, {id: Date.now(), seats: ''}]);
   };
 
   const removeSlot = id => {
-    setSlots(slots.filter(slot => slot.id !== id));
+    setSeats(seats.filter(seat => seat.id !== id));
   };
 
   const handleInputChange = (id, field, value) => {
-    setSlots(prevState =>
-      prevState.map(slot =>
-        slot.id === id ? {...slot, [field]: value} : slot,
+    setSeats(prevState =>
+      prevState.map(seat =>
+        seat.id === id ? {...seat, [field]: value} : seat,
       ),
     );
+  };
+
+  const handleSave = async () => {
+    const slotLength = slotData.length;
+    const seatLength = seats.length;
+    const minLength = Math.min(slotLength, seatLength);
+
+    // Show message if lengths mismatch
+    if (slotLength !== seatLength) {
+      const extraData =
+        slotLength > seatLength
+          ? `${slotLength - seatLength} slot(s)`
+          : `${seatLength - slotLength} seat(s)`;
+
+      console.warn(
+        `Note: ${extraData} could not be included because the number of slots and seats do not match. Only the first ${minLength} pair(s) will be merged.`,
+      );
+    }
+
+    const merged = [];
+
+    for (let i = 0; i < minLength; i++) {
+      merged.push({
+        startTime: slotData[i].startTime,
+        endTime: slotData[i].endTime,
+        seats: seats[i]?.seats ? parseInt(seats[i].seats) : 0,
+      });
+    }
+
+    const payload = {
+      salonId: user?.id,
+      slots: merged,
+    };
+    const response = await dispatch(addSlots(payload)).unwrap();
+    if(response?.salonId){
+      navigation.goBack()
+    }
   };
 
   return (
     <View style={styles.container}>
       <KeyboardAwareScrollView>
-        {slots.map((slot, index) => (
+        {seats.map((slot, index) => (
           <View key={slot.id} style={styles.slotContainer}>
             <View style={styles.subServiceHeader}>
               <SmallText
@@ -59,7 +106,12 @@ const SeatsScreen = () => {
           </Pressable>
         </View>
       </KeyboardAwareScrollView>
-      <AppButton onPress={() => {}} title="Save" style={styles.buttonStyle} />
+      <AppButton
+        onPress={handleSave}
+        title="Save"
+        isLoading={addSlotsInProgress}
+        style={styles.buttonStyle}
+      />
     </View>
   );
 };

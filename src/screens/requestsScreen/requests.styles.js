@@ -30,13 +30,12 @@ const styles = StyleSheet.create({
     borderColor: colors.gray,
     alignItems: 'center',
     justifyContent: 'center',
-    
   },
   rowContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     marginTop: hp(2),
-    gap:10
+    gap: 10,
   },
   statusText: {
     fontSize: RFValue(14),
@@ -59,8 +58,13 @@ const styles = StyleSheet.create({
     color: colors.primary,
     textAlign: 'center',
   },
-  button:{
-    marginBottom:Platform.OS==='android'?hp(2):hp(1)
-  }
+  button: {
+    marginBottom: Platform.OS === 'android' ? hp(2) : hp(1),
+  },
+  loaderView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 export default styles;
