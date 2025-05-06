@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {
   View,
   TouchableOpacity,
@@ -20,18 +20,47 @@ import {
 import AssignProfessionalsModel from '../../components/modal/assignProfessional/assignProfessionalBottomSheet';
 import {MediumText, SmallText} from '../../components/Typography';
 import SubServiceCard from '../../components/subServiceCard';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {convertServiceObjectToFormValues} from '../../functions';
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchProfessionalBySalonId} from '../../redux/actions/professionalsAction';
+import {assignProfessionals} from '../../redux/actions/servicesAction';
+
+// let subService =[
+//   {id: 1, name: 'Long Hair cut', price: 'Sar 100', duration: '30 mins'},
+//   {id: 2, name: 'Short Hair cut', price: 'Sar 150', duration: '45 mins'},
+// ]
 
 const SubServiceList = ({navigation, route}) => {
+  const {item} = route?.params || {};
+  const serviceId = item?.id;
+  const refRBSheet = useRef();
 
   const [expandedSubServices, setExpandedSubServices] = useState([]);
+  const [subServiceId, setSubServiceId] = useState(null);
+  const [subServiceData, setSubServiceData] = useState([]);
+  const [selectedProfessionalIds, setSelectedProfessionalIds] = useState([]);
+  const formValues = convertServiceObjectToFormValues(item);
+  let subService = formValues?.subServicesData;
 
-let subService =[
-  {id: 1, name: 'Long Hair cut', price: 'Sar 100', duration: '30 mins'},
-  {id: 2, name: 'Short Hair cut', price: 'Sar 150', duration: '45 mins'},
-]
-
+  const dispatch = useDispatch();
   const [subServicesData, setSubServicesData] = useState(subService);
+  const {salonProfessionals, salon_Professional_Pagination } = useSelector(state => state.professionals);
+  const {inProgress } = useSelector(state => state.services);
+  const {user} = useSelector(state => state.auth);
+  const salonId = user?.id;
+  const limit = 10;
+
+  useEffect(() => {
+    const fetchSalonProfessionals = async () => {
+      const response = await dispatch(
+        fetchProfessionalBySalonId({salonId, page: 1, limit}),
+      ).unwrap();
+      console.log('response for fetchProfessionalBySalonId', response);
+    };
+
+    fetchSalonProfessionals();
+  }, [dispatch, salonId]);
 
   const handleInputChange = (id, field, value) => {
     setSubServicesData(prevState =>
@@ -45,14 +74,38 @@ let subService =[
     hideBottomSheet();
   };
 
-  const doneHandler = () => {
+  const doneHandler = selectedId => {
+    
+    // pushing data into array w.r.t subserviceId
+    const newEntry = {
+      professionalIds: selectedId,
+      subServiceId: subServiceId,
+    };
+    setSubServiceData(prev => {
+      const filtered = prev.filter(
+        entry => entry.subServiceId !== subServiceId,
+      );
+      return [...filtered, newEntry];
+    });
+
     hideBottomSheet();
-    navigation.navigate('assignSubServiceListScreen');
+    // navigation.navigate('assignSubServiceListScreen');
   };
-  const refRBSheet = useRef();
-  const openBottomSheet = () => {
+
+  const openBottomSheet = item => {
     if (refRBSheet.current) {
       refRBSheet.current.present();
+      setSubServiceId(item.id);
+
+      // getting professionals id to show pre-selected professionals in bottomsheet
+      const existing = subServiceData.find(
+        entry => entry.subServiceId === item.id,
+      );
+      if (existing) {
+        setSelectedProfessionalIds(existing.professionalIds);
+      } else {
+        setSelectedProfessionalIds([]);
+      }
     }
   };
 
@@ -62,11 +115,28 @@ let subService =[
     }
   };
 
-
   const toggleExpand = id => {
     setExpandedSubServices(prev =>
       prev.includes(id) ? prev.filter(item => item !== id) : [...prev, id],
     );
+  };
+
+  const handleSavePress = async () => {
+    const subServiceList = subServiceData.filter(
+      item =>
+        Array.isArray(item.professionalIds) && item.professionalIds.length > 0,
+    );
+
+    // let payload = {
+    //   subServiceData:subServiceList,
+    //   serviceId,
+    //   status:'subservice',
+    // }
+
+    const response = await dispatch(assignProfessionals({subServiceList, serviceId, status: 'subservice'})).unwrap();
+    if (response?.success) {
+      navigation.goBack();
+    }
   };
 
   const renderItem = ({item, index}) => {
@@ -84,13 +154,13 @@ let subService =[
           {isExpanded ? <Downarrow /> : <UpArrow />}
         </TouchableOpacity>
 
-        { isExpanded &&
-            <SubServiceCard
+        {isExpanded && (
+          <SubServiceCard
             item={item}
             handleInputChange={handleInputChange}
-            openBottomSheet={openBottomSheet}
-            />
-        }
+            openBottomSheet={() => openBottomSheet(item)}
+          />
+        )}
       </View>
     );
   };
@@ -98,14 +168,14 @@ let subService =[
   return (
     <SafeAreaView style={styles.container}>
       <Header
-        title={'Hair Cut'}
+        title={formValues?.service?.name ?? ''}
         showBackButton
         onBackPress={() => navigation.goBack()}
       />
       <KeyboardAwareScrollView style={styles.mainContainer}>
         <View style={styles.wrapper}>
           <View style={styles.DeleteView}>
-            <MediumText text={'Hair Cut'} />
+            <MediumText text={formValues?.service?.name ?? ''} />
 
             <Pressable onPress={() => {}}>
               <SmallText text={'Delete'} style={styles.DeleteText} />
@@ -119,14 +189,14 @@ let subService =[
             renderItem={renderItem}
             scrollEnabled={false}
           />
-         
         </View>
       </KeyboardAwareScrollView>
       <AppButton
-            onPress={() => {}}
-            title="Save"
-            style={styles.buttonStyle}
-          />
+        onPress={handleSavePress}
+        title="Save"
+        isLoading={inProgress}
+        style={styles.buttonStyle}
+      />
 
       <BottomSheet
         refRBSheet={refRBSheet}
@@ -138,6 +208,8 @@ let subService =[
         style={styles.bottomSheetColor}
         sheetModalStyle={styles.bottomSheetColor}>
         <AssignProfessionalsModel
+          data={salonProfessionals}
+          selectedIdsProp={selectedProfessionalIds}
           onCancel={cancelHandler}
           onDone={doneHandler}
           //   onClear={clearFilter}

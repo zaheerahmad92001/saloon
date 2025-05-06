@@ -1,5 +1,6 @@
-import { View, Text, SafeAreaView, StyleSheet, Pressable } from 'react-native';
+import { View, SafeAreaView, StyleSheet, Pressable } from 'react-native';
 import React, { useRef, useState } from 'react';
+import Toast from 'react-native-simple-toast';
 import PhoneInput from 'react-native-phone-number-input';
 import { SmallText, XlargeText } from '../../../components/Typography';
 import colors from '../../../assets/colors';
@@ -9,11 +10,44 @@ import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { AppButton } from '../../../components/appButton';
 import Header from '../../../components/appHeader';
 import DownArrow from '../../../assets/svgs/downarrow.svg';
+import { loginUser } from '../../../redux/actions/authActions';
+import { useDispatch, useSelector } from 'react-redux';
+
+
 const Login = ({ navigation, route }) => {
+  const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.auth);
+
+
   const phoneInput = useRef(null);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [formattedValue, setFormattedValue] = useState('');
   const [countryCode, setCountryCode] = useState('');
+
+  const [phoneValidationError, setPhoneValidationError] = useState('');
+
+
+  const handleLogin= async ()=>{
+    let valid = true;
+
+    if (!phoneNumber || !phoneInput?.current?.isValidNumber(phoneNumber)) {
+      setPhoneValidationError('Invalid phone number')
+      valid = false;
+      if(!valid){
+        Toast.showWithGravity(
+          'Please provide correct Phone Number',
+          Toast.LONG,
+          Toast.BOTTOM,
+        );
+      return 
+    }
+  }
+  let infoData = {
+    phoneNumber:formattedValue
+  }
+   const response = await dispatch(loginUser(infoData)).unwrap();
+}
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -35,6 +69,7 @@ const Login = ({ navigation, route }) => {
           placeholder="Enter your phone number"
           disableCountryCode={true}
           onChangeText={(text) => {
+            setPhoneValidationError('')
             setPhoneNumber(text);
           }}
           onChangeFormattedText={text => setFormattedValue(text)}
@@ -53,7 +88,15 @@ const Login = ({ navigation, route }) => {
             <DownArrow />
           }
         />
-        <AppButton title={'Done'} textstyle={styles.loginpText} onPress={() => navigation.navigate('otpView')} />
+        {phoneValidationError &&
+            <SmallText text={phoneValidationError} style={{color:colors.error}}/>
+          }
+        <AppButton 
+        title={'Done'} 
+        onPress={handleLogin} 
+        isLoading={loading}
+        textstyle={styles.loginpText} 
+        />
 
         <View style={styles.registerTextContainer}>
           <SmallText text={"Don't have an account?"} style={styles.headingAcc} />

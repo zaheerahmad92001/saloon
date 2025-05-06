@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
       fontWeight: '400',
       marginBottom: 10,
   },
-  addressInput:{minHeight: 80, marginBottom:20},
+  addressInput:{minHeight: 80},
+  emptyView:{marginTop:hp(3)}
   });
 export default styles;

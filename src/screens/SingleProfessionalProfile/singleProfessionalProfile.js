@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   View,
   SafeAreaView,
@@ -7,10 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import images from '../../assets/images';
-import {
-  scheduleTimePeriod,
-  singleProfessionalMenuOptions,
-} from '../../staticData';
+import {singleProfessionalMenuOptions} from '../../staticData';
 import Header from '../../components/appHeader';
 import MenuItem from '../../components/menItems/menuItems';
 import styles from './singleProfessionalProfile.styles';
@@ -18,27 +15,21 @@ import {MediumText, XlargeText} from '../../components/Typography';
 import Camera from '../../assets/svgs/camera.svg';
 
 const SingleProfessionalProfile = ({navigation, route}) => {
+ const {item} = route?.params ?? {}
 
-  const [selectedSlots, setSelectedSlots] = useState([]);
-  const [selectedOptions, setSelectedOptions] = useState([]);
-  const [schedulePeriod, setSchedulePeriod] = useState(
-    scheduleTimePeriod.weekly,
-  );
-  const [weeklyDaysSelection, setWeeklyDaysSelection] = useState([]);
-  const [monthlyDatesSelection, setMonthlyDatesSelection] = useState([]);
 
-  const handleNavigation = routeName => {
-    if (routeName === 'availability') {
-      navigation.navigate('professionalSchedule', {isSingleProfessional: true});
-    } else {
-      navigation.navigate(routeName);
-    }
+  const handleNavigation = (routeName) => {
+    // if (routeName === 'availability') {
+    //   navigation.navigate('professionalSchedule', {isSingleProfessional: true, paramsData:item});
+    // } else {
+      navigation.navigate(routeName,{item });
+    // }
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <Header
-        title={'Paityn Lipshutz'}
+        title={item?.name ?? ''}
         showBackButton={true}
         onBackPress={() => navigation.goBack()}
       />
@@ -58,9 +49,9 @@ const SingleProfessionalProfile = ({navigation, route}) => {
           </View>
 
           <View style={styles.titleContainer}>
-            <XlargeText text={'Paityn Lipshutz'} style={styles.title} />
+            <XlargeText text={item?.name ?? ''} style={styles.title} />
             <MediumText
-              text={'paitynlipshutz@gmail.com'}
+              text={item?.email ?? ''}
               style={styles.emailstyle}
             />
           </View>

@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {
   View,
   SafeAreaView,
@@ -25,14 +25,20 @@ import ModalComponent from '../../components/modal';
 import LogoutModal from '../../components/modal/logout';
 import {widthPercentageToDP} from 'react-native-responsive-screen';
 import Camera from '../../assets/svgs/camera.svg';
+import { logout } from '../../redux/features/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Profile = ({navigation, route}) => {
   const modalRef = useRef();
+  const dispatch = useDispatch();
+  const {user} = useSelector((state)=>state.auth)
+  
+  const [inProgress , setInProgress] = useState(false);
 
   const handleNavigation = routeName => {
     if (routeName === 'logout') {
       openModal();
-    } else if(routeName==='booking') {
+    } else if(routeName === 'booking') {
       navigation.navigate('BottomStack',{screen:'Booking'});
     }else{
       navigation.navigate(routeName);
@@ -51,6 +57,11 @@ const Profile = ({navigation, route}) => {
       modalRef.current.close();
     } else {
     }
+  };
+
+  const handleLogout = ()=>{
+   dispatch(logout());
+   closeModal()
   };
 
   return (
@@ -76,7 +87,7 @@ const Profile = ({navigation, route}) => {
           </View>
 
           <View style={styles.titleContainer}>
-            <XlargeText text={'Alexandra’s Salon'} style={styles.title} />
+            <XlargeText text={`${user?.name}`} style={styles.title} />
             <Pressable
               onPress={() => handleNavigation('salonPage')}
               style={styles.viewSalonPageView}>
@@ -127,7 +138,7 @@ const Profile = ({navigation, route}) => {
         ref={modalRef}
         onClose={closeModal}
         style={{width: widthPercentageToDP(80)}}>
-        <LogoutModal handleLogout={() => {}} handleCancel={closeModal} />
+        <LogoutModal handleLogout={handleLogout} handleCancel={closeModal} />
       </ModalComponent>
     </SafeAreaView>
   );

@@ -32,6 +32,15 @@ const styles = StyleSheet.create({
   },
   button: {
     marginBottom: hp(1),
-  }
+  },
+  footerLoader:{ 
+     marginTop: 10,
+     marginBottom: 10,
+    },
+  loaderStyle:{ 
+    flex:1 , 
+    justifyContent:'center', 
+    alignItems:'center' 
+  },
 });
 export default styles;

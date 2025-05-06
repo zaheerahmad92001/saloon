@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
   phoneContainer: {
     width: '100%',
     height: 50,
+    backgroundColor:'red',
     
   },
   textInput: {

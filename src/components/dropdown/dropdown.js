@@ -7,7 +7,7 @@ import fontsFamily from "../../assets/fontsFamily";
 import { RFValue } from "react-native-responsive-fontsize";
 
 
-const MyDropdown = ({labelField, placeholder, value, data, onChange ,style}) => {
+const MyDropdown = ({labelField, placeholder, value, data, onChange ,handleLoadMore ,style}) => {
    return (
     <View style={styles.container}>
        <Dropdown 
@@ -35,6 +35,10 @@ const MyDropdown = ({labelField, placeholder, value, data, onChange ,style}) => 
         paddingVertical:0, // Reduce text padding
       }}
       
+      flatListProps={{
+        onEndReached: handleLoadMore,
+        onEndReachedThreshold: 0.5, // Adjust sensitivity
+      }}
        />
     </View>
    );

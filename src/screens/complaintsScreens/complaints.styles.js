@@ -61,6 +61,11 @@ const styles = StyleSheet.create({
   },
   button:{
     marginBottom:Platform.OS==='android'?hp(2):hp(1)
-  }
+  },
+  loaderView:{
+    flex:1,
+    justifyContent:'center',
+    alignItems:'center',
+  },
 });
 export default styles;

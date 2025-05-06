@@ -1,4 +1,4 @@
-import React, {useCallback, useReducer, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useReducer, useRef, useState} from 'react';
 import {
   View,
   SafeAreaView,
@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Search from '../../components/search';
-import {graphTabs, mockData} from '../../staticData';
+import {filterList, graphTabs, mockData} from '../../staticData';
 import {
   MediumText,
   SmallText,
@@ -24,11 +24,17 @@ import BookingFilter from '../../components/bookingFilter/BookingFilter';
 import AnaqaPills from '../../components/AnaqaPills';
 import AnaqaPayoutStatistics from '../../components/AnaqaPayoutStatistics';
 import StaticsProfessionalCard from '../../components/statisticsTab/staticsProfessionalCard';
+import { useDispatch, useSelector } from 'react-redux';
+import { dashboardInfo } from '../../redux/actions/homeActions';
 
 const HomeScreen = ({navigation, route}) => {
   const refRBSheet = useRef();
   const [isInputActive, setIsInputActive] = useState(false);
   const [activeTab, setActiveTab] = useState(graphTabs.sales);
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+
+
 
   const [state, updateState] = useReducer(
     (state, newState) => ({...state, ...newState}),
@@ -39,13 +45,17 @@ const HomeScreen = ({navigation, route}) => {
   const {selectedItem} = state;
 
   const [selectedValue, setSelectedValue] = useState(null);
-  const items = [
-    {label: 'Weekly', value: '1'},
-    {label: 'Weekly', value: '2'},
-    {label: 'Weekly', value: '3'},
-    {label: 'Weekly', value: '4'},
-    {label: 'Weekly', value: '5'},
-  ];
+  
+
+useEffect(()=>{
+
+  const loadDashboardData= async ()=>{
+    let infoData = user?.id
+     const response = await dispatch(dashboardInfo(infoData)).unwrap();
+  
+  }
+   loadDashboardData();
+},[dispatch, user?.id])
 
   const handNavigation = () => {
     // navigation.navigate('ProfessionalService');
@@ -111,7 +121,7 @@ const HomeScreen = ({navigation, route}) => {
             <View style={styles.sectionHeader}>
               <MediumText text={'Overview'} style={styles.sectionTitle} />
               <OverViewDropdown
-                data={items}
+                data={filterList}
                 value={selectedValue}
                 onChange={item => setSelectedValue(item.value)}
                 placeholder="Weekly"

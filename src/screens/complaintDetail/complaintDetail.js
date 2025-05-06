@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Header from '../../components/appHeader';
 import { FlatList, Pressable, SafeAreaView, View } from 'react-native';
 import style from './complaintDetail.style';
@@ -7,11 +7,24 @@ import Filter from '../../assets/svgs/filter-search.svg';
 import { LargeText, MediumText } from '../../components/Typography';
 import FilterScreen from '../../components/modal/filterScreen';
 import ModalComponent from '../../components/modal/index';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetch_request_and_complaint } from '../../redux/actions/requestComplaintAction';
 
 
 const ComplaintDetail = ({ navigation, route }) => {
- const modalRef = useRef();
-  const { scene } = route.params;
+  const dispatch = useDispatch();
+  const {user} = useSelector((state)=>state.auth);
+  const salonId = user?.id;
+
+  const modalRef = useRef();
+  const { scene, type } = route.params;
+
+useEffect(()=>{
+const fetchDetail = async()=>{
+ dispatch(fetch_request_and_complaint({salonId, type}));
+};
+fetchDetail();
+},[dispatch, type]);
 
 const openModal = () => {
   if (modalRef?.current) {
@@ -32,8 +45,7 @@ const closeModal = () => {
   <ComplaintsCard
   isPendng={scene==='Pending'? true : false}
   />
- )
-  }
+)}
 
 
   return (

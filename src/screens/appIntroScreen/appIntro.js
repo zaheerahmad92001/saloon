@@ -11,12 +11,15 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import fontsFamily from '../../assets/fontsFamily';
 import colors from '../../assets/colors';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import { slides } from '../../staticData';
+import { slides, storagekeys } from '../../staticData';
 import { LargeText, SmallText } from '../../components/Typography';
 import { AppButton } from '../../components/appButton';
+import { saveToLocalStorage } from '../../functions';
+import { useDispatch } from 'react-redux';
+import { setAppIntroCompleted } from '../../redux/features/authSlice';
 
 const AppIntro = ({ navigation, route }) => {
-
+const dispatch = useDispatch()
 
   const renderNextButton = () => {
     return (
@@ -31,7 +34,11 @@ const AppIntro = ({ navigation, route }) => {
 
   const renderDoneButton = () => {
     return (
-      <AppButton title="Get Started" onPress={() => navigation.navigate('authStack')} />
+      <AppButton title="Get Started" onPress={ async() => {
+        await saveToLocalStorage(storagekeys.isFirstLaunch , false)
+        dispatch(setAppIntroCompleted())
+        // navigation.navigate('authStack')
+        }}/>
     );
   };
 

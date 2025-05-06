@@ -5,8 +5,13 @@ import {AppButton} from '../../components/appButton';
 import Pluse from '../../assets/svgs/Pluse.svg';
 import DatePickerComponent from '../../components/datePicker/datePicker';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import { useDispatch } from 'react-redux';
+import { timeSlots } from '../../redux/features/slotsReducer';
 
 const SlotsScreen = () => {
+
+  const dispatch = useDispatch()
+
   const [slots, setSlots] = useState([
     {id: Date.now(), startTime: '00:00', endTime: '00:00'},
   ]);
@@ -19,13 +24,22 @@ const SlotsScreen = () => {
   };
 
   const updateSlot = (value, id, field) => {
-    setSlots(prevSlots =>
-      prevSlots.map(slot =>
-        slot.id === id ? {...slot, [field]: value} : slot,
-      ),
+    const updated = slots.map(slot =>
+      slot.id === id ? { ...slot, [field]: value } : slot
     );
+    
+    setSlots(updated); // Local state update
+    dispatch(timeSlots(updated));
   };
 
+  // const updateSlot = (value, id, field) => {
+  //   setSlots(prevSlots =>
+  //     prevSlots.map(slot =>
+  //       slot.id === id ? {...slot, [field]: value} : slot,
+  //     ),
+  //   );
+  // };
+console.log('slots', slots)
   return (
     <View style={styles.container}>
       <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>

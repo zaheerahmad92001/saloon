@@ -24,10 +24,16 @@ import Config from 'react-native-config';
 import FastImage from 'react-native-fast-image';
 import ModalComponent from '../../components/modal';
 import OpeningHours from '../../components/modal/openingHours';
+import { useDispatch, useSelector } from 'react-redux';
+
+
 
 const SalonPage = ({navigation, route}) => {
   const mapRef = useRef(null);
   const modalRef = useRef();
+  const dispatch = useDispatch();
+  const {user} = useSelector((state)=>state.auth);
+  const salonId = user?.id
 
   const {REACT_APP_GOOGLE_MAPS_API_KEY} = Config;
   const latitude = 37.78825;

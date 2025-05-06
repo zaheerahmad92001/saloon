@@ -53,6 +53,7 @@ const SubServiceCard = props => {
             style={styles.input}
             value={item.duration}
             onChangeText={text => handleInputChange(item.id, 'duration', text)}
+             keyboardType="numeric"
           />
         </View>
       </View>

@@ -8,7 +8,7 @@ import { LargeText, SmallText } from '../Typography';
 
 
 const StaticsProfessionalCard = (props) => {
-  const { onClick , showServiceCount = true } = props;
+  const { item , onClick , showServiceCount = true } = props;
   return (
     <Pressable onPress={onClick}>
       <View style={[styles.card]}>
@@ -16,7 +16,7 @@ const StaticsProfessionalCard = (props) => {
         <Image source={images.room} style={styles.avatar} />
         </View>
         <View style={[styles.infoContainer, !showServiceCount && {rowGap:7}]}>
-          <LargeText text={'Paityn Lipshutz '} style={styles.name} />
+          <LargeText text={ item?.name ?? 'Paityn Lipshutz '} style={styles.name} />
           {showServiceCount &&
             <SmallText text={'No of Services: 221'} style={styles.details} />
           }

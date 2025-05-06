@@ -3,10 +3,12 @@ import {View, Text, TextInput, StyleSheet} from 'react-native';
 import {RFValue} from 'react-native-responsive-fontsize';
 import colors from '../../assets/colors';
 import fontsFamily from '../../assets/fontsFamily';
+import { SmallText } from '../Typography';
 
 const TextField = forwardRef((props, ref) => {
-  const { label, placeholder, onChangeText, value, style, inputStyle, ...otherProps } = props;
+  const { label, placeholder, onChangeText, value, error, style, inputStyle, ...otherProps } = props;
   return (
+    <>
     <View style={[styles.container, style]}>
       {label && <Text style={styles.label}>{label}</Text>}
       <TextInput
@@ -19,6 +21,10 @@ const TextField = forwardRef((props, ref) => {
         {...otherProps}
       />
     </View>
+    {error &&
+      <SmallText text={error} style={{color:colors.error}}/>
+    }
+    </>
   );
 });
 
